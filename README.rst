@@ -1,5 +1,5 @@
-jQuery.Gantt JS Library Packaged for Plone
-==========================================
+AngularJS JavaScriptS Library Packaged for Plone
+================================================
 
 This package provides the `AngularJS <http://angularjs.org//>`_ libray for
 use in Plone. See also
