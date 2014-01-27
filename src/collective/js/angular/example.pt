@@ -5,7 +5,7 @@
 	xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
 <metal:block fill-slot="main">
-	<div id="jquery_gantt_example" ng-app>
+	<div id="angular_js_example" ng-app>
 		<h2>AngularJS Example: TODO List</h2>
 
 		<div ng-controller="TodoCtrl">

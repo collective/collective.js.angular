@@ -1,5 +1,5 @@
-AngularJS JavaScriptS Library Packaged for Plone
-================================================
+AngularJS JavaScript Library Packaged for Plone
+===============================================
 
 This package provides the `AngularJS <http://angularjs.org//>`_ libray for
 use in Plone. See also
@@ -21,8 +21,7 @@ GenericSetup dependency string for metadata.xml is
 
 At the moment theres no uninstall profile configured.
 
-This package is tested with for Plone 4.3 (should work with the 4-series).
-
+This package is tested with for Plone 4.3 (should work with the 4-series)
 
 Source Code and Contributions
 =============================
