@@ -1,0 +1,83 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:metal="http://xml.zope.org/namespaces/metal"
+	xmlns:tal="http://xml.zope.org/namespaces/tal"
+	metal:use-macro="context/main_template/macros/master"
+	xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+
+<metal:block fill-slot="main">
+	<div id="jquery_gantt_example" ng-app>
+		<h2>AngularJS Example: TODO List</h2>
+
+		<div ng-controller="TodoCtrl">
+			<span>{{remaining()}} of {{todos.length}} remaining</span> [ <a
+				href="" ng-click="archive()">archive</a> ]
+			<ul class="unstyled">
+				<li ng-repeat="todo in todos"><input type="checkbox"
+					ng-model="todo.done"> <span class="done-{{todo.done}}">{{todo.text}}</span>
+				</li>
+			</ul>
+			<form ng-submit="addTodo()" action="">
+				<input type="text" ng-model="todoText" size="30"
+					placeholder="add new todo here"> <input class="btn-primary"
+					type="submit" value="add">
+			</form>
+		</div>
+	</div>
+
+	<style>
+	    .done-true {
+	    	text-decoration: line-through;
+	    	color: grey;
+	    }	
+	</style>
+	
+	<script type="text/javascript">
+        function TodoCtrl($scope) {
+            $scope.todos = [ {
+                text : 'learn angular',
+                done : true
+            }, {
+                text : 'build an angular app',
+                done : false
+            } ];
+            
+            $scope.addTodo = function() {
+                $scope.todos.push({
+                    text : $scope.todoText,
+                    done : false
+                });
+                $scope.todoText = '';
+            };
+
+            $scope.remaining = function() {
+                var count = 0;
+                angular.forEach($scope.todos, function(todo) {
+                    count += todo.done ? 0 : 1;
+                });
+                return count;
+            };
+
+            $scope.archive = function() {
+                var oldTodos = $scope.todos;
+                $scope.todos = [];
+                angular.forEach(oldTodos, function(todo) {
+                    if (!todo.done)
+                        $scope.todos.push(todo);
+                });
+            };
+        }
+    </script>
+</metal:block>
+</html>
+<!doctype html>
+<html ng-app>
+<head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"
+	type="text/javascript"></script>
+<script src="todo.js" type="text/javascript"></script>
+<link rel="stylesheet" href="todo.css">
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:browser="http://namespaces.zope.org/browser" 
+    i18n_domain="collective.js.angular">
+
+    <includeDependencies package="." />
+    
+    <genericsetup:registerProfile
+        name="default"
+        title="AngularJS Javascript Library"
+        directory="profiles/default"
+        description="Provides Angular Javascript Library for use in Plone" 
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+        
+    <browser:resourceDirectory
+       name="collective.js.angular"
+        directory="resources"
+     />   
+     
+    <browser:page
+        name="angularjs-example"
+        for="*"
+        template="example.pt"
+        permission="zope2.ManageUsers"
+    />  
+              
+</configure>
