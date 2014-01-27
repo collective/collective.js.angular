@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.2.10.1'
+version = '1.2.10.2'
 shortdesc = 'AngularJS JavaScript Library Packaged for Plone'
 longdesc = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
 longdesc += open(os.path.join(os.path.dirname(__file__), 'HISTORY.rst')).read()
@@ -32,8 +32,7 @@ setup(name='collective.js.angular',
             'setuptools',
             'Plone',
       ],
-      entry_points="""
-      [z3c.autoinclude.plugin]
-      target = plone
-      """,
+      entry_points={
+          'z3c.autoinclude.plugin': 'target = plone',
+      },
 )
