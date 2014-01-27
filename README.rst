@@ -5,7 +5,7 @@ This package provides the `AngularJS <http://angularjs.org//>`_ libray for
 use in Plone. See also
 
 **Superheroic JavaScript MVW Framework** (cite
- the original website title)
+the original website title)
 
 
 Installation
