@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.2.10.2'
+version = '1.2.10.3'
 shortdesc = 'AngularJS JavaScript Library Packaged for Plone'
 longdesc = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
 longdesc += open(os.path.join(os.path.dirname(__file__), 'HISTORY.rst')).read()
@@ -25,7 +25,7 @@ setup(name='collective.js.angular',
       url='https://pypi.python.org/pypi/collective.js.angular',
       packages=find_packages('src'),
       package_dir={'': 'src'},
-      namespace_packages=[],
+      namespace_packages=['collective', 'collective.js'],
       include_package_data=True,
       zip_safe=True,
       install_requires=[
