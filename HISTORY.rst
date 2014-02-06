@@ -1,10 +1,11 @@
 History
 =======
 
-1.2.10.5 (unreleased)
+1.2.11.1 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+- Upgrade to ``angular.js`` 1.2.11.
+  [saily]
 
 
 1.2.10.4 (2014-02-06)
