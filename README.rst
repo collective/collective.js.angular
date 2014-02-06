@@ -45,6 +45,7 @@ Contributors
 ============
 
 - Jens W. Klein <jens@bluedynamics.com>
+- Daniel Widerin <daniel@widerin.net>
 
 License Python Package is **GPL 2**
 

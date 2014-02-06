@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <object name="portal_javascripts" meta_type="JavaScripts Registry">
- 
- <javascript
-   cacheable="True"
-   compression="safe"
-   cookable="True"
-   enabled="True"
-   expression=""
-   id="++resource++collective.js.angular/angular.min.js"
-   inline="False"
- />
+
+    <javascript
+        cacheable="True"
+        compression="None"
+        cookable="True"
+        enabled="True"
+        expression=""
+        id="++resource++collective.js.angular/angular.min.js"
+        inline="False"
+        />
 
 </object>
