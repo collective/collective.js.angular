@@ -7,6 +7,9 @@ History
 - Upgrade to ``angular.js`` 1.2.11.
   [saily]
 
+- Fix wong value for compression attribute in generic setup.
+  [saily]
+
 
 1.2.10.4 (2014-02-06)
 ---------------------

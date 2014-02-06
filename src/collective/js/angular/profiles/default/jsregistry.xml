@@ -3,7 +3,7 @@
 
     <javascript
         cacheable="True"
-        compression="None"
+        compression="false"
         cookable="True"
         enabled="True"
         expression=""
