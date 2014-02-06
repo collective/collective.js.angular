@@ -1,7 +1,7 @@
 History
 =======
 
-1.2.10.4 (unreleased)
+1.2.10.4 (2014-02-06)
 ---------------------
 
 - Don't compress ``angular.min.js`` because safe compression of minimized files
