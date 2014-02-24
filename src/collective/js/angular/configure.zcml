@@ -16,7 +16,7 @@
         />
 
     <genericsetup:registerProfile
-        name="default"
+        name="uncompressed"
         title="AngularJS Javascript Library (uncompressed)"
         directory="profiles/uncompressed"
         description="Provides Angular Javascript Library for use in Plone (uncompressed)"
