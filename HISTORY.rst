@@ -10,7 +10,7 @@ History
 1.2.13.1 (2014-02-24)
 ---------------------
 
-- Add uncompressed version of Angular. This targts on developer with need to 
+- Add uncompressed version of Angular. This targets on developer with need to 
   debug into AngularJS Code.
   [jensens]
 
