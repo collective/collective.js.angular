@@ -1,10 +1,15 @@
 History
 =======
 
-1.2.11.2 (unreleased)
+1.2.13.1 (2014-02-24)
 ---------------------
 
-- Nothing changed yet.
+- Add uncompressed version of Angular. This targts on developer with need to 
+  debug into AngularJS Code.
+  [jensens]
+
+- Upgrade to ``angular.js`` 1.2.13.
+  [jensens]
 
 
 1.2.11.1 (2014-02-06)
