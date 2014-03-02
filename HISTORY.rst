@@ -4,13 +4,14 @@ History
 1.2.13.2 (unreleased)
 ---------------------
 
-- nothing yet
+- Fix GS import step, default is now minimized.
+  [saily]
 
 
 1.2.13.1 (2014-02-24)
 ---------------------
 
-- Add uncompressed version of Angular. This targets on developer with need to 
+- Add uncompressed version of Angular. This targets on developer with need to
   debug into AngularJS Code.
   [jensens]
 

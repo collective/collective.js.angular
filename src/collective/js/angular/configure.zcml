@@ -10,7 +10,7 @@
     <genericsetup:registerProfile
         name="default"
         title="AngularJS Javascript Library"
-        directory="profiles/default"
+        directory="profiles/minified"
         description="Provides Angular Javascript Library for use in Plone (minified)"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
