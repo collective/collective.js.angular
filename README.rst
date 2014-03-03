@@ -16,8 +16,13 @@ Just depend in your buildout on the egg ``collective.js.angular``.
 Install ``AngularJS Javascript Library`` as an addon in Plone control-panel or
 in portal_setup.
 
-GenericSetup dependency string for metadata.xml is
-``profile-collective.js.angular-default``.
+Minified
+  GenericSetup dependency string for ``metadata.xml`` is
+  ``profile-collective.js.angular:default``.
+
+Uncompressed
+  GenericSetup dependency string for ``metadata.xml`` is
+  ``profile-collective.js.angular:uncompressed``.
 
 At the moment theres no uninstall profile configured.
 
