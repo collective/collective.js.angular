@@ -1,6 +1,12 @@
 History
 =======
 
+1.2.16.1 (2014-06-05)
+---------------------
+
+- provide the full AngularJS release contents (ZIP release) as resources. 
+  [jensens]
+
 1.2.16.0 (2014-06-05)
 ---------------------
 
