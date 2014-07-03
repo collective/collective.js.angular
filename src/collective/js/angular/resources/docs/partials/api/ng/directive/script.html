@@ -110,29 +110,29 @@ assigned through the element&#39;s <code>id</code>, which can then be used as a 
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-href="http://plnkr.co/edit/ngdoc:example-example49@{{docsVersion}}?p=preview" class="btn pull-right" target="_blank">
+  <a ng-click="openPlunkr('examples/example-example47')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
-      path="examples/example-example49">
+      path="examples/example-example47">
 
    
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;script type=&quot;text/ng-template&quot; id=&quot;/tpl.html&quot;&gt;&#10;  Content of the template.&#10;&lt;/script&gt;&#10;&#10;&lt;a ng-click=&quot;currentTpl=&#39;/tpl.html&#39;&quot; id=&quot;tpl-link&quot;&gt;Load inlined template&lt;/a&gt;&#10;&lt;div id=&quot;tpl-content&quot; ng-include src=&quot;currentTpl&quot;&gt;&lt;/div&gt;</code></pre>  
+      <pre><code>&lt;script type=&quot;text/ng-template&quot; id=&quot;/tpl.html&quot;&gt;&#10;  Content of the template.&#10;&lt;/script&gt;&#10;&#10;&lt;a ng-click=&quot;currentTpl=&#39;/tpl.html&#39;&quot; id=&quot;tpl-link&quot;&gt;Load inlined template&lt;/a&gt;&#10;&lt;div id=&quot;tpl-content&quot; ng-include src=&quot;currentTpl&quot;&gt;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="protractor.js"
       type="protractor"
       language="js">
-      <pre><code>it(&#39;should load template defined inside script tag&#39;, function() {&#10;  element(by.css(&#39;#tpl-link&#39;)).click();&#10;  expect(element(by.css(&#39;#tpl-content&#39;)).getText()).toMatch(/Content of the template/);&#10;});</code></pre>  
+      <pre><code>it(&#39;should load template defined inside script tag&#39;, function() {&#10;  element(by.css(&#39;#tpl-link&#39;)).click();&#10;  expect(element(by.css(&#39;#tpl-content&#39;)).getText()).toMatch(/Content of the template/);&#10;});</code></pre>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example49/index.html" name="example-example49"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example47/index.html" name="example-example47"></iframe>
   </div>
 </div>
 

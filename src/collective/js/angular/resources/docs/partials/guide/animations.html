@@ -12,11 +12,11 @@ or with JavaScript code when it&#39;s defined as a factory.</p>
 <p>
 
 <div>
-  <a ng-href="http://plnkr.co/edit/ngdoc:example-example73@{{docsVersion}}?p=preview" class="btn pull-right" target="_blank">
+  <a ng-click="openPlunkr('examples/example-example71')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
-      path="examples/example-example73"
+      path="examples/example-example71"
       module="ngAnimate"
       deps="angular-animate.js"
       animations="true">
@@ -26,18 +26,18 @@ or with JavaScript code when it&#39;s defined as a factory.</p>
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;div ng-init=&quot;checked=true&quot;&gt;&#10;  &lt;label&gt;&#10;    &lt;input type=&quot;checkbox&quot; ng-model=&quot;checked&quot; style=&quot;float:left; margin-right:10px;&quot;&gt; Is Visible...&#10;  &lt;/label&gt;&#10;  &lt;div class=&quot;check-element sample-show-hide&quot; ng-show=&quot;checked&quot; style=&quot;clear:both;&quot;&gt;&#10;    Visible...&#10;  &lt;/div&gt;&#10;&lt;/div&gt;</code></pre>  
+      <pre><code>&lt;div ng-init=&quot;checked=true&quot;&gt;&#10;  &lt;label&gt;&#10;    &lt;input type=&quot;checkbox&quot; ng-model=&quot;checked&quot; style=&quot;float:left; margin-right:10px;&quot;&gt; Is Visible...&#10;  &lt;/label&gt;&#10;  &lt;div class=&quot;check-element sample-show-hide&quot; ng-show=&quot;checked&quot; style=&quot;clear:both;&quot;&gt;&#10;    Visible...&#10;  &lt;/div&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="animations.css"
       language="css"
       type="css">
-      <pre><code>.sample-show-hide {&#10;  padding:10px;&#10;  border:1px solid black;&#10;  background:white;&#10;}&#10;&#10;.sample-show-hide.ng-hide-add, .sample-show-hide.ng-hide-remove {&#10;  -webkit-transition:all linear 0.5s;&#10;  -moz-transition:all linear 0.5s;&#10;  -o-transition:all linear 0.5s;&#10;  transition:all linear 0.5s;&#10;  display:block!important;&#10;}&#10;&#10;.sample-show-hide.ng-hide-add.ng-hide-add-active,&#10;.sample-show-hide.ng-hide-remove {&#10;  opacity:0;&#10;}&#10;&#10;.sample-show-hide.ng-hide-add,&#10;.sample-show-hide.ng-hide-remove.ng-hide-remove-active {&#10;  opacity:1;&#10;}</code></pre>  
+      <pre><code>.sample-show-hide {&#10;  padding:10px;&#10;  border:1px solid black;&#10;  background:white;&#10;}&#10;&#10;.sample-show-hide.ng-hide-add, .sample-show-hide.ng-hide-remove {&#10;  -webkit-transition:all linear 0.5s;&#10;  -moz-transition:all linear 0.5s;&#10;  -o-transition:all linear 0.5s;&#10;  transition:all linear 0.5s;&#10;  display:block!important;&#10;}&#10;&#10;.sample-show-hide.ng-hide-add.ng-hide-add-active,&#10;.sample-show-hide.ng-hide-remove {&#10;  opacity:0;&#10;}&#10;&#10;.sample-show-hide.ng-hide-add,&#10;.sample-show-hide.ng-hide-remove.ng-hide-remove-active {&#10;  opacity:1;&#10;}</code></pre>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example73/index.html" name="example-example73"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example71/index.html" name="example-example71"></iframe>
   </div>
 </div>
 
@@ -184,11 +184,11 @@ able to capture class changes if an <strong>expression</strong> or the <strong>n
 <p>
 
 <div>
-  <a ng-href="http://plnkr.co/edit/ngdoc:example-example74@{{docsVersion}}?p=preview" class="btn pull-right" target="_blank">
+  <a ng-click="openPlunkr('examples/example-example72')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
-      path="examples/example-example74"
+      path="examples/example-example72"
       module="ngAnimate"
       deps="angular-animate.js"
       animations="true">
@@ -198,18 +198,18 @@ able to capture class changes if an <strong>expression</strong> or the <strong>n
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;p&gt;&#10;  &lt;input type=&quot;button&quot; value=&quot;set&quot; ng-click=&quot;myCssVar=&#39;css-class&#39;&quot;&gt;&#10;  &lt;input type=&quot;button&quot; value=&quot;clear&quot; ng-click=&quot;myCssVar=&#39;&#39;&quot;&gt;&#10;  &lt;br&gt;&#10;  &lt;span ng-class=&quot;myCssVar&quot;&gt;CSS-Animated Text&lt;/span&gt;&#10;&lt;/p&gt;</code></pre>  
+      <pre><code>&lt;p&gt;&#10;  &lt;input type=&quot;button&quot; value=&quot;set&quot; ng-click=&quot;myCssVar=&#39;css-class&#39;&quot;&gt;&#10;  &lt;input type=&quot;button&quot; value=&quot;clear&quot; ng-click=&quot;myCssVar=&#39;&#39;&quot;&gt;&#10;  &lt;br&gt;&#10;  &lt;span ng-class=&quot;myCssVar&quot;&gt;CSS-Animated Text&lt;/span&gt;&#10;&lt;/p&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="style.css"
       language="css"
       type="css">
-      <pre><code>.css-class-add, .css-class-remove {&#10;  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;&#10;  -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;&#10;  -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;&#10;  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;&#10;}&#10;&#10;.css-class,&#10;.css-class-add.css-class-add-active {&#10;  color: red;&#10;  font-size:3em;&#10;}&#10;&#10;.css-class-remove.css-class-remove-active {&#10;  font-size:1.0em;&#10;  color:black;&#10;}</code></pre>  
+      <pre><code>.css-class-add, .css-class-remove {&#10;  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;&#10;  -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;&#10;  -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;&#10;  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;&#10;}&#10;&#10;.css-class,&#10;.css-class-add.css-class-add-active {&#10;  color: red;&#10;  font-size:3em;&#10;}&#10;&#10;.css-class-remove.css-class-remove-active {&#10;  font-size:1.0em;&#10;  color:black;&#10;}</code></pre>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example74/index.html" name="example-example74"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example72/index.html" name="example-example72"></iframe>
   </div>
 </div>
 
@@ -221,38 +221,65 @@ The table below explains in detail which animation events are triggered</p>
 <table>
 <thead>
 <tr>
+<th>-</th>
 <th>Directive</th>
 <th>Supported Animations</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td> -</td>
 <td><a href="api/ng/directive/ngRepeat#usage_animations">ngRepeat</a></td>
-<td>enter, leave, and move</td>
+<td>enter, leave and move</td>
+<td></td>
 </tr>
 <tr>
+<td> -</td>
 <td><a href="api/ngRoute/directive/ngView#usage_animations">ngView</a></td>
 <td>enter and leave</td>
+<td></td>
 </tr>
 <tr>
+<td> -</td>
 <td><a href="api/ng/directive/ngInclude#usage_animations">ngInclude</a></td>
 <td>enter and leave</td>
+<td></td>
 </tr>
 <tr>
+<td> -</td>
 <td><a href="api/ng/directive/ngSwitch#usage_animations">ngSwitch</a></td>
 <td>enter and leave</td>
+<td></td>
 </tr>
 <tr>
+<td> -</td>
 <td><a href="api/ng/directive/ngIf#usage_animations">ngIf</a></td>
 <td>enter and leave</td>
+<td></td>
 </tr>
 <tr>
-<td><a href="api/ng/directive/ngClass#usage_animations">ngClass or &#123;&#123;class&#125;&#125;</a></td>
+<td> -</td>
+<td><a href="api/ng/directive/ngClass#usage_animations">ngClass</a></td>
 <td>add and remove</td>
+<td></td>
 </tr>
 <tr>
+<td> -</td>
 <td><a href="api/ng/directive/ngShow#usage_animations">ngShow &amp; ngHide</a></td>
 <td>add and remove (the ng-hide class value)</td>
+<td></td>
+</tr>
+<tr>
+<td> -</td>
+<td><a href="api/ng/directive/form#usage_animations">form</a></td>
+<td>add and remove (dirty, pristine, valid, invalid &amp; all other validations)</td>
+<td></td>
+</tr>
+<tr>
+<td> -</td>
+<td><a href="api/ng/directive/ngModel#usage_animations">ngModel</a></td>
+<td>add and remove (dirty, pristine, valid, invalid &amp; all other validations)</td>
+<td></td>
 </tr>
 </tbody>
 </table>

@@ -1,27 +1,153 @@
 // Meta data used by the AngularJS docs app
 angular.module('versionsData', [])
   .value('NG_VERSION', {
-  "raw": "v1.2.16",
+  "raw": "v1.2.19",
   "major": 1,
   "minor": 2,
-  "patch": 16,
+  "patch": 19,
   "prerelease": [],
   "build": [],
-  "version": "1.2.16",
-  "codeName": "badger-enumeration",
-  "full": "1.2.16"
+  "version": "1.2.19",
+  "codeName": "precognitive-flashbacks",
+  "full": "1.2.19"
 })
   .value('NG_VERSIONS', [
   {
-    "raw": "v1.2.16",
+    "raw": "v1.2.19",
     "major": 1,
     "minor": 2,
-    "patch": 16,
+    "patch": 19,
     "prerelease": [],
     "build": [],
-    "version": "1.2.16",
-    "codeName": "badger-enumeration",
-    "full": "1.2.16"
+    "version": "1.2.19",
+    "codeName": "precognitive-flashbacks",
+    "full": "1.2.19"
+  },
+  {
+    "raw": "v1.3.0-beta.14",
+    "major": 1,
+    "minor": 3,
+    "patch": 0,
+    "prerelease": [
+      "beta",
+      14
+    ],
+    "build": [],
+    "version": "1.3.0-beta.14",
+    "isStable": false,
+    "docsUrl": "http://code.angularjs.org/1.3.0-beta.14/docs"
+  },
+  {
+    "raw": "v1.3.0-beta.13",
+    "major": 1,
+    "minor": 3,
+    "patch": 0,
+    "prerelease": [
+      "beta",
+      13
+    ],
+    "build": [],
+    "version": "1.3.0-beta.13",
+    "isStable": false,
+    "docsUrl": "http://code.angularjs.org/1.3.0-beta.13/docs"
+  },
+  {
+    "raw": "v1.3.0-beta.12",
+    "major": 1,
+    "minor": 3,
+    "patch": 0,
+    "prerelease": [
+      "beta",
+      12
+    ],
+    "build": [],
+    "version": "1.3.0-beta.12",
+    "isStable": false,
+    "docsUrl": "http://code.angularjs.org/1.3.0-beta.12/docs"
+  },
+  {
+    "raw": "v1.3.0-beta.11",
+    "major": 1,
+    "minor": 3,
+    "patch": 0,
+    "prerelease": [
+      "beta",
+      11
+    ],
+    "build": [],
+    "version": "1.3.0-beta.11",
+    "isStable": false,
+    "docsUrl": "http://code.angularjs.org/1.3.0-beta.11/docs"
+  },
+  {
+    "raw": "v1.3.0-beta.10",
+    "major": 1,
+    "minor": 3,
+    "patch": 0,
+    "prerelease": [
+      "beta",
+      10
+    ],
+    "build": [],
+    "version": "1.3.0-beta.10",
+    "isStable": false,
+    "docsUrl": "http://code.angularjs.org/1.3.0-beta.10/docs"
+  },
+  {
+    "raw": "v1.3.0-beta.9",
+    "major": 1,
+    "minor": 3,
+    "patch": 0,
+    "prerelease": [
+      "beta",
+      9
+    ],
+    "build": [],
+    "version": "1.3.0-beta.9",
+    "isStable": false,
+    "docsUrl": "http://code.angularjs.org/1.3.0-beta.9/docs"
+  },
+  {
+    "raw": "v1.3.0-beta.8",
+    "major": 1,
+    "minor": 3,
+    "patch": 0,
+    "prerelease": [
+      "beta",
+      8
+    ],
+    "build": [],
+    "version": "1.3.0-beta.8",
+    "isStable": false,
+    "docsUrl": "http://code.angularjs.org/1.3.0-beta.8/docs"
+  },
+  {
+    "raw": "v1.3.0-beta.7",
+    "major": 1,
+    "minor": 3,
+    "patch": 0,
+    "prerelease": [
+      "beta",
+      7
+    ],
+    "build": [],
+    "version": "1.3.0-beta.7",
+    "isStable": false,
+    "docsUrl": "http://code.angularjs.org/1.3.0-beta.7/docs"
+  },
+  {
+    "raw": "v1.3.0-beta.6",
+    "major": 1,
+    "minor": 3,
+    "patch": 0,
+    "prerelease": [
+      "beta",
+      6
+    ],
+    "build": [],
+    "version": "1.3.0-beta.6",
+    "isStable": false,
+    "docsUrl": "http://code.angularjs.org/1.3.0-beta.6/docs"
   },
   {
     "raw": "v1.3.0-beta.5",
@@ -92,6 +218,39 @@ angular.module('versionsData', [])
     "version": "1.3.0-beta.1",
     "isStable": false,
     "docsUrl": "http://code.angularjs.org/1.3.0-beta.1/docs"
+  },
+  {
+    "raw": "v1.2.18",
+    "major": 1,
+    "minor": 2,
+    "patch": 18,
+    "prerelease": [],
+    "build": [],
+    "version": "1.2.18",
+    "isStable": true,
+    "docsUrl": "http://code.angularjs.org/1.2.18/docs"
+  },
+  {
+    "raw": "v1.2.17",
+    "major": 1,
+    "minor": 2,
+    "patch": 17,
+    "prerelease": [],
+    "build": [],
+    "version": "1.2.17",
+    "isStable": true,
+    "docsUrl": "http://code.angularjs.org/1.2.17/docs"
+  },
+  {
+    "raw": "v1.2.16",
+    "major": 1,
+    "minor": 2,
+    "patch": 16,
+    "prerelease": [],
+    "build": [],
+    "version": "1.2.16",
+    "isStable": true,
+    "docsUrl": "http://code.angularjs.org/1.2.16/docs"
   },
   {
     "raw": "v1.2.15",

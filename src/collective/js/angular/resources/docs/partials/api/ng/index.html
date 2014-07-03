@@ -699,7 +699,7 @@ needed since all of these are treated as equivalent in Angular:</p>
       
       <tr>
         <td><a href="api/ng/type/form.FormController">form.FormController</a></td>
-        <td><p><code>FormController</code> keeps track of all its controls and nested forms as well as state of them,
+        <td><p><code>FormController</code> keeps track of all its controls and nested forms as well as the state of them,
 such as being valid/invalid or dirty/pristine.</p>
 </td>
       </tr>
@@ -736,7 +736,7 @@ compiled HTML template is executed.)</p>
       
       <tr>
         <td><a href="api/ng/service/$anchorScroll">$anchorScroll</a></td>
-        <td><p>When called, it checks current value of <code>$location.hash()</code> and scroll to related element,
+        <td><p>When called, it checks current value of <code>$location.hash()</code> and scrolls to the related element,
 according to rules specified in
 <a href="http://dev.w3.org/html5/spec/Overview.html#the-indicated-part-of-the-document">Html5 spec</a>.</p>
 </td>
@@ -886,8 +886,8 @@ They also provide an event emission/broadcast and subscription facility. See the
       
       <tr>
         <td><a href="api/ng/service/$sceDelegate">$sceDelegate</a></td>
-        <td><p><code>$sceDelegate</code> is a service that is used by the <code>$sce</code> service to provide <a href="api/ng/service/$sce">Strict</a>
-Contextual Escaping (SCE) services to AngularJS.</p>
+        <td><p><code>$sceDelegate</code> is a service that is used by the <code>$sce</code> service to provide <a href="api/ng/service/$sce">Strict
+Contextual Escaping (SCE)</a> services to AngularJS.</p>
 </td>
       </tr>
       
@@ -1116,7 +1116,9 @@ the value and sign (positive or negative) of <code>limit</code>.</p>
       
       <tr>
         <td><a href="api/ng/filter/orderBy">orderBy</a></td>
-        <td><p>Orders a specified <code>array</code> by the <code>expression</code> predicate.</p>
+        <td><p>Orders a specified <code>array</code> by the <code>expression</code> predicate. It is ordered alphabetically
+for strings and numerically for numbers. Note: if you notice numbers are not being sorted
+correctly, make sure they are actually being saved as numbers and not strings.</p>
 </td>
       </tr>
       

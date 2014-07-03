@@ -156,7 +156,7 @@ that has been rendered as invalid after it has been validated:</p>
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-href="http://plnkr.co/edit/ngdoc:example-example11@{{docsVersion}}?p=preview" class="btn pull-right" target="_blank">
+  <a ng-click="openPlunkr('examples/example-example11')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
@@ -170,14 +170,14 @@ that has been rendered as invalid after it has been validated:</p>
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;script&gt;&#10;  function Ctrl($scope) {&#10;    $scope.userType = &#39;guest&#39;;&#10;  }&#10;&lt;/script&gt;&#10;&lt;style&gt;&#10; .my-form {&#10;   -webkit-transition:all linear 0.5s;&#10;   transition:all linear 0.5s;&#10;   background: transparent;&#10; }&#10; .my-form.ng-invalid {&#10;   background: red;&#10; }&#10;&lt;/style&gt;&#10;&lt;form name=&quot;myForm&quot; ng-controller=&quot;Ctrl&quot; class=&quot;my-form&quot;&gt;&#10;  userType: &lt;input name=&quot;input&quot; ng-model=&quot;userType&quot; required&gt;&#10;  &lt;span class=&quot;error&quot; ng-show=&quot;myForm.input.$error.required&quot;&gt;Required!&lt;/span&gt;&lt;br&gt;&#10;  &lt;tt&gt;userType = {{userType}}&lt;/tt&gt;&lt;br&gt;&#10;  &lt;tt&gt;myForm.input.$valid = {{myForm.input.$valid}}&lt;/tt&gt;&lt;br&gt;&#10;  &lt;tt&gt;myForm.input.$error = {{myForm.input.$error}}&lt;/tt&gt;&lt;br&gt;&#10;  &lt;tt&gt;myForm.$valid = {{myForm.$valid}}&lt;/tt&gt;&lt;br&gt;&#10;  &lt;tt&gt;myForm.$error.required = {{!!myForm.$error.required}}&lt;/tt&gt;&lt;br&gt;&#10; &lt;/form&gt;</code></pre>  
+      <pre><code>&lt;script&gt;&#10;  function Ctrl($scope) {&#10;    $scope.userType = &#39;guest&#39;;&#10;  }&#10;&lt;/script&gt;&#10;&lt;style&gt;&#10; .my-form {&#10;   -webkit-transition:all linear 0.5s;&#10;   transition:all linear 0.5s;&#10;   background: transparent;&#10; }&#10; .my-form.ng-invalid {&#10;   background: red;&#10; }&#10;&lt;/style&gt;&#10;&lt;form name=&quot;myForm&quot; ng-controller=&quot;Ctrl&quot; class=&quot;my-form&quot;&gt;&#10;  userType: &lt;input name=&quot;input&quot; ng-model=&quot;userType&quot; required&gt;&#10;  &lt;span class=&quot;error&quot; ng-show=&quot;myForm.input.$error.required&quot;&gt;Required!&lt;/span&gt;&lt;br&gt;&#10;  &lt;tt&gt;userType = {{userType}}&lt;/tt&gt;&lt;br&gt;&#10;  &lt;tt&gt;myForm.input.$valid = {{myForm.input.$valid}}&lt;/tt&gt;&lt;br&gt;&#10;  &lt;tt&gt;myForm.input.$error = {{myForm.input.$error}}&lt;/tt&gt;&lt;br&gt;&#10;  &lt;tt&gt;myForm.$valid = {{myForm.$valid}}&lt;/tt&gt;&lt;br&gt;&#10;  &lt;tt&gt;myForm.$error.required = {{!!myForm.$error.required}}&lt;/tt&gt;&lt;br&gt;&#10; &lt;/form&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="protractor.js"
       type="protractor"
       language="js">
-      <pre><code>it(&#39;should initialize to model&#39;, function() {&#10;  var userType = element(by.binding(&#39;userType&#39;));&#10;  var valid = element(by.binding(&#39;myForm.input.$valid&#39;));&#10;&#10;  expect(userType.getText()).toContain(&#39;guest&#39;);&#10;  expect(valid.getText()).toContain(&#39;true&#39;);&#10;});&#10;&#10;it(&#39;should be invalid if empty&#39;, function() {&#10;  var userType = element(by.binding(&#39;userType&#39;));&#10;  var valid = element(by.binding(&#39;myForm.input.$valid&#39;));&#10;  var userInput = element(by.model(&#39;userType&#39;));&#10;&#10;  userInput.clear();&#10;  userInput.sendKeys(&#39;&#39;);&#10;&#10;  expect(userType.getText()).toEqual(&#39;userType =&#39;);&#10;  expect(valid.getText()).toContain(&#39;false&#39;);&#10;});</code></pre>  
+      <pre><code>it(&#39;should initialize to model&#39;, function() {&#10;  var userType = element(by.binding(&#39;userType&#39;));&#10;  var valid = element(by.binding(&#39;myForm.input.$valid&#39;));&#10;&#10;  expect(userType.getText()).toContain(&#39;guest&#39;);&#10;  expect(valid.getText()).toContain(&#39;true&#39;);&#10;});&#10;&#10;it(&#39;should be invalid if empty&#39;, function() {&#10;  var userType = element(by.binding(&#39;userType&#39;));&#10;  var valid = element(by.binding(&#39;myForm.input.$valid&#39;));&#10;  var userInput = element(by.model(&#39;userType&#39;));&#10;&#10;  userInput.clear();&#10;  userInput.sendKeys(&#39;&#39;);&#10;&#10;  expect(userType.getText()).toEqual(&#39;userType =&#39;);&#10;  expect(valid.getText()).toContain(&#39;false&#39;);&#10;});</code></pre>
     </div>
   
 

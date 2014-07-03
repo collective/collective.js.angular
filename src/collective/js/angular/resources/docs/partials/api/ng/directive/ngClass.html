@@ -118,7 +118,7 @@ remove - happens just before the class is removed from the element</p>
    
 
 <div>
-  <a ng-href="http://plnkr.co/edit/ngdoc:example-example16@{{docsVersion}}?p=preview" class="btn pull-right" target="_blank">
+  <a ng-click="openPlunkr('examples/example-example16')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
@@ -129,21 +129,21 @@ remove - happens just before the class is removed from the element</p>
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;p ng-class=&quot;{strike: deleted, bold: important, red: error}&quot;&gt;Map Syntax Example&lt;/p&gt;&#10;&lt;input type=&quot;checkbox&quot; ng-model=&quot;deleted&quot;&gt; deleted (apply &quot;strike&quot; class)&lt;br&gt;&#10;&lt;input type=&quot;checkbox&quot; ng-model=&quot;important&quot;&gt; important (apply &quot;bold&quot; class)&lt;br&gt;&#10;&lt;input type=&quot;checkbox&quot; ng-model=&quot;error&quot;&gt; error (apply &quot;red&quot; class)&#10;&lt;hr&gt;&#10;&lt;p ng-class=&quot;style&quot;&gt;Using String Syntax&lt;/p&gt;&#10;&lt;input type=&quot;text&quot; ng-model=&quot;style&quot; placeholder=&quot;Type: bold strike red&quot;&gt;&#10;&lt;hr&gt;&#10;&lt;p ng-class=&quot;[style1, style2, style3]&quot;&gt;Using Array Syntax&lt;/p&gt;&#10;&lt;input ng-model=&quot;style1&quot; placeholder=&quot;Type: bold, strike or red&quot;&gt;&lt;br&gt;&#10;&lt;input ng-model=&quot;style2&quot; placeholder=&quot;Type: bold, strike or red&quot;&gt;&lt;br&gt;&#10;&lt;input ng-model=&quot;style3&quot; placeholder=&quot;Type: bold, strike or red&quot;&gt;&lt;br&gt;</code></pre>  
+      <pre><code>&lt;p ng-class=&quot;{strike: deleted, bold: important, red: error}&quot;&gt;Map Syntax Example&lt;/p&gt;&#10;&lt;input type=&quot;checkbox&quot; ng-model=&quot;deleted&quot;&gt; deleted (apply &quot;strike&quot; class)&lt;br&gt;&#10;&lt;input type=&quot;checkbox&quot; ng-model=&quot;important&quot;&gt; important (apply &quot;bold&quot; class)&lt;br&gt;&#10;&lt;input type=&quot;checkbox&quot; ng-model=&quot;error&quot;&gt; error (apply &quot;red&quot; class)&#10;&lt;hr&gt;&#10;&lt;p ng-class=&quot;style&quot;&gt;Using String Syntax&lt;/p&gt;&#10;&lt;input type=&quot;text&quot; ng-model=&quot;style&quot; placeholder=&quot;Type: bold strike red&quot;&gt;&#10;&lt;hr&gt;&#10;&lt;p ng-class=&quot;[style1, style2, style3]&quot;&gt;Using Array Syntax&lt;/p&gt;&#10;&lt;input ng-model=&quot;style1&quot; placeholder=&quot;Type: bold, strike or red&quot;&gt;&lt;br&gt;&#10;&lt;input ng-model=&quot;style2&quot; placeholder=&quot;Type: bold, strike or red&quot;&gt;&lt;br&gt;&#10;&lt;input ng-model=&quot;style3&quot; placeholder=&quot;Type: bold, strike or red&quot;&gt;&lt;br&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="style.css"
       language="css"
       type="css">
-      <pre><code>.strike {&#10;  text-decoration: line-through;&#10;}&#10;.bold {&#10;    font-weight: bold;&#10;}&#10;.red {&#10;    color: red;&#10;}</code></pre>  
+      <pre><code>.strike {&#10;  text-decoration: line-through;&#10;}&#10;.bold {&#10;    font-weight: bold;&#10;}&#10;.red {&#10;    color: red;&#10;}</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="protractor.js"
       type="protractor"
       language="js">
-      <pre><code>var ps = element.all(by.css(&#39;p&#39;));&#10;&#10;it(&#39;should let you toggle the class&#39;, function() {&#10;&#10;  expect(ps.first().getAttribute(&#39;class&#39;)).not.toMatch(/bold/);&#10;  expect(ps.first().getAttribute(&#39;class&#39;)).not.toMatch(/red/);&#10;&#10;  element(by.model(&#39;important&#39;)).click();&#10;  expect(ps.first().getAttribute(&#39;class&#39;)).toMatch(/bold/);&#10;&#10;  element(by.model(&#39;error&#39;)).click();&#10;  expect(ps.first().getAttribute(&#39;class&#39;)).toMatch(/red/);&#10;});&#10;&#10;it(&#39;should let you toggle string example&#39;, function() {&#10;  expect(ps.get(1).getAttribute(&#39;class&#39;)).toBe(&#39;&#39;);&#10;  element(by.model(&#39;style&#39;)).clear();&#10;  element(by.model(&#39;style&#39;)).sendKeys(&#39;red&#39;);&#10;  expect(ps.get(1).getAttribute(&#39;class&#39;)).toBe(&#39;red&#39;);&#10;});&#10;&#10;it(&#39;array example should have 3 classes&#39;, function() {&#10;  expect(ps.last().getAttribute(&#39;class&#39;)).toBe(&#39;&#39;);&#10;  element(by.model(&#39;style1&#39;)).sendKeys(&#39;bold&#39;);&#10;  element(by.model(&#39;style2&#39;)).sendKeys(&#39;strike&#39;);&#10;  element(by.model(&#39;style3&#39;)).sendKeys(&#39;red&#39;);&#10;  expect(ps.last().getAttribute(&#39;class&#39;)).toBe(&#39;bold strike red&#39;);&#10;});</code></pre>  
+      <pre><code>var ps = element.all(by.css(&#39;p&#39;));&#10;&#10;it(&#39;should let you toggle the class&#39;, function() {&#10;&#10;  expect(ps.first().getAttribute(&#39;class&#39;)).not.toMatch(/bold/);&#10;  expect(ps.first().getAttribute(&#39;class&#39;)).not.toMatch(/red/);&#10;&#10;  element(by.model(&#39;important&#39;)).click();&#10;  expect(ps.first().getAttribute(&#39;class&#39;)).toMatch(/bold/);&#10;&#10;  element(by.model(&#39;error&#39;)).click();&#10;  expect(ps.first().getAttribute(&#39;class&#39;)).toMatch(/red/);&#10;});&#10;&#10;it(&#39;should let you toggle string example&#39;, function() {&#10;  expect(ps.get(1).getAttribute(&#39;class&#39;)).toBe(&#39;&#39;);&#10;  element(by.model(&#39;style&#39;)).clear();&#10;  element(by.model(&#39;style&#39;)).sendKeys(&#39;red&#39;);&#10;  expect(ps.get(1).getAttribute(&#39;class&#39;)).toBe(&#39;red&#39;);&#10;});&#10;&#10;it(&#39;array example should have 3 classes&#39;, function() {&#10;  expect(ps.last().getAttribute(&#39;class&#39;)).toBe(&#39;&#39;);&#10;  element(by.model(&#39;style1&#39;)).sendKeys(&#39;bold&#39;);&#10;  element(by.model(&#39;style2&#39;)).sendKeys(&#39;strike&#39;);&#10;  element(by.model(&#39;style3&#39;)).sendKeys(&#39;red&#39;);&#10;  expect(ps.last().getAttribute(&#39;class&#39;)).toBe(&#39;bold strike red&#39;);&#10;});</code></pre>
     </div>
   
 
@@ -157,7 +157,7 @@ remove - happens just before the class is removed from the element</p>
 <p>   
 
 <div>
-  <a ng-href="http://plnkr.co/edit/ngdoc:example-example17@{{docsVersion}}?p=preview" class="btn pull-right" target="_blank">
+  <a ng-click="openPlunkr('examples/example-example17')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
@@ -171,21 +171,21 @@ remove - happens just before the class is removed from the element</p>
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;input id=&quot;setbtn&quot; type=&quot;button&quot; value=&quot;set&quot; ng-click=&quot;myVar=&#39;my-class&#39;&quot;&gt;&#10;&lt;input id=&quot;clearbtn&quot; type=&quot;button&quot; value=&quot;clear&quot; ng-click=&quot;myVar=&#39;&#39;&quot;&gt;&#10;&lt;br&gt;&#10;&lt;span class=&quot;base-class&quot; ng-class=&quot;myVar&quot;&gt;Sample Text&lt;/span&gt;</code></pre>  
+      <pre><code>&lt;input id=&quot;setbtn&quot; type=&quot;button&quot; value=&quot;set&quot; ng-click=&quot;myVar=&#39;my-class&#39;&quot;&gt;&#10;&lt;input id=&quot;clearbtn&quot; type=&quot;button&quot; value=&quot;clear&quot; ng-click=&quot;myVar=&#39;&#39;&quot;&gt;&#10;&lt;br&gt;&#10;&lt;span class=&quot;base-class&quot; ng-class=&quot;myVar&quot;&gt;Sample Text&lt;/span&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="style.css"
       language="css"
       type="css">
-      <pre><code>.base-class {&#10;  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;&#10;  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;&#10;}&#10;&#10;.base-class.my-class {&#10;  color: red;&#10;  font-size:3em;&#10;}</code></pre>  
+      <pre><code>.base-class {&#10;  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;&#10;  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;&#10;}&#10;&#10;.base-class.my-class {&#10;  color: red;&#10;  font-size:3em;&#10;}</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="protractor.js"
       type="protractor"
       language="js">
-      <pre><code>it(&#39;should check ng-class&#39;, function() {&#10;  expect(element(by.css(&#39;.base-class&#39;)).getAttribute(&#39;class&#39;)).not.&#10;    toMatch(/my-class/);&#10;&#10;  element(by.id(&#39;setbtn&#39;)).click();&#10;&#10;  expect(element(by.css(&#39;.base-class&#39;)).getAttribute(&#39;class&#39;)).&#10;    toMatch(/my-class/);&#10;&#10;  element(by.id(&#39;clearbtn&#39;)).click();&#10;&#10;  expect(element(by.css(&#39;.base-class&#39;)).getAttribute(&#39;class&#39;)).not.&#10;    toMatch(/my-class/);&#10;});</code></pre>  
+      <pre><code>it(&#39;should check ng-class&#39;, function() {&#10;  expect(element(by.css(&#39;.base-class&#39;)).getAttribute(&#39;class&#39;)).not.&#10;    toMatch(/my-class/);&#10;&#10;  element(by.id(&#39;setbtn&#39;)).click();&#10;&#10;  expect(element(by.css(&#39;.base-class&#39;)).getAttribute(&#39;class&#39;)).&#10;    toMatch(/my-class/);&#10;&#10;  element(by.id(&#39;clearbtn&#39;)).click();&#10;&#10;  expect(element(by.css(&#39;.base-class&#39;)).getAttribute(&#39;class&#39;)).not.&#10;    toMatch(/my-class/);&#10;});</code></pre>
     </div>
   
 

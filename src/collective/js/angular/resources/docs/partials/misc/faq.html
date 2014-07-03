@@ -29,8 +29,8 @@ possible attack vectors and we highly recommended their use.</p>
 <p>Yes. See instructions in <a href="misc/downloading"><code>Downloading</code></a>.</p>
 <h3 id="what-browsers-does-angular-work-with-">What browsers does Angular work with?</h3>
 <p>We run our extensive test suite against the following browsers: Safari, Chrome, Firefox, Opera,
-IE8, IE9 and mobile browsers (Android, Chrome Mobile, iOS Safari). See <a href="guide/ie">Internet</a>
-Explorer Compatibility for more details in supporting legacy IE browsers.</p>
+IE8, IE9 and mobile browsers (Android, Chrome Mobile, iOS Safari). See <a href="guide/ie">Internet
+Explorer Compatibility</a> for more details in supporting legacy IE browsers.</p>
 <h3 id="what-s-angular-s-performance-like-">What&#39;s Angular&#39;s performance like?</h3>
 <p>The startup time heavily depends on your network connection, state of the cache, browser used and
 available hardware, but typically we measure bootstrap time in tens or hundreds of milliseconds.</p>
@@ -47,7 +47,7 @@ in Angular.</p>
 application is being bootstrapped. If jQuery is not present in your script path, Angular falls back
 to its own implementation of the subset of jQuery that we call <a href="api/ng/function/angular.element">jQLite</a>.</p>
 <p>Due to a change to use <code>on()</code>/<code>off()</code> rather than <code>bind()</code>/<code>unbind()</code>, Angular 1.2 only operates with
-jQuery 1.7.1 or above.</p>
+jQuery 1.7.1 or above. However, Angular does not currently support jQuery 2.x or above.</p>
 <h3 id="what-is-testability-like-in-angular-">What is testability like in Angular?</h3>
 <p>Very testable and designed this way from ground up. It has an integrated dependency injection
 framework, provides mocks for many heavy dependencies (server-side communication). See

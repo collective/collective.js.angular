@@ -200,10 +200,14 @@ thus stop participating in model change detection and listener notification by i
 <a href="api/ng/type/$rootScope.Scope#$digest">$digest()</a> and should be idempotent.)</li>
 <li>The <code>listener</code> is called only when the value from the current <code>watchExpression</code> and the
 previous call to <code>watchExpression</code> are not equal (with the exception of the initial run,
-see below). The inequality is determined according to
-<a href="api/ng/function/angular.equals"><code>angular.equals</code></a> function. To save the value of the object for later comparison,
-the <a href="api/ng/function/angular.copy"><code>angular.copy</code></a> function is used. It also means that watching complex options
-will have adverse memory and performance implications.</li>
+see below). Inequality is determined according to reference inequality,
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators">strict comparison</a>
+ via the <code>!==</code> Javascript operator, unless <code>objectEquality == true</code>
+(see next point)</li>
+<li>When <code>objectEquality == true</code>, inequality of the <code>watchExpression</code> is determined
+according to the <a href="api/ng/function/angular.equals"><code>angular.equals</code></a> function. To save the value of the object for
+later comparison, the <a href="api/ng/function/angular.copy"><code>angular.copy</code></a> function is used. This therefore means that
+watching complex objects will have adverse memory and performance implications.</li>
 <li>The watch <code>listener</code> may change the model, which may trigger other <code>listener</code>s to fire.
 This is achieved by rerunning the watchers until no changes are detected. The rerun
 iteration limit is 10 to prevent an infinite loop deadlock.</li>
@@ -232,12 +236,16 @@ listener was called due to initialization.</p>
            expect(scope.counter).toEqual(0);
 
            scope.$digest();
-           // no variable change
-           expect(scope.counter).toEqual(0);
+           // the listener is always called during the first $digest loop after it was registered
+           expect(scope.counter).toEqual(1);
+
+           scope.$digest();
+           // but now it will not be called unless the value changes
+           expect(scope.counter).toEqual(1);
 
            scope.name = &#39;adam&#39;;
            scope.$digest();
-           expect(scope.counter).toEqual(1);
+           expect(scope.counter).toEqual(2);
 
 
 
@@ -505,12 +513,16 @@ you can register a <code>watchExpression</code> function with
            expect(scope.counter).toEqual(0);
 
            scope.$digest();
-           // no variable change
-           expect(scope.counter).toEqual(0);
+           // the listener is always called during the first $digest loop after it was registered
+           expect(scope.counter).toEqual(1);
+
+           scope.$digest();
+           // but now it will not be called unless the value changes
+           expect(scope.counter).toEqual(1);
 
            scope.name = &#39;adam&#39;;
            scope.$digest();
-           expect(scope.counter).toEqual(1);</code></pre>
+           expect(scope.counter).toEqual(2);</code></pre>
 </div>
 
     
@@ -1040,7 +1052,8 @@ clean up DOM bindings before an element is removed from the DOM.</p>
     </div>
     <div class="inline">
       <h4>Target:</h4>
-      <div class="target">scope being destroyed</div>
+      <div class="target">scope being destroyed
+</div>
     </div>
     </li>
   </ul>

@@ -7,19 +7,13 @@
 
   <script src="../../../angular.min.js"></script>
   <script src="script.js"></script>
-  <script src="protractorTest.js"></script>
   
 
   
 </head>
-<body ng-app="docsBindExample">
+<body ng-app="docsTemplateUrlDirective">
     <div ng-controller="Controller">
-    Hello <input ng-model='name'> <hr/>
-    <span ng-bind="name"></span> <br/>
-    <span ng:bind="name"></span> <br/>
-    <span ng_bind="name"></span> <br/>
-    <span data-ng-bind="name"></span> <br/>
-    <span x-ng-bind="name"></span> <br/>
+    <div my-customer></div>
   </div>
 </body>
 </html>

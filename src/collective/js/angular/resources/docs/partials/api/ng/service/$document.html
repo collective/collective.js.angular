@@ -51,29 +51,29 @@
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-href="http://plnkr.co/edit/ngdoc:example-example51@{{docsVersion}}?p=preview" class="btn pull-right" target="_blank">
+  <a ng-click="openPlunkr('examples/example-example49')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
-      path="examples/example-example51">
+      path="examples/example-example49">
 
    
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;div ng-controller=&quot;MainCtrl&quot;&gt;&#10;  &lt;p&gt;$document title: &lt;b ng-bind=&quot;title&quot;&gt;&lt;/b&gt;&lt;/p&gt;&#10;  &lt;p&gt;window.document title: &lt;b ng-bind=&quot;windowTitle&quot;&gt;&lt;/b&gt;&lt;/p&gt;&#10;&lt;/div&gt;</code></pre>  
+      <pre><code>&lt;div ng-controller=&quot;MainCtrl&quot;&gt;&#10;  &lt;p&gt;$document title: &lt;b ng-bind=&quot;title&quot;&gt;&lt;/b&gt;&lt;/p&gt;&#10;  &lt;p&gt;window.document title: &lt;b ng-bind=&quot;windowTitle&quot;&gt;&lt;/b&gt;&lt;/p&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="script.js"
       language="js"
       type="js">
-      <pre><code>function MainCtrl($scope, $document) {&#10;  $scope.title = $document[0].title;&#10;  $scope.windowTitle = angular.element(window.document)[0].title;&#10;}</code></pre>  
+      <pre><code>function MainCtrl($scope, $document) {&#10;  $scope.title = $document[0].title;&#10;  $scope.windowTitle = angular.element(window.document)[0].title;&#10;}</code></pre>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example51/index.html" name="example-example51"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example49/index.html" name="example-example49"></iframe>
   </div>
 </div>
 

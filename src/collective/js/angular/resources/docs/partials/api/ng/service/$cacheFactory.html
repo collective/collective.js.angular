@@ -131,7 +131,7 @@ it.</li>
     <h3><p><code>info();</code></p>
 
 </h3>
-    <div><p>Get information about all the of the caches that have been created</p>
+    <div><p>Get information about all the caches that have been created</p>
 </div>
 
     
@@ -218,7 +218,7 @@ it.</li>
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-href="http://plnkr.co/edit/ngdoc:example-example3@{{docsVersion}}?p=preview" class="btn pull-right" target="_blank">
+  <a ng-click="openPlunkr('examples/example-example3')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
@@ -230,21 +230,21 @@ it.</li>
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;div ng-controller=&quot;CacheController&quot;&gt;&#10;  &lt;input ng-model=&quot;newCacheKey&quot; placeholder=&quot;Key&quot;&gt;&#10;  &lt;input ng-model=&quot;newCacheValue&quot; placeholder=&quot;Value&quot;&gt;&#10;  &lt;button ng-click=&quot;put(newCacheKey, newCacheValue)&quot;&gt;Cache&lt;/button&gt;&#10;&#10;  &lt;p ng-if=&quot;keys.length&quot;&gt;Cached Values&lt;/p&gt;&#10;  &lt;div ng-repeat=&quot;key in keys&quot;&gt;&#10;    &lt;span ng-bind=&quot;key&quot;&gt;&lt;/span&gt;&#10;    &lt;span&gt;: &lt;/span&gt;&#10;    &lt;b ng-bind=&quot;cache.get(key)&quot;&gt;&lt;/b&gt;&#10;  &lt;/div&gt;&#10;&#10;  &lt;p&gt;Cache Info&lt;/p&gt;&#10;  &lt;div ng-repeat=&quot;(key, value) in cache.info()&quot;&gt;&#10;    &lt;span ng-bind=&quot;key&quot;&gt;&lt;/span&gt;&#10;    &lt;span&gt;: &lt;/span&gt;&#10;    &lt;b ng-bind=&quot;value&quot;&gt;&lt;/b&gt;&#10;  &lt;/div&gt;&#10;&lt;/div&gt;</code></pre>  
+      <pre><code>&lt;div ng-controller=&quot;CacheController&quot;&gt;&#10;  &lt;input ng-model=&quot;newCacheKey&quot; placeholder=&quot;Key&quot;&gt;&#10;  &lt;input ng-model=&quot;newCacheValue&quot; placeholder=&quot;Value&quot;&gt;&#10;  &lt;button ng-click=&quot;put(newCacheKey, newCacheValue)&quot;&gt;Cache&lt;/button&gt;&#10;&#10;  &lt;p ng-if=&quot;keys.length&quot;&gt;Cached Values&lt;/p&gt;&#10;  &lt;div ng-repeat=&quot;key in keys&quot;&gt;&#10;    &lt;span ng-bind=&quot;key&quot;&gt;&lt;/span&gt;&#10;    &lt;span&gt;: &lt;/span&gt;&#10;    &lt;b ng-bind=&quot;cache.get(key)&quot;&gt;&lt;/b&gt;&#10;  &lt;/div&gt;&#10;&#10;  &lt;p&gt;Cache Info&lt;/p&gt;&#10;  &lt;div ng-repeat=&quot;(key, value) in cache.info()&quot;&gt;&#10;    &lt;span ng-bind=&quot;key&quot;&gt;&lt;/span&gt;&#10;    &lt;span&gt;: &lt;/span&gt;&#10;    &lt;b ng-bind=&quot;value&quot;&gt;&lt;/b&gt;&#10;  &lt;/div&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="script.js"
       language="js"
       type="js">
-      <pre><code>angular.module(&#39;cacheExampleApp&#39;, []).&#10;  controller(&#39;CacheController&#39;, [&#39;$scope&#39;, &#39;$cacheFactory&#39;, function($scope, $cacheFactory) {&#10;    $scope.keys = [];&#10;    $scope.cache = $cacheFactory(&#39;cacheId&#39;);&#10;    $scope.put = function(key, value) {&#10;      $scope.cache.put(key, value);&#10;      $scope.keys.push(key);&#10;    };&#10;  }]);</code></pre>  
+      <pre><code>angular.module(&#39;cacheExampleApp&#39;, []).&#10;  controller(&#39;CacheController&#39;, [&#39;$scope&#39;, &#39;$cacheFactory&#39;, function($scope, $cacheFactory) {&#10;    $scope.keys = [];&#10;    $scope.cache = $cacheFactory(&#39;cacheId&#39;);&#10;    $scope.put = function(key, value) {&#10;      $scope.cache.put(key, value);&#10;      $scope.keys.push(key);&#10;    };&#10;  }]);</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="style.css"
       language="css"
       type="css">
-      <pre><code>p {&#10;  margin: 10px 0 3px;&#10;}</code></pre>  
+      <pre><code>p {&#10;  margin: 10px 0 3px;&#10;}</code></pre>
     </div>
   
 

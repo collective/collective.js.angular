@@ -2,7 +2,7 @@
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/Angular.js#L1142' class='view-source pull-right btn btn-primary'>
+<a href='http://github.com/angular/angular.js/tree/master/src/Angular.js#L1178' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -38,7 +38,7 @@ would not be resolved to <code>3</code>.</p>
 <p> 
 
 <div>
-  <a ng-href="http://plnkr.co/edit/ngdoc:example-example1@{{docsVersion}}?p=preview" class="btn pull-right" target="_blank">
+  <a ng-click="openPlunkr('examples/example-example1')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
@@ -50,14 +50,14 @@ would not be resolved to <code>3</code>.</p>
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;div ng-controller=&quot;ngAppDemoController&quot;&gt;&#10;I can add: {{a}} + {{b}} =  {{ a+b }}&#10;&lt;/div&gt;</code></pre>  
+      <pre><code>&lt;div ng-controller=&quot;ngAppDemoController&quot;&gt;&#10;I can add: {{a}} + {{b}} =  {{ a+b }}&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="script.js"
       language="js"
       type="js">
-      <pre><code>angular.module(&#39;ngAppDemo&#39;, []).controller(&#39;ngAppDemoController&#39;, function($scope) {&#10;$scope.a = 1;&#10;$scope.b = 2;&#10;});</code></pre>  
+      <pre><code>angular.module(&#39;ngAppDemo&#39;, []).controller(&#39;ngAppDemoController&#39;, function($scope) {&#10;$scope.a = 1;&#10;$scope.b = 2;&#10;});</code></pre>
     </div>
   
 

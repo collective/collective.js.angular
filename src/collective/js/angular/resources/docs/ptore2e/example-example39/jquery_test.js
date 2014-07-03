@@ -1,33 +1,10 @@
-describe("module:ng.directive:ngInclude", function() {
+describe("module:ng.directive:ngNonBindable", function() {
   beforeEach(function() {
     browser.get("./examples/example-example39/index-jquery.html");
   });
 
-  var templateSelect = element(by.model('template'));
-  var includeElem = element(by.css('[ng-include]'));
-
-  it('should load template1.html', function() {
-    expect(includeElem.getText()).toMatch(/Content of template1.html/);
-  });
-
-  it('should load template2.html', function() {
-    if (browser.params.browser == 'firefox') {
-      // Firefox can't handle using selects
-      // See https://github.com/angular/protractor/issues/480
-      return;
-    }
-    templateSelect.click();
-    templateSelect.element.all(by.css('option')).get(2).click();
-    expect(includeElem.getText()).toMatch(/Content of template2.html/);
-  });
-
-  it('should change to blank', function() {
-    if (browser.params.browser == 'firefox') {
-      // Firefox can't handle using selects
-      return;
-    }
-    templateSelect.click();
-    templateSelect.element.all(by.css('option')).get(0).click();
-    expect(includeElem.isPresent()).toBe(false);
-  });
+ it('should check ng-non-bindable', function() {
+   expect(element(by.binding('1 + 2')).getText()).toContain('3');
+   expect(element.all(by.css('div')).last().getText()).toMatch(/1 \+ 2/);
+ });
 });

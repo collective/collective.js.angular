@@ -1,7 +1,6 @@
-  function MyController($scope) {
-    $scope.username = 'World';
-
-    $scope.sayHello = function() {
-      $scope.greeting = 'Hello ' + $scope.username + '!';
-    };
+  function EventController($scope) {
+    $scope.count = 0;
+    $scope.$on('MyEvent', function() {
+      $scope.count++;
+    });
   }

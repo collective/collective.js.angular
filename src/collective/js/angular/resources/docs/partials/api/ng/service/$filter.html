@@ -96,6 +96,39 @@
 
 
   
+  <h2 id="example">Example</h2><p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-$filter')" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+  <div class="runnable-example"
+      path="examples/example-$filter"
+      name="$filter"
+      module="filterExample">
+
+   
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-controller=&quot;MainCtrl&quot;&gt;&#10; &lt;h3&gt;{{ originalText }}&lt;/h3&gt;&#10; &lt;h3&gt;{{ filteredText }}&lt;/h3&gt;&#10;&lt;/div&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&#39;filterExample&#39;, [])&#10;.controller(&#39;MainCtrl&#39;, function($scope, $filter) {&#10;  $scope.originalText = &#39;hello&#39;;&#10;  $scope.filteredText = $filter(&#39;uppercase&#39;)($scope.originalText);&#10;});</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-$filter/index.html" name="example-$filter"></iframe>
+  </div>
+</div>
+
+</p>
+
 </div>
 
 

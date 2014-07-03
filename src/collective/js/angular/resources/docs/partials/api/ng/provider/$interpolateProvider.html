@@ -36,7 +36,16 @@
 
     
 
-  
+  <h2 id="usage">Usage</h2>
+    
+      <p><code>$interpolateProvider();</code></p>
+
+
+    
+
+    
+    
+    
 
   
 <h2>Methods</h2>
@@ -162,11 +171,11 @@
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-href="http://plnkr.co/edit/ngdoc:example-example60@{{docsVersion}}?p=preview" class="btn pull-right" target="_blank">
+  <a ng-click="openPlunkr('examples/example-example59')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
-      path="examples/example-example60"
+      path="examples/example-example59"
       module="customInterpolationApp">
 
    
@@ -174,18 +183,18 @@
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;script&gt;&#10;var customInterpolationApp = angular.module(&#39;customInterpolationApp&#39;, []);&#10;&#10;customInterpolationApp.config(function($interpolateProvider) {&#10;  $interpolateProvider.startSymbol(&#39;//&#39;);&#10;  $interpolateProvider.endSymbol(&#39;//&#39;);&#10;});&#10;&#10;&#10;customInterpolationApp.controller(&#39;DemoController&#39;, function DemoController() {&#10;    this.label = &quot;This binding is brought you by // interpolation symbols.&quot;;&#10;});&#10;&lt;/script&gt;&#10;&lt;div ng-app=&quot;App&quot; ng-controller=&quot;DemoController as demo&quot;&gt;&#10;  //demo.label//&#10;&lt;/div&gt;</code></pre>  
+      <pre><code>&lt;script&gt;&#10;var customInterpolationApp = angular.module(&#39;customInterpolationApp&#39;, []);&#10;&#10;customInterpolationApp.config(function($interpolateProvider) {&#10;  $interpolateProvider.startSymbol(&#39;//&#39;);&#10;  $interpolateProvider.endSymbol(&#39;//&#39;);&#10;});&#10;&#10;&#10;customInterpolationApp.controller(&#39;DemoController&#39;, function() {&#10;    this.label = &quot;This binding is brought you by // interpolation symbols.&quot;;&#10;});&#10;&lt;/script&gt;&#10;&lt;div ng-app=&quot;App&quot; ng-controller=&quot;DemoController as demo&quot;&gt;&#10;  //demo.label//&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="protractor.js"
       type="protractor"
       language="js">
-      <pre><code>it(&#39;should interpolate binding with custom symbols&#39;, function() {&#10;expect(element(by.binding(&#39;demo.label&#39;)).getText()).toBe(&#39;This binding is brought you by // interpolation symbols.&#39;);&#10;});</code></pre>  
+      <pre><code>it(&#39;should interpolate binding with custom symbols&#39;, function() {&#10;expect(element(by.binding(&#39;demo.label&#39;)).getText()).toBe(&#39;This binding is brought you by // interpolation symbols.&#39;);&#10;});</code></pre>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example60/index.html" name="example-example60"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example59/index.html" name="example-example59"></iframe>
   </div>
 </div>
 

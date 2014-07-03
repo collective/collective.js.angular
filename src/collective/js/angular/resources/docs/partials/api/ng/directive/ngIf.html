@@ -115,11 +115,11 @@ leave - happens just before the ngIf contents are removed from the DOM</p>
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-href="http://plnkr.co/edit/ngdoc:example-example38@{{docsVersion}}?p=preview" class="btn pull-right" target="_blank">
+  <a ng-click="openPlunkr('examples/example-example36')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
-      path="examples/example-example38"
+      path="examples/example-example36"
       module="ngAnimate"
       deps="angular-animate.js"
       animations="true">
@@ -129,18 +129,18 @@ leave - happens just before the ngIf contents are removed from the DOM</p>
       name="index.html"
       language="html"
       type="html">
-      <pre><code>Click me: &lt;input type=&quot;checkbox&quot; ng-model=&quot;checked&quot; ng-init=&quot;checked=true&quot; /&gt;&lt;br/&gt;&#10;Show when checked:&#10;&lt;span ng-if=&quot;checked&quot; class=&quot;animate-if&quot;&gt;&#10;  I&#39;m removed when the checkbox is unchecked.&#10;&lt;/span&gt;</code></pre>  
+      <pre><code>Click me: &lt;input type=&quot;checkbox&quot; ng-model=&quot;checked&quot; ng-init=&quot;checked=true&quot; /&gt;&lt;br/&gt;&#10;Show when checked:&#10;&lt;span ng-if=&quot;checked&quot; class=&quot;animate-if&quot;&gt;&#10;  I&#39;m removed when the checkbox is unchecked.&#10;&lt;/span&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="animations.css"
       language="css"
       type="css">
-      <pre><code>.animate-if {&#10;  background:white;&#10;  border:1px solid black;&#10;  padding:10px;&#10;}&#10;&#10;.animate-if.ng-enter, .animate-if.ng-leave {&#10;  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;&#10;  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;&#10;}&#10;&#10;.animate-if.ng-enter,&#10;.animate-if.ng-leave.ng-leave-active {&#10;  opacity:0;&#10;}&#10;&#10;.animate-if.ng-leave,&#10;.animate-if.ng-enter.ng-enter-active {&#10;  opacity:1;&#10;}</code></pre>  
+      <pre><code>.animate-if {&#10;  background:white;&#10;  border:1px solid black;&#10;  padding:10px;&#10;}&#10;&#10;.animate-if.ng-enter, .animate-if.ng-leave {&#10;  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;&#10;  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;&#10;}&#10;&#10;.animate-if.ng-enter,&#10;.animate-if.ng-leave.ng-leave-active {&#10;  opacity:0;&#10;}&#10;&#10;.animate-if.ng-leave,&#10;.animate-if.ng-enter.ng-enter-active {&#10;  opacity:1;&#10;}</code></pre>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example38/index.html" name="example-example38"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example36/index.html" name="example-example36"></iframe>
   </div>
 </div>
 

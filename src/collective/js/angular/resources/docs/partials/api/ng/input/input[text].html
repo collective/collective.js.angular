@@ -216,7 +216,7 @@
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-href="http://plnkr.co/edit/ngdoc:example-text-input-directive@{{docsVersion}}?p=preview" class="btn pull-right" target="_blank">
+  <a ng-click="openPlunkr('examples/example-text-input-directive')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
@@ -228,14 +228,14 @@
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;script&gt;&#10;  function Ctrl($scope) {&#10;    $scope.text = &#39;guest&#39;;&#10;    $scope.word = /^\s*\w*\s*$/;&#10;  }&#10;&lt;/script&gt;&#10;&lt;form name=&quot;myForm&quot; ng-controller=&quot;Ctrl&quot;&gt;&#10;  Single word: &lt;input type=&quot;text&quot; name=&quot;input&quot; ng-model=&quot;text&quot;&#10;                      ng-pattern=&quot;word&quot; required ng-trim=&quot;false&quot;&gt;&#10;  &lt;span class=&quot;error&quot; ng-show=&quot;myForm.input.$error.required&quot;&gt;&#10;    Required!&lt;/span&gt;&#10;  &lt;span class=&quot;error&quot; ng-show=&quot;myForm.input.$error.pattern&quot;&gt;&#10;    Single word only!&lt;/span&gt;&#10;&#10;  &lt;tt&gt;text = {{text}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.input.$valid = {{myForm.input.$valid}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.input.$error = {{myForm.input.$error}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.$valid = {{myForm.$valid}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.$error.required = {{!!myForm.$error.required}}&lt;/tt&gt;&lt;br/&gt;&#10; &lt;/form&gt;</code></pre>  
+      <pre><code>&lt;script&gt;&#10;  function Ctrl($scope) {&#10;    $scope.text = &#39;guest&#39;;&#10;    $scope.word = /^\s*\w*\s*$/;&#10;  }&#10;&lt;/script&gt;&#10;&lt;form name=&quot;myForm&quot; ng-controller=&quot;Ctrl&quot;&gt;&#10;  Single word: &lt;input type=&quot;text&quot; name=&quot;input&quot; ng-model=&quot;text&quot;&#10;                      ng-pattern=&quot;word&quot; required ng-trim=&quot;false&quot;&gt;&#10;  &lt;span class=&quot;error&quot; ng-show=&quot;myForm.input.$error.required&quot;&gt;&#10;    Required!&lt;/span&gt;&#10;  &lt;span class=&quot;error&quot; ng-show=&quot;myForm.input.$error.pattern&quot;&gt;&#10;    Single word only!&lt;/span&gt;&#10;&#10;  &lt;tt&gt;text = {{text}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.input.$valid = {{myForm.input.$valid}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.input.$error = {{myForm.input.$error}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.$valid = {{myForm.$valid}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.$error.required = {{!!myForm.$error.required}}&lt;/tt&gt;&lt;br/&gt;&#10; &lt;/form&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="protractor.js"
       type="protractor"
       language="js">
-      <pre><code>var text = element(by.binding(&#39;text&#39;));&#10;var valid = element(by.binding(&#39;myForm.input.$valid&#39;));&#10;var input = element(by.model(&#39;text&#39;));&#10;&#10;it(&#39;should initialize to model&#39;, function() {&#10;  expect(text.getText()).toContain(&#39;guest&#39;);&#10;  expect(valid.getText()).toContain(&#39;true&#39;);&#10;});&#10;&#10;it(&#39;should be invalid if empty&#39;, function() {&#10;  input.clear();&#10;  input.sendKeys(&#39;&#39;);&#10;&#10;  expect(text.getText()).toEqual(&#39;text =&#39;);&#10;  expect(valid.getText()).toContain(&#39;false&#39;);&#10;});&#10;&#10;it(&#39;should be invalid if multi word&#39;, function() {&#10;  input.clear();&#10;  input.sendKeys(&#39;hello world&#39;);&#10;&#10;  expect(valid.getText()).toContain(&#39;false&#39;);&#10;});</code></pre>  
+      <pre><code>var text = element(by.binding(&#39;text&#39;));&#10;var valid = element(by.binding(&#39;myForm.input.$valid&#39;));&#10;var input = element(by.model(&#39;text&#39;));&#10;&#10;it(&#39;should initialize to model&#39;, function() {&#10;  expect(text.getText()).toContain(&#39;guest&#39;);&#10;  expect(valid.getText()).toContain(&#39;true&#39;);&#10;});&#10;&#10;it(&#39;should be invalid if empty&#39;, function() {&#10;  input.clear();&#10;  input.sendKeys(&#39;&#39;);&#10;&#10;  expect(text.getText()).toEqual(&#39;text =&#39;);&#10;  expect(valid.getText()).toContain(&#39;false&#39;);&#10;});&#10;&#10;it(&#39;should be invalid if multi word&#39;, function() {&#10;  input.clear();&#10;  input.sendKeys(&#39;hello world&#39;);&#10;&#10;  expect(valid.getText()).toContain(&#39;false&#39;);&#10;});</code></pre>
     </div>
   
 

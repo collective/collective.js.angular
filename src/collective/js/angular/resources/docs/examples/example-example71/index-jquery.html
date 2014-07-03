@@ -3,42 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <title>Example - example-example71-jquery</title>
+  <link href="animations.css" rel="stylesheet" type="text/css">
   
 
   <script src="../../components/jquery-1.10.2/jquery.js"></script>
   <script src="../../../angular.js"></script>
-  <script src="script.js"></script>
+  <script src="../../../angular-animate.js"></script>
   
 
   
 </head>
-<body ng-app="">
-    <div id="html5-mode" ng-controller="Html5Cntl">
-    <h3>Browser with History API</h3>
-    <div ng-address-bar browser="html5"></div><br><br>
-    $location.protocol() = {{$location.protocol()}}<br>
-    $location.host() = {{$location.host()}}<br>
-    $location.port() = {{$location.port()}}<br>
-    $location.path() = {{$location.path()}}<br>
-    $location.search() = {{$location.search()}}<br>
-    $location.hash() = {{$location.hash()}}<br>
-    <a href="http://www.example.com/base/first?a=b">/base/first?a=b</a> |
-    <a href="http://www.example.com/base/sec/ond?flag#hash">sec/ond?flag#hash</a> |
-    <a href="/other-base/another?search">external</a>
-  </div>
-
-  <div id="hashbang-mode" ng-controller="HashbangCntl">
-    <h3>Browser without History API</h3>
-    <div ng-address-bar browser="hashbang"></div><br><br>
-    $location.protocol() = {{$location.protocol()}}<br>
-    $location.host() = {{$location.host()}}<br>
-    $location.port() = {{$location.port()}}<br>
-    $location.path() = {{$location.path()}}<br>
-    $location.search() = {{$location.search()}}<br>
-    $location.hash() = {{$location.hash()}}<br>
-    <a href="http://www.example.com/base/first?a=b">/base/first?a=b</a> |
-    <a href="http://www.example.com/base/sec/ond?flag#hash">sec/ond?flag#hash</a> |
-    <a href="/other-base/another?search">external</a>
+<body ng-app="ngAnimate">
+    <div ng-init="checked=true">
+    <label>
+      <input type="checkbox" ng-model="checked" style="float:left; margin-right:10px;"> Is Visible...
+    </label>
+    <div class="check-element sample-show-hide" ng-show="checked" style="clear:both;">
+      Visible...
+    </div>
   </div>
 </body>
 </html>

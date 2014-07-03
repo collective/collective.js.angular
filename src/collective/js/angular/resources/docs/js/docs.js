@@ -23,10 +23,6 @@ angular.module('docsApp', [
 });
 angular.module('directives', [])
 
-.directive('code', function() {
-  return { restrict:'E', terminal: true };
-})
-
 /**
  * backToTop Directive
  * @param  {Function} $anchorScroll
@@ -48,7 +44,7 @@ angular.module('directives', [])
     restrict: 'E',
     terminal: true,
     compile: function(element) {
-      var linenums = element.hasClass('linenum') || element.parent()[0].nodeName === 'PRE';
+      var linenums = element.hasClass('linenum');// || element.parent()[0].nodeName === 'PRE';
       var match = /lang-(\S)+/.exec(element.className);
       var lang = match && match[1];
       var html = element.html();
@@ -60,10 +56,17 @@ angular.module('directives', [])
 
 angular.module('DocsController', [])
 
-.controller('DocsController', function($scope, $rootScope, $location, $window, $cookies, NG_PAGES, NG_NAVIGATION, NG_VERSION) {
+.controller('DocsController', [
+          '$scope', '$rootScope', '$location', '$window', '$cookies', 'openPlunkr',
+              'NG_PAGES', 'NG_NAVIGATION', 'NG_VERSION',
+  function($scope, $rootScope, $location, $window, $cookies, openPlunkr,
+              NG_PAGES, NG_NAVIGATION, NG_VERSION) {
+
+
+  $scope.openPlunkr = openPlunkr;
 
   $scope.docsVersion = NG_VERSION.isSnapshot ? 'snapshot' : NG_VERSION.version;
-  
+
   $scope.fold = function(url) {
     if(url) {
       $scope.docs_fold = '/notes/' + url;
@@ -180,7 +183,7 @@ angular.module('DocsController', [])
       });
     }
   });
-});
+}]);
 
 angular.module('errors', ['ngSanitize'])
 
@@ -246,66 +249,7 @@ angular.module('errors', ['ngSanitize'])
 }]);
 angular.module('examples', [])
 
-.directive('sourceEdit', function(getEmbeddedTemplate) {
-  return {
-    template: '<div class="btn-group pull-right">' +
-        '<a class="btn dropdown-toggle btn-primary" data-toggle="dropdown" href>' +
-        '  <i class="icon-pencil icon-white"></i> Edit<span class="caret"></span>' +
-        '</a>' +
-        '<ul class="dropdown-menu">' +
-        '  <li><a ng-click="plunkr($event)" href="">In Plunkr</a></li>' +
-        '  <li><a ng-click="fiddle($event)" href="">In JsFiddle</a></li>' +
-        '</ul>' +
-        '</div>',
-    scope: true,
-    controller: function($scope, $attrs, openJsFiddle, openPlunkr) {
-      var sources = {
-        module: $attrs.sourceEdit,
-        deps: read($attrs.sourceEditDeps),
-        html: read($attrs.sourceEditHtml),
-        css: read($attrs.sourceEditCss),
-        js: read($attrs.sourceEditJs),
-        json: read($attrs.sourceEditJson),
-        unit: read($attrs.sourceEditUnit),
-        scenario: read($attrs.sourceEditScenario)
-      };
-      $scope.fiddle = function(e) {
-        e.stopPropagation();
-        openJsFiddle(sources);
-      };
-      $scope.plunkr = function(e) {
-        e.stopPropagation();
-        openPlunkr(sources);
-      };
-    }
-  };
-
-  function read(text) {
-    var files = [];
-    angular.forEach(text ? text.split(' ') : [], function(refId) {
-      // refId is index.html-343, so we need to strip the unique ID when exporting the name
-      files.push({name: refId.replace(/-\d+$/, ''), content: getEmbeddedTemplate(refId)});
-    });
-    return files;
-  }
-})
-
-
-.factory('angularUrls', function($document) {
-  var urls = {};
-
-  angular.forEach($document.find('script'), function(script) {
-    var match = script.src.match(/^.*\/(angular[^\/]*\.js)$/);
-    if (match) {
-      urls[match[1].replace(/(\-\d.*)?(\.min)?\.js$/, '.js')] = match[0];
-    }
-  });
-
-  return urls;
-})
-
-
-.factory('formPostData', function($document) {
+.factory('formPostData', ['$document', function($document) {
   return function(url, fields) {
     var form = angular.element('<form style="display: none;" method="post" action="' + url + '" target="_blank"></form>');
     angular.forEach(fields, function(value, name) {
@@ -317,200 +261,64 @@ angular.module('examples', [])
     form[0].submit();
     form.remove();
   };
-})
+}])
 
 
-.factory('prepareDefaultAppModule', function() {
-  return function(content) {
-    var deps = [];
-    angular.forEach(content.deps, function(file) {
-      if(file.name == 'angular-animate.js') {
-        deps.push('ngAnimate');
-      }
-    });
+.factory('openPlunkr', ['formPostData', '$http', '$q', function(formPostData, $http, $q) {
+  return function(exampleFolder) {
 
-    var moduleName = 'App';
-    return {
-      module : moduleName,
-      script : "angular.module('" + moduleName + "', [" +
-          (deps.length ? "'" + deps.join("','") + "'" : "") + "]);\n\n"
-    };
-  };
-})
+    var exampleName = 'AngularJS Example';
 
-.factory('prepareEditorAssetTags', function(angularUrls) {
-  return function(content, options) {
-    options = options || {};
-    var includeLocalFiles = options.includeLocalFiles;
-    var html = makeScriptTag(angularUrls['angular.js']);
+    // Load the manifest for the example
+    $http.get(exampleFolder + '/manifest.json')
+      .then(function(response) {
+        return response.data;
+      })
+      .then(function(manifest) {
+        var filePromises = [];
 
-    var allFiles = [].concat(content.js, content.css, content.html, content.json);
-    angular.forEach(content.deps, function(file) {
-      if (file.name !== 'angular.js') {
-        var isLocal = false;
-        for(var i=0;i<allFiles.length;i++) {
-          if(allFiles[i].name == file.name) {
-            isLocal = true;
-            break;
-          }
-        }
-        if(!(isLocal && !includeLocalFiles)) {
-          var assetUrl = angularUrls[file.name] || file.name;
-          html += makeScriptTag(assetUrl);
-        }
-      }
-    });
-
-    if(includeLocalFiles) {
-      angular.forEach(content.css, function(file, index) {
-        html += makeCssLinkTag(file.name);
-      });
-    }
-
-    return html;
-
-
-    function makeScriptTag(src) {
-      return '<script type="text/javascript" src="' + src + '"></script>\n';
-    }
-
-    function makeCssLinkTag(src) {
-      return '<link rel="stylesheet" type="text/css" href="' + src + '" />\n';
-    }
-  };
-})
-
-
-.factory('openPlunkr', function(templateMerge, formPostData, prepareEditorAssetTags, prepareDefaultAppModule) {
-  return function(content) {
-    var hasRouting = false;
-    angular.forEach(content.deps, function(file) {
-      hasRouting = hasRouting || file.name == 'angular-route.js';
-    });
-    var indexHtmlContent = '<!doctype html>\n' +
-                           '<html ng-app="{{module}}">\n' +
-                           '  <head>\n' +
-                           '{{scriptDeps}}';
-
-    if(hasRouting) {
-        indexHtmlContent += '<script type="text/javascript">\n' +
-                            '//this is here to make plunkr work with AngularJS routing\n' +
-                            'angular.element(document.getElementsByTagName(\'head\')).append(' +
-                              'angular.element(\'<base href="\' + window.location.pathname + \'" />\')' +
-                            ');\n' +
-                            '</script>\n';
-    }
-
-    indexHtmlContent += '</head>\n' +
-                        '  <body>\n\n' +
-                        '{{indexContents}}\n\n' +
-                        '  </body>\n' +
-                        '</html>\n';
-
-    indexProp = {
-      module: content.module,
-      scriptDeps: prepareEditorAssetTags(content, { includeLocalFiles : true }),
-      indexContents: content.html[0].content
-    };
-
-    var allFiles = [].concat(content.js, content.css, content.html, content.json);
-
-    if(!content.module) {
-      var moduleData = prepareDefaultAppModule(content);
-      indexProp.module = moduleData.module;
-
-      var found = false;
-      angular.forEach(content.js, function(file) {
-        if(file.name == 'script.js') {
-          file.content = moduleData.script + file.content;
-          found = true;
-        }
-      });
-      if(!found) {
-        indexProp.scriptDeps += '<script type="text/javascript" src="script.js"></script>\n';
-        allFiles.push({
-          name : 'script.js',
-          content : moduleData.script
+        // Build a pretty title for the Plunkr
+        var exampleNameParts = manifest.name.split('-');
+        exampleNameParts.unshift('AngularJS');
+        angular.forEach(exampleNameParts, function(part, index) {
+          exampleNameParts[index] = part.charAt(0).toUpperCase() + part.substr(1);
         });
-      }
-    }
+        exampleName = exampleNameParts.join(' - ');
 
-    var postData = {};
+        angular.forEach(manifest.files, function(filename) {
+          filePromises.push($http.get(exampleFolder + '/' + filename, { transformResponse: [] })
+            .then(function(response) {
 
-    angular.forEach(allFiles, function(file, index) {
-      if (file.content && file.name != 'index.html') {
-        postData['files[' + file.name + ']'] = file.content;
-      }
-    });
+              // The manifests provide the production index file but Plunkr wants
+              // a straight index.html
+              if (filename === "index-production.html") {
+                filename = "index.html"
+              }
 
-    postData['files[index.html]'] = templateMerge(indexHtmlContent, indexProp);
-    postData['tags[]'] = "angularjs";
+              return {
+                name: filename,
+                content: response.data
+              };
+            }));
+        });
+        return $q.all(filePromises);
+      })
+      .then(function(files) {
+        var postData = {};
 
-    postData.private = true;
-    postData.description = 'AngularJS Example Plunkr';
+        angular.forEach(files, function(file) {
+          postData['files[' + file.name + ']'] = file.content;
+        });
 
-    formPostData('http://plnkr.co/edit/?p=preview', postData);
+        postData['tags[0]'] = "angularjs";
+        postData['tags[1]'] = "example";
+        postData.private = true;
+        postData.description = exampleName;
+
+        formPostData('http://plnkr.co/edit/?p=preview', postData);
+      });
   };
-})
-
-.factory('openJsFiddle', function(templateMerge, formPostData, prepareEditorAssetTags, prepareDefaultAppModule) {
-  var HTML = '<div ng-app=\"{{module}}\">\n{{html:2}}</div>',
-      CSS = '</style> <!-- Ugly Hack to make remote files preload in jsFiddle --> \n' +
-        '{{head:0}}<style>{{css}}',
-      SCRIPT = '{{script}}',
-      SCRIPT_CACHE = '\n\n<!-- {{name}} -->\n<script type="text/ng-template" id="{{name}}">\n{{content:2}}</script>',
-      BASE_HREF_TAG = '<!--  Ugly Hack to make AngularJS routing work inside of jsFiddle -->\n' +
-                      '<base href="/" />\n\n';
-
-  return function(content) {
-    var prop = {
-          module: content.module,
-          html: '',
-          css: '',
-          script: ''
-        };
-    if(!prop.module) {
-      var moduleData = prepareDefaultAppModule(content);
-      prop.script = moduleData.script;
-      prop.module = moduleData.module;
-    }
-
-    angular.forEach(content.html, function(file, index) {
-      if (index) {
-        prop.html += templateMerge(SCRIPT_CACHE, file);
-      } else {
-        prop.html += file.content;
-      }
-    });
-
-    prop.head = prepareEditorAssetTags(content, { includeLocalFiles : false });
-
-    angular.forEach(content.js, function(file, index) {
-      prop.script += file.content;
-    });
-
-    angular.forEach(content.css, function(file, index) {
-      prop.css += file.content;
-    });
-
-    var hasRouting = false;
-    angular.forEach(content.deps, function(file) {
-      hasRouting = hasRouting || file.name == 'angular-route.js';
-    });
-
-    var compiledHTML = templateMerge(HTML, prop);
-    if(hasRouting) {
-      compiledHTML = BASE_HREF_TAG + compiledHTML;
-    }
-    formPostData("http://jsfiddle.net/api/post/library/pure/", {
-      title: 'AngularJS Example',
-      html: compiledHTML,
-      js: templateMerge(SCRIPT, prop),
-      css: templateMerge(CSS, prop)
-    });
-  };
-});
-
+}]);
 angular.module('docsApp.navigationService', [])
 
 .factory('navigationService', function($window) {
@@ -545,7 +353,7 @@ angular.module('search', [])
   }
 
   $scope.search = function(q) {
-    var MIN_SEARCH_LENGTH = 3;
+    var MIN_SEARCH_LENGTH = 2;
     if(q.length >= MIN_SEARCH_LENGTH) {
       var results = docsSearch(q);
       var totalAreas = 0;
@@ -572,7 +380,7 @@ angular.module('search', [])
       }
     }
     if(result) {
-      $location.path(result.url);
+      $location.path(result.path);
       $scope.hideResults();
     }
   };
@@ -713,7 +521,7 @@ angular.module('tutorials', [])
       element.addClass('tutorial-nav');
       element.append(templateMerge(
         '<a href="tutorial/{{prev}}"><li class="btn btn-primary"><i class="glyphicon glyphicon-step-backward"></i> Previous</li></a>\n' +
-        '<a href="http://angular.github.com/angular-phonecat/step-{{seq}}/app"><li class="btn btn-primary"><i class="glyphicon glyphicon-play"></i> Live Demo</li></a>\n' +
+        '<a href="http://angular.github.io/angular-phonecat/step-{{seq}}/app"><li class="btn btn-primary"><i class="glyphicon glyphicon-play"></i> Live Demo</li></a>\n' +
         '<a href="https://github.com/angular/angular-phonecat/compare/step-{{diffLo}}...step-{{diffHi}}"><li class="btn btn-primary"><i class="glyphicon glyphicon-search"></i> Code Diff</li></a>\n' +
         '<a href="tutorial/{{next}}"><li class="btn btn-primary">Next <i class="glyphicon glyphicon-step-forward"></i></li></a>', props));
     }
@@ -722,29 +530,21 @@ angular.module('tutorials', [])
 
 
 .directive('docTutorialReset', function() {
-  function tab(name, command, id, step) {
-    return '' +
-      '  <div class=\'tab-pane well\' title="' + name + '" value="' + id + '">\n' +
-      '    <ol>\n' +
-      '      <li><p>Reset the workspace to step ' + step + '.</p>' +
-      '        <pre>' + command + '</pre></li>\n' +
-      '      <li><p>Refresh your browser or check the app out on <a href="http://angular.github.com/angular-phonecat/step-' + step + '/app">Angular\'s server</a>.</p></li>\n' +
-      '    </ol>\n' +
-      '  </div>\n';
-  }
-
   return {
-    compile: function(element, attrs) {
-      var step = attrs.docTutorialReset;
-      element.html(
-        '<div ng-hide="show">' +
-          '<p><a href="" ng-click="show=true;$event.stopPropagation()">Workspace Reset Instructions  ➤</a></p>' +
-        '</div>\n' +
-        '<div class="tabbable" ng-show="show" ng-model="$cookies.platformPreference">\n' +
-          tab('Git on Mac/Linux', 'git checkout -f step-' + step, 'gitUnix', step) +
-          tab('Git on Windows', 'git checkout -f step-' + step, 'gitWin', step) +
-        '</div>\n');
-    }
+    scope: {
+      'step': '@docTutorialReset'
+    },
+    template:
+      '<p><a href="" ng-click="show=!show;$event.stopPropagation()">Workspace Reset Instructions  ➤</a></p>\n' +
+      '<div class="alert alert-info" ng-show="show">\n' +
+      '  <p>Reset the workspace to step {{step}}.</p>' +
+      '  <p><pre>git checkout -f step-{{step}}</pre></p>\n' +
+      '  <p>Refresh your browser or check out this step online: '+
+          '<a href="http://angular.github.io/angular-phonecat/step-{{step}}/app">Step {{step}} Live Demo</a>.</p>\n' +
+      '</div>\n' +
+      '<p>The most important changes are listed below. You can see the full diff on ' +
+        '<a ng-href="https://github.com/angular/angular-phonecat/compare/step-{{step ? (step - 1): \'0~1\'}}...step-{{step}}">GitHub</a>\n' +
+      '</p>'
   };
 });
 

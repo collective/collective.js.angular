@@ -1,40 +1,11 @@
-  angular.module('docsTabsExample', [])
-    .directive('myTabs', function() {
-      return {
-        restrict: 'E',
-        transclude: true,
-        scope: {},
-        controller: function($scope) {
-          var panes = $scope.panes = [];
+  function Cntl2($scope) {
+    var exprs = $scope.exprs = [];
+    $scope.expr = '3*10|currency';
+    $scope.addExp = function(expr) {
+      exprs.push(expr);
+    };
 
-          $scope.select = function(pane) {
-            angular.forEach(panes, function(pane) {
-              pane.selected = false;
-            });
-            pane.selected = true;
-          };
-
-          this.addPane = function(pane) {
-            if (panes.length === 0) {
-              $scope.select(pane);
-            }
-            panes.push(pane);
-          };
-        },
-        templateUrl: 'my-tabs.html'
-      };
-    })
-    .directive('myPane', function() {
-      return {
-        require: '^myTabs',
-        restrict: 'E',
-        transclude: true,
-        scope: {
-          title: '@'
-        },
-        link: function(scope, element, attrs, tabsCtrl) {
-          tabsCtrl.addPane(scope);
-        },
-        templateUrl: 'my-pane.html'
-      };
-    });
+    $scope.removeExp = function(index) {
+      exprs.splice(index, 1);
+    };
+  }

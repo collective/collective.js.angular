@@ -18,8 +18,8 @@ correctly. For example:</p>
   .controller(&#39;MyController&#39;, [&#39;myService&#39;, function (myService) {
     // Do something with myService
   }]);</code></pre>
-<p>This code will fail with <code>$injector:unpr</code> if <code>myService</code> is not defined. Making
-sure each dependency is defined will fix the problem.</p>
+<p>The above code will fail with <code>$injector:unpr</code> if <code>myService</code> is not defined. </p>
+<p>Making sure each dependency is defined will fix the problem, as noted below.</p>
 <pre><code>angular.module(&#39;myApp&#39;, [])
   .service(&#39;myService&#39;, function () { /* ... */ })
   .controller(&#39;MyController&#39;, [&#39;myService&#39;, function (myService) {

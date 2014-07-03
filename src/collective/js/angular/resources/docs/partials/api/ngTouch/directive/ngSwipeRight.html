@@ -2,7 +2,7 @@
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ngTouch/directive/ngSwipe.js#L35' class='view-source pull-right btn btn-primary'>
+<a href='http://github.com/angular/angular.js/tree/master/src/ngTouch/directive/ngSwipe.js#L38' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -93,22 +93,31 @@ upon right swipe. (Event object is available as <code>$event</code>)</p>
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-href="http://plnkr.co/edit/ngdoc:example-example70@{{docsVersion}}?p=preview" class="btn pull-right" target="_blank">
+  <a ng-click="openPlunkr('examples/example-example68')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
-      path="examples/example-example70">
+      path="examples/example-example68"
+      module="ngSwipeRightExample"
+      deps="angular-touch.js">
 
    
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;div ng-show=&quot;!showActions&quot; ng-swipe-left=&quot;showActions = true&quot;&gt;&#10;  Some list content, like an email in the inbox&#10;&lt;/div&gt;&#10;&lt;div ng-show=&quot;showActions&quot; ng-swipe-right=&quot;showActions = false&quot;&gt;&#10;  &lt;button ng-click=&quot;reply()&quot;&gt;Reply&lt;/button&gt;&#10;  &lt;button ng-click=&quot;delete()&quot;&gt;Delete&lt;/button&gt;&#10;&lt;/div&gt;</code></pre>  
+      <pre><code>&lt;div ng-show=&quot;!showActions&quot; ng-swipe-left=&quot;showActions = true&quot;&gt;&#10;  Some list content, like an email in the inbox&#10;&lt;/div&gt;&#10;&lt;div ng-show=&quot;showActions&quot; ng-swipe-right=&quot;showActions = false&quot;&gt;&#10;  &lt;button ng-click=&quot;reply()&quot;&gt;Reply&lt;/button&gt;&#10;  &lt;button ng-click=&quot;delete()&quot;&gt;Delete&lt;/button&gt;&#10;&lt;/div&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&#39;ngSwipeRightExample&#39;, [&#39;ngTouch&#39;]);</code></pre>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example70/index.html" name="example-example70"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example68/index.html" name="example-example68"></iframe>
   </div>
 </div>
 

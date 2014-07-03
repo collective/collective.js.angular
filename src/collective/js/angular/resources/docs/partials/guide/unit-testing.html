@@ -39,7 +39,7 @@ the registry? Most likely by looking it up in a well known place. See #2.)</li>
 <p>Out of the four options in the list above, only the last one is testable. Let&#39;s look at why:</p>
 <h3 id="using-the-new-operator">Using the <code>new</code> operator</h3>
 <p>While there is nothing wrong with the <code>new</code> operator fundamentally, a problem arises when calling <code>new</code>
-on a constructor. This permanently binds the call site to the type. For example, lets say that we try to
+on a constructor. This permanently binds the call site to the type. For example, let&#39;s say that we try to
 instantiate an <code>XHR</code> that will retrieve data from the server.</p>
 <pre><code class="lang-js">function MyClass() {
   this.doWork = function() {
@@ -51,7 +51,7 @@ instantiate an <code>XHR</code> that will retrieve data from the server.</p>
 }</code></pre>
 <p>A problem surfaces in tests when we would like to instantiate a <code>MockXHR</code> that would
 allow us to return fake data and simulate network failures. By calling <code>new XHR()</code> we are
-permanently bound to the actual XHR and there is no  way to replace it. Yes, we could monkey
+permanently bound to the actual XHR and there is no way to replace it. Yes, we could monkey
 patch, but that is a bad idea for many reasons which are outside the scope of this document.</p>
 <p>Here&#39;s an example of how the class above becomes hard to test when resorting to monkey patching:</p>
 <pre><code class="lang-js">var oldXHR = XHR;
@@ -217,7 +217,7 @@ you create with directives may be used throughout your application and in many d
 <pre><code class="lang-js">app.directive(&#39;aGreatEye&#39;, function () {
     return {
         restrict: &#39;E&#39;,
-        replace:  true,
+        replace: true,
         template: &#39;&lt;h1&gt;lidless, wreathed in flame, {{1 + 1}} times&lt;/h1&gt;&#39;
     };
 });</code></pre>

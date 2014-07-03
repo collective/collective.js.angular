@@ -1,20 +1,40 @@
-  angular.module('docsIsoFnBindExample', [])
-    .controller('Controller', ['$scope', '$timeout', function($scope, $timeout) {
-      $scope.name = 'Tobias';
-      $scope.hideDialog = function () {
-        $scope.dialogIsHidden = true;
-        $timeout(function () {
-          $scope.dialogIsHidden = false;
-        }, 2000);
-      };
-    }])
-    .directive('myDialog', function() {
+  angular.module('docsTabsExample', [])
+    .directive('myTabs', function() {
       return {
         restrict: 'E',
         transclude: true,
-        scope: {
-          'close': '&onClose'
+        scope: {},
+        controller: function($scope) {
+          var panes = $scope.panes = [];
+
+          $scope.select = function(pane) {
+            angular.forEach(panes, function(pane) {
+              pane.selected = false;
+            });
+            pane.selected = true;
+          };
+
+          this.addPane = function(pane) {
+            if (panes.length === 0) {
+              $scope.select(pane);
+            }
+            panes.push(pane);
+          };
         },
-        templateUrl: 'my-dialog-close.html'
+        templateUrl: 'my-tabs.html'
+      };
+    })
+    .directive('myPane', function() {
+      return {
+        require: '^myTabs',
+        restrict: 'E',
+        transclude: true,
+        scope: {
+          title: '@'
+        },
+        link: function(scope, element, attrs, tabsCtrl) {
+          tabsCtrl.addPane(scope);
+        },
+        templateUrl: 'my-pane.html'
       };
     });

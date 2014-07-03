@@ -1,11 +1,22 @@
 AngularJS JavaScript Library Packaged for Plone
 ===============================================
 
-This package provides the `AngularJS <http://angularjs.org//>`_ libray for
-use in Plone. See also
+This package provides the `AngularJS <http://angularjs.org//>`_ libray for use in Plone. 
 
-**Superheroic JavaScript MVW Framework** (cite
-the original website title)
+**Superheroic JavaScript MVW Framework** (cite of the original website title) 
+
+The whole ZIP file distribution is provided. So far only the main angular library is registered in ``portal_javascripts`` (read section Installion).
+
+Anyway: all other angular standard distribution js-libs are available under ``++resources++collective.js.angular/NAME.js`` with name one out of:
+
+- angular-animate.js/ angular-animate.min.js
+- angular-cookies.js/ angular-cookies.min.js
+- angular-csp.css
+- angular-loader.js/ angular-loader.min.js
+- angular-resource.js angular-resource.min.js
+- angular-route.js/ angular-route.min.js
+- angular-sanitize.js/ angular-sanitize.min.js
+- angular-touch.js/ angular-touch.min.js
 
 
 Installation
@@ -13,8 +24,7 @@ Installation
 
 Just depend in your buildout on the egg ``collective.js.angular``.
 
-Install ``AngularJS Javascript Library`` as an addon in Plone control-panel or
-in portal_setup.
+Install ``AngularJS Javascript Library`` as an addon in Plone control-panel or in portal_setup.
 
 Minified
   GenericSetup dependency string for ``metadata.xml`` is

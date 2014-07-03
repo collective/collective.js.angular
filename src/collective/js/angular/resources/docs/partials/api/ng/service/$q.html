@@ -35,17 +35,13 @@ asynchronous programming what <code>try</code>, <code>catch</code> and <code>thr
     var deferred = $q.defer();
 
     setTimeout(function() {
-      // since this fn executes async in a future turn of the event loop, we need to wrap
-      // our code into an $apply call so that the model changes are properly observed.
-      scope.$apply(function() {
-        deferred.notify(&#39;About to greet &#39; + name + &#39;.&#39;);
+      deferred.notify(&#39;About to greet &#39; + name + &#39;.&#39;);
 
-        if (okToGreet(name)) {
-          deferred.resolve(&#39;Hello, &#39; + name + &#39;!&#39;);
-        } else {
-          deferred.reject(&#39;Greeting &#39; + name + &#39; is not allowed.&#39;);
-        }
-      });
+      if (okToGreet(name)) {
+        deferred.resolve(&#39;Hello, &#39; + name + &#39;!&#39;);
+      } else {
+        deferred.reject(&#39;Greeting &#39; + name + &#39; is not allowed.&#39;);
+      }
     }, 1000);
 
     return deferred.promise;

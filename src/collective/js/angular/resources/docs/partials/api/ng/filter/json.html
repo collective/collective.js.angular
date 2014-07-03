@@ -2,7 +2,7 @@
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/filter/filters.js#L429' class='view-source pull-right btn btn-primary'>
+<a href='http://github.com/angular/angular.js/tree/master/src/ng/filter/filters.js#L433' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -36,7 +36,7 @@
   <h2>Usage</h2>
   <h3>In HTML Template Binding</h3>
   
-    <pre><code>{{ json_expression | json : object}}</code></pre>
+    <pre><code>{{ json_expression | json}}</code></pre>
   
 
   <h3>In JavaScript</h3>
@@ -91,29 +91,29 @@
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-href="http://plnkr.co/edit/ngdoc:example-example56@{{docsVersion}}?p=preview" class="btn pull-right" target="_blank">
+  <a ng-click="openPlunkr('examples/example-example54')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
-      path="examples/example-example56">
+      path="examples/example-example54">
 
    
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;pre&gt;{{ {&#39;name&#39;:&#39;value&#39;} | json }}&lt;/pre&gt;</code></pre>  
+      <pre><code>&lt;pre&gt;{{ {&#39;name&#39;:&#39;value&#39;} | json }}&lt;/pre&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="protractor.js"
       type="protractor"
       language="js">
-      <pre><code>it(&#39;should jsonify filtered objects&#39;, function() {&#10;  expect(element(by.binding(&quot;{&#39;name&#39;:&#39;value&#39;}&quot;)).getText()).toMatch(/\{\n  &quot;name&quot;: ?&quot;value&quot;\n}/);&#10;});</code></pre>  
+      <pre><code>it(&#39;should jsonify filtered objects&#39;, function() {&#10;  expect(element(by.binding(&quot;{&#39;name&#39;:&#39;value&#39;}&quot;)).getText()).toMatch(/\{\n  &quot;name&quot;: ?&quot;value&quot;\n}/);&#10;});</code></pre>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example56/index.html" name="example-example56"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example54/index.html" name="example-example54"></iframe>
   </div>
 </div>
 

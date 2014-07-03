@@ -1,14 +1,35 @@
-describe("module:ng.filter:date", function() {
+describe("module:ng.filter:limitTo", function() {
   beforeEach(function() {
     browser.get("./examples/example-example55/index.html");
   });
 
-  it('should format date', function() {
-    expect(element(by.binding("1288323623006 | date:'medium'")).getText()).
-       toMatch(/Oct 2\d, 2010 \d{1,2}:\d{2}:\d{2} (AM|PM)/);
-    expect(element(by.binding("1288323623006 | date:'yyyy-MM-dd HH:mm:ss Z'")).getText()).
-       toMatch(/2010\-10\-2\d \d{2}:\d{2}:\d{2} (\-|\+)?\d{4}/);
-    expect(element(by.binding("'1288323623006' | date:'MM/dd/yyyy @ h:mma'")).getText()).
-       toMatch(/10\/2\d\/2010 @ \d{1,2}:\d{2}(AM|PM)/);
+  var numLimitInput = element(by.model('numLimit'));
+  var letterLimitInput = element(by.model('letterLimit'));
+  var limitedNumbers = element(by.binding('numbers | limitTo:numLimit'));
+  var limitedLetters = element(by.binding('letters | limitTo:letterLimit'));
+
+  it('should limit the number array to first three items', function() {
+    expect(numLimitInput.getAttribute('value')).toBe('3');
+    expect(letterLimitInput.getAttribute('value')).toBe('3');
+    expect(limitedNumbers.getText()).toEqual('Output numbers: [1,2,3]');
+    expect(limitedLetters.getText()).toEqual('Output letters: abc');
+  });
+
+  it('should update the output when -3 is entered', function() {
+    numLimitInput.clear();
+    numLimitInput.sendKeys('-3');
+    letterLimitInput.clear();
+    letterLimitInput.sendKeys('-3');
+    expect(limitedNumbers.getText()).toEqual('Output numbers: [7,8,9]');
+    expect(limitedLetters.getText()).toEqual('Output letters: ghi');
+  });
+
+  it('should not exceed the maximum size of input array', function() {
+    numLimitInput.clear();
+    numLimitInput.sendKeys('100');
+    letterLimitInput.clear();
+    letterLimitInput.sendKeys('100');
+    expect(limitedNumbers.getText()).toEqual('Output numbers: [1,2,3,4,5,6,7,8,9]');
+    expect(limitedLetters.getText()).toEqual('Output letters: abcdefghi');
   });
 });

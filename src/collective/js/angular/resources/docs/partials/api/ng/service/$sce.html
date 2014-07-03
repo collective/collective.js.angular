@@ -85,8 +85,8 @@ simplified):</p>
 <code>templateUrl</code>&#39;s specified by <a href="guide/directive">directives</a>.</p>
 <p>By default, Angular only loads templates from the same domain and protocol as the application
 document.  This is done by calling <a href="api/ng/service/$sce#getTrustedResourceUrl">$sce.getTrustedResourceUrl</a> on the template URL.  To load templates from other domains and/or
-protocols, you may either either <a href="api/ng/provider/$sceDelegateProvider#resourceUrlWhitelist">whitelist</a>
-them or <a href="api/ng/service/$sce#trustAsResourceUrl">wrap it</a> into a trusted value.</p>
+protocols, you may either either <a href="api/ng/provider/$sceDelegateProvider#resourceUrlWhitelist">whitelist
+them</a> or <a href="api/ng/service/$sce#trustAsResourceUrl">wrap it</a> into a trusted value.</p>
 <p><em>Please note</em>:
 The browser&#39;s
 <a href="https://code.google.com/p/browsersec/wiki/Part2#Same-origin_policy_for_XMLHttpRequest">Same Origin Policy</a>
@@ -121,7 +121,7 @@ security onto an application later.</p>
 <tbody>
 <tr>
 <td><code>$sce.HTML</code></td>
-<td>For HTML that&#39;s safe to source into the application.  The <a href="api/ng/directive/ngBindHtml">ngBindHtml</a> directive uses this context for bindings.</td>
+<td>For HTML that&#39;s safe to source into the application.  The <a href="api/ng/directive/ngBindHtml">ngBindHtml</a> directive uses this context for bindings. If an unsafe value is encountered and the <a href="api/ngSanitize">$sanitize</a> module is present this will sanitize the value instead of throwing an error.</td>
 </tr>
 <tr>
 <td><code>$sce.CSS</code></td>
@@ -160,7 +160,7 @@ in a whitelist.</li>
 <li><code>**</code>: matches zero or more occurrences of <em>any</em> character.  As such, it&#39;s not
 not appropriate to use in for a scheme, domain, etc. as it would match too much.  (e.g.
 <a href="http://**.example.com/">http://**.example.com/</a> would match <a href="http://evil.com/?ignore=.example.com/">http://evil.com/?ignore=.example.com/</a> and that might
-not have been the intention.)  It&#39;s usage at the very end of the path is ok.  (e.g.
+not have been the intention.)  Its usage at the very end of the path is ok.  (e.g.
 <a href="http://foo.example.com/templates/**">http://foo.example.com/templates/**</a>).</li>
 </ul>
 </li>
@@ -203,7 +203,16 @@ Closure library&#39;s <a href="http://docs.closure-library.googlecode.com/git/cl
 
     
 
-  
+  <h2 id="usage">Usage</h2>
+    
+      <p><code>$sce();</code></p>
+
+
+    
+
+    
+    
+    
 
   
 <h2>Methods</h2>
@@ -233,13 +242,13 @@ have to do it at module config time on <a href="api/ng/provider/$sceProvider">$s
 
   </li>
   
-  <li id="parse">
-    <h3><p><code>parse(type, expression);</code></p>
+  <li id="parseAs">
+    <h3><p><code>parseAs(type, expression);</code></p>
 
 </h3>
     <div><p>Converts Angular <a href="guide/expression">expression</a> into a function.  This is like <a href="api/ng/service/$parse">$parse</a> and is identical when the expression is a literal constant.  Otherwise, it
-wraps the expression in a call to <a href="api/ng/service/$sce#getTrusted">$sce.getTrusted(<em>type</em>,</a>
-<em>result</em>)</p>
+wraps the expression in a call to <a href="api/ng/service/$sce#getTrusted">$sce.getTrusted(<em>type</em>,
+<em>result</em>)</a></p>
 </div>
 
     
@@ -1315,11 +1324,11 @@ are evaluated against (typically a scope object).</li>
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-href="http://plnkr.co/edit/ngdoc:example-example63@{{docsVersion}}?p=preview" class="btn pull-right" target="_blank">
+  <a ng-click="openPlunkr('examples/example-example62')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
-      path="examples/example-example63"
+      path="examples/example-example62"
       module="mySceApp"
       deps="angular-sanitize.js">
 
@@ -1328,32 +1337,32 @@ are evaluated against (typically a scope object).</li>
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;div ng-controller=&quot;myAppController as myCtrl&quot;&gt;&#10;&lt;i ng-bind-html=&quot;myCtrl.explicitlyTrustedHtml&quot; id=&quot;explicitlyTrustedHtml&quot;&gt;&lt;/i&gt;&lt;br&gt;&lt;br&gt;&#10;&lt;b&gt;User comments&lt;/b&gt;&lt;br&gt;&#10;By default, HTML that isn&#39;t explicitly trusted (e.g. Alice&#39;s comment) is sanitized when&#10;$sanitize is available.  If $sanitize isn&#39;t available, this results in an error instead of an&#10;exploit.&#10;&lt;div class=&quot;well&quot;&gt;&#10;  &lt;div ng-repeat=&quot;userComment in myCtrl.userComments&quot;&gt;&#10;    &lt;b&gt;{{userComment.name}}&lt;/b&gt;:&#10;    &lt;span ng-bind-html=&quot;userComment.htmlComment&quot; class=&quot;htmlComment&quot;&gt;&lt;/span&gt;&#10;    &lt;br&gt;&#10;  &lt;/div&gt;&#10;&lt;/div&gt;&#10;&lt;/div&gt;</code></pre>  
+      <pre><code>&lt;div ng-controller=&quot;myAppController as myCtrl&quot;&gt;&#10;&lt;i ng-bind-html=&quot;myCtrl.explicitlyTrustedHtml&quot; id=&quot;explicitlyTrustedHtml&quot;&gt;&lt;/i&gt;&lt;br&gt;&lt;br&gt;&#10;&lt;b&gt;User comments&lt;/b&gt;&lt;br&gt;&#10;By default, HTML that isn&#39;t explicitly trusted (e.g. Alice&#39;s comment) is sanitized when&#10;$sanitize is available.  If $sanitize isn&#39;t available, this results in an error instead of an&#10;exploit.&#10;&lt;div class=&quot;well&quot;&gt;&#10;  &lt;div ng-repeat=&quot;userComment in myCtrl.userComments&quot;&gt;&#10;    &lt;b&gt;{{userComment.name}}&lt;/b&gt;:&#10;    &lt;span ng-bind-html=&quot;userComment.htmlComment&quot; class=&quot;htmlComment&quot;&gt;&lt;/span&gt;&#10;    &lt;br&gt;&#10;  &lt;/div&gt;&#10;&lt;/div&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="script.js"
       language="js"
       type="js">
-      <pre><code>var mySceApp = angular.module(&#39;mySceApp&#39;, [&#39;ngSanitize&#39;]);&#10;&#10;mySceApp.controller(&quot;myAppController&quot;, function myAppController($http, $templateCache, $sce) {&#10;  var self = this;&#10;  $http.get(&quot;test_data.json&quot;, {cache: $templateCache}).success(function(userComments) {&#10;    self.userComments = userComments;&#10;  });&#10;  self.explicitlyTrustedHtml = $sce.trustAsHtml(&#10;      &#39;&lt;span onmouseover=&quot;this.textContent=&quot;Explicitly trusted HTML bypasses &#39; +&#10;      &#39;sanitization.&quot;&quot;&gt;Hover over this text.&lt;/span&gt;&#39;);&#10;});</code></pre>  
+      <pre><code>var mySceApp = angular.module(&#39;mySceApp&#39;, [&#39;ngSanitize&#39;]);&#10;&#10;mySceApp.controller(&quot;myAppController&quot;, function myAppController($http, $templateCache, $sce) {&#10;  var self = this;&#10;  $http.get(&quot;test_data.json&quot;, {cache: $templateCache}).success(function(userComments) {&#10;    self.userComments = userComments;&#10;  });&#10;  self.explicitlyTrustedHtml = $sce.trustAsHtml(&#10;      &#39;&lt;span onmouseover=&quot;this.textContent=&quot;Explicitly trusted HTML bypasses &#39; +&#10;      &#39;sanitization.&quot;&quot;&gt;Hover over this text.&lt;/span&gt;&#39;);&#10;});</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="test_data.json"
       language="json"
       type="json">
-      <pre><code>[&#10;{ &quot;name&quot;: &quot;Alice&quot;,&#10;  &quot;htmlComment&quot;:&#10;      &quot;&lt;span onmouseover=&#39;this.textContent=\&quot;PWN3D!\&quot;&#39;&gt;Is &lt;i&gt;anyone&lt;/i&gt; reading this?&lt;/span&gt;&quot;&#10;},&#10;{ &quot;name&quot;: &quot;Bob&quot;,&#10;  &quot;htmlComment&quot;: &quot;&lt;i&gt;Yes!&lt;/i&gt;  Am I the only other one?&quot;&#10;}&#10;]</code></pre>  
+      <pre><code>[&#10;{ &quot;name&quot;: &quot;Alice&quot;,&#10;  &quot;htmlComment&quot;:&#10;      &quot;&lt;span onmouseover=&#39;this.textContent=\&quot;PWN3D!\&quot;&#39;&gt;Is &lt;i&gt;anyone&lt;/i&gt; reading this?&lt;/span&gt;&quot;&#10;},&#10;{ &quot;name&quot;: &quot;Bob&quot;,&#10;  &quot;htmlComment&quot;: &quot;&lt;i&gt;Yes!&lt;/i&gt;  Am I the only other one?&quot;&#10;}&#10;]</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="protractor.js"
       type="protractor"
       language="js">
-      <pre><code>describe(&#39;SCE doc demo&#39;, function() {&#10;it(&#39;should sanitize untrusted values&#39;, function() {&#10;  expect(element(by.css(&#39;.htmlComment&#39;)).getInnerHtml())&#10;      .toBe(&#39;&lt;span&gt;Is &lt;i&gt;anyone&lt;/i&gt; reading this?&lt;/span&gt;&#39;);&#10;});&#10;&#10;it(&#39;should NOT sanitize explicitly trusted values&#39;, function() {&#10;  expect(element(by.id(&#39;explicitlyTrustedHtml&#39;)).getInnerHtml()).toBe(&#10;      &#39;&lt;span onmouseover=&quot;this.textContent=&quot;Explicitly trusted HTML bypasses &#39; +&#10;      &#39;sanitization.&quot;&quot;&gt;Hover over this text.&lt;/span&gt;&#39;);&#10;});&#10;});</code></pre>  
+      <pre><code>describe(&#39;SCE doc demo&#39;, function() {&#10;it(&#39;should sanitize untrusted values&#39;, function() {&#10;  expect(element(by.css(&#39;.htmlComment&#39;)).getInnerHtml())&#10;      .toBe(&#39;&lt;span&gt;Is &lt;i&gt;anyone&lt;/i&gt; reading this?&lt;/span&gt;&#39;);&#10;});&#10;&#10;it(&#39;should NOT sanitize explicitly trusted values&#39;, function() {&#10;  expect(element(by.id(&#39;explicitlyTrustedHtml&#39;)).getInnerHtml()).toBe(&#10;      &#39;&lt;span onmouseover=&quot;this.textContent=&quot;Explicitly trusted HTML bypasses &#39; +&#10;      &#39;sanitization.&quot;&quot;&gt;Hover over this text.&lt;/span&gt;&#39;);&#10;});&#10;});</code></pre>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example63/index.html" name="example-example63"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example62/index.html" name="example-example62"></iframe>
   </div>
 </div>
 

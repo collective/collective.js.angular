@@ -49,7 +49,9 @@ on the <code>ngMockE2E</code> and your application modules and defines the fake 
 
     // adds a new phone to the phones array
     $httpBackend.whenPOST(&#39;/phones&#39;).respond(function(method, url, data) {
-      phones.push(angular.fromJson(data));
+      var phone = angular.fromJson(data);
+      phones.push(phone);
+      return [200, phone, {}];
     });
     $httpBackend.whenGET(/^\/templates\//).passThrough();
     //...

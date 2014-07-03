@@ -1,7 +1,12 @@
-  function Cntl1($window, $scope){
-    $scope.name = 'World';
-
-    $scope.greet = function() {
-      $window.alert('Hello ' + $scope.name);
-    };
-  }
+  angular.module('FilterInControllerModule', []).
+    controller('FilterController', ['filterFilter', function(filterFilter) {
+      this.array = [
+        {name: 'Tobias'},
+        {name: 'Jeff'},
+        {name: 'Brian'},
+        {name: 'Igor'},
+        {name: 'James'},
+        {name: 'Brad'}
+      ];
+      this.filteredArray = filterFilter(this.array, 'a');
+    }]);

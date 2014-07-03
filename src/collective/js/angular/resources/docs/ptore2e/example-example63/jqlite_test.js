@@ -1,18 +1,11 @@
-describe("module:ng.service:$sce", function() {
+describe("module:ng.service:$window", function() {
   beforeEach(function() {
     browser.get("./examples/example-example63/index.html");
   });
 
-describe('SCE doc demo', function() {
-  it('should sanitize untrusted values', function() {
-    expect(element(by.css('.htmlComment')).getInnerHtml())
-        .toBe('<span>Is <i>anyone</i> reading this?</span>');
-  });
-
-  it('should NOT sanitize explicitly trusted values', function() {
-    expect(element(by.id('explicitlyTrustedHtml')).getInnerHtml()).toBe(
-        '<span onmouseover="this.textContent=&quot;Explicitly trusted HTML bypasses ' +
-        'sanitization.&quot;">Hover over this text.</span>');
-  });
-});
+ it('should display the greeting in the input box', function() {
+  element(by.model('greeting')).sendKeys('Hello, E2E Tests');
+  // If we click the button it will block the test runner
+  // element(':button').click();
+ });
 });

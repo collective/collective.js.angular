@@ -53,29 +53,29 @@ expression.</p>
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-href="http://plnkr.co/edit/ngdoc:example-example64@{{docsVersion}}?p=preview" class="btn pull-right" target="_blank">
+  <a ng-click="openPlunkr('examples/example-example63')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
-      path="examples/example-example64">
+      path="examples/example-example63">
 
    
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;script&gt;&#10;  function Ctrl($scope, $window) {&#10;    $scope.greeting = &#39;Hello, World!&#39;;&#10;    $scope.doGreeting = function(greeting) {&#10;        $window.alert(greeting);&#10;    };&#10;  }&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;Ctrl&quot;&gt;&#10;  &lt;input type=&quot;text&quot; ng-model=&quot;greeting&quot; /&gt;&#10;  &lt;button ng-click=&quot;doGreeting(greeting)&quot;&gt;ALERT&lt;/button&gt;&#10;&lt;/div&gt;</code></pre>  
+      <pre><code>&lt;script&gt;&#10;  function Ctrl($scope, $window) {&#10;    $scope.greeting = &#39;Hello, World!&#39;;&#10;    $scope.doGreeting = function(greeting) {&#10;        $window.alert(greeting);&#10;    };&#10;  }&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;Ctrl&quot;&gt;&#10;  &lt;input type=&quot;text&quot; ng-model=&quot;greeting&quot; /&gt;&#10;  &lt;button ng-click=&quot;doGreeting(greeting)&quot;&gt;ALERT&lt;/button&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="protractor.js"
       type="protractor"
       language="js">
-      <pre><code>it(&#39;should display the greeting in the input box&#39;, function() {&#10; element(by.model(&#39;greeting&#39;)).sendKeys(&#39;Hello, E2E Tests&#39;);&#10; // If we click the button it will block the test runner&#10; // element(&#39;:button&#39;).click();&#10;});</code></pre>  
+      <pre><code>it(&#39;should display the greeting in the input box&#39;, function() {&#10; element(by.model(&#39;greeting&#39;)).sendKeys(&#39;Hello, E2E Tests&#39;);&#10; // If we click the button it will block the test runner&#10; // element(&#39;:button&#39;).click();&#10;});</code></pre>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example64/index.html" name="example-example64"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example63/index.html" name="example-example63"></iframe>
   </div>
 </div>
 

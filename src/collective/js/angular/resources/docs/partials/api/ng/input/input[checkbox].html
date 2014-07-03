@@ -146,7 +146,7 @@
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-href="http://plnkr.co/edit/ngdoc:example-checkbox-input-directive@{{docsVersion}}?p=preview" class="btn pull-right" target="_blank">
+  <a ng-click="openPlunkr('examples/example-checkbox-input-directive')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
@@ -158,14 +158,14 @@
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;script&gt;&#10;  function Ctrl($scope) {&#10;    $scope.value1 = true;&#10;    $scope.value2 = &#39;YES&#39;&#10;  }&#10;&lt;/script&gt;&#10;&lt;form name=&quot;myForm&quot; ng-controller=&quot;Ctrl&quot;&gt;&#10;  Value1: &lt;input type=&quot;checkbox&quot; ng-model=&quot;value1&quot;&gt; &lt;br/&gt;&#10;  Value2: &lt;input type=&quot;checkbox&quot; ng-model=&quot;value2&quot;&#10;                 ng-true-value=&quot;YES&quot; ng-false-value=&quot;NO&quot;&gt; &lt;br/&gt;&#10;  &lt;tt&gt;value1 = {{value1}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;value2 = {{value2}}&lt;/tt&gt;&lt;br/&gt;&#10; &lt;/form&gt;</code></pre>  
+      <pre><code>&lt;script&gt;&#10;  function Ctrl($scope) {&#10;    $scope.value1 = true;&#10;    $scope.value2 = &#39;YES&#39;&#10;  }&#10;&lt;/script&gt;&#10;&lt;form name=&quot;myForm&quot; ng-controller=&quot;Ctrl&quot;&gt;&#10;  Value1: &lt;input type=&quot;checkbox&quot; ng-model=&quot;value1&quot;&gt; &lt;br/&gt;&#10;  Value2: &lt;input type=&quot;checkbox&quot; ng-model=&quot;value2&quot;&#10;                 ng-true-value=&quot;YES&quot; ng-false-value=&quot;NO&quot;&gt; &lt;br/&gt;&#10;  &lt;tt&gt;value1 = {{value1}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;value2 = {{value2}}&lt;/tt&gt;&lt;br/&gt;&#10; &lt;/form&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="protractor.js"
       type="protractor"
       language="js">
-      <pre><code>it(&#39;should change state&#39;, function() {&#10;  var value1 = element(by.binding(&#39;value1&#39;));&#10;  var value2 = element(by.binding(&#39;value2&#39;));&#10;&#10;  expect(value1.getText()).toContain(&#39;true&#39;);&#10;  expect(value2.getText()).toContain(&#39;YES&#39;);&#10;&#10;  element(by.model(&#39;value1&#39;)).click();&#10;  element(by.model(&#39;value2&#39;)).click();&#10;&#10;  expect(value1.getText()).toContain(&#39;false&#39;);&#10;  expect(value2.getText()).toContain(&#39;NO&#39;);&#10;});</code></pre>  
+      <pre><code>it(&#39;should change state&#39;, function() {&#10;  var value1 = element(by.binding(&#39;value1&#39;));&#10;  var value2 = element(by.binding(&#39;value2&#39;));&#10;&#10;  expect(value1.getText()).toContain(&#39;true&#39;);&#10;  expect(value2.getText()).toContain(&#39;YES&#39;);&#10;&#10;  element(by.model(&#39;value1&#39;)).click();&#10;  element(by.model(&#39;value2&#39;)).click();&#10;&#10;  expect(value1.getText()).toContain(&#39;false&#39;);&#10;  expect(value2.getText()).toContain(&#39;NO&#39;);&#10;});</code></pre>
     </div>
   
 

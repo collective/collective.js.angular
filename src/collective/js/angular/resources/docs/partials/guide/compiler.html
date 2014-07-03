@@ -58,11 +58,11 @@ to write directives.</p>
 <p>
 
 <div>
-  <a ng-href="http://plnkr.co/edit/ngdoc:example-example75@{{docsVersion}}?p=preview" class="btn pull-right" target="_blank">
+  <a ng-click="openPlunkr('examples/example-example73')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
-      path="examples/example-example75"
+      path="examples/example-example73"
       module="drag">
 
    
@@ -70,18 +70,18 @@ to write directives.</p>
       name="script.js"
       language="js"
       type="js">
-      <pre><code>angular.module(&#39;drag&#39;, []).&#10;  directive(&#39;draggable&#39;, function($document) {&#10;    return function(scope, element, attr) {&#10;      var startX = 0, startY = 0, x = 0, y = 0;&#10;      element.css({&#10;       position: &#39;relative&#39;,&#10;       border: &#39;1px solid red&#39;,&#10;       backgroundColor: &#39;lightgrey&#39;,&#10;       cursor: &#39;pointer&#39;&#10;      });&#10;      element.on(&#39;mousedown&#39;, function(event) {&#10;        // Prevent default dragging of selected content&#10;        event.preventDefault();&#10;        startX = event.screenX - x;&#10;        startY = event.screenY - y;&#10;        $document.on(&#39;mousemove&#39;, mousemove);&#10;        $document.on(&#39;mouseup&#39;, mouseup);&#10;      });&#10;&#10;      function mousemove(event) {&#10;        y = event.screenY - startY;&#10;        x = event.screenX - startX;&#10;        element.css({&#10;          top: y + &#39;px&#39;,&#10;          left:  x + &#39;px&#39;&#10;        });&#10;      }&#10;&#10;      function mouseup() {&#10;        $document.unbind(&#39;mousemove&#39;, mousemove);&#10;        $document.unbind(&#39;mouseup&#39;, mouseup);&#10;      }&#10;    };&#10;  });</code></pre>  
+      <pre><code>angular.module(&#39;drag&#39;, []).&#10;  directive(&#39;draggable&#39;, function($document) {&#10;    return function(scope, element, attr) {&#10;      var startX = 0, startY = 0, x = 0, y = 0;&#10;      element.css({&#10;       position: &#39;relative&#39;,&#10;       border: &#39;1px solid red&#39;,&#10;       backgroundColor: &#39;lightgrey&#39;,&#10;       cursor: &#39;pointer&#39;&#10;      });&#10;      element.on(&#39;mousedown&#39;, function(event) {&#10;        // Prevent default dragging of selected content&#10;        event.preventDefault();&#10;        startX = event.screenX - x;&#10;        startY = event.screenY - y;&#10;        $document.on(&#39;mousemove&#39;, mousemove);&#10;        $document.on(&#39;mouseup&#39;, mouseup);&#10;      });&#10;&#10;      function mousemove(event) {&#10;        y = event.screenY - startY;&#10;        x = event.screenX - startX;&#10;        element.css({&#10;          top: y + &#39;px&#39;,&#10;          left:  x + &#39;px&#39;&#10;        });&#10;      }&#10;&#10;      function mouseup() {&#10;        $document.unbind(&#39;mousemove&#39;, mousemove);&#10;        $document.unbind(&#39;mouseup&#39;, mouseup);&#10;      }&#10;    };&#10;  });</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;span draggable&gt;Drag ME&lt;/span&gt;</code></pre>  
+      <pre><code>&lt;span draggable&gt;Drag ME&lt;/span&gt;</code></pre>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example75/index.html" name="example-example75"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example73/index.html" name="example-example73"></iframe>
   </div>
 </div>
 
@@ -170,14 +170,14 @@ moved to the compile function for performance reasons.
 
 <h4 id="an-example-of-compile-versus-link-">An Example of &quot;Compile&quot; Versus &quot;Link&quot;</h4>
 <p>To understand, let&#39;s look at a real-world example with <code>ngRepeat</code>:</p>
-<pre><code class="lang-html">Hello {{user}}, you have these actions:
+<pre><code class="lang-html">Hello {{user.name}}, you have these actions:
 &lt;ul&gt;
   &lt;li ng-repeat=&quot;action in user.actions&quot;&gt;
     {{action.description}}
   &lt;/li&gt;
 &lt;/ul&gt;</code></pre>
 <p>When the above example is compiled, the compiler visits every node and looks for directives.</p>
-<p><code>{{user}}</code> matches the <a href="api/ng/service/$interpolate">interpolation directive</a>
+<p><code>{{user.name}}</code> matches the <a href="api/ng/service/$interpolate">interpolation directive</a>
 and <code>ng-repeat</code> matches the <a href="api/ng/directive/ngRepeat"><code>ngRepeat</code> directive</a>.</p>
 <p>But <a href="api/ng/directive/ngRepeat">ngRepeat</a> has a dilemma.</p>
 <p>It needs to be able to clone new <code>&lt;li&gt;</code> elements for every <code>action</code> in <code>user.actions</code>.

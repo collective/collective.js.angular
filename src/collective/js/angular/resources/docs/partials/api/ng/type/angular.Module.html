@@ -41,7 +41,7 @@
     <h3><p><code>provider(name, providerType);</code></p>
 
 </h3>
-    <div><p>See <a href="api/auto/object/$provide#provider">$provide.provider()</a>.</p>
+    <div><p>See <a href="api/auto/service/$provide#provider">$provide.provider()</a>.</p>
 </div>
 
     
@@ -105,7 +105,7 @@
     <h3><p><code>factory(name, providerFunction);</code></p>
 
 </h3>
-    <div><p>See <a href="api/auto/object/$provide#factory">$provide.factory()</a>.</p>
+    <div><p>See <a href="api/auto/service/$provide#factory">$provide.factory()</a>.</p>
 </div>
 
     
@@ -168,7 +168,7 @@
     <h3><p><code>service(name, constructor);</code></p>
 
 </h3>
-    <div><p>See <a href="api/auto/object/$provide#service">$provide.service()</a>.</p>
+    <div><p>See <a href="api/auto/service/$provide#service">$provide.service()</a>.</p>
 </div>
 
     
@@ -231,7 +231,7 @@
     <h3><p><code>value(name, object);</code></p>
 
 </h3>
-    <div><p>See <a href="api/auto/object/$provide#value">$provide.value()</a>.</p>
+    <div><p>See <a href="api/auto/service/$provide#value">$provide.value()</a>.</p>
 </div>
 
     
@@ -295,7 +295,7 @@
 
 </h3>
     <div><p>Because the constant are fixed, they get applied before other provide methods.
-See <a href="api/auto/object/$provide#constant">$provide.constant()</a>.</p>
+See <a href="api/auto/service/$provide#constant">$provide.constant()</a>.</p>
 </div>
 
     
@@ -629,7 +629,9 @@ directives.</p>
     <h3><p><code>config(configFn);</code></p>
 
 </h3>
-    <div><p>Use this method to register work which needs to be performed on module loading.</p>
+    <div><p>Use this method to register work which needs to be performed on module loading.
+For more about how to configure services, see
+<a href="guide/providers#providers_provider-recipe">Provider Recipe</a>.</p>
 </div>
 
     

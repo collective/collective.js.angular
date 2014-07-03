@@ -5,16 +5,22 @@
   <title>Example - example-example94-production</title>
   
 
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
   <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="">
-    <div class="example2" ng-controller="Cntl1">
-    Name: <input ng-model="name" type="text"/>
-    <button ng-click="greet()">Greet</button>
+<body ng-app="FilterInControllerModule">
+    <div ng-controller="FilterController as ctrl">
+    <div>
+      All entries:
+      <span ng-repeat="entry in ctrl.array">{{entry.name}} </span>
+    </div>
+    <div>
+      Entries that contain an "a":
+      <span ng-repeat="entry in ctrl.filteredArray">{{entry.name}} </span>
+    </div>
   </div>
 </body>
 </html>

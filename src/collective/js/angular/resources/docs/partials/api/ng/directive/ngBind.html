@@ -101,7 +101,7 @@ element attribute, it makes the bindings invisible to the user while the page is
    
 
 <div>
-  <a ng-href="http://plnkr.co/edit/ngdoc:example-example13@{{docsVersion}}?p=preview" class="btn pull-right" target="_blank">
+  <a ng-click="openPlunkr('examples/example-example13')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
@@ -112,14 +112,14 @@ element attribute, it makes the bindings invisible to the user while the page is
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;script&gt;&#10;  function Ctrl($scope) {&#10;    $scope.name = &#39;Whirled&#39;;&#10;  }&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;Ctrl&quot;&gt;&#10;  Enter name: &lt;input type=&quot;text&quot; ng-model=&quot;name&quot;&gt;&lt;br&gt;&#10;  Hello &lt;span ng-bind=&quot;name&quot;&gt;&lt;/span&gt;!&#10;&lt;/div&gt;</code></pre>  
+      <pre><code>&lt;script&gt;&#10;  function Ctrl($scope) {&#10;    $scope.name = &#39;Whirled&#39;;&#10;  }&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;Ctrl&quot;&gt;&#10;  Enter name: &lt;input type=&quot;text&quot; ng-model=&quot;name&quot;&gt;&lt;br&gt;&#10;  Hello &lt;span ng-bind=&quot;name&quot;&gt;&lt;/span&gt;!&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="protractor.js"
       type="protractor"
       language="js">
-      <pre><code>it(&#39;should check ng-bind&#39;, function() {&#10;  var nameInput = element(by.model(&#39;name&#39;));&#10;&#10;  expect(element(by.binding(&#39;name&#39;)).getText()).toBe(&#39;Whirled&#39;);&#10;  nameInput.clear();&#10;  nameInput.sendKeys(&#39;world&#39;);&#10;  expect(element(by.binding(&#39;name&#39;)).getText()).toBe(&#39;world&#39;);&#10;});</code></pre>  
+      <pre><code>it(&#39;should check ng-bind&#39;, function() {&#10;  var nameInput = element(by.model(&#39;name&#39;));&#10;&#10;  expect(element(by.binding(&#39;name&#39;)).getText()).toBe(&#39;Whirled&#39;);&#10;  nameInput.clear();&#10;  nameInput.sendKeys(&#39;world&#39;);&#10;  expect(element(by.binding(&#39;name&#39;)).getText()).toBe(&#39;world&#39;);&#10;});</code></pre>
     </div>
   
 

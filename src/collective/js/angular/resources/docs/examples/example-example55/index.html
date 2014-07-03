@@ -11,11 +11,19 @@
   
 </head>
 <body ng-app="">
-    <span ng-non-bindable>{{1288323623006 | date:'medium'}}</span>:
-      <span>{{1288323623006 | date:'medium'}}</span><br>
-  <span ng-non-bindable>{{1288323623006 | date:'yyyy-MM-dd HH:mm:ss Z'}}</span>:
-     <span>{{1288323623006 | date:'yyyy-MM-dd HH:mm:ss Z'}}</span><br>
-  <span ng-non-bindable>{{1288323623006 | date:'MM/dd/yyyy @ h:mma'}}</span>:
-     <span>{{'1288323623006' | date:'MM/dd/yyyy @ h:mma'}}</span><br>
+    <script>
+    function Ctrl($scope) {
+      $scope.numbers = [1,2,3,4,5,6,7,8,9];
+      $scope.letters = "abcdefghi";
+      $scope.numLimit = 3;
+      $scope.letterLimit = 3;
+    }
+  </script>
+  <div ng-controller="Ctrl">
+    Limit {{numbers}} to: <input type="integer" ng-model="numLimit">
+    <p>Output numbers: {{ numbers | limitTo:numLimit }}</p>
+    Limit {{letters}} to: <input type="integer" ng-model="letterLimit">
+    <p>Output letters: {{ letters | limitTo:letterLimit }}</p>
+  </div>
 </body>
 </html>

@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Example - example-example104-jquery</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
   
 
   <script src="../../components/jquery-1.10.2/jquery.js"></script>
@@ -12,9 +13,16 @@
 
   
 </head>
-<body ng-app="xmpl">
-    <div ng-controller="XmplController">
-    {{ greeting }}!
+<body ng-app="">
+  <div class="show-scope-demo">
+  <div ng-controller="GreetCtrl">
+    Hello {{name}}!
   </div>
+  <div ng-controller="ListCtrl">
+    <ol>
+      <li ng-repeat="name in names">{{name}} from {{department}}</li>
+    </ol>
+  </div>
+</div>
 </body>
 </html>

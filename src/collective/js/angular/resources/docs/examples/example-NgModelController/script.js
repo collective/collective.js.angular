@@ -1,5 +1,5 @@
-  angular.module('customControl', []).
-    directive('contenteditable', function() {
+  angular.module('customControl', ['ngSanitize']).
+    directive('contenteditable', ['$sce', function($sce) {
       return {
         restrict: 'A', // only activate on element attribute
         require: '?ngModel', // get a hold of NgModelController
@@ -8,7 +8,7 @@
 
           // Specify how UI should be updated
           ngModel.$render = function() {
-            element.html(ngModel.$viewValue || '');
+            element.html($sce.getTrustedHtml(ngModel.$viewValue || ''));
           };
 
           // Listen for change events to enable binding
@@ -29,4 +29,4 @@
           }
         }
       };
-    });
+    }]);

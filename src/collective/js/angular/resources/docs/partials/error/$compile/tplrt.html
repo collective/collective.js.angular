@@ -32,6 +32,15 @@ single root element, like the <code>div</code> element in this template:</p>
 <p>An an invalid template to be used with this directive is one that defines multiple root nodes or
 elements. For example:</p>
 <pre><code>&lt;b&gt;Hello&lt;/b&gt; World!</code></pre>
+<p>Watch out for html comments at the beginning or end of templates, as these can cause this error as
+well.  Consider the following template:</p>
+<pre><code>&lt;div class=&#39;container&#39;&gt;
+  &lt;div class=&#39;wrapper&gt;
+     ...
+  &lt;/div&gt; &lt;!-- wrapper --&gt;
+&lt;/div&gt; &lt;!-- container --&gt;</code></pre>
+<p>The <code>&lt;!-- container --&gt;</code> comment is interpreted as a second root element and causes the template to
+be invalid.</p>
 
 </div>
 

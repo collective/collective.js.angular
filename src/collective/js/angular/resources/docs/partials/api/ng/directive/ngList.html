@@ -2,7 +2,7 @@
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/input.js#L1430' class='view-source pull-right btn btn-primary'>
+<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/input.js#L1464' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -90,7 +90,7 @@ can be a fixed string (by default a comma) or a regular expression.</p>
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-href="http://plnkr.co/edit/ngdoc:example-ngList-directive@{{docsVersion}}?p=preview" class="btn pull-right" target="_blank">
+  <a ng-click="openPlunkr('examples/example-ngList-directive')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
@@ -102,14 +102,14 @@ can be a fixed string (by default a comma) or a regular expression.</p>
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;script&gt;&#10;  function Ctrl($scope) {&#10;    $scope.names = [&#39;igor&#39;, &#39;misko&#39;, &#39;vojta&#39;];&#10;  }&#10;&lt;/script&gt;&#10;&lt;form name=&quot;myForm&quot; ng-controller=&quot;Ctrl&quot;&gt;&#10;  List: &lt;input name=&quot;namesInput&quot; ng-model=&quot;names&quot; ng-list required&gt;&#10;  &lt;span class=&quot;error&quot; ng-show=&quot;myForm.namesInput.$error.required&quot;&gt;&#10;    Required!&lt;/span&gt;&#10;  &lt;br&gt;&#10;  &lt;tt&gt;names = {{names}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.namesInput.$valid = {{myForm.namesInput.$valid}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.namesInput.$error = {{myForm.namesInput.$error}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.$valid = {{myForm.$valid}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.$error.required = {{!!myForm.$error.required}}&lt;/tt&gt;&lt;br/&gt;&#10; &lt;/form&gt;</code></pre>  
+      <pre><code>&lt;script&gt;&#10;  function Ctrl($scope) {&#10;    $scope.names = [&#39;igor&#39;, &#39;misko&#39;, &#39;vojta&#39;];&#10;  }&#10;&lt;/script&gt;&#10;&lt;form name=&quot;myForm&quot; ng-controller=&quot;Ctrl&quot;&gt;&#10;  List: &lt;input name=&quot;namesInput&quot; ng-model=&quot;names&quot; ng-list required&gt;&#10;  &lt;span class=&quot;error&quot; ng-show=&quot;myForm.namesInput.$error.required&quot;&gt;&#10;    Required!&lt;/span&gt;&#10;  &lt;br&gt;&#10;  &lt;tt&gt;names = {{names}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.namesInput.$valid = {{myForm.namesInput.$valid}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.namesInput.$error = {{myForm.namesInput.$error}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.$valid = {{myForm.$valid}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.$error.required = {{!!myForm.$error.required}}&lt;/tt&gt;&lt;br/&gt;&#10; &lt;/form&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="protractor.js"
       type="protractor"
       language="js">
-      <pre><code>var listInput = element(by.model(&#39;names&#39;));&#10;var names = element(by.binding(&#39;{{names}}&#39;));&#10;var valid = element(by.binding(&#39;myForm.namesInput.$valid&#39;));&#10;var error = element(by.css(&#39;span.error&#39;));&#10;&#10;it(&#39;should initialize to model&#39;, function() {&#10;  expect(names.getText()).toContain(&#39;[&quot;igor&quot;,&quot;misko&quot;,&quot;vojta&quot;]&#39;);&#10;  expect(valid.getText()).toContain(&#39;true&#39;);&#10;  expect(error.getCssValue(&#39;display&#39;)).toBe(&#39;none&#39;);&#10;});&#10;&#10;it(&#39;should be invalid if empty&#39;, function() {&#10;  listInput.clear();&#10;  listInput.sendKeys(&#39;&#39;);&#10;&#10;  expect(names.getText()).toContain(&#39;&#39;);&#10;  expect(valid.getText()).toContain(&#39;false&#39;);&#10;  expect(error.getCssValue(&#39;display&#39;)).not.toBe(&#39;none&#39;);        });</code></pre>  
+      <pre><code>var listInput = element(by.model(&#39;names&#39;));&#10;var names = element(by.binding(&#39;{{names}}&#39;));&#10;var valid = element(by.binding(&#39;myForm.namesInput.$valid&#39;));&#10;var error = element(by.css(&#39;span.error&#39;));&#10;&#10;it(&#39;should initialize to model&#39;, function() {&#10;  expect(names.getText()).toContain(&#39;[&quot;igor&quot;,&quot;misko&quot;,&quot;vojta&quot;]&#39;);&#10;  expect(valid.getText()).toContain(&#39;true&#39;);&#10;  expect(error.getCssValue(&#39;display&#39;)).toBe(&#39;none&#39;);&#10;});&#10;&#10;it(&#39;should be invalid if empty&#39;, function() {&#10;  listInput.clear();&#10;  listInput.sendKeys(&#39;&#39;);&#10;&#10;  expect(names.getText()).toContain(&#39;&#39;);&#10;  expect(valid.getText()).toContain(&#39;false&#39;);&#10;  expect(error.getCssValue(&#39;display&#39;)).not.toBe(&#39;none&#39;);        });</code></pre>
     </div>
   
 

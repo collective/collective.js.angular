@@ -2,7 +2,7 @@
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/input.js#L1334' class='view-source pull-right btn btn-primary'>
+<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/input.js#L1368' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -94,7 +94,7 @@ in input value.</p>
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-href="http://plnkr.co/edit/ngdoc:example-ngChange-directive@{{docsVersion}}?p=preview" class="btn pull-right" target="_blank">
+  <a ng-click="openPlunkr('examples/example-ngChange-directive')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
@@ -106,14 +106,14 @@ in input value.</p>
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;script&gt;&#10;  function Controller($scope) {&#10;    $scope.counter = 0;&#10;    $scope.change = function() {&#10;      $scope.counter++;&#10;    };&#10;  }&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;Controller&quot;&gt;&#10;  &lt;input type=&quot;checkbox&quot; ng-model=&quot;confirmed&quot; ng-change=&quot;change()&quot; id=&quot;ng-change-example1&quot; /&gt;&#10;  &lt;input type=&quot;checkbox&quot; ng-model=&quot;confirmed&quot; id=&quot;ng-change-example2&quot; /&gt;&#10;  &lt;label for=&quot;ng-change-example2&quot;&gt;Confirmed&lt;/label&gt;&lt;br /&gt;&#10;  &lt;tt&gt;debug = {{confirmed}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;counter = {{counter}}&lt;/tt&gt;&lt;br/&gt;&#10;&lt;/div&gt;</code></pre>  
+      <pre><code>&lt;script&gt;&#10;  function Controller($scope) {&#10;    $scope.counter = 0;&#10;    $scope.change = function() {&#10;      $scope.counter++;&#10;    };&#10;  }&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;Controller&quot;&gt;&#10;  &lt;input type=&quot;checkbox&quot; ng-model=&quot;confirmed&quot; ng-change=&quot;change()&quot; id=&quot;ng-change-example1&quot; /&gt;&#10;  &lt;input type=&quot;checkbox&quot; ng-model=&quot;confirmed&quot; id=&quot;ng-change-example2&quot; /&gt;&#10;  &lt;label for=&quot;ng-change-example2&quot;&gt;Confirmed&lt;/label&gt;&lt;br /&gt;&#10;  &lt;tt&gt;debug = {{confirmed}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;counter = {{counter}}&lt;/tt&gt;&lt;br/&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="protractor.js"
       type="protractor"
       language="js">
-      <pre><code>var counter = element(by.binding(&#39;counter&#39;));&#10;var debug = element(by.binding(&#39;confirmed&#39;));&#10;&#10;it(&#39;should evaluate the expression if changing from view&#39;, function() {&#10;  expect(counter.getText()).toContain(&#39;0&#39;);&#10;&#10;  element(by.id(&#39;ng-change-example1&#39;)).click();&#10;&#10;  expect(counter.getText()).toContain(&#39;1&#39;);&#10;  expect(debug.getText()).toContain(&#39;true&#39;);&#10;});&#10;&#10;it(&#39;should not evaluate the expression if changing from model&#39;, function() {&#10;  element(by.id(&#39;ng-change-example2&#39;)).click();&#10;&#10;  expect(counter.getText()).toContain(&#39;0&#39;);&#10;  expect(debug.getText()).toContain(&#39;true&#39;);&#10;});</code></pre>  
+      <pre><code>var counter = element(by.binding(&#39;counter&#39;));&#10;var debug = element(by.binding(&#39;confirmed&#39;));&#10;&#10;it(&#39;should evaluate the expression if changing from view&#39;, function() {&#10;  expect(counter.getText()).toContain(&#39;0&#39;);&#10;&#10;  element(by.id(&#39;ng-change-example1&#39;)).click();&#10;&#10;  expect(counter.getText()).toContain(&#39;1&#39;);&#10;  expect(debug.getText()).toContain(&#39;true&#39;);&#10;});&#10;&#10;it(&#39;should not evaluate the expression if changing from model&#39;, function() {&#10;  element(by.id(&#39;ng-change-example2&#39;)).click();&#10;&#10;  expect(counter.getText()).toContain(&#39;0&#39;);&#10;  expect(debug.getText()).toContain(&#39;true&#39;);&#10;});</code></pre>
     </div>
   
 

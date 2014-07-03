@@ -59,11 +59,11 @@
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-href="http://plnkr.co/edit/ngdoc:example-example48@{{docsVersion}}?p=preview" class="btn pull-right" target="_blank">
+  <a ng-click="openPlunkr('examples/example-example46')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
-      path="examples/example-example48"
+      path="examples/example-example46"
       module="transclude">
 
    
@@ -71,18 +71,18 @@
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;script&gt;&#10;  function Ctrl($scope) {&#10;    $scope.title = &#39;Lorem Ipsum&#39;;&#10;    $scope.text = &#39;Neque porro quisquam est qui dolorem ipsum quia dolor...&#39;;&#10;  }&#10;&#10;  angular.module(&#39;transclude&#39;, [])&#10;   .directive(&#39;pane&#39;, function(){&#10;      return {&#10;        restrict: &#39;E&#39;,&#10;        transclude: true,&#10;        scope: { title:&#39;@&#39; },&#10;        template: &#39;&lt;div style=&quot;border: 1px solid black;&quot;&gt;&#39; +&#10;                    &#39;&lt;div style=&quot;background-color: gray&quot;&gt;{{title}}&lt;/div&gt;&#39; +&#10;                    &#39;&lt;div ng-transclude&gt;&lt;/div&gt;&#39; +&#10;                  &#39;&lt;/div&gt;&#39;&#10;      };&#10;  });&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;Ctrl&quot;&gt;&#10;  &lt;input ng-model=&quot;title&quot;&gt;&lt;br&gt;&#10;  &lt;textarea ng-model=&quot;text&quot;&gt;&lt;/textarea&gt; &lt;br/&gt;&#10;  &lt;pane title=&quot;{{title}}&quot;&gt;{{text}}&lt;/pane&gt;&#10;&lt;/div&gt;</code></pre>  
+      <pre><code>&lt;script&gt;&#10;  function Ctrl($scope) {&#10;    $scope.title = &#39;Lorem Ipsum&#39;;&#10;    $scope.text = &#39;Neque porro quisquam est qui dolorem ipsum quia dolor...&#39;;&#10;  }&#10;&#10;  angular.module(&#39;transclude&#39;, [])&#10;   .directive(&#39;pane&#39;, function(){&#10;      return {&#10;        restrict: &#39;E&#39;,&#10;        transclude: true,&#10;        scope: { title:&#39;@&#39; },&#10;        template: &#39;&lt;div style=&quot;border: 1px solid black;&quot;&gt;&#39; +&#10;                    &#39;&lt;div style=&quot;background-color: gray&quot;&gt;{{title}}&lt;/div&gt;&#39; +&#10;                    &#39;&lt;div ng-transclude&gt;&lt;/div&gt;&#39; +&#10;                  &#39;&lt;/div&gt;&#39;&#10;      };&#10;  });&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;Ctrl&quot;&gt;&#10;  &lt;input ng-model=&quot;title&quot;&gt;&lt;br&gt;&#10;  &lt;textarea ng-model=&quot;text&quot;&gt;&lt;/textarea&gt; &lt;br/&gt;&#10;  &lt;pane title=&quot;{{title}}&quot;&gt;{{text}}&lt;/pane&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="protractor.js"
       type="protractor"
       language="js">
-      <pre><code>it(&#39;should have transcluded&#39;, function() {&#10;  var titleElement = element(by.model(&#39;title&#39;));&#10;  titleElement.clear();&#10;  titleElement.sendKeys(&#39;TITLE&#39;);&#10;  var textElement = element(by.model(&#39;text&#39;));&#10;  textElement.clear();&#10;  textElement.sendKeys(&#39;TEXT&#39;);&#10;  expect(element(by.binding(&#39;title&#39;)).getText()).toEqual(&#39;TITLE&#39;);&#10;  expect(element(by.binding(&#39;text&#39;)).getText()).toEqual(&#39;TEXT&#39;);&#10;});</code></pre>  
+      <pre><code>it(&#39;should have transcluded&#39;, function() {&#10;  var titleElement = element(by.model(&#39;title&#39;));&#10;  titleElement.clear();&#10;  titleElement.sendKeys(&#39;TITLE&#39;);&#10;  var textElement = element(by.model(&#39;text&#39;));&#10;  textElement.clear();&#10;  textElement.sendKeys(&#39;TEXT&#39;);&#10;  expect(element(by.binding(&#39;title&#39;)).getText()).toEqual(&#39;TITLE&#39;);&#10;  expect(element(by.binding(&#39;text&#39;)).getText()).toEqual(&#39;TEXT&#39;);&#10;});</code></pre>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example48/index.html" name="example-example48"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example46/index.html" name="example-example46"></iframe>
   </div>
 </div>
 

@@ -6,14 +6,15 @@
 
 <p>In this step, you will implement the phone details view, which is displayed when a user clicks on a
 phone in the phone list.</p>
+<ul>
+<li>When you click on a phone on the list, the phone details page with phone-specific information
+is displayed.</li>
+</ul>
+<p>To implement the phone details view we used <a href="api/ng/service/$http">$http</a> to fetch our data, and we
+fleshed out the <code>phone-detail.html</code> view template.</p>
 <div doc-tutorial-reset="8"></div>
 
 
-<p>Now when you click on a phone on the list, the phone details page with phone-specific information
-is displayed.</p>
-<p>To implement the phone details view we will use <a href="api/ng/service/$http">$http</a> to fetch
-our data, and we&#39;ll flesh out the <code>phone-detail.html</code> view template.</p>
-<p>The most important changes are listed below. You can see the full diff on <a href="https://github.com/angular/angular-phonecat/compare/step-7...step-8">GitHub</a>:</p>
 <h2 id="data">Data</h2>
 <p>In addition to <code>phones.json</code>, the <code>app/phones/</code> directory also contains one json file for each
 phone:</p>
@@ -92,7 +93,11 @@ TODO!
 <p>We wrote a new unit test that is similar to the one we wrote for the <code>PhoneListCtrl</code> controller in
 step 5.</p>
 <p><strong><code>test/unit/controllersSpec.js</code>:</strong></p>
-<pre><code class="lang-js">...
+<pre><code class="lang-js">
+  beforeEach(module(&#39;phonecatApp&#39;));
+
+  ...
+
   describe(&#39;PhoneDetailCtrl&#39;, function(){
     var scope, $httpBackend, ctrl;
 
@@ -115,7 +120,9 @@ step 5.</p>
   });
 ...</code></pre>
 <p>You should now see the following output in the Karma tab:</p>
-<pre><code>Chrome 22.0: Executed 3 of 3 SUCCESS (0.039 secs / 0.012 secs)</code></pre>
+<pre>Chrome 22.0: Executed 3 of 3 SUCCESS (0.039 secs / 0.012 secs)</pre>
+
+
 <p>We also added a new end-to-end test that navigates to the Nexus S detail page and verifies that the
 heading on the page is &quot;Nexus S&quot;.</p>
 <p><strong><code>test/e2e/scenarios.js</code>:</strong></p>
@@ -135,8 +142,8 @@ heading on the page is &quot;Nexus S&quot;.</p>
 <p>You can now rerun <code>npm run protractor</code> to see the tests run.</p>
 <h1 id="experiments">Experiments</h1>
 <ul>
-<li>Using the <a href="guide/dev_guide.e2e-testing">Angular&#39;s end-to-end test runner API</a>, write a test
-that verifies that we display 4 thumbnail images on the Nexus S details page.</li>
+<li>Using the <a href="https://github.com/angular/protractor/blob/master/docs/api.md">Protractor API</a>,
+write a test that verifies that we display 4 thumbnail images on the Nexus S details page.</li>
 </ul>
 <h1 id="summary">Summary</h1>
 <p>Now that the phone details view is in place, proceed to <a href="tutorial/step_09">step 9</a> to learn how to

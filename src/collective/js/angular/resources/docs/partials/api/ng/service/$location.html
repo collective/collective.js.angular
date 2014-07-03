@@ -2,7 +2,7 @@
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/location.js#L488' class='view-source pull-right btn btn-primary'>
+<a href='http://github.com/angular/angular.js/tree/master/src/ng/location.js#L517' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -307,6 +307,14 @@ if it is missing.</p>
     <div><p>This method is getter / setter.</p>
 <p>Return search part (as object) of current url when called without any parameter.</p>
 <p>Change search part when called with parameter and return <code>$location</code>.</p>
+<pre><code class="lang-js">// given url http://example.com/#/some/path?foo=bar&amp;baz=xoxo
+var searchObject = $location.search();
+// =&gt; {foo: &#39;bar&#39;, baz: &#39;xoxo&#39;}
+
+
+// set foo to &#39;yipee&#39;
+$location.search(&#39;foo&#39;, &#39;yipee&#39;);
+// =&gt; $location</code></pre>
 </div>
 
     
@@ -333,8 +341,11 @@ if it is missing.</p>
       </td>
       <td>
         <p>New search params - string or
-hash object. Hash object may contain an array of values, which will be decoded as duplicates in
-the url.</p>
+hash object.</p>
+<p>When called with a single argument the method acts as a setter, setting the <code>search</code> component
+of <code>$location</code> to the specified value.</p>
+<p>If the argument is a hash object containing an array of values, these values will be encoded
+as duplicate search parameters in the url.</p>
 
         
       </td>
@@ -350,9 +361,11 @@ the url.</p>
         <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-array">Array.&lt;string&gt;</a>
       </td>
       <td>
-        <p>If <code>search</code> is a string, then <code>paramValue</code> will override only a
-single search parameter. If <code>paramValue</code> is an array, it will set the parameter as a
-comma-separated value. If <code>paramValue</code> is <code>null</code>, the parameter will be deleted.</p>
+        <p>If <code>search</code> is a string, then <code>paramValue</code> will
+override only a single search property.</p>
+<p>If <code>paramValue</code> is an array, it will override the property of the <code>search</code> component of
+<code>$location</code> specified via the first argument.</p>
+<p>If <code>paramValue</code> is <code>null</code>, the property specified via the first argument will be deleted.</p>
 
         
       </td>
@@ -369,8 +382,9 @@ comma-separated value. If <code>paramValue</code> is <code>null</code>, the para
     <h4>Returns</h4>
     <table class="variables-matrix return-arguments">
   <tr>
-    <td><a href="" class="label type-hint type-hint-string">string</a></td>
-    <td><p>search</p>
+    <td><a href="" class="label type-hint type-hint-object">Object</a></td>
+    <td><p>If called with no arguments returns the parsed <code>search</code> object. If called with
+one or more arguments returns <code>$location</code> object itself.</p>
 </td>
   </tr>
 </table>

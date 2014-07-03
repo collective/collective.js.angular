@@ -2,7 +2,7 @@
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/input.js#L1212' class='view-source pull-right btn btn-primary'>
+<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/input.js#L1246' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -116,7 +116,7 @@ that has been rendered as invalid after it has been validated:</p>
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-href="http://plnkr.co/edit/ngdoc:example-example12@{{docsVersion}}?p=preview" class="btn pull-right" target="_blank">
+  <a ng-click="openPlunkr('examples/example-example12')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
@@ -130,7 +130,7 @@ that has been rendered as invalid after it has been validated:</p>
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;script&gt;&#10; function Ctrl($scope) {&#10;   $scope.val = &#39;1&#39;;&#10; }&#10;&lt;/script&gt;&#10;&lt;style&gt;&#10;  .my-input {&#10;    -webkit-transition:all linear 0.5s;&#10;    transition:all linear 0.5s;&#10;    background: transparent;&#10;  }&#10;  .my-input.ng-invalid {&#10;    color:white;&#10;    background: red;&#10;  }&#10;&lt;/style&gt;&#10;Update input to see transitions when valid/invalid.&#10;Integer is a valid value.&#10;&lt;form name=&quot;testForm&quot; ng-controller=&quot;Ctrl&quot;&gt;&#10;  &lt;input ng-model=&quot;val&quot; ng-pattern=&quot;/^\d+$/&quot; name=&quot;anim&quot; class=&quot;my-input&quot; /&gt;&#10;&lt;/form&gt;</code></pre>  
+      <pre><code>&lt;script&gt;&#10; function Ctrl($scope) {&#10;   $scope.val = &#39;1&#39;;&#10; }&#10;&lt;/script&gt;&#10;&lt;style&gt;&#10;  .my-input {&#10;    -webkit-transition:all linear 0.5s;&#10;    transition:all linear 0.5s;&#10;    background: transparent;&#10;  }&#10;  .my-input.ng-invalid {&#10;    color:white;&#10;    background: red;&#10;  }&#10;&lt;/style&gt;&#10;Update input to see transitions when valid/invalid.&#10;Integer is a valid value.&#10;&lt;form name=&quot;testForm&quot; ng-controller=&quot;Ctrl&quot;&gt;&#10;  &lt;input ng-model=&quot;val&quot; ng-pattern=&quot;/^\d+$/&quot; name=&quot;anim&quot; class=&quot;my-input&quot; /&gt;&#10;&lt;/form&gt;</code></pre>
     </div>
   
 

@@ -104,29 +104,29 @@ sure you have parenthesis for correct precedence:
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-href="http://plnkr.co/edit/ngdoc:example-example40@{{docsVersion}}?p=preview" class="btn pull-right" target="_blank">
+  <a ng-click="openPlunkr('examples/example-example38')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
-      path="examples/example-example40">
+      path="examples/example-example38">
 
    
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;script&gt;&#10;function Ctrl($scope) {&#10;  $scope.list = [[&#39;a&#39;, &#39;b&#39;], [&#39;c&#39;, &#39;d&#39;]];&#10;}&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;Ctrl&quot;&gt;&#10;&lt;div ng-repeat=&quot;innerList in list&quot; ng-init=&quot;outerIndex = $index&quot;&gt;&#10;  &lt;div ng-repeat=&quot;value in innerList&quot; ng-init=&quot;innerIndex = $index&quot;&gt;&#10;     &lt;span class=&quot;example-init&quot;&gt;list[ {{outerIndex}} ][ {{innerIndex}} ] = {{value}};&lt;/span&gt;&#10;  &lt;/div&gt;&#10;&lt;/div&gt;&#10;&lt;/div&gt;</code></pre>  
+      <pre><code>&lt;script&gt;&#10;function Ctrl($scope) {&#10;  $scope.list = [[&#39;a&#39;, &#39;b&#39;], [&#39;c&#39;, &#39;d&#39;]];&#10;}&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;Ctrl&quot;&gt;&#10;&lt;div ng-repeat=&quot;innerList in list&quot; ng-init=&quot;outerIndex = $index&quot;&gt;&#10;  &lt;div ng-repeat=&quot;value in innerList&quot; ng-init=&quot;innerIndex = $index&quot;&gt;&#10;     &lt;span class=&quot;example-init&quot;&gt;list[ {{outerIndex}} ][ {{innerIndex}} ] = {{value}};&lt;/span&gt;&#10;  &lt;/div&gt;&#10;&lt;/div&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="protractor.js"
       type="protractor"
       language="js">
-      <pre><code>it(&#39;should alias index positions&#39;, function() {&#10;  var elements = element.all(by.css(&#39;.example-init&#39;));&#10;  expect(elements.get(0).getText()).toBe(&#39;list[ 0 ][ 0 ] = a;&#39;);&#10;  expect(elements.get(1).getText()).toBe(&#39;list[ 0 ][ 1 ] = b;&#39;);&#10;  expect(elements.get(2).getText()).toBe(&#39;list[ 1 ][ 0 ] = c;&#39;);&#10;  expect(elements.get(3).getText()).toBe(&#39;list[ 1 ][ 1 ] = d;&#39;);&#10;});</code></pre>  
+      <pre><code>it(&#39;should alias index positions&#39;, function() {&#10;  var elements = element.all(by.css(&#39;.example-init&#39;));&#10;  expect(elements.get(0).getText()).toBe(&#39;list[ 0 ][ 0 ] = a;&#39;);&#10;  expect(elements.get(1).getText()).toBe(&#39;list[ 0 ][ 1 ] = b;&#39;);&#10;  expect(elements.get(2).getText()).toBe(&#39;list[ 1 ][ 0 ] = c;&#39;);&#10;  expect(elements.get(3).getText()).toBe(&#39;list[ 1 ][ 1 ] = d;&#39;);&#10;});</code></pre>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example40/index.html" name="example-example40"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example38/index.html" name="example-example38"></iframe>
   </div>
 </div>
 

@@ -95,7 +95,7 @@ a permanent reliable place to store the binding information.</p>
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-href="http://plnkr.co/edit/ngdoc:example-example10@{{docsVersion}}?p=preview" class="btn pull-right" target="_blank">
+  <a ng-click="openPlunkr('examples/example-example10')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
@@ -106,14 +106,14 @@ a permanent reliable place to store the binding information.</p>
       name="index.html"
       language="html"
       type="html">
-      <pre><code>Check me check multiple: &lt;input type=&quot;checkbox&quot; ng-model=&quot;open&quot;&gt;&lt;br/&gt;&#10;&lt;details id=&quot;details&quot; ng-open=&quot;open&quot;&gt;&#10;   &lt;summary&gt;Show/Hide me&lt;/summary&gt;&#10;&lt;/details&gt;</code></pre>  
+      <pre><code>Check me check multiple: &lt;input type=&quot;checkbox&quot; ng-model=&quot;open&quot;&gt;&lt;br/&gt;&#10;&lt;details id=&quot;details&quot; ng-open=&quot;open&quot;&gt;&#10;   &lt;summary&gt;Show/Hide me&lt;/summary&gt;&#10;&lt;/details&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="protractor.js"
       type="protractor"
       language="js">
-      <pre><code>it(&#39;should toggle open&#39;, function() {&#10;  expect(element(by.id(&#39;details&#39;)).getAttribute(&#39;open&#39;)).toBeFalsy();&#10;  element(by.model(&#39;open&#39;)).click();&#10;  expect(element(by.id(&#39;details&#39;)).getAttribute(&#39;open&#39;)).toBeTruthy();&#10;});</code></pre>  
+      <pre><code>it(&#39;should toggle open&#39;, function() {&#10;  expect(element(by.id(&#39;details&#39;)).getAttribute(&#39;open&#39;)).toBeFalsy();&#10;  element(by.model(&#39;open&#39;)).click();&#10;  expect(element(by.id(&#39;details&#39;)).getAttribute(&#39;open&#39;)).toBeTruthy();&#10;});</code></pre>
     </div>
   
 

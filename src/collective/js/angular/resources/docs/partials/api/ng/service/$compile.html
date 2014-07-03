@@ -52,7 +52,6 @@ or just the <code>postLink</code> function (all other properties will have the d
       template: &#39;&lt;div&gt;&lt;/div&gt;&#39;, // or // function(tElement, tAttrs) { ... },
       // or
       // templateUrl: &#39;directive.html&#39;, // or // function(tElement, tAttrs) { ... },
-      replace: false,
       transclude: false,
       restrict: &#39;A&#39;,
       scope: false,
@@ -199,7 +198,7 @@ is loaded.</p>
 <p>You can specify <code>templateUrl</code> as a string representing the URL or as a function which takes two
 arguments <code>tElement</code> and <code>tAttrs</code> (described in the <code>compile</code> function api below) and returns
 a string value representing the url.  In either case, the template URL is passed through <a href="api/ng.$sce#getTrustedResourceUrl">$sce.getTrustedResourceUrl</a>.</p>
-<h4 id="-replace-"><code>replace</code></h4>
+<h4 id="-replace-deprecated-will-be-removed-in-next-major-release-"><code>replace</code> ([<em>DEPRECATED</em>!], will be removed in next major release)</h4>
 <p>specify where the template should be inserted. Defaults to <code>false</code>.</p>
 <ul>
 <li><code>true</code> - the template will replace the current element.</li>
@@ -219,10 +218,7 @@ be bound to the parent (pre-<code>isolate</code>) scope.</p>
 <h4 id="-compile-"><code>compile</code></h4>
 <pre><code class="lang-js">  function compile(tElement, tAttrs, transclude) { ... }</code></pre>
 <p>The compile function deals with transforming the template DOM. Since most directives do not do
-template transformation, it is not used often. Examples that require compile functions are
-directives that transform template DOM, such as <a href="api/ng.directive:ngRepeat">ngRepeat</a>, or load the contents
-asynchronously, such as <a href="api/ngRoute/directive/ngView">ngView</a>. The
-compile function takes the following arguments.</p>
+template transformation, it is not used often. The compile function takes the following arguments:</p>
 <ul>
 <li><p><code>tElement</code> - template element - The element where the directive has been declared. It is
 safe to do template transformation on the element and child elements only.</p>
@@ -341,7 +337,7 @@ to illustrate how <code>$compile</code> works.
 <p> 
 
 <div>
-  <a ng-href="http://plnkr.co/edit/ngdoc:example-example4@{{docsVersion}}?p=preview" class="btn pull-right" target="_blank">
+  <a ng-click="openPlunkr('examples/example-example4')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
@@ -353,14 +349,14 @@ to illustrate how <code>$compile</code> works.
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;script&gt;&#10;  angular.module(&#39;compile&#39;, [], function($compileProvider) {&#10;    // configure new &#39;compile&#39; directive by passing a directive&#10;    // factory function. The factory function injects the &#39;$compile&#39;&#10;    $compileProvider.directive(&#39;compile&#39;, function($compile) {&#10;      // directive factory creates a link function&#10;      return function(scope, element, attrs) {&#10;        scope.$watch(&#10;          function(scope) {&#10;             // watch the &#39;compile&#39; expression for changes&#10;            return scope.$eval(attrs.compile);&#10;          },&#10;          function(value) {&#10;            // when the &#39;compile&#39; expression changes&#10;            // assign it into the current DOM&#10;            element.html(value);&#10;&#10;            // compile the new DOM and link it to the current&#10;            // scope.&#10;            // NOTE: we only compile .childNodes so that&#10;            // we don&#39;t get into infinite loop compiling ourselves&#10;            $compile(element.contents())(scope);&#10;          }&#10;        );&#10;      };&#10;    })&#10;  });&#10;&#10;  function Ctrl($scope) {&#10;    $scope.name = &#39;Angular&#39;;&#10;    $scope.html = &#39;Hello {{name}}&#39;;&#10;  }&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;Ctrl&quot;&gt;&#10;  &lt;input ng-model=&quot;name&quot;&gt; &lt;br&gt;&#10;  &lt;textarea ng-model=&quot;html&quot;&gt;&lt;/textarea&gt; &lt;br&gt;&#10;  &lt;div compile=&quot;html&quot;&gt;&lt;/div&gt;&#10;&lt;/div&gt;</code></pre>  
+      <pre><code>&lt;script&gt;&#10;  angular.module(&#39;compile&#39;, [], function($compileProvider) {&#10;    // configure new &#39;compile&#39; directive by passing a directive&#10;    // factory function. The factory function injects the &#39;$compile&#39;&#10;    $compileProvider.directive(&#39;compile&#39;, function($compile) {&#10;      // directive factory creates a link function&#10;      return function(scope, element, attrs) {&#10;        scope.$watch(&#10;          function(scope) {&#10;             // watch the &#39;compile&#39; expression for changes&#10;            return scope.$eval(attrs.compile);&#10;          },&#10;          function(value) {&#10;            // when the &#39;compile&#39; expression changes&#10;            // assign it into the current DOM&#10;            element.html(value);&#10;&#10;            // compile the new DOM and link it to the current&#10;            // scope.&#10;            // NOTE: we only compile .childNodes so that&#10;            // we don&#39;t get into infinite loop compiling ourselves&#10;            $compile(element.contents())(scope);&#10;          }&#10;        );&#10;      };&#10;    })&#10;  });&#10;&#10;  function Ctrl($scope) {&#10;    $scope.name = &#39;Angular&#39;;&#10;    $scope.html = &#39;Hello {{name}}&#39;;&#10;  }&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;Ctrl&quot;&gt;&#10;  &lt;input ng-model=&quot;name&quot;&gt; &lt;br&gt;&#10;  &lt;textarea ng-model=&quot;html&quot;&gt;&lt;/textarea&gt; &lt;br&gt;&#10;  &lt;div compile=&quot;html&quot;&gt;&lt;/div&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="protractor.js"
       type="protractor"
       language="js">
-      <pre><code>it(&#39;should auto compile&#39;, function() {&#10;  var textarea = $(&#39;textarea&#39;);&#10;  var output = $(&#39;div[compile]&#39;);&#10;  // The initial state reads &#39;Hello Angular&#39;.&#10;  expect(output.getText()).toBe(&#39;Hello Angular&#39;);&#10;  textarea.clear();&#10;  textarea.sendKeys(&#39;{{name}}!&#39;);&#10;  expect(output.getText()).toBe(&#39;Angular!&#39;);&#10;});</code></pre>  
+      <pre><code>it(&#39;should auto compile&#39;, function() {&#10;  var textarea = $(&#39;textarea&#39;);&#10;  var output = $(&#39;div[compile]&#39;);&#10;  // The initial state reads &#39;Hello Angular&#39;.&#10;  expect(output.getText()).toBe(&#39;Hello Angular&#39;);&#10;  textarea.clear();&#10;  textarea.sendKeys(&#39;{{name}}!&#39;);&#10;  expect(output.getText()).toBe(&#39;Angular!&#39;);&#10;});</code></pre>
     </div>
   
 

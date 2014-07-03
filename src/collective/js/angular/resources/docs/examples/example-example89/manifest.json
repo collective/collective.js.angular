@@ -3,6 +3,7 @@
   "files": [
     "index-production.html",
     "script.js",
-    "my-dialog-close.html"
+    "my-tabs.html",
+    "my-pane.html"
   ]
 }

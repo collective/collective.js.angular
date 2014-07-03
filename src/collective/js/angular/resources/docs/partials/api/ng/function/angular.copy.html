@@ -2,7 +2,7 @@
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/Angular.js#L706' class='view-source pull-right btn btn-primary'>
+<a href='http://github.com/angular/angular.js/tree/master/src/Angular.js#L712' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -118,7 +118,7 @@ are deleted and then all elements/properties from the source are copied to it.</
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-href="http://plnkr.co/edit/ngdoc:example-example@{{docsVersion}}?p=preview" class="btn pull-right" target="_blank">
+  <a ng-click="openPlunkr('examples/example-example')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
@@ -129,7 +129,7 @@ are deleted and then all elements/properties from the source are copied to it.</
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;div ng-controller=&quot;Controller&quot;&gt;&#10;&lt;form novalidate class=&quot;simple-form&quot;&gt;&#10;Name: &lt;input type=&quot;text&quot; ng-model=&quot;user.name&quot; /&gt;&lt;br /&gt;&#10;E-mail: &lt;input type=&quot;email&quot; ng-model=&quot;user.email&quot; /&gt;&lt;br /&gt;&#10;Gender: &lt;input type=&quot;radio&quot; ng-model=&quot;user.gender&quot; value=&quot;male&quot; /&gt;male&#10;&lt;input type=&quot;radio&quot; ng-model=&quot;user.gender&quot; value=&quot;female&quot; /&gt;female&lt;br /&gt;&#10;&lt;button ng-click=&quot;reset()&quot;&gt;RESET&lt;/button&gt;&#10;&lt;button ng-click=&quot;update(user)&quot;&gt;SAVE&lt;/button&gt;&#10;&lt;/form&gt;&#10;&lt;pre&gt;form = {{user | json}}&lt;/pre&gt;&#10;&lt;pre&gt;master = {{master | json}}&lt;/pre&gt;&#10;&lt;/div&gt;&#10;&#10;&lt;script&gt;&#10;function Controller($scope) {&#10;   $scope.master= {};&#10;&#10;   $scope.update = function(user) {&#10;     // Example with 1 argument&#10;     $scope.master= angular.copy(user);&#10;   };&#10;&#10;   $scope.reset = function() {&#10;     // Example with 2 arguments&#10;     angular.copy($scope.master, $scope.user);&#10;   };&#10;&#10;   $scope.reset();&#10; }&#10;&lt;/script&gt;</code></pre>  
+      <pre><code>&lt;div ng-controller=&quot;Controller&quot;&gt;&#10;&lt;form novalidate class=&quot;simple-form&quot;&gt;&#10;Name: &lt;input type=&quot;text&quot; ng-model=&quot;user.name&quot; /&gt;&lt;br /&gt;&#10;E-mail: &lt;input type=&quot;email&quot; ng-model=&quot;user.email&quot; /&gt;&lt;br /&gt;&#10;Gender: &lt;input type=&quot;radio&quot; ng-model=&quot;user.gender&quot; value=&quot;male&quot; /&gt;male&#10;&lt;input type=&quot;radio&quot; ng-model=&quot;user.gender&quot; value=&quot;female&quot; /&gt;female&lt;br /&gt;&#10;&lt;button ng-click=&quot;reset()&quot;&gt;RESET&lt;/button&gt;&#10;&lt;button ng-click=&quot;update(user)&quot;&gt;SAVE&lt;/button&gt;&#10;&lt;/form&gt;&#10;&lt;pre&gt;form = {{user | json}}&lt;/pre&gt;&#10;&lt;pre&gt;master = {{master | json}}&lt;/pre&gt;&#10;&lt;/div&gt;&#10;&#10;&lt;script&gt;&#10;function Controller($scope) {&#10;   $scope.master= {};&#10;&#10;   $scope.update = function(user) {&#10;     // Example with 1 argument&#10;     $scope.master= angular.copy(user);&#10;   };&#10;&#10;   $scope.reset = function() {&#10;     // Example with 2 arguments&#10;     angular.copy($scope.master, $scope.user);&#10;   };&#10;&#10;   $scope.reset();&#10; }&#10;&lt;/script&gt;</code></pre>
     </div>
   
 

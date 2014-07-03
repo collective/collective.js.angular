@@ -1,17 +1,21 @@
-  function Controller($scope) {
-    $scope.master = {};
+  angular.module('form-example2', []).directive('contenteditable', function() {
+    return {
+      require: 'ngModel',
+      link: function(scope, elm, attrs, ctrl) {
+        // view -> model
+        elm.on('blur', function() {
+          scope.$apply(function() {
+            ctrl.$setViewValue(elm.html());
+          });
+        });
 
-    $scope.update = function(user) {
-      $scope.master = angular.copy(user);
+        // model -> view
+        ctrl.$render = function() {
+          elm.html(ctrl.$viewValue);
+        };
+
+        // load init value from DOM
+        ctrl.$setViewValue(elm.html());
+      }
     };
-
-    $scope.reset = function() {
-      $scope.user = angular.copy($scope.master);
-    };
-
-    $scope.isUnchanged = function(user) {
-      return angular.equals(user, $scope.master);
-    };
-
-    $scope.reset();
-  }
+  });

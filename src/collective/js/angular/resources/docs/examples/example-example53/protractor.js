@@ -1,15 +1,8 @@
-  it('should init with 1234.56', function() {
-    expect(element(by.id('currency-default')).getText()).toBe('$1,234.56');
-    expect(element(by.binding('amount | currency:"USD$"')).getText()).toBe('USD$1,234.56');
-  });
-  it('should update', function() {
-    if (browser.params.browser == 'safari') {
-      // Safari does not understand the minus key. See
-      // https://github.com/angular/protractor/issues/481
-      return;
-    }
-    element(by.model('amount')).clear();
-    element(by.model('amount')).sendKeys('-1234');
-    expect(element(by.id('currency-default')).getText()).toBe('($1,234.00)');
-    expect(element(by.binding('amount | currency:"USD$"')).getText()).toBe('(USD$1,234.00)');
+  it('should format date', function() {
+    expect(element(by.binding("1288323623006 | date:'medium'")).getText()).
+       toMatch(/Oct 2\d, 2010 \d{1,2}:\d{2}:\d{2} (AM|PM)/);
+    expect(element(by.binding("1288323623006 | date:'yyyy-MM-dd HH:mm:ss Z'")).getText()).
+       toMatch(/2010\-10\-2\d \d{2}:\d{2}:\d{2} (\-|\+)?\d{4}/);
+    expect(element(by.binding("'1288323623006' | date:'MM/dd/yyyy @ h:mma'")).getText()).
+       toMatch(/10\/2\d\/2010 @ \d{1,2}:\d{2}(AM|PM)/);
   });

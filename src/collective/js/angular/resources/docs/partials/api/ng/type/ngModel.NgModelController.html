@@ -2,7 +2,7 @@
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/input.js#L872' class='view-source pull-right btn btn-primary'>
+<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/input.js#L901' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -31,44 +31,49 @@ data-binding. Notice how different directives (<code>contenteditable</code>, <co
 collaborate together to achieve the desired result.</p>
 <p>Note that <code>contenteditable</code> is an HTML5 attribute, which tells the browser to let the element
 contents be edited in place by the user.  This will not work on older browsers.</p>
+<p>We are using the <a href="api/ng/service/$sce">$sce</a> service here and include the <a href="api/ngSanitize">$sanitize</a>
+module to automatically remove &quot;bad&quot; content like inline event listener (e.g. <code>&lt;span onclick=&quot;...&quot;&gt;</code>).
+However, as we are using <code>$sce</code> the model can still decide to to provide unsafe content if it marks
+that content using the <code>$sce</code> service.</p>
 <p>
 
 <div>
-  <a ng-href="http://plnkr.co/edit/ngdoc:example-NgModelController@{{docsVersion}}?p=preview" class="btn pull-right" target="_blank">
+  <a ng-click="openPlunkr('examples/example-NgModelController')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
       path="examples/example-NgModelController"
       name="NgModelController"
-      module="customControl">
+      module="customControl"
+      deps="angular-sanitize.js">
 
    
     <div class="runnable-example-file" 
       name="style.css"
       language="css"
       type="css">
-      <pre><code>[contenteditable] {&#10;  border: 1px solid black;&#10;  background-color: white;&#10;  min-height: 20px;&#10;}&#10;&#10;.ng-invalid {&#10;  border: 1px solid red;&#10;}</code></pre>  
+      <pre><code>[contenteditable] {&#10;  border: 1px solid black;&#10;  background-color: white;&#10;  min-height: 20px;&#10;}&#10;&#10;.ng-invalid {&#10;  border: 1px solid red;&#10;}</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="script.js"
       language="js"
       type="js">
-      <pre><code>angular.module(&#39;customControl&#39;, []).&#10;  directive(&#39;contenteditable&#39;, function() {&#10;    return {&#10;      restrict: &#39;A&#39;, // only activate on element attribute&#10;      require: &#39;?ngModel&#39;, // get a hold of NgModelController&#10;      link: function(scope, element, attrs, ngModel) {&#10;        if(!ngModel) return; // do nothing if no ng-model&#10;&#10;        // Specify how UI should be updated&#10;        ngModel.$render = function() {&#10;          element.html(ngModel.$viewValue || &#39;&#39;);&#10;        };&#10;&#10;        // Listen for change events to enable binding&#10;        element.on(&#39;blur keyup change&#39;, function() {&#10;          scope.$apply(read);&#10;        });&#10;        read(); // initialize&#10;&#10;        // Write data to the model&#10;        function read() {&#10;          var html = element.html();&#10;          // When we clear the content editable the browser leaves a &lt;br&gt; behind&#10;          // If strip-br attribute is provided then we strip this out&#10;          if( attrs.stripBr &amp;&amp; html == &#39;&lt;br&gt;&#39; ) {&#10;            html = &#39;&#39;;&#10;          }&#10;          ngModel.$setViewValue(html);&#10;        }&#10;      }&#10;    };&#10;  });</code></pre>  
+      <pre><code>angular.module(&#39;customControl&#39;, [&#39;ngSanitize&#39;]).&#10;  directive(&#39;contenteditable&#39;, [&#39;$sce&#39;, function($sce) {&#10;    return {&#10;      restrict: &#39;A&#39;, // only activate on element attribute&#10;      require: &#39;?ngModel&#39;, // get a hold of NgModelController&#10;      link: function(scope, element, attrs, ngModel) {&#10;        if(!ngModel) return; // do nothing if no ng-model&#10;&#10;        // Specify how UI should be updated&#10;        ngModel.$render = function() {&#10;          element.html($sce.getTrustedHtml(ngModel.$viewValue || &#39;&#39;));&#10;        };&#10;&#10;        // Listen for change events to enable binding&#10;        element.on(&#39;blur keyup change&#39;, function() {&#10;          scope.$apply(read);&#10;        });&#10;        read(); // initialize&#10;&#10;        // Write data to the model&#10;        function read() {&#10;          var html = element.html();&#10;          // When we clear the content editable the browser leaves a &lt;br&gt; behind&#10;          // If strip-br attribute is provided then we strip this out&#10;          if( attrs.stripBr &amp;&amp; html == &#39;&lt;br&gt;&#39; ) {&#10;            html = &#39;&#39;;&#10;          }&#10;          ngModel.$setViewValue(html);&#10;        }&#10;      }&#10;    };&#10;  }]);</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;form name=&quot;myForm&quot;&gt;&#10; &lt;div contenteditable&#10;      name=&quot;myWidget&quot; ng-model=&quot;userContent&quot;&#10;      strip-br=&quot;true&quot;&#10;      required&gt;Change me!&lt;/div&gt;&#10;  &lt;span ng-show=&quot;myForm.myWidget.$error.required&quot;&gt;Required!&lt;/span&gt;&#10; &lt;hr&gt;&#10; &lt;textarea ng-model=&quot;userContent&quot;&gt;&lt;/textarea&gt;&#10;&lt;/form&gt;</code></pre>  
+      <pre><code>&lt;form name=&quot;myForm&quot;&gt;&#10; &lt;div contenteditable&#10;      name=&quot;myWidget&quot; ng-model=&quot;userContent&quot;&#10;      strip-br=&quot;true&quot;&#10;      required&gt;Change me!&lt;/div&gt;&#10;  &lt;span ng-show=&quot;myForm.myWidget.$error.required&quot;&gt;Required!&lt;/span&gt;&#10; &lt;hr&gt;&#10; &lt;textarea ng-model=&quot;userContent&quot;&gt;&lt;/textarea&gt;&#10;&lt;/form&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="protractor.js"
       type="protractor"
       language="js">
-      <pre><code>it(&#39;should data-bind and become invalid&#39;, function() {&#10;if (browser.params.browser == &#39;safari&#39; || browser.params.browser == &#39;firefox&#39;) {&#10;  // SafariDriver can&#39;t handle contenteditable&#10;  // and Firefox driver can&#39;t clear contenteditables very well&#10;  return;&#10;}&#10;var contentEditable = element(by.css(&#39;[contenteditable]&#39;));&#10;var content = &#39;Change me!&#39;;&#10;&#10;expect(contentEditable.getText()).toEqual(content);&#10;&#10;contentEditable.clear();&#10;contentEditable.sendKeys(protractor.Key.BACK_SPACE);&#10;expect(contentEditable.getText()).toEqual(&#39;&#39;);&#10;expect(contentEditable.getAttribute(&#39;class&#39;)).toMatch(/ng-invalid-required/);&#10;});</code></pre>  
+      <pre><code>it(&#39;should data-bind and become invalid&#39;, function() {&#10;if (browser.params.browser == &#39;safari&#39; || browser.params.browser == &#39;firefox&#39;) {&#10;  // SafariDriver can&#39;t handle contenteditable&#10;  // and Firefox driver can&#39;t clear contenteditables very well&#10;  return;&#10;}&#10;var contentEditable = element(by.css(&#39;[contenteditable]&#39;));&#10;var content = &#39;Change me!&#39;;&#10;&#10;expect(contentEditable.getText()).toEqual(content);&#10;&#10;contentEditable.clear();&#10;contentEditable.sendKeys(protractor.Key.BACK_SPACE);&#10;expect(contentEditable.getText()).toEqual(&#39;&#39;);&#10;expect(contentEditable.getAttribute(&#39;class&#39;)).toMatch(/ng-invalid-required/);&#10;});</code></pre>
     </div>
   
 
@@ -203,7 +208,7 @@ does not notify form if given validator is already marked as invalid).</p>
       </td>
       <td>
         <p>Name of the validator. the <code>validationErrorKey</code> will assign
-       to <code>$error[validationErrorKey]=isValid</code> so that it is available for data-binding.
+       to <code>$error[validationErrorKey]=!isValid</code> so that it is available for data-binding.
        The <code>validationErrorKey</code> should be in camelCase and will get converted into dash-case
        for class name. Example: <code>myError</code> will result in <code>ng-valid-my-error</code> and <code>ng-invalid-my-error</code>
        class and can be bound to as  <code>{{someForm.someControl.$error.myError}}</code> .</p>
@@ -362,14 +367,12 @@ which includes any validators. The value that comes out of this <code>$parsers</
     <td><p>Array of functions to execute, as a pipeline, whenever
        the model value changes. Each function is called, in turn, passing the value through to the
        next. Used to format / convert values for display in the control and validation.</p>
-<pre><code> ```js
- function formatter(value) {
-   if (value) {
-     return value.toUpperCase();
-   }
- }
- ngModel.$formatters.push(formatter);
- ```</code></pre>
+<pre><code class="lang-js">function formatter(value) {
+  if (value) {
+    return value.toUpperCase();
+  }
+}
+ngModel.$formatters.push(formatter);</code></pre>
 </td>
   </tr>
 </table>

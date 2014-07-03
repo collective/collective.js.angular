@@ -134,29 +134,29 @@ into the browser&#39;s console (if present).</p>
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-href="http://plnkr.co/edit/ngdoc:example-example62@{{docsVersion}}?p=preview" class="btn pull-right" target="_blank">
+  <a ng-click="openPlunkr('examples/example-example61')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
-      path="examples/example-example62">
+      path="examples/example-example61">
 
    
     <div class="runnable-example-file" 
       name="script.js"
       language="js"
       type="js">
-      <pre><code>function LogCtrl($scope, $log) {&#10;  $scope.$log = $log;&#10;  $scope.message = &#39;Hello World!&#39;;&#10;}</code></pre>  
+      <pre><code>function LogCtrl($scope, $log) {&#10;  $scope.$log = $log;&#10;  $scope.message = &#39;Hello World!&#39;;&#10;}</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;div ng-controller=&quot;LogCtrl&quot;&gt;&#10;  &lt;p&gt;Reload this page with open console, enter text and hit the log button...&lt;/p&gt;&#10;  Message:&#10;  &lt;input type=&quot;text&quot; ng-model=&quot;message&quot;/&gt;&#10;  &lt;button ng-click=&quot;$log.log(message)&quot;&gt;log&lt;/button&gt;&#10;  &lt;button ng-click=&quot;$log.warn(message)&quot;&gt;warn&lt;/button&gt;&#10;  &lt;button ng-click=&quot;$log.info(message)&quot;&gt;info&lt;/button&gt;&#10;  &lt;button ng-click=&quot;$log.error(message)&quot;&gt;error&lt;/button&gt;&#10;&lt;/div&gt;</code></pre>  
+      <pre><code>&lt;div ng-controller=&quot;LogCtrl&quot;&gt;&#10;  &lt;p&gt;Reload this page with open console, enter text and hit the log button...&lt;/p&gt;&#10;  Message:&#10;  &lt;input type=&quot;text&quot; ng-model=&quot;message&quot;/&gt;&#10;  &lt;button ng-click=&quot;$log.log(message)&quot;&gt;log&lt;/button&gt;&#10;  &lt;button ng-click=&quot;$log.warn(message)&quot;&gt;warn&lt;/button&gt;&#10;  &lt;button ng-click=&quot;$log.info(message)&quot;&gt;info&lt;/button&gt;&#10;  &lt;button ng-click=&quot;$log.error(message)&quot;&gt;error&lt;/button&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example62/index.html" name="example-example62"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example61/index.html" name="example-example61"></iframe>
   </div>
 </div>
 
