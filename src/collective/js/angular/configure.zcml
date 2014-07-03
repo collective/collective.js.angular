@@ -23,6 +23,14 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
+    <genericsetup:registerProfile
+        name="cdn"
+        title="AngularJS Javascript Library (CDN)"
+        directory="profiles/cdn"
+        description="Provides Angular Javascript Library for use in Plone (using Google CDN)"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
     <browser:resourceDirectory
        name="collective.js.angular"
         directory="resources"

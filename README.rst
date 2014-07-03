@@ -1,9 +1,9 @@
 AngularJS JavaScript Library Packaged for Plone
 ===============================================
 
-This package provides the `AngularJS <http://angularjs.org//>`_ libray for use in Plone. 
+This package provides the `AngularJS <http://angularjs.org//>`_ libray for use in Plone.
 
-**Superheroic JavaScript MVW Framework** (cite of the original website title) 
+**Superheroic JavaScript MVW Framework** (cite of the original website title)
 
 The whole ZIP file distribution is provided. So far only the main angular library is registered in ``portal_javascripts`` (read section Installion).
 
@@ -33,6 +33,10 @@ Minified
 Uncompressed
   GenericSetup dependency string for ``metadata.xml`` is
   ``profile-collective.js.angular:uncompressed``.
+
+CDN (via Google, minified)
+  GenericSetup dependency string for ``metadata.xml`` is
+  ``profile-collective.js.angular:cdn``.
 
 At the moment theres no uninstall profile configured.
 

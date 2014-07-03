@@ -4,13 +4,19 @@ History
 1.2.16.1 (2014-07-03)
 ---------------------
 
+- Add profile using the Google CDN
+  [jensens]
+
+1.2.16.0 (2014-07-03)
+---------------------
+
 - Upgrade to ``angular.js`` 1.2.19.
   [jensens]
 
 1.2.16.1 (2014-06-05)
 ---------------------
 
-- provide the full AngularJS release contents (ZIP release) as resources. 
+- provide the full AngularJS release contents (ZIP release) as resources.
   [jensens]
 
 1.2.16.0 (2014-06-05)
@@ -36,7 +42,7 @@ History
 1.2.13.1 (2014-02-24)
 ---------------------
 
-- Add uncompressed version of Angular. This targets on developer with need to 
+- Add uncompressed version of Angular. This targets on developer with need to
   debug into AngularJS Code.
   [jensens]
 
