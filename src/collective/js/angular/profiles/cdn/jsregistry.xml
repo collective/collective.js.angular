@@ -7,8 +7,7 @@
         cookable="false"
         enabled="true"
         expression=""
-        id="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"
-        inline="False"
+        id="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"
         />
 
 </object>
