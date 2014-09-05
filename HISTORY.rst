@@ -1,7 +1,7 @@
 History
 =======
 
-1.2.32.2 (unreleased)
+1.2.23.2 (2014-09-05)
 ---------------------
 
 - fix mixed content problems with cdn, see
