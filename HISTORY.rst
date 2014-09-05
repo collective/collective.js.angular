@@ -1,6 +1,13 @@
 History
 =======
 
+1.2.32.2 (unreleased)
+---------------------
+
+- fix mixed content problems with cdn, see
+  https://stackoverflow.com/questions/18251128/why-am-i-suddenly-getting-a-blocked-loading-mixed-active-content-issue-in-fire
+  [jensens]
+
 1.2.32.1 (2014-09-05)
 ---------------------
 
