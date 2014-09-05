@@ -2,11 +2,7 @@
 <object name="portal_javascripts" meta_type="JavaScripts Registry">
 
     <javascript
-        cacheable="true"
-        compression="false"
-        cookable="false"
         enabled="true"
-        expression=""
         id="//ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"
         />
 
