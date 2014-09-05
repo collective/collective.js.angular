@@ -31,27 +31,27 @@ services</a> instead.</li>
 The properties contain the <strong>view model</strong> (the model that will be presented by the view).  All the
 <code>$scope</code> properties will be available to the template at the point in the DOM where the Controller
 is registered.</p>
-<p>The following example shows a very simple constructor function for a Controller, <code>GreetingController</code>,
-which attaches a <code>greeting</code> property containing the string <code>&#39;Hola!&#39;</code> to the <code>$scope</code>:</p>
-<pre><code class="lang-js">function GreetingController($scope) {
-  $scope.greeting = &#39;Hola!&#39;;
-}</code></pre>
-<p>Once the Controller has been attached to the DOM, the <code>greeting</code> property can be data-bound to the
-template:</p>
-<pre><code class="lang-js">&lt;div ng-controller=&quot;GreetingController&quot;&gt;
-  {{ greeting }}
-&lt;/div&gt;</code></pre>
-<p><strong>NOTE</strong>: Although Angular allows you to create Controller functions in the global scope, this is
-not recommended.  In a real application you should use the <code>.controller</code> method of your
-<a href="guide/module">Angular Module</a> for your application as follows:</p>
+<p>The following example demonstrates creating a <code>GreetingController</code>, which attaches a <code>greeting</code>
+property containing the string <code>&#39;Hola!&#39;</code> to the <code>$scope</code>:</p>
 <pre><code class="lang-js">var myApp = angular.module(&#39;myApp&#39;,[]);
 
 myApp.controller(&#39;GreetingController&#39;, [&#39;$scope&#39;, function($scope) {
   $scope.greeting = &#39;Hola!&#39;;
 }]);</code></pre>
-<p>We have used an <strong>inline injection annotation</strong> to explicitly specify the dependency
+<p>We create an <a href="guide/module">Angular Module</a>, <code>myApp</code>, for our application. Then we add the controller&#39;s
+constructor function to the module using the <code>.controller()</code> method. This keeps the controller&#39;s
+constructor function out of the global scope.</p>
+<div class="alert alert-info">
+We have used an <strong>inline injection annotation</strong> to explicitly specify the dependency
 of the Controller on the <code>$scope</code> service provided by Angular. See the guide on
-<a href="http://docs.angularjs.org/guide/di">Dependency Injection</a> for more information.</p>
+<a href="guide/di">Dependency Injection</a> for more information.
+</div>
+
+<p>We attach our controller to the DOM using the <code>ng-controller</code> directive. The <code>greeting</code> property can
+now be data-bound to the template:</p>
+<pre><code class="lang-js">&lt;div ng-controller=&quot;GreetingController&quot;&gt;
+  {{ greeting }}
+&lt;/div&gt;</code></pre>
 <h1 id="adding-behavior-to-a-scope-object">Adding Behavior to a Scope Object</h1>
 <p>In order to react to events or execute computation in the view we must provide behavior to the
 scope. We add behavior to the scope by attaching methods to the <code>$scope</code> object.  These methods are
@@ -94,11 +94,11 @@ string &quot;very&quot;. Depending on which button is clicked, the <code>spice</
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example74')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example73')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
-      path="examples/example-example74"
+      path="examples/example-example73"
       module="spicyApp1">
 
    
@@ -117,9 +117,10 @@ string &quot;very&quot;. Depending on which button is clicked, the <code>spice</
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example74/index.html" name="example-example74"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example73/index.html" name="example-example73"></iframe>
   </div>
 </div>
+
 
 </p>
 <p>Things to notice in the example above:</p>
@@ -139,11 +140,11 @@ previous example.</p>
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example75')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example74')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
-      path="examples/example-example75"
+      path="examples/example-example74"
       module="spicyApp2">
 
    
@@ -162,9 +163,10 @@ previous example.</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example75/index.html" name="example-example75"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example74/index.html" name="example-example74"></iframe>
   </div>
 </div>
+
 
 </p>
 <p>Notice that the <code>SpicyController</code> Controller now defines just one method called <code>spicy</code>, which takes one
@@ -181,11 +183,11 @@ more information about scope inheritance.</p>
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example76')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example75')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
-      path="examples/example-example76"
+      path="examples/example-example75"
       module="scopeInheritance">
 
    
@@ -211,9 +213,10 @@ more information about scope inheritance.</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example76/index.html" name="example-example76"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example75/index.html" name="example-example75"></iframe>
   </div>
 </div>
+
 
 </p>
 <p>Notice how we nested three <code>ng-controller</code> directives in our template. This will result in four

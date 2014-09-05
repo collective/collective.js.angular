@@ -10,13 +10,14 @@
 
   
 </head>
-<body ng-app="">
+<body ng-app="inputExample">
    <script>
-   function Ctrl($scope) {
-     $scope.user = {name: 'guest', last: 'visitor'};
-   }
+    angular.module('inputExample', [])
+      .controller('ExampleController', ['$scope', function($scope) {
+        $scope.user = {name: 'guest', last: 'visitor'};
+      }]);
  </script>
- <div ng-controller="Ctrl">
+ <div ng-controller="ExampleController">
    <form name="myForm">
      User name: <input type="text" name="userName" ng-model="user.name" required>
      <span class="error" ng-show="myForm.userName.$error.required">

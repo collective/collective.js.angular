@@ -1,8 +1,10 @@
 describe("module:ng.directive:ngBindTemplate", function() {
+  var rootEl;
   beforeEach(function() {
+    rootEl = browser.rootEl;
     browser.get("./examples/example-example14/index-jquery.html");
   });
-
+  
   it('should check ng-bind', function() {
     var salutationElem = element(by.binding('salutation'));
     var salutationInput = element(by.model('salutation'));

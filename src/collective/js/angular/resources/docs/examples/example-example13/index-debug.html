@@ -10,13 +10,14 @@
 
   
 </head>
-<body ng-app="">
+<body ng-app="bindExample">
     <script>
-    function Ctrl($scope) {
-      $scope.name = 'Whirled';
-    }
+    angular.module('bindExample', [])
+      .controller('ExampleController', ['$scope', function($scope) {
+        $scope.name = 'Whirled';
+      }]);
   </script>
-  <div ng-controller="Ctrl">
+  <div ng-controller="ExampleController">
     Enter name: <input type="text" ng-model="name"><br>
     Hello <span ng-bind="name"></span>!
   </div>

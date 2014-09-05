@@ -2,7 +2,7 @@
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/ngBind.js#L69' class='view-source pull-right btn btn-primary'>
+<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/ngBind.js#L70' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -99,14 +99,15 @@ expressions. This directive is needed since some HTML elements
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
-      path="examples/example-example14">
+      path="examples/example-example14"
+      module="bindExample">
 
    
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;script&gt;&#10;  function Ctrl($scope) {&#10;    $scope.salutation = &#39;Hello&#39;;&#10;    $scope.name = &#39;World&#39;;&#10;  }&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;Ctrl&quot;&gt;&#10; Salutation: &lt;input type=&quot;text&quot; ng-model=&quot;salutation&quot;&gt;&lt;br&gt;&#10; Name: &lt;input type=&quot;text&quot; ng-model=&quot;name&quot;&gt;&lt;br&gt;&#10; &lt;pre ng-bind-template=&quot;{{salutation}} {{name}}!&quot;&gt;&lt;/pre&gt;&#10;&lt;/div&gt;</code></pre>
+      <pre><code>&lt;script&gt;&#10;  angular.module(&#39;bindExample&#39;, [])&#10;    .controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function ($scope) {&#10;      $scope.salutation = &#39;Hello&#39;;&#10;      $scope.name = &#39;World&#39;;&#10;    }]);&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;ExampleController&quot;&gt;&#10; Salutation: &lt;input type=&quot;text&quot; ng-model=&quot;salutation&quot;&gt;&lt;br&gt;&#10; Name: &lt;input type=&quot;text&quot; ng-model=&quot;name&quot;&gt;&lt;br&gt;&#10; &lt;pre ng-bind-template=&quot;{{salutation}} {{name}}!&quot;&gt;&lt;/pre&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -120,6 +121,7 @@ expressions. This directive is needed since some HTML elements
     <iframe class="runnable-example-frame" src="examples/example-example14/index.html" name="example-example14"></iframe>
   </div>
 </div>
+
 
 </p>
 

@@ -89,13 +89,14 @@ For a more in-depth explanation, see the <a href="tutorial/">tutorial</a>.</p>
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;div ng-app ng-init=&quot;qty=1;cost=2&quot;&gt;&#10;  &lt;b&gt;Invoice:&lt;/b&gt;&#10;  &lt;div&gt;&#10;    Quantity: &lt;input type=&quot;number&quot; ng-model=&quot;qty&quot; required &gt;&#10;  &lt;/div&gt;&#10;  &lt;div&gt;&#10;    Costs: &lt;input type=&quot;number&quot; ng-model=&quot;cost&quot; required &gt;&#10;  &lt;/div&gt;&#10;  &lt;div&gt;&#10;    &lt;b&gt;Total:&lt;/b&gt; {{qty * cost | currency}}&#10;  &lt;/div&gt;&#10;&lt;/div&gt;</code></pre>
+      <pre><code>&lt;div ng-app ng-init=&quot;qty=1;cost=2&quot;&gt;&#10;  &lt;b&gt;Invoice:&lt;/b&gt;&#10;  &lt;div&gt;&#10;    Quantity: &lt;input type=&quot;number&quot; ng-model=&quot;qty&quot;&gt;&#10;  &lt;/div&gt;&#10;  &lt;div&gt;&#10;    Costs: &lt;input type=&quot;number&quot; ng-model=&quot;cost&quot;&gt;&#10;  &lt;/div&gt;&#10;  &lt;div&gt;&#10;    &lt;b&gt;Total:&lt;/b&gt; {{qty * cost | currency}}&#10;  &lt;/div&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
   
 
     <iframe class="runnable-example-frame" src="examples/example-guide-concepts-1/index.html" name="example-guide-concepts-1"></iframe>
   </div>
 </div>
+
 
 </p>
 <p>Try out the Live Preview above, and then let&#39;s walk through the example and describe what&#39;s going on.</p>
@@ -108,11 +109,8 @@ The loaded, transformed and rendered DOM is then called the <a name="view">&quot
 They apply special behavior to attributes or elements in the HTML. In the example above we use the
 <a href="api/ng/directive/ngApp"><code>ng-app</code></a> attribute, which is linked to a directive that automatically
 initializes our application. Angular also defines a directive for the <a href="api/ng/directive/input"><code>input</code></a>
-element that adds extra behavior to the element. E.g. it is able to automatically validate that the entered
-text is non empty by evaluating the <code>required</code> attribute.
-The <a href="api/ng/directive/ngModel"><code>ng-model</code></a> directive stores/updates
-the value of the input field into/from a variable and shows the validation state of the input field by
-adding css classes. In the example we use these css classes to mark an empty input field with a red border.</p>
+element that adds extra behavior to the element. The <a href="api/ng/directive/ngModel"><code>ng-model</code></a> directive
+stores/updates the value of the input field into/from a variable.</p>
 <div class="alert alert-info">
 <strong>Custom directives to access the DOM</strong>: In Angular, the only place where an application touches the DOM is
  within directives. This is good as artifacts that access the DOM are hard to test.
@@ -171,6 +169,7 @@ different currencies and also pay the invoice.</p>
     <iframe class="runnable-example-frame" src="examples/example-guide-concepts-2/index.html" name="example-guide-concepts-2"></iframe>
   </div>
 </div>
+
 
 </p>
 <p>What changed?</p>
@@ -241,6 +240,7 @@ from the web, e.g. by calling the Yahoo Finance API, without changing the contro
   </div>
 </div>
 
+
 </p>
 <p><img class="pull-right" style="padding-left: 3em; padding-bottom: 1em;" src="img/guide/concepts-module-service.png"></p>
 <p>What changed?
@@ -307,7 +307,7 @@ The following example shows how this is done with Angular:</p>
       name="finance3.js"
       language="js"
       type="js">
-      <pre><code>angular.module(&#39;finance3&#39;, [])&#10;  .factory(&#39;currencyConverter&#39;, [&#39;$http&#39;, function($http) {&#10;    var YAHOO_FINANCE_URL_PATTERN =&#10;          &#39;http://query.yahooapis.com/v1/public/yql?q=select * from &#39;+&#10;          &#39;yahoo.finance.xchange where pair in (&quot;PAIRS&quot;)&amp;format=json&amp;&#39;+&#10;          &#39;env=store://datatables.org/alltableswithkeys&amp;callback=JSON_CALLBACK&#39;;&#10;    var currencies = [&#39;USD&#39;, &#39;EUR&#39;, &#39;CNY&#39;];&#10;    var usdToForeignRates = {};&#10;&#10;    var convert = function (amount, inCurr, outCurr) {&#10;      return amount * usdToForeignRates[outCurr] / usdToForeignRates[inCurr];&#10;    };&#10;&#10;    var refresh = function() {&#10;      var url = YAHOO_FINANCE_URL_PATTERN.&#10;                 replace(&#39;PAIRS&#39;, &#39;USD&#39; + currencies.join(&#39;&quot;,&quot;USD&#39;));&#10;      return $http.jsonp(url).success(function(data) {&#10;        var newUsdToForeignRates = {};&#10;        angular.forEach(data.query.results.rate, function(rate) {&#10;          var currency = rate.id.substring(3,6);&#10;          newUsdToForeignRates[currency] = window.parseFloat(rate.Rate);&#10;        });&#10;        usdToForeignRates = newUsdToForeignRates;&#10;      });&#10;    };&#10;&#10;    refresh();&#10;&#10;    return {&#10;      currencies: currencies,&#10;      convert: convert,&#10;      refresh: refresh&#10;    };&#10;  }]);</code></pre>
+      <pre><code>angular.module(&#39;finance3&#39;, [])&#10;  .factory(&#39;currencyConverter&#39;, [&#39;$http&#39;, function($http) {&#10;    var YAHOO_FINANCE_URL_PATTERN =&#10;          &#39;//query.yahooapis.com/v1/public/yql?q=select * from &#39;+&#10;          &#39;yahoo.finance.xchange where pair in (&quot;PAIRS&quot;)&amp;format=json&amp;&#39;+&#10;          &#39;env=store://datatables.org/alltableswithkeys&amp;callback=JSON_CALLBACK&#39;;&#10;    var currencies = [&#39;USD&#39;, &#39;EUR&#39;, &#39;CNY&#39;];&#10;    var usdToForeignRates = {};&#10;&#10;    var convert = function (amount, inCurr, outCurr) {&#10;      return amount * usdToForeignRates[outCurr] / usdToForeignRates[inCurr];&#10;    };&#10;&#10;    var refresh = function() {&#10;      var url = YAHOO_FINANCE_URL_PATTERN.&#10;                 replace(&#39;PAIRS&#39;, &#39;USD&#39; + currencies.join(&#39;&quot;,&quot;USD&#39;));&#10;      return $http.jsonp(url).success(function(data) {&#10;        var newUsdToForeignRates = {};&#10;        angular.forEach(data.query.results.rate, function(rate) {&#10;          var currency = rate.id.substring(3,6);&#10;          newUsdToForeignRates[currency] = window.parseFloat(rate.Rate);&#10;        });&#10;        usdToForeignRates = newUsdToForeignRates;&#10;      });&#10;    };&#10;&#10;    refresh();&#10;&#10;    return {&#10;      currencies: currencies,&#10;      convert: convert,&#10;      refresh: refresh&#10;    };&#10;  }]);</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -321,6 +321,7 @@ The following example shows how this is done with Angular:</p>
     <iframe class="runnable-example-frame" src="examples/example-guide-concepts-3/index.html" name="example-guide-concepts-3"></iframe>
   </div>
 </div>
+
 
 </p>
 <p>What changed?

@@ -1,11 +1,13 @@
 describe("module:ng.service:$sce", function() {
+  var rootEl;
   beforeEach(function() {
+    rootEl = browser.rootEl;
     browser.get("./examples/example-example62/index.html");
   });
-
+  
 describe('SCE doc demo', function() {
   it('should sanitize untrusted values', function() {
-    expect(element(by.css('.htmlComment')).getInnerHtml())
+    expect(element.all(by.css('.htmlComment')).first().getInnerHtml())
         .toBe('<span>Is <i>anyone</i> reading this?</span>');
   });
 

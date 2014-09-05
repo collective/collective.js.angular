@@ -72,7 +72,7 @@ You write the following binding using the currency filter:</p>
 <pre><code class="lang-html">{{ 1000 | currency }}</code></pre>
 <p>If your app is currently in the <code>en-US</code> locale, the browser will show <code>$1000.00</code>. If someone in the
 Japanese locale (<code>ja</code>) views your app, their browser will show a balance of <code>¥1000.00</code> instead.
-This is problematinc because $1000 is not the same as ¥1000.</p>
+This is problematic because $1000 is not the same as ¥1000.</p>
 <p>In this case, you need to override the default currency symbol by providing the
 <a href="api/ng/filter/currency"><code>currency</code></a> currency filter with a currency symbol as a parameter.</p>
 <p>If we change the above to <code>{{ 1000 | currency:&quot;USD$&quot;}}</code>, Angular will always show a balance of

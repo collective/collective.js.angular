@@ -89,19 +89,19 @@ information:</p>
 </ul>
 <p>These can be used interchangeably as you see fit and are equivalent.</p>
 <h3 id="implicit-dependencies">Implicit Dependencies</h3>
-<p>The simplest way to get hold of the dependencies, is to assume that the function parameter names
+<p>The simplest way to get hold of the dependencies is to assume that the function parameter names
 are the names of the dependencies.</p>
 <pre><code class="lang-js">function MyController($scope, greeter) {
   // ...
 }</code></pre>
-<p>Given a function the injector can infer the names of the service to inject by examining the
+<p>Given a function the injector can infer the names of the services to inject by examining the
 function declaration and extracting the parameter names. In the above example <code>$scope</code>, and
 <code>greeter</code> are two services which need to be injected into the function.</p>
 <p>While straightforward, this method will not work with JavaScript minifiers/obfuscators as they
 rename the method parameter names. This makes this way of annotating only useful for
 <a href="http://www.pretotyping.org/">pretotyping</a>, and demo applications.</p>
 <h3 id="-inject-property-annotation"><code>$inject</code> Property Annotation</h3>
-<p>To allow the minifiers to rename the function parameters and still be able to inject right services,
+<p>To allow the minifiers to rename the function parameters and still be able to inject the right services,
 the function needs to be annotated with the <code>$inject</code> property. The <code>$inject</code> property is an array
 of service names to inject.</p>
 <pre><code class="lang-js">var MyController = function(renamed$scope, renamedGreeter) {
@@ -109,7 +109,7 @@ of service names to inject.</p>
 }
 MyController[&#39;$inject&#39;] = [&#39;$scope&#39;, &#39;greeter&#39;];</code></pre>
 <p>In this scenario the ordering of the values in the <code>$inject</code> array must match the ordering of the
-arguments to inject. Using above code snippet as an example, <code>$scope</code> will be injected into
+arguments to inject. Using the above code snippet as an example, <code>$scope</code> will be injected into
 <code>renamed$scope</code> and <code>greeter</code> into <code>renamedGreeter</code>. Care must be taken that the <code>$inject</code>
 annotation is kept in sync with the actual arguments in the function declaration.</p>
 <p>This method of annotation is useful for controller declarations since it assigns the annotation
@@ -133,7 +133,7 @@ someModule.factory(&#39;greeter&#39;, greeterFactory);</code></pre>
 <pre><code class="lang-js">someModule.factory(&#39;greeter&#39;, [&#39;$window&#39;, function(renamed$window) {
   // ...
 }]);</code></pre>
-<p>Here, instead of simply providing the factory function, we pass an array, whose elements consist of
+<p>Here, instead of simply providing the factory function, we pass an array whose elements consist of
 a list of strings (the names of the dependencies) followed by the function itself.</p>
 <p>Keep in mind that all of the annotation styles are equivalent and can be used anywhere in Angular
 where injection is supported.</p>
@@ -142,17 +142,23 @@ where injection is supported.</p>
 and <code>config</code> blocks for a module.</p>
 <ul>
 <li><p>Components such as services, directives, filters and animations are defined by an injectable factory
-method or constructor function.  These components can be injected with &quot;service&quot; components as
-dependencies.</p>
-</li>
-<li><p>The <code>run</code> and <code>config</code> methods accept a function, which can also be injected with &quot;service&quot;
+method or constructor function.  These components can be injected with &quot;service&quot; and &quot;value&quot;
 components as dependencies.</p>
 </li>
+<li><p>The <code>run</code> method accepts a function, which can be injected with &quot;service&quot;, &quot;value&quot; and &quot;constant&quot;
+components as dependencies. Note that you cannot inject &quot;providers&quot; into <code>run</code> blocks.</p>
+</li>
+<li><p>The <code>config</code> method accepts a function, which can be injected with &quot;provider&quot; and &quot;constant&quot;
+components as dependencies.  Note that you cannot inject &quot;service&quot; or &quot;value&quot; components into
+configuration</p>
+</li>
 <li><p>Controllers are defined by a constructor function, which can be injected with any of the &quot;service&quot;
-components as dependencies, but they can also be provided with special dependencies. See &quot;DI in
-Controllers&quot; below.</p>
+and &quot;value&quot; components as dependencies, but they can also be provided with special dependencies. See
+<a href="guide/di#controllers">Controllers</a> below for a list of these special dependencies.</p>
 </li>
 </ul>
+<p>See <a href="guide/module#module-loading-dependencies">Modules</a> for more details about injecting dependencies
+into <code>run</code> and <code>config</code> blocks.</p>
 <h3 id="factory-methods">Factory Methods</h3>
 <p>Factory methods are responsible for creating most objects in Angular. Examples are directives,
 services, and filters. The factory methods are registered with the module, and the recommended way

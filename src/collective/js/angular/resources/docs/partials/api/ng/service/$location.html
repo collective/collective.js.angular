@@ -2,7 +2,7 @@
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/location.js#L517' class='view-source pull-right btn btn-primary'>
+<a href='http://github.com/angular/angular.js/tree/master/src/ng/location.js#L525' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -358,14 +358,16 @@ as duplicate search parameters in the url.</p>
         <div><em>(optional)</em></div>
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-array">Array.&lt;string&gt;</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-array">Array.&lt;string&gt;</a><a href="" class="label type-hint type-hint-boolean">boolean</a>
       </td>
       <td>
-        <p>If <code>search</code> is a string, then <code>paramValue</code> will
-override only a single search property.</p>
+        <p>If <code>search</code> is a string, then <code>paramValue</code>
+will override only a single search property.</p>
 <p>If <code>paramValue</code> is an array, it will override the property of the <code>search</code> component of
 <code>$location</code> specified via the first argument.</p>
 <p>If <code>paramValue</code> is <code>null</code>, the property specified via the first argument will be deleted.</p>
+<p>If <code>paramValue</code> is <code>true</code>, the property specified via the first argument will be added with no
+value nor trailing equal sign.</p>
 
         
       </td>

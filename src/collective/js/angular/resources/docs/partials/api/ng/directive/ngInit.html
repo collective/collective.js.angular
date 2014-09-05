@@ -108,14 +108,15 @@ sure you have parenthesis for correct precedence:
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
-      path="examples/example-example38">
+      path="examples/example-example38"
+      module="initExample">
 
    
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;script&gt;&#10;function Ctrl($scope) {&#10;  $scope.list = [[&#39;a&#39;, &#39;b&#39;], [&#39;c&#39;, &#39;d&#39;]];&#10;}&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;Ctrl&quot;&gt;&#10;&lt;div ng-repeat=&quot;innerList in list&quot; ng-init=&quot;outerIndex = $index&quot;&gt;&#10;  &lt;div ng-repeat=&quot;value in innerList&quot; ng-init=&quot;innerIndex = $index&quot;&gt;&#10;     &lt;span class=&quot;example-init&quot;&gt;list[ {{outerIndex}} ][ {{innerIndex}} ] = {{value}};&lt;/span&gt;&#10;  &lt;/div&gt;&#10;&lt;/div&gt;&#10;&lt;/div&gt;</code></pre>
+      <pre><code>&lt;script&gt;&#10;angular.module(&#39;initExample&#39;, [])&#10;  .controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;    $scope.list = [[&#39;a&#39;, &#39;b&#39;], [&#39;c&#39;, &#39;d&#39;]];&#10;  }]);&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;ExampleController&quot;&gt;&#10;&lt;div ng-repeat=&quot;innerList in list&quot; ng-init=&quot;outerIndex = $index&quot;&gt;&#10;  &lt;div ng-repeat=&quot;value in innerList&quot; ng-init=&quot;innerIndex = $index&quot;&gt;&#10;     &lt;span class=&quot;example-init&quot;&gt;list[ {{outerIndex}} ][ {{innerIndex}} ] = {{value}};&lt;/span&gt;&#10;  &lt;/div&gt;&#10;&lt;/div&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -129,6 +130,7 @@ sure you have parenthesis for correct precedence:
     <iframe class="runnable-example-frame" src="examples/example-example38/index.html" name="example-example38"></iframe>
   </div>
 </div>
+
 
 </p>
 

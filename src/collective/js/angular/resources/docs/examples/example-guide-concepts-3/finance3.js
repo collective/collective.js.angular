@@ -1,7 +1,7 @@
   angular.module('finance3', [])
     .factory('currencyConverter', ['$http', function($http) {
       var YAHOO_FINANCE_URL_PATTERN =
-            'http://query.yahooapis.com/v1/public/yql?q=select * from '+
+            '//query.yahooapis.com/v1/public/yql?q=select * from '+
             'yahoo.finance.xchange where pair in ("PAIRS")&format=json&'+
             'env=store://datatables.org/alltableswithkeys&callback=JSON_CALLBACK';
       var currencies = ['USD', 'EUR', 'CNY'];

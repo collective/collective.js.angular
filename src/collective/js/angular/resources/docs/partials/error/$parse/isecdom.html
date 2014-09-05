@@ -19,6 +19,22 @@ places that are harder for the developer to guard.  Dotted member access (such a
 perform this check - it&#39;s up to the developer to not expose such sensitive and powerful objects
 directly on the scope chain.</p>
 <p>To resolve this error, avoid access to DOM nodes.</p>
+<h1 id="event-handlers-and-return-values">Event Handlers and Return Values</h1>
+<p>The <code>$parse:isecdom</code> error also occurs when an event handler invokes a function that returns a DOM
+node.</p>
+<pre><code class="lang-html">  &lt;button ng-click=&quot;iWillReturnDOM()&quot;&gt;click me&lt;/button&gt;</code></pre>
+<pre><code class="lang-js">  $scope.iWillReturnDOM = function() {
+    return someDomNode;
+  }</code></pre>
+<p>To fix this issue, avoid returning DOM nodes from event handlers.</p>
+<p><em>Note: This error often means that you are accessing DOM from your controllers, which is usually
+a sign of poor coding style that violates separation of concerns.</em></p>
+<h1 id="implicit-returns-in-coffeescript">Implicit Returns in CoffeeScript</h1>
+<p>This error can occur more frequently when using CoffeeScript, which has a feature called implicit
+returns. This language feature returns the last dereferenced object in the function when the
+function has no explicit return statement.</p>
+<p>The solution in this scenario is to add an explicit return statement. For example <code>return false</code> to
+the function.</p>
 
 </div>
 

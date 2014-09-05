@@ -23,8 +23,11 @@
   <p>Enables <a href="https://developer.mozilla.org/en/Security/CSP">CSP (Content Security Policy)</a> support.</p>
 <p>This is necessary when developing things like Google Chrome Extensions.</p>
 <p>CSP forbids apps to use <code>eval</code> or <code>Function(string)</code> generated functions (among other things).
-For us to be compatible, we just need to implement the &quot;getterFn&quot; in $parse without violating
-any of these restrictions.</p>
+For Angular to be CSP compatible there are only two things that we need to do differently:</p>
+<ul>
+<li>don&#39;t use <code>Function</code> constructor to generate optimized value getters</li>
+<li>don&#39;t inject custom stylesheet into the document</li>
+</ul>
 <p>AngularJS uses <code>Function(string)</code> generated functions as a speed optimization. Applying the <code>ngCsp</code>
 directive will cause Angular to use CSP compatibility mode. When this mode is on AngularJS will
 evaluate all expressions up to 30% slower than in non-CSP mode, but no security violations will
@@ -32,7 +35,14 @@ be raised.</p>
 <p>CSP forbids JavaScript to inline stylesheet rules. In non CSP mode Angular automatically
 includes some CSS rules (e.g. <a href="api/ng/directive/ngCloak">ngCloak</a>).
 To make those directives work in CSP mode, include the <code>angular-csp.css</code> manually.</p>
-<p>In order to use this feature put the <code>ngCsp</code> directive on the root element of the application.</p>
+<p>Angular tries to autodetect if CSP is active and automatically turn on the CSP-safe mode. This
+autodetection however triggers a CSP error to be logged in the console:</p>
+<pre><code>Refused to evaluate a string as JavaScript because &#39;unsafe-eval&#39; is not an allowed source of
+script in the following Content Security Policy directive: &quot;default-src &#39;self&#39;&quot;. Note that
+&#39;script-src&#39; was not explicitly set, so &#39;default-src&#39; is used as a fallback.</code></pre>
+<p>This error is harmless but annoying. To prevent the error from showing up, put the <code>ngCsp</code>
+directive on the root element of the application or on the <code>angular.js</code> script tag, whichever
+appears first in the html document.</p>
 <p><em>Note: This directive is only available in the <code>ng-csp</code> and <code>data-ng-csp</code> attribute form.</em></p>
 
 </div>

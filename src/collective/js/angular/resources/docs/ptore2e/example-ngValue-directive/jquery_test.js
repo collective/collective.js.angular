@@ -1,8 +1,10 @@
 describe("module:ng.directive:ngValue", function() {
+  var rootEl;
   beforeEach(function() {
+    rootEl = browser.rootEl;
     browser.get("./examples/example-ngValue-directive/index-jquery.html");
   });
-
+  
   var favorite = element(by.binding('my.favorite'));
 
   it('should initialize to model', function() {

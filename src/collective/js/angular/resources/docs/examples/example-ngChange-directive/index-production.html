@@ -5,21 +5,22 @@
   <title>Example - example-ngChange-directive-production</title>
   
 
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js"></script>
   
 
   
 </head>
-<body ng-app="">
+<body ng-app="changeExample">
     <script>
-    function Controller($scope) {
-      $scope.counter = 0;
-      $scope.change = function() {
-        $scope.counter++;
-      };
-    }
+    angular.module('changeExample', [])
+      .controller('ExampleController', ['$scope', function($scope) {
+        $scope.counter = 0;
+        $scope.change = function() {
+          $scope.counter++;
+        };
+      }]);
   </script>
-  <div ng-controller="Controller">
+  <div ng-controller="ExampleController">
     <input type="checkbox" ng-model="confirmed" ng-change="change()" id="ng-change-example1" />
     <input type="checkbox" ng-model="confirmed" id="ng-change-example2" />
     <label for="ng-change-example2">Confirmed</label><br />

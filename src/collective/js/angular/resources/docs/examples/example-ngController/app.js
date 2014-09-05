@@ -1,3 +1,6 @@
+ angular.module('controllerExample', [])
+   .controller('SettingsController2', ['$scope', SettingsController2]);
+
  function SettingsController2($scope) {
    $scope.name = "John Smith";
    $scope.contacts = [

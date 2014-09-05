@@ -112,7 +112,7 @@ plain email address links.</p>
     Edit in Plunker</a>
   <div class="runnable-example"
       path="examples/example-example64"
-      module="ngSanitize"
+      module="linkyExample"
       deps="angular-sanitize.js">
 
    
@@ -120,7 +120,7 @@ plain email address links.</p>
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;script&gt;&#10;  function Ctrl($scope) {&#10;    $scope.snippet =&#10;      &#39;Pretty text with some links:\n&#39;+&#10;      &#39;http://angularjs.org/,\n&#39;+&#10;      &#39;mailto:us@somewhere.org,\n&#39;+&#10;      &#39;another@somewhere.org,\n&#39;+&#10;      &#39;and one more: ftp://127.0.0.1/.&#39;;&#10;    $scope.snippetWithTarget = &#39;http://angularjs.org/&#39;;&#10;  }&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;Ctrl&quot;&gt;&#10;Snippet: &lt;textarea ng-model=&quot;snippet&quot; cols=&quot;60&quot; rows=&quot;3&quot;&gt;&lt;/textarea&gt;&#10;&lt;table&gt;&#10;  &lt;tr&gt;&#10;    &lt;td&gt;Filter&lt;/td&gt;&#10;    &lt;td&gt;Source&lt;/td&gt;&#10;    &lt;td&gt;Rendered&lt;/td&gt;&#10;  &lt;/tr&gt;&#10;  &lt;tr id=&quot;linky-filter&quot;&gt;&#10;    &lt;td&gt;linky filter&lt;/td&gt;&#10;    &lt;td&gt;&#10;      &lt;pre&gt;&lt;div ng-bind-html=&quot;snippet | linky&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;/pre&gt;&#10;    &lt;/td&gt;&#10;    &lt;td&gt;&#10;      &lt;div ng-bind-html=&quot;snippet | linky&quot;&gt;&lt;/div&gt;&#10;    &lt;/td&gt;&#10;  &lt;/tr&gt;&#10;  &lt;tr id=&quot;linky-target&quot;&gt;&#10;   &lt;td&gt;linky target&lt;/td&gt;&#10;   &lt;td&gt;&#10;     &lt;pre&gt;&lt;div ng-bind-html=&quot;snippetWithTarget | linky:&#39;_blank&#39;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;/pre&gt;&#10;   &lt;/td&gt;&#10;   &lt;td&gt;&#10;     &lt;div ng-bind-html=&quot;snippetWithTarget | linky:&#39;_blank&#39;&quot;&gt;&lt;/div&gt;&#10;   &lt;/td&gt;&#10;  &lt;/tr&gt;&#10;  &lt;tr id=&quot;escaped-html&quot;&gt;&#10;    &lt;td&gt;no filter&lt;/td&gt;&#10;    &lt;td&gt;&lt;pre&gt;&lt;div ng-bind=&quot;snippet&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&#10;    &lt;td&gt;&lt;div ng-bind=&quot;snippet&quot;&gt;&lt;/div&gt;&lt;/td&gt;&#10;  &lt;/tr&gt;&#10;&lt;/table&gt;</code></pre>
+      <pre><code>&lt;script&gt;&#10;  angular.module(&#39;linkyExample&#39;, [&#39;ngSanitize&#39;])&#10;    .controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;      $scope.snippet =&#10;        &#39;Pretty text with some links:\n&#39;+&#10;        &#39;http://angularjs.org/,\n&#39;+&#10;        &#39;mailto:us@somewhere.org,\n&#39;+&#10;        &#39;another@somewhere.org,\n&#39;+&#10;        &#39;and one more: ftp://127.0.0.1/.&#39;;&#10;      $scope.snippetWithTarget = &#39;http://angularjs.org/&#39;;&#10;    }]);&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;ExampleController&quot;&gt;&#10;Snippet: &lt;textarea ng-model=&quot;snippet&quot; cols=&quot;60&quot; rows=&quot;3&quot;&gt;&lt;/textarea&gt;&#10;&lt;table&gt;&#10;  &lt;tr&gt;&#10;    &lt;td&gt;Filter&lt;/td&gt;&#10;    &lt;td&gt;Source&lt;/td&gt;&#10;    &lt;td&gt;Rendered&lt;/td&gt;&#10;  &lt;/tr&gt;&#10;  &lt;tr id=&quot;linky-filter&quot;&gt;&#10;    &lt;td&gt;linky filter&lt;/td&gt;&#10;    &lt;td&gt;&#10;      &lt;pre&gt;&amp;lt;div ng-bind-html=&quot;snippet | linky&quot;&amp;gt;&lt;br&gt;&amp;lt;/div&amp;gt;&lt;/pre&gt;&#10;    &lt;/td&gt;&#10;    &lt;td&gt;&#10;      &lt;div ng-bind-html=&quot;snippet | linky&quot;&gt;&lt;/div&gt;&#10;    &lt;/td&gt;&#10;  &lt;/tr&gt;&#10;  &lt;tr id=&quot;linky-target&quot;&gt;&#10;   &lt;td&gt;linky target&lt;/td&gt;&#10;   &lt;td&gt;&#10;     &lt;pre&gt;&amp;lt;div ng-bind-html=&quot;snippetWithTarget | linky:&#39;_blank&#39;&quot;&amp;gt;&lt;br&gt;&amp;lt;/div&amp;gt;&lt;/pre&gt;&#10;   &lt;/td&gt;&#10;   &lt;td&gt;&#10;     &lt;div ng-bind-html=&quot;snippetWithTarget | linky:&#39;_blank&#39;&quot;&gt;&lt;/div&gt;&#10;   &lt;/td&gt;&#10;  &lt;/tr&gt;&#10;  &lt;tr id=&quot;escaped-html&quot;&gt;&#10;    &lt;td&gt;no filter&lt;/td&gt;&#10;    &lt;td&gt;&lt;pre&gt;&amp;lt;div ng-bind=&quot;snippet&quot;&amp;gt;&lt;br&gt;&amp;lt;/div&amp;gt;&lt;/pre&gt;&lt;/td&gt;&#10;    &lt;td&gt;&lt;div ng-bind=&quot;snippet&quot;&gt;&lt;/div&gt;&lt;/td&gt;&#10;  &lt;/tr&gt;&#10;&lt;/table&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -134,6 +134,7 @@ plain email address links.</p>
     <iframe class="runnable-example-frame" src="examples/example-example64/index.html" name="example-example64"></iframe>
   </div>
 </div>
+
 
 </p>
 

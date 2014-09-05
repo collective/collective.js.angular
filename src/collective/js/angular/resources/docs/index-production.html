@@ -33,13 +33,13 @@
       addTag('link', {rel: 'stylesheet', href: 'css/animations.css', type: 'text/css'});
       
 
-      addTag('script', {src: '//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js' }, sync);
-      addTag('script', {src: '//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-resource.min.js' }, sync);
-      addTag('script', {src: '//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-route.min.js' }, sync);
-      addTag('script', {src: '//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-cookies.min.js' }, sync);
-      addTag('script', {src: '//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-sanitize.min.js' }, sync);
-      addTag('script', {src: '//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-touch.min.js' }, sync);
-      addTag('script', {src: '//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-animate.min.js' }, sync);
+      addTag('script', {src: '//ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js' }, sync);
+      addTag('script', {src: '//ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular-resource.min.js' }, sync);
+      addTag('script', {src: '//ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular-route.min.js' }, sync);
+      addTag('script', {src: '//ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular-cookies.min.js' }, sync);
+      addTag('script', {src: '//ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular-sanitize.min.js' }, sync);
+      addTag('script', {src: '//ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular-touch.min.js' }, sync);
+      addTag('script', {src: '//ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular-animate.min.js' }, sync);
       addTag('script', {src: 'components/marked-0.3.1/lib/marked.js' }, sync);
       addTag('script', {src: 'js/angular-bootstrap/bootstrap.js' }, sync);
       addTag('script', {src: 'js/angular-bootstrap/bootstrap-prettify.js' }, sync);
@@ -195,7 +195,7 @@
         <div class="container main-grid main-header-grid">
           <div class="grid-left">
             <div ng-controller="DocsVersionsCtrl" class="picker version-picker">
-              <select ng-options="v as ('v' + v.version + (v.isSnapshot ? ' (snapshot)' : '')) group by (v.isStable?'Stable':'Unstable') for v in docs_versions"
+              <select ng-options="v as ('v' + v.version + (v.isSnapshot ? ' (snapshot)' : '')) group by getGroupName(v) for v in docs_versions"
                       ng-model="docs_version"
                       ng-change="jumpToDocsVersion(docs_version)"
                       class="docs-version-jump">

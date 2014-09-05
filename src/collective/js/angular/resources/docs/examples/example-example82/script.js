@@ -1,7 +1,7 @@
-  angular.module('docsIsolateScopeDirective', [])
+  angular.module('docsIsolationExample', [])
     .controller('Controller', ['$scope', function($scope) {
       $scope.naomi = { name: 'Naomi', address: '1600 Amphitheatre' };
-      $scope.igor = { name: 'Igor', address: '123 Somewhere' };
+      $scope.vojta = { name: 'Vojta', address: '3456 Somewhere Else' };
     }])
     .directive('myCustomer', function() {
       return {
@@ -9,6 +9,6 @@
         scope: {
           customerInfo: '=info'
         },
-        templateUrl: 'my-customer-iso.html'
+        templateUrl: 'my-customer-plus-vojta.html'
       };
     });

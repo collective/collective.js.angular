@@ -1,8 +1,10 @@
 describe("module:ngSanitize.filter:linky", function() {
+  var rootEl;
   beforeEach(function() {
+    rootEl = browser.rootEl;
     browser.get("./examples/example-example64/index.html");
   });
-
+  
   it('should linkify the snippet with urls', function() {
     expect(element(by.id('linky-filter')).element(by.binding('snippet | linky')).getText()).
         toBe('Pretty text with some links: http://angularjs.org/, us@somewhere.org, ' +

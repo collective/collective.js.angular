@@ -1,8 +1,10 @@
 describe("module:ngSanitize.service:$sanitize", function() {
+  var rootEl;
   beforeEach(function() {
+    rootEl = browser.rootEl;
     browser.get("./examples/example-example65/index.html");
   });
-
+  
   it('should sanitize the html snippet by default', function() {
     expect(element(by.css('#bind-html-with-sanitize div')).getInnerHtml()).
       toBe('<p>an html\n<em>click here</em>\nsnippet</p>');

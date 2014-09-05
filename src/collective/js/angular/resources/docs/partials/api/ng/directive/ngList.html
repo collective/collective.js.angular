@@ -2,7 +2,7 @@
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/input.js#L1464' class='view-source pull-right btn btn-primary'>
+<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/input.js#L1481' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -95,14 +95,15 @@ can be a fixed string (by default a comma) or a regular expression.</p>
     Edit in Plunker</a>
   <div class="runnable-example"
       path="examples/example-ngList-directive"
-      name="ngList-directive">
+      name="ngList-directive"
+      module="listExample">
 
    
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;script&gt;&#10;  function Ctrl($scope) {&#10;    $scope.names = [&#39;igor&#39;, &#39;misko&#39;, &#39;vojta&#39;];&#10;  }&#10;&lt;/script&gt;&#10;&lt;form name=&quot;myForm&quot; ng-controller=&quot;Ctrl&quot;&gt;&#10;  List: &lt;input name=&quot;namesInput&quot; ng-model=&quot;names&quot; ng-list required&gt;&#10;  &lt;span class=&quot;error&quot; ng-show=&quot;myForm.namesInput.$error.required&quot;&gt;&#10;    Required!&lt;/span&gt;&#10;  &lt;br&gt;&#10;  &lt;tt&gt;names = {{names}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.namesInput.$valid = {{myForm.namesInput.$valid}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.namesInput.$error = {{myForm.namesInput.$error}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.$valid = {{myForm.$valid}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.$error.required = {{!!myForm.$error.required}}&lt;/tt&gt;&lt;br/&gt;&#10; &lt;/form&gt;</code></pre>
+      <pre><code>&lt;script&gt;&#10;  angular.module(&#39;listExample&#39;, [])&#10;    .controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;      $scope.names = [&#39;igor&#39;, &#39;misko&#39;, &#39;vojta&#39;];&#10;    }]);&#10;&lt;/script&gt;&#10;&lt;form name=&quot;myForm&quot; ng-controller=&quot;ExampleController&quot;&gt;&#10;  List: &lt;input name=&quot;namesInput&quot; ng-model=&quot;names&quot; ng-list required&gt;&#10;  &lt;span class=&quot;error&quot; ng-show=&quot;myForm.namesInput.$error.required&quot;&gt;&#10;    Required!&lt;/span&gt;&#10;  &lt;br&gt;&#10;  &lt;tt&gt;names = {{names}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.namesInput.$valid = {{myForm.namesInput.$valid}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.namesInput.$error = {{myForm.namesInput.$error}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.$valid = {{myForm.$valid}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.$error.required = {{!!myForm.$error.required}}&lt;/tt&gt;&lt;br/&gt;&#10; &lt;/form&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -116,6 +117,7 @@ can be a fixed string (by default a comma) or a regular expression.</p>
     <iframe class="runnable-example-frame" src="examples/example-ngList-directive/index.html" name="example-ngList-directive"></iframe>
   </div>
 </div>
+
 
 </p>
 

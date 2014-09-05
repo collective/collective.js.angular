@@ -5,24 +5,25 @@
   <title>Example - example-example56-production</title>
   
 
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js"></script>
   
 
   
 </head>
-<body ng-app="">
+<body ng-app="orderByExample">
     <script>
-    function Ctrl($scope) {
-      $scope.friends =
-          [{name:'John', phone:'555-1212', age:10},
-           {name:'Mary', phone:'555-9876', age:19},
-           {name:'Mike', phone:'555-4321', age:21},
-           {name:'Adam', phone:'555-5678', age:35},
-           {name:'Julie', phone:'555-8765', age:29}]
-      $scope.predicate = '-age';
-    }
+    angular.module('orderByExample', [])
+      .controller('ExampleController', ['$scope', function($scope) {
+        $scope.friends =
+            [{name:'John', phone:'555-1212', age:10},
+             {name:'Mary', phone:'555-9876', age:19},
+             {name:'Mike', phone:'555-4321', age:21},
+             {name:'Adam', phone:'555-5678', age:35},
+             {name:'Julie', phone:'555-8765', age:29}];
+        $scope.predicate = '-age';
+      }]);
   </script>
-  <div ng-controller="Ctrl">
+  <div ng-controller="ExampleController">
     <pre>Sorting predicate = {{predicate}}; reverse = {{reverse}}</pre>
     <hr/>
     [ <a href="" ng-click="predicate=''">unsorted</a> ]

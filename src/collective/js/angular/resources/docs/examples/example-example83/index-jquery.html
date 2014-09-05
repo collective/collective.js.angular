@@ -12,9 +12,10 @@
 
   
 </head>
-<body ng-app="docsIsolationExample">
+<body ng-app="docsTimeDirective">
     <div ng-controller="Controller">
-    <my-customer info="naomi"></my-customer>
+    Date format: <input ng-model="format"> <hr/>
+    Current time is: <span my-current-time="format"></span>
   </div>
 </body>
 </html>

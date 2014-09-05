@@ -1,6 +1,15 @@
 History
 =======
 
+1.2.32.1 (2014-09-05)
+---------------------
+
+- Fix typo in CDN profile
+  [jensens]
+
+- Upgrade to ``angular.js`` 1.2.23.
+  [jensens]
+
 1.2.19.1 (2014-07-03)
 ---------------------
 

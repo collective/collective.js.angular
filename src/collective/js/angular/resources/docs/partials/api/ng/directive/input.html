@@ -2,7 +2,7 @@
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/input.js#L773' class='view-source pull-right btn btn-primary'>
+<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/input.js#L782' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -22,6 +22,7 @@
 <div class="api-profile-description">
   <p>HTML input element control with angular data-binding. Input control follows HTML5 input types
 and polyfills the HTML5 validation behavior for older browsers.</p>
+<p><em>NOTE</em> Not every feature offered is available for all input types.</p>
 
 </div>
 
@@ -46,7 +47,7 @@ and polyfills the HTML5 validation behavior for older browsers.</p>
     
       <li>as element:
       
-      <pre><code>&lt;input&#10;  ng-model=&quot;&quot;&#10;  [name=&quot;&quot;]&#10;  [required=&quot;&quot;]&#10;  [ng-required=&quot;&quot;]&#10;  [ng-minlength=&quot;&quot;]&#10;  [ng-maxlength=&quot;&quot;]&#10;  [ng-pattern=&quot;&quot;]&#10;  [ng-change=&quot;&quot;]&gt;&#10;...&#10;&lt;/input&gt;</code></pre>
+      <pre><code>&lt;input&#10;  ng-model=&quot;&quot;&#10;  [name=&quot;&quot;]&#10;  [required=&quot;&quot;]&#10;  [ng-required=&quot;&quot;]&#10;  [ng-minlength=&quot;&quot;]&#10;  [ng-maxlength=&quot;&quot;]&#10;  [ng-pattern=&quot;&quot;]&#10;  [ng-change=&quot;&quot;]&#10;  [ng-trim=&quot;&quot;]&gt;&#10;...&#10;&lt;/input&gt;</code></pre>
       </li>
     
   </div>
@@ -197,6 +198,24 @@ and polyfills the HTML5 validation behavior for older browsers.</p>
       </td>
     </tr>
     
+    <tr>
+      <td>
+        ngTrim
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-boolean">boolean</a>
+      </td>
+      <td>
+        <p>If set to false Angular will not automatically trim the input.
+   This parameter is ignored for input[type=password] controls, which will never trim the
+   input.</p>
+
+        <p><em>(default: true)</em></p>
+      </td>
+    </tr>
+    
   </tbody>
 </table>
 
@@ -213,14 +232,15 @@ and polyfills the HTML5 validation behavior for older browsers.</p>
     Edit in Plunker</a>
   <div class="runnable-example"
       path="examples/example-input-directive"
-      name="input-directive">
+      name="input-directive"
+      module="inputExample">
 
    
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;script&gt;&#10;  function Ctrl($scope) {&#10;    $scope.user = {name: &#39;guest&#39;, last: &#39;visitor&#39;};&#10;  }&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;Ctrl&quot;&gt;&#10;  &lt;form name=&quot;myForm&quot;&gt;&#10;    User name: &lt;input type=&quot;text&quot; name=&quot;userName&quot; ng-model=&quot;user.name&quot; required&gt;&#10;    &lt;span class=&quot;error&quot; ng-show=&quot;myForm.userName.$error.required&quot;&gt;&#10;      Required!&lt;/span&gt;&lt;br&gt;&#10;    Last name: &lt;input type=&quot;text&quot; name=&quot;lastName&quot; ng-model=&quot;user.last&quot;&#10;      ng-minlength=&quot;3&quot; ng-maxlength=&quot;10&quot;&gt;&#10;    &lt;span class=&quot;error&quot; ng-show=&quot;myForm.lastName.$error.minlength&quot;&gt;&#10;      Too short!&lt;/span&gt;&#10;    &lt;span class=&quot;error&quot; ng-show=&quot;myForm.lastName.$error.maxlength&quot;&gt;&#10;      Too long!&lt;/span&gt;&lt;br&gt;&#10;  &lt;/form&gt;&#10;  &lt;hr&gt;&#10;  &lt;tt&gt;user = {{user}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.userName.$valid = {{myForm.userName.$valid}}&lt;/tt&gt;&lt;br&gt;&#10;  &lt;tt&gt;myForm.userName.$error = {{myForm.userName.$error}}&lt;/tt&gt;&lt;br&gt;&#10;  &lt;tt&gt;myForm.lastName.$valid = {{myForm.lastName.$valid}}&lt;/tt&gt;&lt;br&gt;&#10;  &lt;tt&gt;myForm.lastName.$error = {{myForm.lastName.$error}}&lt;/tt&gt;&lt;br&gt;&#10;  &lt;tt&gt;myForm.$valid = {{myForm.$valid}}&lt;/tt&gt;&lt;br&gt;&#10;  &lt;tt&gt;myForm.$error.required = {{!!myForm.$error.required}}&lt;/tt&gt;&lt;br&gt;&#10;  &lt;tt&gt;myForm.$error.minlength = {{!!myForm.$error.minlength}}&lt;/tt&gt;&lt;br&gt;&#10;  &lt;tt&gt;myForm.$error.maxlength = {{!!myForm.$error.maxlength}}&lt;/tt&gt;&lt;br&gt;&#10;&lt;/div&gt;</code></pre>
+      <pre><code>&lt;script&gt;&#10;   angular.module(&#39;inputExample&#39;, [])&#10;     .controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;       $scope.user = {name: &#39;guest&#39;, last: &#39;visitor&#39;};&#10;     }]);&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;ExampleController&quot;&gt;&#10;  &lt;form name=&quot;myForm&quot;&gt;&#10;    User name: &lt;input type=&quot;text&quot; name=&quot;userName&quot; ng-model=&quot;user.name&quot; required&gt;&#10;    &lt;span class=&quot;error&quot; ng-show=&quot;myForm.userName.$error.required&quot;&gt;&#10;      Required!&lt;/span&gt;&lt;br&gt;&#10;    Last name: &lt;input type=&quot;text&quot; name=&quot;lastName&quot; ng-model=&quot;user.last&quot;&#10;      ng-minlength=&quot;3&quot; ng-maxlength=&quot;10&quot;&gt;&#10;    &lt;span class=&quot;error&quot; ng-show=&quot;myForm.lastName.$error.minlength&quot;&gt;&#10;      Too short!&lt;/span&gt;&#10;    &lt;span class=&quot;error&quot; ng-show=&quot;myForm.lastName.$error.maxlength&quot;&gt;&#10;      Too long!&lt;/span&gt;&lt;br&gt;&#10;  &lt;/form&gt;&#10;  &lt;hr&gt;&#10;  &lt;tt&gt;user = {{user}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.userName.$valid = {{myForm.userName.$valid}}&lt;/tt&gt;&lt;br&gt;&#10;  &lt;tt&gt;myForm.userName.$error = {{myForm.userName.$error}}&lt;/tt&gt;&lt;br&gt;&#10;  &lt;tt&gt;myForm.lastName.$valid = {{myForm.lastName.$valid}}&lt;/tt&gt;&lt;br&gt;&#10;  &lt;tt&gt;myForm.lastName.$error = {{myForm.lastName.$error}}&lt;/tt&gt;&lt;br&gt;&#10;  &lt;tt&gt;myForm.$valid = {{myForm.$valid}}&lt;/tt&gt;&lt;br&gt;&#10;  &lt;tt&gt;myForm.$error.required = {{!!myForm.$error.required}}&lt;/tt&gt;&lt;br&gt;&#10;  &lt;tt&gt;myForm.$error.minlength = {{!!myForm.$error.minlength}}&lt;/tt&gt;&lt;br&gt;&#10;  &lt;tt&gt;myForm.$error.maxlength = {{!!myForm.$error.maxlength}}&lt;/tt&gt;&lt;br&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -234,6 +254,7 @@ and polyfills the HTML5 validation behavior for older browsers.</p>
     <iframe class="runnable-example-frame" src="examples/example-input-directive/index.html" name="example-input-directive"></iframe>
   </div>
 </div>
+
 
 </p>
 

@@ -1,8 +1,10 @@
 describe("module:ng.service:$http", function() {
+  var rootEl;
   beforeEach(function() {
+    rootEl = browser.rootEl;
     browser.get("./examples/example-example58/index.html");
   });
-
+  
 var status = element(by.binding('status'));
 var data = element(by.binding('data'));
 var fetchBtn = element(by.id('fetchbtn'));

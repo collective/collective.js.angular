@@ -1,8 +1,10 @@
 describe("module:ng.directive:ngClass", function() {
+  var rootEl;
   beforeEach(function() {
+    rootEl = browser.rootEl;
     browser.get("./examples/example-example17/index.html");
   });
-
+  
   it('should check ng-class', function() {
     expect(element(by.css('.base-class')).getAttribute('class')).not.
       toMatch(/my-class/);

@@ -12,16 +12,12 @@
 
   
 </head>
-<body ng-app="FilterInControllerModule">
-    <div ng-controller="FilterController as ctrl">
-    <div>
-      All entries:
-      <span ng-repeat="entry in ctrl.array">{{entry.name}} </span>
-    </div>
-    <div>
-      Entries that contain an "a":
-      <span ng-repeat="entry in ctrl.filteredArray">{{entry.name}} </span>
-    </div>
+<body ng-app="myReverseModule">
+    <div ng-controller="Controller">
+    <input ng-model="greeting" type="text"><br>
+    No filter: {{greeting}}<br>
+    Reverse: {{greeting|reverse}}<br>
+    Reverse + uppercase: {{greeting|reverse:true}}<br>
   </div>
 </body>
 </html>

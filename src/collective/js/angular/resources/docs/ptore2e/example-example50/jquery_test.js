@@ -1,8 +1,10 @@
 describe("module:ng.filter:filter", function() {
+  var rootEl;
   beforeEach(function() {
+    rootEl = browser.rootEl;
     browser.get("./examples/example-example50/index-jquery.html");
   });
-
+  
   var expectFriendNames = function(expectedNames, key) {
     element.all(by.repeater(key + ' in friends').column(key + '.name')).then(function(arr) {
       arr.forEach(function(wd, i) {

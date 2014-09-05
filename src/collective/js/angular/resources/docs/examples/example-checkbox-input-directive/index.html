@@ -10,14 +10,15 @@
 
   
 </head>
-<body ng-app="">
+<body ng-app="checkboxExample">
    <script>
-   function Ctrl($scope) {
-     $scope.value1 = true;
-     $scope.value2 = 'YES'
-   }
+   angular.module('checkboxExample', [])
+     .controller('ExampleController', ['$scope', function($scope) {
+       $scope.value1 = true;
+       $scope.value2 = 'YES'
+     }]);
  </script>
- <form name="myForm" ng-controller="Ctrl">
+ <form name="myForm" ng-controller="ExampleController">
    Value1: <input type="checkbox" ng-model="value1"> <br/>
    Value2: <input type="checkbox" ng-model="value2"
                   ng-true-value="YES" ng-false-value="NO"> <br/>

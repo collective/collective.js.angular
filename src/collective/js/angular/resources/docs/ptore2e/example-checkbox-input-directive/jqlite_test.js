@@ -1,8 +1,10 @@
 describe("module:ng.input:input[checkbox]", function() {
+  var rootEl;
   beforeEach(function() {
+    rootEl = browser.rootEl;
     browser.get("./examples/example-checkbox-input-directive/index.html");
   });
-
+  
   it('should change state', function() {
     var value1 = element(by.binding('value1'));
     var value2 = element(by.binding('value2'));

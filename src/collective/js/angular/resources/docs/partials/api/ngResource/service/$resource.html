@@ -105,8 +105,10 @@ the need to interact with the low level <a href="api/ng/service/$http">$http</a>
   excess keys are appended to the url search query after the <code>?</code>.</p>
 <p>  Given a template <code>/path/:verb</code> and parameter <code>{verb:&#39;greet&#39;, salutation:&#39;Hello&#39;}</code> results in
   URL <code>/path/greet?salutation=Hello</code>.</p>
-<p>  If the parameter value is prefixed with <code>@</code> then the value of that parameter will be taken
-  from the corresponding key on the data object (useful for non-GET operations).</p>
+<p>  If the parameter value is prefixed with <code>@</code> then the value for that parameter will be extracted
+  from the corresponding property on the <code>data</code> object (provided when calling an action method).  For
+  example, if the <code>defaultParam</code> object is <code>{someParam: &#39;@someProp&#39;}</code> then the value of <code>someParam</code>
+  will be <code>data.someProp</code>.</p>
 
         
       </td>
@@ -131,8 +133,8 @@ the need to interact with the low level <a href="api/ng/service/$http">$http</a>
 <ul>
 <li><strong><code>action</code></strong> – {string} – The name of action. This name becomes the name of the method on
 your resource object.</li>
-<li><strong><code>method</code></strong> – {string} – HTTP request method. Valid methods are: <code>GET</code>, <code>POST</code>, <code>PUT</code>,
-<code>DELETE</code>, and <code>JSONP</code>.</li>
+<li><strong><code>method</code></strong> – {string} – Case insensitive HTTP method (e.g. <code>GET</code>, <code>POST</code>, <code>PUT</code>,
+<code>DELETE</code>, <code>JSONP</code>, etc).</li>
 <li><strong><code>params</code></strong> – {Object=} – Optional set of pre-bound parameters for this action. If any of
 the parameter value is a function, it will be executed every time when a param value needs to
 be obtained for a request (unless the param was overridden).</li>
@@ -305,20 +307,20 @@ could rewrite the above example and get access to http headers as:</p>
          });</code></pre>
 <h1 id="creating-a-custom-put-request">Creating a custom &#39;PUT&#39; request</h1>
 <p>In this example we create a custom method on our resource to make a PUT request</p>
-<pre><code class="lang-js">    var app = angular.module(&#39;app&#39;, [&#39;ngResource&#39;, &#39;ngRoute&#39;]);
+<pre><code class="lang-js">   var app = angular.module(&#39;app&#39;, [&#39;ngResource&#39;, &#39;ngRoute&#39;]);
 
-    // Some APIs expect a PUT request in the format URL/object/ID
-    // Here we are creating an &#39;update&#39; method
-    app.factory(&#39;Notes&#39;, [&#39;$resource&#39;, function($resource) {
+   // Some APIs expect a PUT request in the format URL/object/ID
+   // Here we are creating an &#39;update&#39; method
+   app.factory(&#39;Notes&#39;, [&#39;$resource&#39;, function($resource) {
    return $resource(&#39;/notes/:id&#39;, null,
        {
            &#39;update&#39;: { method:&#39;PUT&#39; }
        });
-    }]);
+   }]);
 
-    // In our controller we get the ID from the URL using ngRoute and $routeParams
-    // We pass in $routeParams and our Notes factory along with $scope
-    app.controller(&#39;NotesCtrl&#39;, [&#39;$scope&#39;, &#39;$routeParams&#39;, &#39;Notes&#39;,
+   // In our controller we get the ID from the URL using ngRoute and $routeParams
+   // We pass in $routeParams and our Notes factory along with $scope
+   app.controller(&#39;NotesCtrl&#39;, [&#39;$scope&#39;, &#39;$routeParams&#39;, &#39;Notes&#39;,
                                       function($scope, $routeParams, Notes) {
    // First get a note object from the factory
    var note = Notes.get({ id:$routeParams.id });
@@ -328,7 +330,7 @@ could rewrite the above example and get access to http headers as:</p>
    Notes.update({ id:$id }, note);
 
    // This will PUT /notes/ID with the note object in the request payload
-    }]);</code></pre>
+   }]);</code></pre>
 
 </div>
 

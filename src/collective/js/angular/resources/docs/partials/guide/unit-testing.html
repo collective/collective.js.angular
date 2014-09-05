@@ -251,6 +251,50 @@ verify this functionality. Note that the expression <code>{{1 + 1}}</code> times
 <p>We inject the $compile service and $rootScope before each jasmine test. The $compile service is used
 to render the aGreatEye directive. After rendering the directive we ensure that the directive has
 replaced the content and &quot;lidless, wreathed in flame, 2 times&quot; is present.</p>
+<h3 id="testing-transclusion-directives">Testing Transclusion Directives</h3>
+<p>Directives that use transclusion are treated specially by the compiler.  Before their compile
+function is called, the contents of the directive&#39;s element are removed from the element and
+provided via a transclusion function.  The directive&#39;s template is then appended to the directive&#39;s
+element, to which it can then insert the transcluded content into its template.</p>
+<p>Before compilation:</p>
+<pre><code class="lang-html">&lt;div translude-directive&gt;
+  Some transcluded content
+&lt;/div&gt;</code></pre>
+<p>After transclusion extraction:</p>
+<pre><code class="lang-html">&lt;div transclude-directive&gt;&lt;/div&gt;</code></pre>
+<p>After compilation:</p>
+<pre><code class="lang-html">&lt;div transclude-directive&gt;
+  Some Template
+  &lt;span ng-transclude&gt;Some transcluded content&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+<p>If the directive is using &#39;element&#39; transclusion, the compiler will actually remove the
+directive&#39;s entire element from the DOM and replace it with a comment node. The compiler then
+inserts the directive&#39;s template &quot;after&quot; this comment node, as a sibling.</p>
+<p>Before compilation</p>
+<pre><code class="lang-html">&lt;div element-transclude&gt;
+  Some Content
+&lt;/div&gt;</code></pre>
+<p>After transclusion extraction</p>
+<pre><code class="lang-html">&lt;!-- elementTransclude --&gt;</code></pre>
+<p>After compilation:</p>
+<pre><code class="lang-html">&lt;!-- elementTransclude --&gt;
+&lt;div element-transclude&gt;
+  Some Template
+  &lt;span ng-transclude&gt;Some transcluded content&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+<p>It is important to be aware of this when writing tests for directives that use &#39;element&#39;
+transclusion.  If you place the directive on the root element of the DOM fragment that you
+pass to <a href="api/ng/service/$compile"><code>$compile</code></a>, then the DOM node returned from the linking function will be the
+comment node and you will lose the ability to access the template and transcluded content.</p>
+<pre><code class="lang-javascript">var node = $compile(&#39;&lt;div element-transclude&gt;&lt;/div&gt;&#39;)($rootScope);
+expect(node[0].nodeType).toEqual(node.COMMENT_NODE);
+expect(node[1]).toBeUndefined();</code></pre>
+<p>To cope with this you simply ensure that your &#39;element&#39; transclude directive is wrapped in an
+element, such as a <code>&lt;div&gt;</code>.</p>
+<pre><code class="lang-javascript">var node = $compile(&#39;&lt;div&gt;&lt;div element-transclude&gt;&lt;/div&gt;&lt;/div&gt;&#39;)($rootScope);
+var contents = node.contents();
+expect(contents[0].nodeType).toEqual(node.COMMENT_NODE);
+expect(contents[1].nodeType).toEqual(node.ELEMENT_NODE);</code></pre>
 <h3 id="testing-directives-with-external-templates">Testing Directives With External Templates</h3>
 <p>If your directive uses <code>templateUrl</code>, consider using
 <a href="https://github.com/karma-runner/karma-ng-html2js-preprocessor">karma-ng-html2js-preprocessor</a>

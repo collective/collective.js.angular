@@ -49,12 +49,17 @@ tag as the template.</li>
 by the value of the expressions.</li>
 </ul>
 <p>We have added a new directive, called <code>ng-controller</code>, which attaches a <code>PhoneListCtrl</code>
-<strong>controller</strong> to the DOM at this point:</p>
+<strong>controller</strong> to the &lt;body&gt; tag.  At this point:</p>
 <ul>
 <li>The expressions in curly braces (<code>{{phone.name}}</code> and <code>{{phone.snippet}}</code> denote
 bindings, which are referring to our application model, which is set up in our <code>PhoneListCtrl</code>
 controller.</li>
 </ul>
+<div class="alert alert-info">
+Note: We have specified an <a href="api/ng/type/angular.Module">Angular Module</a> to load using <code>ng-app=&quot;phonecatApp&quot;</code>,
+where <code>phonecatApp</code> is the name of our module.  This module will contain the <code>PhoneListCtrl</code>.
+</div>
+
 <p><img class="diagram" src="img/tutorial/tutorial_02.png"></p>
 <h2 id="model-and-controller">Model and Controller</h2>
 <p>The data <strong>model</strong> (a simple array  of phones in object literal notation) is now instantiated within
@@ -167,6 +172,11 @@ to ensure that Karma and its necessary plugins are installed. You can do this by
 <li>To rerun the tests, just change any of the source or test .js files. Karma will notice the change
 and will rerun the tests for you. Now isn&#39;t that sweet?</li>
 </ul>
+<div class="alert alert-info">
+Make sure you don&#39;t minimize the browser that Karma opened. On some OS, memory assigned to a minimized
+browser is limited, which results in your karma tests running extremely slow.
+</div>
+
 <h1 id="experiments">Experiments</h1>
 <ul>
 <li><p>Add another binding to <code>index.html</code>. For example:</p>
@@ -200,6 +210,7 @@ and will rerun the tests for you. Now isn&#39;t that sweet?</li>
 are testing as you go. Now, let&#39;s go to <a href="tutorial/step_03">step 3</a> to learn how to add full text search
 to the app.</p>
 <ul doc-tutorial-nav="2"></ul>
+
 
 
 

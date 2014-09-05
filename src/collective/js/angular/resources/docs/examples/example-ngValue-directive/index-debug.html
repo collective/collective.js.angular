@@ -10,14 +10,15 @@
 
   
 </head>
-<body ng-app="">
+<body ng-app="valueExample">
    <script>
-    function Ctrl($scope) {
-      $scope.names = ['pizza', 'unicorns', 'robots'];
-      $scope.my = { favorite: 'unicorns' };
-    }
+    angular.module('valueExample', [])
+      .controller('ExampleController', ['$scope', function($scope) {
+        $scope.names = ['pizza', 'unicorns', 'robots'];
+        $scope.my = { favorite: 'unicorns' };
+      }]);
  </script>
-  <form ng-controller="Ctrl">
+  <form ng-controller="ExampleController">
     <h2>Which is your favorite?</h2>
       <label ng-repeat="name in names" for="{{name}}">
         {{name}}

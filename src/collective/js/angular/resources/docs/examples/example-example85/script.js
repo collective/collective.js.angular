@@ -1,4 +1,4 @@
-  angular.module('docsTransclusionDirective', [])
+  angular.module('docsTransclusionExample', [])
     .controller('Controller', ['$scope', function($scope) {
       $scope.name = 'Tobias';
     }])
@@ -6,6 +6,10 @@
       return {
         restrict: 'E',
         transclude: true,
-        templateUrl: 'my-dialog.html'
+        scope: {},
+        templateUrl: 'my-dialog.html',
+        link: function (scope, element) {
+          scope.name = 'Jeff';
+        }
       };
     });

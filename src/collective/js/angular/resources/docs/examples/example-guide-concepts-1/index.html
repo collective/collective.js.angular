@@ -14,10 +14,10 @@
       <div ng-app ng-init="qty=1;cost=2">
       <b>Invoice:</b>
       <div>
-        Quantity: <input type="number" ng-model="qty" required >
+        Quantity: <input type="number" ng-model="qty">
       </div>
       <div>
-        Costs: <input type="number" ng-model="cost" required >
+        Costs: <input type="number" ng-model="cost">
       </div>
       <div>
         <b>Total:</b> {{qty * cost | currency}}

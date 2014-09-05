@@ -1,11 +1,8 @@
-  function Cntl2($scope) {
-    var exprs = $scope.exprs = [];
-    $scope.expr = '3*10|currency';
-    $scope.addExp = function(expr) {
-      exprs.push(expr);
-    };
+  angular.module('expressionExample', [])
+    .controller('ExampleController', ['$window', '$scope', function($window, $scope) {
+      $scope.name = 'World';
 
-    $scope.removeExp = function(index) {
-      exprs.splice(index, 1);
-    };
-  }
+      $scope.greet = function() {
+        $window.alert('Hello ' + $scope.name);
+      };
+    }]);

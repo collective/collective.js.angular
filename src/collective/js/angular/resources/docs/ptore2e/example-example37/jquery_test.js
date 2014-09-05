@@ -1,8 +1,10 @@
 describe("module:ng.directive:ngInclude", function() {
+  var rootEl;
   beforeEach(function() {
+    rootEl = browser.rootEl;
     browser.get("./examples/example-example37/index-jquery.html");
   });
-
+  
   var templateSelect = element(by.model('template'));
   var includeElem = element(by.css('[ng-include]'));
 
@@ -17,7 +19,7 @@ describe("module:ng.directive:ngInclude", function() {
       return;
     }
     templateSelect.click();
-    templateSelect.element.all(by.css('option')).get(2).click();
+    templateSelect.all(by.css('option')).get(2).click();
     expect(includeElem.getText()).toMatch(/Content of template2.html/);
   });
 
@@ -27,7 +29,7 @@ describe("module:ng.directive:ngInclude", function() {
       return;
     }
     templateSelect.click();
-    templateSelect.element.all(by.css('option')).get(0).click();
+    templateSelect.all(by.css('option')).get(0).click();
     expect(includeElem.isPresent()).toBe(false);
   });
 });

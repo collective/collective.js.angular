@@ -57,12 +57,17 @@ utilize the browser&#39;s history (back and forward navigation) and bookmarks.</
 <h3 id="a-note-about-di-injector-and-providers">A Note About DI, Injector and Providers</h3>
 <p>As you <a href="tutorial/step_05">noticed</a>, <a href="guide/di">dependency injection</a> (DI) is at the core of
 AngularJS, so it&#39;s important for you to understand a thing or two about how it works.</p>
-<p>When the application bootstraps, Angular creates an injector that will be used for all DI stuff in
-this app. The injector itself doesn&#39;t know anything about what <code>$http</code> or <code>$route</code> services do, in
-fact it doesn&#39;t even know about the existence of these services unless it is configured with proper
-module definitions. The sole responsibilities of the injector are to load specified module
-definition(s), register all service providers defined in these modules, and when asked, inject
-a specified function with dependencies (services) that it lazily instantiates via their providers.</p>
+<p>When the application bootstraps, Angular creates an injector that will be used to find and inject all
+of the services that are required by your app. The injector itself doesn&#39;t know anything about what
+<code>$http</code> or <code>$route</code> services do, in fact it doesn&#39;t even know about the existence of these services
+unless it is configured with proper module definitions.</p>
+<p>The injector only carries out the following steps :</p>
+<ul>
+<li>load the module definition(s) that you specify in your app</li>
+<li>register all Providers defined in these module definitions</li>
+<li>when asked to do so, inject a specified function and any necessary dependencies (services) that
+it lazily instantiates via their Providers.</li>
+</ul>
 <p>Providers are objects that provide (create) instances of services and expose configuration APIs
 that can be used to control the creation and runtime behavior of a service. In case of the <code>$route</code>
 service, the <code>$routeProvider</code> exposes APIs that allow you to define routes for your application.</p>
@@ -152,7 +157,7 @@ TODO!
 moved the controllers into their own module <code>phonecatControllers</code> (as shown below).</p>
 <p>We added <code>angular-route.js</code> to <code>index.html</code> and created a new <code>phonecatControllers</code> module in
 <code>controllers.js</code>. That&#39;s not all we need to do to be able to use their code, however. We also have
-to add the modules dependencies of our app. By listing these two modules as dependencies of
+to add the modules as dependencies of our app. By listing these two modules as dependencies of
 <code>phonecatApp</code>, we can use the directives and services they provide.</p>
 <p><strong><code>app/js/app.js</code>:</strong></p>
 <pre><code class="lang-js">var phonecatApp = angular.module(&#39;phonecatApp&#39;, [
@@ -276,6 +281,7 @@ inheritance and model property shadowing do some wonders.
 <h1 id="summary">Summary</h1>
 <p>With the routing set up and the phone list view implemented, we&#39;re ready to go to <a href="tutorial/step_08">step 8</a> to implement the phone details view.</p>
 <ul doc-tutorial-nav="7"></ul>
+
 
 
 

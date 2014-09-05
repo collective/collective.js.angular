@@ -5,25 +5,26 @@
   <title>Example - example-example65-production</title>
   
 
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-sanitize.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular-sanitize.js"></script>
   
 
   
 </head>
-<body ng-app="ngSanitize">
+<body ng-app="sanitizeExample">
     <script>
-    function Ctrl($scope, $sce) {
-      $scope.snippet =
-        '<p style="color:blue">an html\n' +
-        '<em onmouseover="this.textContent=\'PWN3D!\'">click here</em>\n' +
-        'snippet</p>';
-      $scope.deliberatelyTrustDangerousSnippet = function() {
-        return $sce.trustAsHtml($scope.snippet);
-      };
-    }
+      angular.module('sanitizeExample', ['ngSanitize'])
+        .controller('ExampleController', ['$scope', '$sce', function($scope, $sce) {
+          $scope.snippet =
+            '<p style="color:blue">an html\n' +
+            '<em onmouseover="this.textContent=\'PWN3D!\'">click here</em>\n' +
+            'snippet</p>';
+          $scope.deliberatelyTrustDangerousSnippet = function() {
+            return $sce.trustAsHtml($scope.snippet);
+          };
+        }]);
   </script>
-  <div ng-controller="Ctrl">
+  <div ng-controller="ExampleController">
      Snippet: <textarea ng-model="snippet" cols="60" rows="3"></textarea>
     <table>
       <tr>

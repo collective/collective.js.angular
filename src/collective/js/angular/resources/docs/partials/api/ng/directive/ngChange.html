@@ -2,7 +2,7 @@
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/input.js#L1368' class='view-source pull-right btn btn-primary'>
+<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/input.js#L1384' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -99,14 +99,15 @@ in input value.</p>
     Edit in Plunker</a>
   <div class="runnable-example"
       path="examples/example-ngChange-directive"
-      name="ngChange-directive">
+      name="ngChange-directive"
+      module="changeExample">
 
    
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;script&gt;&#10;  function Controller($scope) {&#10;    $scope.counter = 0;&#10;    $scope.change = function() {&#10;      $scope.counter++;&#10;    };&#10;  }&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;Controller&quot;&gt;&#10;  &lt;input type=&quot;checkbox&quot; ng-model=&quot;confirmed&quot; ng-change=&quot;change()&quot; id=&quot;ng-change-example1&quot; /&gt;&#10;  &lt;input type=&quot;checkbox&quot; ng-model=&quot;confirmed&quot; id=&quot;ng-change-example2&quot; /&gt;&#10;  &lt;label for=&quot;ng-change-example2&quot;&gt;Confirmed&lt;/label&gt;&lt;br /&gt;&#10;  &lt;tt&gt;debug = {{confirmed}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;counter = {{counter}}&lt;/tt&gt;&lt;br/&gt;&#10;&lt;/div&gt;</code></pre>
+      <pre><code>&lt;script&gt;&#10;  angular.module(&#39;changeExample&#39;, [])&#10;    .controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;      $scope.counter = 0;&#10;      $scope.change = function() {&#10;        $scope.counter++;&#10;      };&#10;    }]);&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;ExampleController&quot;&gt;&#10;  &lt;input type=&quot;checkbox&quot; ng-model=&quot;confirmed&quot; ng-change=&quot;change()&quot; id=&quot;ng-change-example1&quot; /&gt;&#10;  &lt;input type=&quot;checkbox&quot; ng-model=&quot;confirmed&quot; id=&quot;ng-change-example2&quot; /&gt;&#10;  &lt;label for=&quot;ng-change-example2&quot;&gt;Confirmed&lt;/label&gt;&lt;br /&gt;&#10;  &lt;tt&gt;debug = {{confirmed}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;counter = {{counter}}&lt;/tt&gt;&lt;br/&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -120,6 +121,7 @@ in input value.</p>
     <iframe class="runnable-example-frame" src="examples/example-ngChange-directive/index.html" name="example-ngChange-directive"></iframe>
   </div>
 </div>
+
 
 </p>
 

@@ -115,14 +115,15 @@ the value and sign (positive or negative) of <code>limit</code>.</p>
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
-      path="examples/example-example55">
+      path="examples/example-example55"
+      module="limitToExample">
 
    
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;script&gt;&#10;  function Ctrl($scope) {&#10;    $scope.numbers = [1,2,3,4,5,6,7,8,9];&#10;    $scope.letters = &quot;abcdefghi&quot;;&#10;    $scope.numLimit = 3;&#10;    $scope.letterLimit = 3;&#10;  }&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;Ctrl&quot;&gt;&#10;  Limit {{numbers}} to: &lt;input type=&quot;integer&quot; ng-model=&quot;numLimit&quot;&gt;&#10;  &lt;p&gt;Output numbers: {{ numbers | limitTo:numLimit }}&lt;/p&gt;&#10;  Limit {{letters}} to: &lt;input type=&quot;integer&quot; ng-model=&quot;letterLimit&quot;&gt;&#10;  &lt;p&gt;Output letters: {{ letters | limitTo:letterLimit }}&lt;/p&gt;&#10;&lt;/div&gt;</code></pre>
+      <pre><code>&lt;script&gt;&#10;  angular.module(&#39;limitToExample&#39;, [])&#10;    .controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;      $scope.numbers = [1,2,3,4,5,6,7,8,9];&#10;      $scope.letters = &quot;abcdefghi&quot;;&#10;      $scope.numLimit = 3;&#10;      $scope.letterLimit = 3;&#10;    }]);&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;ExampleController&quot;&gt;&#10;  Limit {{numbers}} to: &lt;input type=&quot;integer&quot; ng-model=&quot;numLimit&quot;&gt;&#10;  &lt;p&gt;Output numbers: {{ numbers | limitTo:numLimit }}&lt;/p&gt;&#10;  Limit {{letters}} to: &lt;input type=&quot;integer&quot; ng-model=&quot;letterLimit&quot;&gt;&#10;  &lt;p&gt;Output letters: {{ letters | limitTo:letterLimit }}&lt;/p&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -136,6 +137,7 @@ the value and sign (positive or negative) of <code>limit</code>.</p>
     <iframe class="runnable-example-frame" src="examples/example-example55/index.html" name="example-example55"></iframe>
   </div>
 </div>
+
 
 </p>
 

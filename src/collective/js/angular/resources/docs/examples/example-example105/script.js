@@ -1,6 +1,17 @@
-  function EventController($scope) {
-    $scope.count = 0;
-    $scope.$on('MyEvent', function() {
-      $scope.count++;
-    });
-  }
+  angular.
+   module('myServiceModule', []).
+    controller('MyController', ['$scope','notify', function ($scope, notify) {
+      $scope.callNotify = function(msg) {
+        notify(msg);
+      };
+    }]).
+   factory('notify', ['$window', function(win) {
+      var msgs = [];
+      return function(msg) {
+        msgs.push(msg);
+        if (msgs.length == 3) {
+          win.alert(msgs.join("\n"));
+          msgs = [];
+        }
+      };
+    }]);

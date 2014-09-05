@@ -1,8 +1,14 @@
-  angular.module('docsRestrictDirective', [])
-    .controller('Controller', ['$scope', function($scope) {
+  angular.module('docsScopeProblemExample', [])
+    .controller('NaomiController', ['$scope', function($scope) {
       $scope.customer = {
         name: 'Naomi',
         address: '1600 Amphitheatre'
+      };
+    }])
+    .controller('IgorController', ['$scope', function($scope) {
+      $scope.customer = {
+        name: 'Igor',
+        address: '123 Somewhere'
       };
     }])
     .directive('myCustomer', function() {

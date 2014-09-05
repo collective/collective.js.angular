@@ -245,7 +245,7 @@ text <code>{{hash}}</code> until Angular replaces the expression inside
       
       <tr>
         <td><a href="api/ng/directive/ngDisabled">ngDisabled</a></td>
-        <td><p>The following markup will make the button enabled on Chrome/Firefox but not on IE8 and older IEs:</p>
+        <td><p>We shouldn&#39;t do this, because it will make the button enabled on Chrome/Firefox but not on IE8 and older IEs:</p>
 <pre><code class="lang-html">&lt;div ng-init=&quot;scope = { isDisabled: false }&quot;&gt;
  &lt;button disabled=&quot;{{scope.isDisabled}}&quot;&gt;Disabled&lt;/button&gt;
 &lt;/div&gt;</code></pre>
@@ -954,6 +954,12 @@ annotated with dependencies and is responsible for creating a filter function.</
       </tr>
       
       <tr>
+        <td><a href="api/ng/provider/$httpProvider">$httpProvider</a></td>
+        <td><p>Use <code>$httpProvider</code> to change the default behavior of the <a href="api/ng/service/$http">$http</a> service.</p>
+</td>
+      </tr>
+      
+      <tr>
         <td><a href="api/ng/provider/$interpolateProvider">$interpolateProvider</a></td>
         <td><p>Used for configuring the interpolation markup. Defaults to <code>{{</code> and <code>}}</code>.</p>
 </td>
@@ -1015,7 +1021,7 @@ that the URLs used for sourcing Angular templates are safe.  Refer <a href="api/
       
       <tr>
         <td><a href="api/ng/input/input[text]">input[text]</a></td>
-        <td><p>Standard HTML text input with angular data binding.</p>
+        <td><p>Standard HTML text input with angular data binding, inherited by most of the <code>input</code> elements.</p>
 </td>
       </tr>
       

@@ -224,13 +224,15 @@ should be fixed, or a simple serialization of the array should be done on the cl
 passing it to <code>$location</code>.</p>
 <p>See <a href="https://github.com/angular/angular.js/commit/807394095b991357225a03d5fed81fea5c9a1abe">80739409</a>.</p>
 <h2 id="ngbindhtmlunsafe-has-been-removed-and-replaced-by-ngbindhtml">ngBindHtmlUnsafe has been removed and replaced by ngBindHtml</h2>
-<p><code>ngBindHtml</code> which has been moved from <code>ngSanitize</code> module to the core <code>ng</code> module.</p>
 <p><code>ngBindHtml</code> provides <code>ngBindHtmlUnsafe</code> like
 behavior (evaluate an expression and innerHTML the result into the DOM) when bound to the result
 of <code>$sce.trustAsHtml(string)</code>. When bound to a plain string, the string is sanitized via
 <code>$sanitize</code> before being innerHTML&#39;d. If the <code>$sanitize</code> service isn&#39;t available (<code>ngSanitize</code>
 module is not loaded) and the bound expression evaluates to a value that is not trusted an
 exception is thrown.</p>
+<p>When using this directive you can either include <code>ngSanitize</code> in your module&#39;s dependencis (See the
+example at the <a href="api/ng/directive/ngBindHtml"><code>ngBindHtml</code></a> reference) or use the <a href="api/ng/service/$sce"><code>$sce</code></a> service to set the value as
+trusted.</p>
 <p>See <a href="https://github.com/angular/angular.js/commit/dae694739b9581bea5dbc53522ec00d87b26ae55">dae69473</a>.</p>
 <h2 id="form-names-that-are-expressions-are-evaluated">Form names that are expressions are evaluated</h2>
 <p>If you have form names that will evaluate as an expression:</p>

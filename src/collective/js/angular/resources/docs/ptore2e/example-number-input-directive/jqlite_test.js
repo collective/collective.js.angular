@@ -1,8 +1,10 @@
 describe("module:ng.input:input[number]", function() {
+  var rootEl;
   beforeEach(function() {
+    rootEl = browser.rootEl;
     browser.get("./examples/example-number-input-directive/index.html");
   });
-
+  
   var value = element(by.binding('value'));
   var valid = element(by.binding('myForm.input.$valid'));
   var input = element(by.model('value'));

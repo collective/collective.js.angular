@@ -21,19 +21,19 @@ should be bootstrapped. There are several advantages to this approach:</p>
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example101')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example100')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
-      path="examples/example-example101"
-      module="myApp">
+      path="examples/example-example100"
+      ng-app-included="true">
 
    
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;div&gt;&#10;  {{ &#39;World&#39; | greet }}&#10;&lt;/div&gt;</code></pre>
+      <pre><code>&lt;div ng-app=&quot;myApp&quot;&gt;&#10;  &lt;div&gt;&#10;    {{ &#39;World&#39; | greet }}&#10;  &lt;/div&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -43,16 +43,24 @@ should be bootstrapped. There are several advantages to this approach:</p>
       <pre><code>// declare a module&#10;var myAppModule = angular.module(&#39;myApp&#39;, []);&#10;&#10;// configure the module.&#10;// in this example we will create a greeting filter&#10;myAppModule.filter(&#39;greet&#39;, function() {&#10; return function(name) {&#10;    return &#39;Hello, &#39; + name + &#39;!&#39;;&#10;  };&#10;});</code></pre>
     </div>
   
+    <div class="runnable-example-file" 
+      name="protractor.js"
+      type="protractor"
+      language="js">
+      <pre><code>it(&#39;should add Hello to the name&#39;, function() {&#10;  expect(element(by.binding(&quot;{{ &#39;World&#39; | greet }}&quot;)).getText()).toEqual(&#39;Hello, World!&#39;);&#10;});</code></pre>
+    </div>
+  
 
-    <iframe class="runnable-example-frame" src="examples/example-example101/index.html" name="example-example101"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example100/index.html" name="example-example100"></iframe>
   </div>
 </div>
+
 
 </p>
 <p>Important things to notice:</p>
 <ul>
 <li>The <a href="api/ng/type/angular.Module">Module</a> API</li>
-<li>The reference to <code>myApp</code> module in <code>&lt;html ng-app=&quot;myApp&quot;&gt;</code>.
+<li>The reference to <code>myApp</code> module in <code>&lt;div ng-app=&quot;myApp&quot;&gt;</code>.
 This is what bootstraps the app using your module.</li>
 <li>The empty array in <code>angular.module(&#39;myApp&#39;, [])</code>.
 This array is the list of modules <code>myApp</code> depends on.</li>
@@ -73,11 +81,11 @@ on how we organize large apps at Google.</p>
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example102')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example101')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
-      path="examples/example-example102"
+      path="examples/example-example101"
       module="xmpl">
 
    
@@ -85,20 +93,28 @@ on how we organize large apps at Google.</p>
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;div ng-controller=&quot;XmplController&quot;&gt;&#10;  {{ greeting }}!&#10;&lt;/div&gt;</code></pre>
+      <pre><code>&lt;div ng-controller=&quot;XmplController&quot;&gt;&#10;  {{ greeting }}&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="script.js"
       language="js"
       type="js">
-      <pre><code>angular.module(&#39;xmpl.service&#39;, []).&#10;  value(&#39;greeter&#39;, {&#10;    salutation: &#39;Hello&#39;,&#10;    localize: function(localization) {&#10;      this.salutation = localization.salutation;&#10;    },&#10;    greet: function(name) {&#10;      return this.salutation + &#39; &#39; + name + &#39;!&#39;;&#10;    }&#10;  }).&#10;  value(&#39;user&#39;, {&#10;    load: function(name) {&#10;      this.name = name;&#10;    }&#10;  });&#10;&#10;angular.module(&#39;xmpl.directive&#39;, []);&#10;&#10;angular.module(&#39;xmpl.filter&#39;, []);&#10;&#10;angular.module(&#39;xmpl&#39;, [&#39;xmpl.service&#39;, &#39;xmpl.directive&#39;, &#39;xmpl.filter&#39;]).&#10;  run(function(greeter, user) {&#10;    // This is effectively part of the main method initialization code&#10;    greeter.localize({&#10;      salutation: &#39;Bonjour&#39;&#10;    });&#10;    user.load(&#39;World&#39;);&#10;  });&#10;&#10;&#10;// A Controller for your app&#10;var XmplController = function($scope, greeter, user) {&#10;  $scope.greeting = greeter.greet(user.name);&#10;};</code></pre>
+      <pre><code>angular.module(&#39;xmpl.service&#39;, [])&#10;&#10;  .value(&#39;greeter&#39;, {&#10;    salutation: &#39;Hello&#39;,&#10;    localize: function(localization) {&#10;      this.salutation = localization.salutation;&#10;    },&#10;    greet: function(name) {&#10;      return this.salutation + &#39; &#39; + name + &#39;!&#39;;&#10;    }&#10;  })&#10;&#10;  .value(&#39;user&#39;, {&#10;    load: function(name) {&#10;      this.name = name;&#10;    }&#10;  });&#10;&#10;angular.module(&#39;xmpl.directive&#39;, []);&#10;&#10;angular.module(&#39;xmpl.filter&#39;, []);&#10;&#10;angular.module(&#39;xmpl&#39;, [&#39;xmpl.service&#39;, &#39;xmpl.directive&#39;, &#39;xmpl.filter&#39;])&#10;&#10;  .run(function(greeter, user) {&#10;    // This is effectively part of the main method initialization code&#10;    greeter.localize({&#10;      salutation: &#39;Bonjour&#39;&#10;    });&#10;    user.load(&#39;World&#39;);&#10;  })&#10;&#10;  .controller(&#39;XmplController&#39;, function($scope, greeter, user){&#10;    $scope.greeting = greeter.greet(user.name);&#10;  });</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="protractor.js"
+      type="protractor"
+      language="js">
+      <pre><code>it(&#39;should add Hello to the name&#39;, function() {&#10;  expect(element(by.binding(&quot;{{ greeting }}&quot;)).getText()).toEqual(&#39;Bonjour World!&#39;);&#10;});</code></pre>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example102/index.html" name="example-example102"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example101/index.html" name="example-example101"></iframe>
   </div>
 </div>
+
 
 </p>
 <h1 id="module-loading-dependencies">Module Loading &amp; Dependencies</h1>

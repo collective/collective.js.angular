@@ -2,7 +2,7 @@
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/input.js#L374' class='view-source pull-right btn btn-primary'>
+<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/input.js#L381' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -151,14 +151,15 @@
     Edit in Plunker</a>
   <div class="runnable-example"
       path="examples/example-checkbox-input-directive"
-      name="checkbox-input-directive">
+      name="checkbox-input-directive"
+      module="checkboxExample">
 
    
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;script&gt;&#10;  function Ctrl($scope) {&#10;    $scope.value1 = true;&#10;    $scope.value2 = &#39;YES&#39;&#10;  }&#10;&lt;/script&gt;&#10;&lt;form name=&quot;myForm&quot; ng-controller=&quot;Ctrl&quot;&gt;&#10;  Value1: &lt;input type=&quot;checkbox&quot; ng-model=&quot;value1&quot;&gt; &lt;br/&gt;&#10;  Value2: &lt;input type=&quot;checkbox&quot; ng-model=&quot;value2&quot;&#10;                 ng-true-value=&quot;YES&quot; ng-false-value=&quot;NO&quot;&gt; &lt;br/&gt;&#10;  &lt;tt&gt;value1 = {{value1}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;value2 = {{value2}}&lt;/tt&gt;&lt;br/&gt;&#10; &lt;/form&gt;</code></pre>
+      <pre><code>&lt;script&gt;&#10;  angular.module(&#39;checkboxExample&#39;, [])&#10;    .controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;      $scope.value1 = true;&#10;      $scope.value2 = &#39;YES&#39;&#10;    }]);&#10;&lt;/script&gt;&#10;&lt;form name=&quot;myForm&quot; ng-controller=&quot;ExampleController&quot;&gt;&#10;  Value1: &lt;input type=&quot;checkbox&quot; ng-model=&quot;value1&quot;&gt; &lt;br/&gt;&#10;  Value2: &lt;input type=&quot;checkbox&quot; ng-model=&quot;value2&quot;&#10;                 ng-true-value=&quot;YES&quot; ng-false-value=&quot;NO&quot;&gt; &lt;br/&gt;&#10;  &lt;tt&gt;value1 = {{value1}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;value2 = {{value2}}&lt;/tt&gt;&lt;br/&gt;&#10; &lt;/form&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -172,6 +173,7 @@
     <iframe class="runnable-example-frame" src="examples/example-checkbox-input-directive/index.html" name="example-checkbox-input-directive"></iframe>
   </div>
 </div>
+
 
 </p>
 

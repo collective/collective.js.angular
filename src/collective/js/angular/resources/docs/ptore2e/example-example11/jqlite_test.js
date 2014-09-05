@@ -1,8 +1,10 @@
 describe("module:ng.directive:form", function() {
+  var rootEl;
   beforeEach(function() {
+    rootEl = browser.rootEl;
     browser.get("./examples/example-example11/index.html");
   });
-
+  
   it('should initialize to model', function() {
     var userType = element(by.binding('userType'));
     var valid = element(by.binding('myForm.input.$valid'));

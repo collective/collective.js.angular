@@ -10,13 +10,14 @@
 
   
 </head>
-<body ng-app="">
+<body ng-app="urlExample">
    <script>
-   function Ctrl($scope) {
-     $scope.text = 'http://google.com';
-   }
+   angular.module('urlExample', [])
+     .controller('ExampleController', ['$scope', function($scope) {
+       $scope.text = 'http://google.com';
+     }]);
  </script>
- <form name="myForm" ng-controller="Ctrl">
+ <form name="myForm" ng-controller="ExampleController">
    URL: <input type="url" name="input" ng-model="text" required>
    <span class="error" ng-show="myForm.input.$error.required">
      Required!</span>

@@ -10,13 +10,14 @@
 
   
 </head>
-<body ng-app="">
+<body ng-app="numberExample">
    <script>
-   function Ctrl($scope) {
-     $scope.value = 12;
-   }
+   angular.module('numberExample', [])
+     .controller('ExampleController', ['$scope', function($scope) {
+       $scope.value = 12;
+     }]);
  </script>
- <form name="myForm" ng-controller="Ctrl">
+ <form name="myForm" ng-controller="ExampleController">
    Number: <input type="number" name="input" ng-model="value"
                   min="0" max="99" required>
    <span class="error" ng-show="myForm.input.$error.required">

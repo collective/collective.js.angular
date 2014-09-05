@@ -1,3 +1,6 @@
+ angular.module('controllerAsExample', [])
+   .controller('SettingsController1', SettingsController1);
+
  function SettingsController1() {
    this.name = "John Smith";
    this.contacts = [

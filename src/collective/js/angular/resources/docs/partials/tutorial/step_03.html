@@ -107,7 +107,9 @@ Try it with <code>npm run protractor</code>. End-to-end tests are slow, so unlik
 will exit after the test run and will not automatically rerun the test suite on every file change.
 To rerun the test suite, execute <code>npm run protractor</code> again.</p>
 <div class="alert alert-info">
-  Note: You must ensure you&#39;ve installed the protractor and updated webdriver prior to running the
+  Note: You must ensure your application is being served via a web-server to test with protractor.
+  You can do this using <code>npm start</code>.
+  You also need to ensure you&#39;ve installed the protractor and updated webdriver prior to running the
   <code>npm run protractor</code>. You can do this by issuing <code>npm install</code> and <code>npm run update-webdriver</code> into
   your terminal.
 </div>
@@ -120,14 +122,37 @@ To rerun the test suite, execute <code>npm run protractor</code> again.</p>
 <h3 id="display-query-in-title">Display Query in Title</h3>
 <p>Let&#39;s see how we can get the current value of the <code>query</code> model to appear in the HTML page title.</p>
 <ul>
-<li><p>Add the following end-to-end test into the <code>describe</code> block within <code>test/e2e/scenarios.js</code>:</p>
-<pre><code class="lang-js">  it(&#39;should display the current filter value in the title bar&#39;, function() {
+<li><p>Add an end-to-end test into the <code>describe</code> block, <code>test/e2e/scenarios.js</code> should look like this:</p>
+<pre><code class="lang-js">  describe(&#39;PhoneCat App&#39;, function() {
 
-    expect(browser.getTitle()).toMatch(/Google Phone Gallery:\s*$/);
+    describe(&#39;Phone list view&#39;, function() {
 
-    element(by.model(&#39;query&#39;)).sendKeys(&#39;nexus&#39;);
+      beforeEach(function() {
+        browser.get(&#39;app/index.html&#39;);
+      });
 
-    expect(browser.getTitle()).toMatch(/Google Phone Gallery: nexus$/);
+      var phoneList = element.all(by.repeater(&#39;phone in phones&#39;));
+      var query = element(by.model(&#39;query&#39;));
+
+      it(&#39;should filter the phone list as user types into the search box&#39;, function() {
+        expect(phoneList.count()).toBe(3);
+
+        query.sendKeys(&#39;nexus&#39;);
+        expect(phoneList.count()).toBe(1);
+
+        query.clear();
+        query.sendKeys(&#39;motorola&#39;);
+        expect(phoneList.count()).toBe(2);
+      });
+
+      it(&#39;should display the current filter value in the title bar&#39;, function() {
+        query.clear();
+        expect(browser.getTitle()).toMatch(/Google Phone Gallery:\s*$/);
+
+        query.sendKeys(&#39;nexus&#39;);
+        expect(browser.getTitle()).toMatch(/Google Phone Gallery: nexus$/);
+      });
+    });
   });</code></pre>
 <p>Run protractor (<code>npm run protractor</code>) to see this test fail.</p>
 </li>
@@ -159,4 +184,5 @@ while the page is loading:</p>
 <p>We have now added full text search and included a test to verify that search works! Now let&#39;s go on
 to <a href="tutorial/step_04">step 4</a> to learn how to add sorting capability to the phone app.</p>
 <ul doc-tutorial-nav="3"></ul>
+
 

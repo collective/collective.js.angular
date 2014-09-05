@@ -1,8 +1,10 @@
 describe("module:ng.directive:ngPluralize", function() {
+  var rootEl;
   beforeEach(function() {
+    rootEl = browser.rootEl;
     browser.get("./examples/example-example40/index.html");
   });
-
+  
   it('should show correct pluralized string', function() {
     var withoutOffset = element.all(by.css('ng-pluralize')).get(0);
     var withOffset = element.all(by.css('ng-pluralize')).get(1);

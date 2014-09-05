@@ -125,7 +125,7 @@ work when the element receives focus we will have a problem:</p>
 <p>In this second scenario, we are already inside a <code>$digest</code> when the ngFocus directive makes another
 call to <code>$apply()</code>, causing this error to be thrown.</p>
 <p>It is possible to workaround this problem by moving the call to set the focus outside of the digest,
-by using <code>$timeOut(fn, 0, false)</code>, where the <code>false</code> value tells Angular not to wrap this <code>fn</code> in a
+by using <code>$timeout(fn, 0, false)</code>, where the <code>false</code> value tells Angular not to wrap this <code>fn</code> in a
 <code>$apply</code> block:</p>
 <pre><code>myApp.directive(&#39;setFocusIf&#39;, function($timeout) {
   return {
@@ -201,6 +201,7 @@ value of its attribute becomes true.</p>
     <iframe class="runnable-example-frame" src="examples/example-error-$rootScope-inprog/index.html" name="example-error-$rootScope-inprog"></iframe>
   </div>
 </div>
+
 
 </p>
 <p>When you click on the button to cause the focus to occur we get our <code>$rootScope:inprog</code> error. The

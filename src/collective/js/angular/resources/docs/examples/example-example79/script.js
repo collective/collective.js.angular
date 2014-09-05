@@ -1,4 +1,4 @@
-  angular.module('docsTemplateUrlDirective', [])
+  angular.module('docsRestrictDirective', [])
     .controller('Controller', ['$scope', function($scope) {
       $scope.customer = {
         name: 'Naomi',
@@ -7,6 +7,7 @@
     }])
     .directive('myCustomer', function() {
       return {
+        restrict: 'E',
         templateUrl: 'my-customer.html'
       };
     });

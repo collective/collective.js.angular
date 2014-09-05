@@ -14,11 +14,12 @@
     angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
   </script>
 </head>
-<body ng-app="">
+<body ng-app="inputExample">
     <script>
-   function Ctrl($scope) {
-     $scope.val = '1';
-   }
+   angular.module('inputExample', [])
+     .controller('ExampleController', ['$scope', function($scope) {
+       $scope.val = '1';
+     }]);
   </script>
   <style>
     .my-input {
@@ -33,7 +34,7 @@
   </style>
   Update input to see transitions when valid/invalid.
   Integer is a valid value.
-  <form name="testForm" ng-controller="Ctrl">
+  <form name="testForm" ng-controller="ExampleController">
     <input ng-model="val" ng-pattern="/^\d+$/" name="anim" class="my-input" />
   </form>
 </body>

@@ -1,8 +1,10 @@
 describe("module:ng.input:input[text]", function() {
+  var rootEl;
   beforeEach(function() {
+    rootEl = browser.rootEl;
     browser.get("./examples/example-text-input-directive/index.html");
   });
-
+  
   var text = element(by.binding('text'));
   var valid = element(by.binding('myForm.input.$valid'));
   var input = element(by.model('text'));

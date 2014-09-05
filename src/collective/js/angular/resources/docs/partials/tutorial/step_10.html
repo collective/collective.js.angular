@@ -77,6 +77,43 @@ verifies that the main image changed appropriately.</p>
     });
   });</code></pre>
 <p>You can now rerun <code>npm run protractor</code> to see the tests run.</p>
+<p>You also have to refactor one of your unit tests because of the addition of the <code>mainImageUrl</code>
+model property to the <code>PhoneDetailCtrl</code> controller. Below, we create the function <code>xyzPhoneData</code>
+which returns the appropriate json with the <code>images</code> attribute in order to get the test to pass.</p>
+<p><strong><code>test/unit/controllersSpec.js</code>:</strong></p>
+<pre><code class="lang-js">...
+  beforeEach(module(&#39;phonecatApp&#39;));
+
+...
+
+ describe(&#39;PhoneDetailCtrl&#39;, function(){
+    var scope, $httpBackend, ctrl,
+        xyzPhoneData = function() {
+          return {
+            name: &#39;phone xyz&#39;,
+            images: [&#39;image/url1.png&#39;, &#39;image/url2.png&#39;]
+          }
+        };
+
+
+    beforeEach(inject(function(_$httpBackend_, $rootScope, $routeParams, $controller) {
+      $httpBackend = _$httpBackend_;
+      $httpBackend.expectGET(&#39;phones/xyz.json&#39;).respond(xyzPhoneData());
+
+      $routeParams.phoneId = &#39;xyz&#39;;
+      scope = $rootScope.$new();
+      ctrl = $controller(&#39;PhoneDetailCtrl&#39;, {$scope: scope});
+    }));
+
+
+    it(&#39;should fetch phone detail&#39;, function() {
+      expect(scope.phone).toBeUndefined();
+      $httpBackend.flush();
+
+      expect(scope.phone).toEqual(xyzPhoneData());
+    });
+  });</code></pre>
+<p>Your unit tests should now be passing.</p>
 <h1 id="experiments">Experiments</h1>
 <ul>
 <li><p>Let&#39;s add a new controller method to <code>PhoneDetailCtrl</code>:</p>
@@ -103,4 +140,5 @@ template remains operational.
 <p>With the phone image swapper in place, we&#39;re ready for <a href="tutorial/step_11">step 11</a> to
 learn an even better way to fetch data.</p>
 <ul doc-tutorial-nav="10"></ul>
+
 

@@ -16,7 +16,7 @@ the step you are on. This will cause any changes you made within your working di
 <pre><code>npm install</code></pre>
 <p>To see the app running in a browser, open a <em>separate</em> terminal/command line tab or window, then
 run <code>npm start</code> to start the web server. Now, open a browser window for the app and navigate to
-<a href="http://localhost:8000/app/index.html" target="_blank"><code>http://localhost:8000/app/index.html</code></a></p>
+<a href="http://localhost:8000/app/" target="_blank"><code>http://localhost:8000/app/</code></a></p>
 <p>You can now see the page in your browser. It&#39;s not very exciting, but that&#39;s OK.</p>
 <p>The HTML page that displays &quot;Nothing here yet!&quot; was constructed with the HTML code shown below.
 The code contains some key Angular elements that we will need as we progress.</p>
@@ -58,8 +58,11 @@ being the element on which the <code>ngApp</code> directive was defined.</p>
 </li>
 <li><p>Double-curly binding with an expression:</p>
 <pre><code>    Nothing here {{&#39;yet&#39; + &#39;!&#39;}}</code></pre>
-<p>This line demonstrates the core feature of Angular&#39;s templating capabilities – a binding, denoted
-by double-curlies <code>{{ }}</code> as well as a simple expression <code>&#39;yet&#39; + &#39;!&#39;</code> used in this binding.</p>
+<p>This line demonstrates two core features of Angular&#39;s templating capabilities:</p>
+<ul>
+<li>a binding, denoted by double-curlies <code>{{ }}</code></li>
+<li>a simple expression <code>&#39;yet&#39; + &#39;!&#39;</code> used in this binding.</li>
+</ul>
 <p>The binding tells Angular that it should evaluate an expression and insert the result into the
 DOM in place of the binding. Rather than a one-time insert, as we&#39;ll see in the next steps, a
 binding will result in efficient continuous updates whenever the result of the expression
@@ -114,6 +117,7 @@ a typical web app (via <code>npm</code>).</p>
 <h1 id="summary">Summary</h1>
 <p>Now let&#39;s go to <a href="tutorial/step_01">step 1</a> and add some content to the web app.</p>
 <ul doc-tutorial-nav="0"></ul>
+
 
 
 

@@ -1,8 +1,10 @@
 describe("module:ng.filter:limitTo", function() {
+  var rootEl;
   beforeEach(function() {
+    rootEl = browser.rootEl;
     browser.get("./examples/example-example55/index-jquery.html");
   });
-
+  
   var numLimitInput = element(by.model('numLimit'));
   var letterLimitInput = element(by.model('letterLimit'));
   var limitedNumbers = element(by.binding('numbers | limitTo:numLimit'));

@@ -38,18 +38,19 @@ the applications.</p>
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example103')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example102')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
-      path="examples/example-example103">
+      path="examples/example-example102"
+      module="scopeExample">
 
    
     <div class="runnable-example-file" 
       name="script.js"
       language="js"
       type="js">
-      <pre><code>function MyController($scope) {&#10;  $scope.username = &#39;World&#39;;&#10;&#10;  $scope.sayHello = function() {&#10;    $scope.greeting = &#39;Hello &#39; + $scope.username + &#39;!&#39;;&#10;  };&#10;}</code></pre>
+      <pre><code>angular.module(&#39;scopeExample&#39;, [])&#10;  .controller(&#39;MyController&#39;, [&#39;$scope&#39;, function($scope) {&#10;    $scope.username = &#39;World&#39;;&#10;&#10;    $scope.sayHello = function() {&#10;      $scope.greeting = &#39;Hello &#39; + $scope.username + &#39;!&#39;;&#10;    };&#10;  }]);</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -60,9 +61,10 @@ the applications.</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example103/index.html" name="example-example103"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example102/index.html" name="example-example102"></iframe>
   </div>
 </div>
+
 
 </p>
 <p>In the above example notice that the <code>MyController</code> assigns <code>World</code> to the <code>username</code> property of
@@ -104,7 +106,7 @@ may have several child scopes.</p>
 <p>The application can have multiple scopes, because some <a href="guide/directive">directives</a> create
 new child scopes (refer to directive documentation to see which directives create new scopes).
 When new scopes are created, they are added as children of their parent scope. This creates a tree
-structure which parallels the DOM where they&#39;re attached</p>
+structure which parallels the DOM where they&#39;re attached.</p>
 <p>When Angular evaluates <code>{{name}}</code>, it first looks at the scope associated with the given
 element for the <code>name</code> property. If no such property is found, it searches the parent scope
 and so on until the root scope is reached. In JavaScript this behavior is known as prototypical
@@ -114,25 +116,26 @@ a diagram depicting the scope boundaries.</p>
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example104')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example103')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
-      path="examples/example-example104">
+      path="examples/example-example103"
+      module="scopeExample">
 
    
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;div class=&quot;show-scope-demo&quot;&gt;&#10;&lt;div ng-controller=&quot;GreetCtrl&quot;&gt;&#10;  Hello {{name}}!&#10;&lt;/div&gt;&#10;&lt;div ng-controller=&quot;ListCtrl&quot;&gt;&#10;  &lt;ol&gt;&#10;    &lt;li ng-repeat=&quot;name in names&quot;&gt;{{name}} from {{department}}&lt;/li&gt;&#10;  &lt;/ol&gt;&#10;&lt;/div&gt;&#10;&lt;/div&gt;</code></pre>
+      <pre><code>&lt;div class=&quot;show-scope-demo&quot;&gt;&#10;&lt;div ng-controller=&quot;GreetController&quot;&gt;&#10;  Hello {{name}}!&#10;&lt;/div&gt;&#10;&lt;div ng-controller=&quot;ListController&quot;&gt;&#10;  &lt;ol&gt;&#10;    &lt;li ng-repeat=&quot;name in names&quot;&gt;{{name}} from {{department}}&lt;/li&gt;&#10;  &lt;/ol&gt;&#10;&lt;/div&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="script.js"
       language="js"
       type="js">
-      <pre><code>function GreetCtrl($scope, $rootScope) {&#10;  $scope.name = &#39;World&#39;;&#10;  $rootScope.department = &#39;Angular&#39;;&#10;}&#10;&#10;function ListCtrl($scope) {&#10;  $scope.names = [&#39;Igor&#39;, &#39;Misko&#39;, &#39;Vojta&#39;];&#10;}</code></pre>
+      <pre><code>angular.module(&#39;scopeExample&#39;, [])&#10;  .controller(&#39;GreetController&#39;, [&#39;$scope&#39;, &#39;$rootScope&#39;, function($scope, $rootScope) {&#10;    $scope.name = &#39;World&#39;;&#10;    $rootScope.department = &#39;Angular&#39;;&#10;  }])&#10;  .controller(&#39;ListController&#39;, [&#39;$scope&#39;, function($scope) {&#10;    $scope.names = [&#39;Igor&#39;, &#39;Misko&#39;, &#39;Vojta&#39;];&#10;  }]);</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -143,9 +146,10 @@ a diagram depicting the scope boundaries.</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example104/index.html" name="example-example104"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example103/index.html" name="example-example103"></iframe>
   </div>
 </div>
+
 
 </p>
 <p><img class="center" src="img/guide/concepts-scope.png"></p>
@@ -178,18 +182,19 @@ variable.</p>
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example105')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example104')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
-      path="examples/example-example105">
+      path="examples/example-example104"
+      module="eventExample">
 
    
     <div class="runnable-example-file" 
       name="script.js"
       language="js"
       type="js">
-      <pre><code>function EventController($scope) {&#10;  $scope.count = 0;&#10;  $scope.$on(&#39;MyEvent&#39;, function() {&#10;    $scope.count++;&#10;  });&#10;}</code></pre>
+      <pre><code>angular.module(&#39;eventExample&#39;, [])&#10;  .controller(&#39;EventController&#39;, [&#39;$scope&#39;, function($scope) {&#10;    $scope.count = 0;&#10;    $scope.$on(&#39;MyEvent&#39;, function() {&#10;      $scope.count++;&#10;    });&#10;  }]);</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -200,9 +205,10 @@ variable.</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example105/index.html" name="example-example105"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example104/index.html" name="example-example104"></iframe>
   </div>
 </div>
+
 
 </p>
 <h2 id="scope-life-cycle">Scope Life Cycle</h2>

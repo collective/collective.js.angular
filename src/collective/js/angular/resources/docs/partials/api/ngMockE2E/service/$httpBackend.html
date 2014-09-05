@@ -2,7 +2,7 @@
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ngMock/angular-mocks.js#L1757' class='view-source pull-right btn btn-primary'>
+<a href='http://github.com/angular/angular.js/tree/master/src/ngMock/angular-mocks.js#L1759' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -36,7 +36,7 @@ certain category of requests to bypass the mock and issue a real http request (e
 templates or static files from the webserver). To configure the backend with this behavior
 use the <code>passThrough</code> request handler of <code>when</code> instead of <code>respond</code>.</p>
 <p>Additionally, we don&#39;t want to manually have to flush mocked out requests like we do during unit
-testing. For this reason the e2e $httpBackend automatically flushes mocked out requests
+testing. For this reason the e2e $httpBackend flushes mocked out requests
 automatically, closely simulating the behavior of the XMLHttpRequest object.</p>
 <p>To setup the application to run with this http backend, you have to create a module that depends
 on the <code>ngMockE2E</code> and your application modules and defines the fake backend:</p>

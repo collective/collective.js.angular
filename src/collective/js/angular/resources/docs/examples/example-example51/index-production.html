@@ -5,18 +5,19 @@
   <title>Example - example-example51-production</title>
   
 
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js"></script>
   
 
   
 </head>
-<body ng-app="">
+<body ng-app="currencyExample">
     <script>
-    function Ctrl($scope) {
-      $scope.amount = 1234.56;
-    }
+    angular.module('currencyExample', [])
+      .controller('ExampleController', ['$scope', function($scope) {
+        $scope.amount = 1234.56;
+      }]);
   </script>
-  <div ng-controller="Ctrl">
+  <div ng-controller="ExampleController">
     <input type="number" ng-model="amount"> <br>
     default currency symbol ($): <span id="currency-default">{{amount | currency}}</span><br>
     custom currency identifier (USD$): <span>{{amount | currency:"USD$"}}</span>

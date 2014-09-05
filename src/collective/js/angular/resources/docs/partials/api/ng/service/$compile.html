@@ -140,7 +140,7 @@ If no <code>attr</code> name is specified then the attribute name is assumed to 
 local name. Given <code>&lt;widget my-attr=&quot;count = count + value&quot;&gt;</code> and widget definition of
 <code>scope: { localFn:&#39;&amp;myAttr&#39; }</code>, then isolate scope property <code>localFn</code> will point to
 a function wrapper for the <code>count = count + value</code> expression. Often it&#39;s desirable to
-pass data from the isolated scope via an expression and to the parent scope, this can be
+pass data from the isolated scope via an expression to the parent scope, this can be
 done by passing a map of local variable names and values into the expression wrapper fn.
 For example, if the expression is <code>increment(amount)</code> then we can specify the amount value
 by calling the <code>localFn</code> as <code>localFn({amount: 22})</code>.</p>
@@ -167,9 +167,9 @@ found, or if the directive does not have a controller, then an error is raised. 
 <ul>
 <li>(no prefix) - Locate the required controller on the current element. Throw an error if not found.</li>
 <li><code>?</code> - Attempt to locate the required controller or pass <code>null</code> to the <code>link</code> fn if not found.</li>
-<li><code>^</code> - Locate the required controller by searching the element&#39;s parents. Throw an error if not found.</li>
-<li><code>?^</code> - Attempt to locate the required controller by searching the element&#39;s parents or pass <code>null</code> to the
-<code>link</code> fn if not found.</li>
+<li><code>^</code> - Locate the required controller by searching the element and its parents. Throw an error if not found.</li>
+<li><code>?^</code> - Attempt to locate the required controller by searching the element and its parents or pass
+<code>null</code> to the <code>link</code> fn if not found.</li>
 </ul>
 <h4 id="-controlleras-"><code>controllerAs</code></h4>
 <p>Controller alias at the directive scope. An alias for the controller so it
@@ -185,12 +185,18 @@ declaration style. If omitted, the default (attributes only) is used.</p>
 <li><code>M</code> - Comment: <code>&lt;!-- directive: my-directive exp --&gt;</code></li>
 </ul>
 <h4 id="-template-"><code>template</code></h4>
-<p>replace the current element with the contents of the HTML. The replacement process
-migrates all of the attributes / classes from the old element to the new one. See the
-<a href="guide/directive#creating-custom-directives_creating-directives_template-expanding-directive">Directives Guide</a> for an example.</p>
-<p>You can specify <code>template</code> as a string representing the template or as a function which takes
-two arguments <code>tElement</code> and <code>tAttrs</code> (described in the <code>compile</code> function api below) and
-returns a string value representing the template.</p>
+<p>HTML markup that may:</p>
+<ul>
+<li>Replace the contents of the directive&#39;s element (default).</li>
+<li>Replace the directive&#39;s element itself (if <code>replace</code> is true - DEPRECATED).</li>
+<li>Wrap the contents of the directive&#39;s element (if <code>transclude</code> is true).</li>
+</ul>
+<p>Value may be:</p>
+<ul>
+<li>A string. For example <code>&lt;div red-on-hover&gt;{{delete_str}}&lt;/div&gt;</code>.</li>
+<li>A function which takes two arguments <code>tElement</code> and <code>tAttrs</code> (described in the <code>compile</code>
+function api below) and returns a string value.</li>
+</ul>
 <h4 id="-templateurl-"><code>templateUrl</code></h4>
 <p>Same as <code>template</code> but the template is loaded from the specified URL. Because
 the template loading is asynchronous the compilation/linking is suspended until the template
@@ -199,11 +205,13 @@ is loaded.</p>
 arguments <code>tElement</code> and <code>tAttrs</code> (described in the <code>compile</code> function api below) and returns
 a string value representing the url.  In either case, the template URL is passed through <a href="api/ng.$sce#getTrustedResourceUrl">$sce.getTrustedResourceUrl</a>.</p>
 <h4 id="-replace-deprecated-will-be-removed-in-next-major-release-"><code>replace</code> ([<em>DEPRECATED</em>!], will be removed in next major release)</h4>
-<p>specify where the template should be inserted. Defaults to <code>false</code>.</p>
+<p>specify what the template should replace. Defaults to <code>false</code>.</p>
 <ul>
-<li><code>true</code> - the template will replace the current element.</li>
-<li><code>false</code> - the template will replace the contents of the current element.</li>
+<li><code>true</code> - the template will replace the directive&#39;s element.</li>
+<li><code>false</code> - the template will replace the contents of the directive&#39;s element.</li>
 </ul>
+<p>The replacement process migrates all of the attributes / classes from the old element to the new
+one. See the <a href="guide/directive#creating-custom-directives_creating-directives_template-expanding-directive">Directives Guide</a> for an example.</p>
 <h4 id="-transclude-"><code>transclude</code></h4>
 <p>compile the content of the element and make it available to the directive.
 Typically used with <a href="api/ng/directive/ngTransclude">ngTransclude</a>. The advantage of transclusion is that the linking function receives a
@@ -215,6 +223,11 @@ be bound to the parent (pre-<code>isolate</code>) scope.</p>
 <li><code>true</code> - transclude the content of the directive.</li>
 <li><code>&#39;element&#39;</code> - transclude the whole element including any directives defined at lower priority.</li>
 </ul>
+<div class="alert alert-warning">
+<strong>Note:</strong> When testing an element transclude directive you must not place the directive at the root of the
+DOM fragment that is being compiled. See <a href="guide/unit-testing#testing-transclusion-directives">Testing Transclusion Directives</a>.
+</div>
+
 <h4 id="-compile-"><code>compile</code></h4>
 <pre><code class="lang-js">  function compile(tElement, tAttrs, transclude) { ... }</code></pre>
 <p>The compile function deals with transforming the template DOM. Since most directives do not do
@@ -342,14 +355,14 @@ to illustrate how <code>$compile</code> works.
     Edit in Plunker</a>
   <div class="runnable-example"
       path="examples/example-example4"
-      module="compile">
+      module="compileExample">
 
    
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;script&gt;&#10;  angular.module(&#39;compile&#39;, [], function($compileProvider) {&#10;    // configure new &#39;compile&#39; directive by passing a directive&#10;    // factory function. The factory function injects the &#39;$compile&#39;&#10;    $compileProvider.directive(&#39;compile&#39;, function($compile) {&#10;      // directive factory creates a link function&#10;      return function(scope, element, attrs) {&#10;        scope.$watch(&#10;          function(scope) {&#10;             // watch the &#39;compile&#39; expression for changes&#10;            return scope.$eval(attrs.compile);&#10;          },&#10;          function(value) {&#10;            // when the &#39;compile&#39; expression changes&#10;            // assign it into the current DOM&#10;            element.html(value);&#10;&#10;            // compile the new DOM and link it to the current&#10;            // scope.&#10;            // NOTE: we only compile .childNodes so that&#10;            // we don&#39;t get into infinite loop compiling ourselves&#10;            $compile(element.contents())(scope);&#10;          }&#10;        );&#10;      };&#10;    })&#10;  });&#10;&#10;  function Ctrl($scope) {&#10;    $scope.name = &#39;Angular&#39;;&#10;    $scope.html = &#39;Hello {{name}}&#39;;&#10;  }&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;Ctrl&quot;&gt;&#10;  &lt;input ng-model=&quot;name&quot;&gt; &lt;br&gt;&#10;  &lt;textarea ng-model=&quot;html&quot;&gt;&lt;/textarea&gt; &lt;br&gt;&#10;  &lt;div compile=&quot;html&quot;&gt;&lt;/div&gt;&#10;&lt;/div&gt;</code></pre>
+      <pre><code>&lt;script&gt;&#10;  angular.module(&#39;compileExample&#39;, [], function($compileProvider) {&#10;    // configure new &#39;compile&#39; directive by passing a directive&#10;    // factory function. The factory function injects the &#39;$compile&#39;&#10;    $compileProvider.directive(&#39;compile&#39;, function($compile) {&#10;      // directive factory creates a link function&#10;      return function(scope, element, attrs) {&#10;        scope.$watch(&#10;          function(scope) {&#10;             // watch the &#39;compile&#39; expression for changes&#10;            return scope.$eval(attrs.compile);&#10;          },&#10;          function(value) {&#10;            // when the &#39;compile&#39; expression changes&#10;            // assign it into the current DOM&#10;            element.html(value);&#10;&#10;            // compile the new DOM and link it to the current&#10;            // scope.&#10;            // NOTE: we only compile .childNodes so that&#10;            // we don&#39;t get into infinite loop compiling ourselves&#10;            $compile(element.contents())(scope);&#10;          }&#10;        );&#10;      };&#10;    });&#10;  })&#10;  .controller(&#39;GreeterController&#39;, [&#39;$scope&#39;, function($scope) {&#10;    $scope.name = &#39;Angular&#39;;&#10;    $scope.html = &#39;Hello {{name}}&#39;;&#10;  }]);&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;GreeterController&quot;&gt;&#10;  &lt;input ng-model=&quot;name&quot;&gt; &lt;br&gt;&#10;  &lt;textarea ng-model=&quot;html&quot;&gt;&lt;/textarea&gt; &lt;br&gt;&#10;  &lt;div compile=&quot;html&quot;&gt;&lt;/div&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -363,6 +376,7 @@ to illustrate how <code>$compile</code> works.
     <iframe class="runnable-example-frame" src="examples/example-example4/index.html" name="example-example4"></iframe>
   </div>
 </div>
+
 
 </p>
 

@@ -1,8 +1,10 @@
 describe("module:ng.directive:ngChange", function() {
+  var rootEl;
   beforeEach(function() {
+    rootEl = browser.rootEl;
     browser.get("./examples/example-ngChange-directive/index.html");
   });
-
+  
   var counter = element(by.binding('counter'));
   var debug = element(by.binding('confirmed'));
 

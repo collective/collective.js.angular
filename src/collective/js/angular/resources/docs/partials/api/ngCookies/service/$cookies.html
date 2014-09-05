@@ -47,12 +47,13 @@ The object&#39;s properties can only be strings.</p>
 
 
   
-  <h2 id="example">Example</h2><pre><code class="lang-js">function ExampleController($cookies) {
-  // Retrieving a cookie
-  var favoriteCookie = $cookies.myFavorite;
-  // Setting a cookie
-  $cookies.myFavorite = &#39;oatmeal&#39;;
-}</code></pre>
+  <h2 id="example">Example</h2><pre><code class="lang-js">angular.module(&#39;cookiesExample&#39;, [&#39;ngCookies&#39;])
+  .controller(&#39;ExampleController&#39;, [&#39;$cookies&#39;, function($cookies) {
+    // Retrieving a cookie
+    var favoriteCookie = $cookies.myFavorite;
+    // Setting a cookie
+    $cookies.myFavorite = &#39;oatmeal&#39;;
+  }]);</code></pre>
 
 </div>
 

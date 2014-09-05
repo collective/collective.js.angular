@@ -5,21 +5,22 @@
   <title>Example - example-example63-production</title>
   
 
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js"></script>
   
 
   
 </head>
-<body ng-app="">
+<body ng-app="windowExample">
     <script>
-    function Ctrl($scope, $window) {
-      $scope.greeting = 'Hello, World!';
-      $scope.doGreeting = function(greeting) {
+    angular.module('windowExample', [])
+      .controller('ExampleController', ['$scope', '$window', function ($scope, $window) {
+        $scope.greeting = 'Hello, World!';
+        $scope.doGreeting = function(greeting) {
           $window.alert(greeting);
-      };
-    }
+        };
+      }]);
   </script>
-  <div ng-controller="Ctrl">
+  <div ng-controller="ExampleController">
     <input type="text" ng-model="greeting" />
     <button ng-click="doGreeting(greeting)">ALERT</button>
   </div>

@@ -70,9 +70,9 @@ by using the <code>$animate</code> service.</p>
 }
 
 .slide.ng-enter { }        /* starting animations for enter */
-.slide.ng-enter-active { } /* terminal animations for enter */
+.slide.ng-enter.ng-enter-active { } /* terminal animations for enter */
 .slide.ng-leave { }        /* starting animations for leave */
-.slide.ng-leave-active { } /* terminal animations for leave */
+.slide.ng-leave.ng-leave-active { } /* terminal animations for leave */
 &lt;/style&gt;
 
 &lt;!--
@@ -80,8 +80,18 @@ the animate service will automatically add .ng-enter and .ng-leave to the elemen
 to trigger the CSS transition/animations
 --&gt;
 &lt;ANY class=&quot;slide&quot; ng-include=&quot;...&quot;&gt;&lt;/ANY&gt;</code></pre>
-<p>Keep in mind that if an animation is running, any child elements cannot be animated until the parent element&#39;s
-animation has completed.</p>
+<p>Keep in mind that, by default, if an animation is running, any child elements cannot be animated
+until the parent element&#39;s animation has completed. This blocking feature can be overridden by
+placing the <code>ng-animate-children</code> attribute on a parent container tag.</p>
+<pre><code class="lang-html">&lt;div class=&quot;slide-animation&quot; ng-if=&quot;on&quot; ng-animate-children&gt;
+  &lt;div class=&quot;fade-animation&quot; ng-if=&quot;on&quot;&gt;
+    &lt;div class=&quot;explode-animation&quot; ng-if=&quot;on&quot;&gt;
+       ...
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<p>When the <code>on</code> expression value changes and an animation is triggered then each of the elements within
+will all animate without the block being applied to child elements.</p>
 <p><h2>CSS-defined Animations</h2>
 The animate service will automatically apply two CSS classes to the animated element and these two CSS classes
 are designed to contain the start and end CSS styling. Both CSS transitions and keyframe animations are supported

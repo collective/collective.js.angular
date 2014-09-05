@@ -5,25 +5,26 @@
   <title>Example - example-example48-production</title>
   
 
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js"></script>
   
 
   
 </head>
-<body ng-app="">
+<body ng-app="selectExample">
     <script>
-  function MyCntrl($scope) {
-    $scope.colors = [
-      {name:'black', shade:'dark'},
-      {name:'white', shade:'light'},
-      {name:'red', shade:'dark'},
-      {name:'blue', shade:'dark'},
-      {name:'yellow', shade:'light'}
-    ];
-    $scope.myColor = $scope.colors[2]; // red
-  }
+  angular.module('selectExample', [])
+    .controller('ExampleController', ['$scope', function($scope) {
+      $scope.colors = [
+        {name:'black', shade:'dark'},
+        {name:'white', shade:'light'},
+        {name:'red', shade:'dark'},
+        {name:'blue', shade:'dark'},
+        {name:'yellow', shade:'light'}
+      ];
+      $scope.myColor = $scope.colors[2]; // red
+    }]);
   </script>
-  <div ng-controller="MyCntrl">
+  <div ng-controller="ExampleController">
     <ul>
       <li ng-repeat="color in colors">
         Name: <input ng-model="color.name">

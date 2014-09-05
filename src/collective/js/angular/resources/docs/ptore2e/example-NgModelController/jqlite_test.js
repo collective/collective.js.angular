@@ -1,8 +1,10 @@
 describe("module:ng.type:ngModel.NgModelController", function() {
+  var rootEl;
   beforeEach(function() {
+    rootEl = browser.rootEl;
     browser.get("./examples/example-NgModelController/index.html");
   });
-
+  
 it('should data-bind and become invalid', function() {
   if (browser.params.browser == 'safari' || browser.params.browser == 'firefox') {
     // SafariDriver can't handle contenteditable

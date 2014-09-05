@@ -2,7 +2,7 @@
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/ngBind.js#L131' class='view-source pull-right btn btn-primary'>
+<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/ngBind.js#L133' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -92,8 +92,7 @@ will have an exception (instead of an exploit.)</p>
 
 
   
-  <h2 id="example">Example</h2><p>Try it here: enter text in text box and watch the greeting change.</p>
-<p>   
+  <h2 id="example">Example</h2><p>
 
 <div>
   <a ng-click="openPlunkr('examples/example-example15')" class="btn pull-right">
@@ -101,7 +100,7 @@ will have an exception (instead of an exploit.)</p>
     Edit in Plunker</a>
   <div class="runnable-example"
       path="examples/example-example15"
-      module="ngBindHtmlExample"
+      module="bindHtmlExample"
       deps="angular-sanitize.js">
 
    
@@ -109,14 +108,14 @@ will have an exception (instead of an exploit.)</p>
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;div ng-controller=&quot;ngBindHtmlCtrl&quot;&gt;&#10; &lt;p ng-bind-html=&quot;myHTML&quot;&gt;&lt;/p&gt;&#10;&lt;/div&gt;</code></pre>
+      <pre><code>&lt;div ng-controller=&quot;ExampleController&quot;&gt;&#10; &lt;p ng-bind-html=&quot;myHTML&quot;&gt;&lt;/p&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="script.js"
       language="js"
       type="js">
-      <pre><code>angular.module(&#39;ngBindHtmlExample&#39;, [&#39;ngSanitize&#39;])&#10;&#10;.controller(&#39;ngBindHtmlCtrl&#39;, [&#39;$scope&#39;, function ngBindHtmlCtrl($scope) {&#10;  $scope.myHTML =&#10;     &#39;I am an &lt;code&gt;HTML&lt;/code&gt;string with &lt;a href=&quot;#&quot;&gt;links!&lt;/a&gt; and other &lt;em&gt;stuff&lt;/em&gt;&#39;;&#10;}]);</code></pre>
+      <pre><code>angular.module(&#39;bindHtmlExample&#39;, [&#39;ngSanitize&#39;])&#10;  .controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;    $scope.myHTML =&#10;       &#39;I am an &lt;code&gt;HTML&lt;/code&gt;string with &#39; +&#10;       &#39;&lt;a href=&quot;#&quot;&gt;links!&lt;/a&gt; and other &lt;em&gt;stuff&lt;/em&gt;&#39;;&#10;  }]);</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -130,6 +129,7 @@ will have an exception (instead of an exploit.)</p>
     <iframe class="runnable-example-frame" src="examples/example-example15/index.html" name="example-example15"></iframe>
   </div>
 </div>
+
 
 </p>
 

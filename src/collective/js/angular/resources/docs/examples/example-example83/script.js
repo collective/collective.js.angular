@@ -1,15 +1,33 @@
-  angular.module('docsIsolationExample', [])
+  angular.module('docsTimeDirective', [])
     .controller('Controller', ['$scope', function($scope) {
-      $scope.naomi = { name: 'Naomi', address: '1600 Amphitheatre' };
-
-      $scope.vojta = { name: 'Vojta', address: '3456 Somewhere Else' };
+      $scope.format = 'M/d/yy h:mm:ss a';
     }])
-    .directive('myCustomer', function() {
+    .directive('myCurrentTime', ['$interval', 'dateFilter', function($interval, dateFilter) {
+
+      function link(scope, element, attrs) {
+        var format,
+            timeoutId;
+
+        function updateTime() {
+          element.text(dateFilter(new Date(), format));
+        }
+
+        scope.$watch(attrs.myCurrentTime, function(value) {
+          format = value;
+          updateTime();
+        });
+
+        element.on('$destroy', function() {
+          $interval.cancel(timeoutId);
+        });
+
+        // start the UI update process; save the timeoutId for canceling
+        timeoutId = $interval(function() {
+          updateTime(); // update DOM
+        }, 1000);
+      }
+
       return {
-        restrict: 'E',
-        scope: {
-          customerInfo: '=info'
-        },
-        templateUrl: 'my-customer-plus-vojta.html'
+        link: link
       };
-    });
+    }]);

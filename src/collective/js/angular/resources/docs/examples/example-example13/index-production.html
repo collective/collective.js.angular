@@ -5,18 +5,19 @@
   <title>Example - example-example13-production</title>
   
 
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js"></script>
   
 
   
 </head>
-<body ng-app="">
+<body ng-app="bindExample">
     <script>
-    function Ctrl($scope) {
-      $scope.name = 'Whirled';
-    }
+    angular.module('bindExample', [])
+      .controller('ExampleController', ['$scope', function($scope) {
+        $scope.name = 'Whirled';
+      }]);
   </script>
-  <div ng-controller="Ctrl">
+  <div ng-controller="ExampleController">
     Enter name: <input type="text" ng-model="name"><br>
     Hello <span ng-bind="name"></span>!
   </div>

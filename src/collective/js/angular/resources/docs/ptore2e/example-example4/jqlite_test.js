@@ -1,8 +1,10 @@
 describe("module:ng.service:$compile", function() {
+  var rootEl;
   beforeEach(function() {
+    rootEl = browser.rootEl;
     browser.get("./examples/example-example4/index.html");
   });
-
+  
   it('should auto compile', function() {
     var textarea = $('textarea');
     var output = $('div[compile]');

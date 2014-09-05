@@ -5,18 +5,19 @@
   <title>Example - example-number-input-directive-production</title>
   
 
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js"></script>
   
 
   
 </head>
-<body ng-app="">
+<body ng-app="numberExample">
    <script>
-   function Ctrl($scope) {
-     $scope.value = 12;
-   }
+   angular.module('numberExample', [])
+     .controller('ExampleController', ['$scope', function($scope) {
+       $scope.value = 12;
+     }]);
  </script>
- <form name="myForm" ng-controller="Ctrl">
+ <form name="myForm" ng-controller="ExampleController">
    Number: <input type="number" name="input" ng-model="value"
                   min="0" max="99" required>
    <span class="error" ng-show="myForm.input.$error.required">

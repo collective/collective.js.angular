@@ -14,11 +14,12 @@
     angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
   </script>
 </head>
-<body ng-app="">
+<body ng-app="formExample">
    <script>
-   function Ctrl($scope) {
-     $scope.userType = 'guest';
-   }
+   angular.module('formExample', [])
+     .controller('FormController', ['$scope', function($scope) {
+       $scope.userType = 'guest';
+     }]);
  </script>
  <style>
   .my-form {
@@ -30,7 +31,7 @@
     background: red;
   }
  </style>
- <form name="myForm" ng-controller="Ctrl" class="my-form">
+ <form name="myForm" ng-controller="FormController" class="my-form">
    userType: <input name="input" ng-model="userType" required>
    <span class="error" ng-show="myForm.input.$error.required">Required!</span><br>
    <tt>userType = {{userType}}</tt><br>

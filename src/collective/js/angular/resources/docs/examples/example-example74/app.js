@@ -1,13 +1,10 @@
-  var myApp = angular.module('spicyApp1', []);
+  var myApp = angular.module('spicyApp2', []);
 
   myApp.controller('SpicyController', ['$scope', function($scope) {
+      $scope.customSpice = "wasabi";
       $scope.spice = 'very';
 
-      $scope.chiliSpicy = function() {
-          $scope.spice = 'chili';
-      };
-
-      $scope.jalapenoSpicy = function() {
-          $scope.spice = 'jalapeño';
+      $scope.spicy = function(spice) {
+          $scope.spice = spice;
       };
   }]);

@@ -25,7 +25,7 @@ with the value of a given expression, and to update the text content when the va
 expression changes.</p>
 <p>Typically, you don&#39;t use <code>ngBind</code> directly, but instead you use the double curly markup like
 <code>{{ expression }}</code> which is similar but less verbose.</p>
-<p>It is preferable to use <code>ngBind</code> instead of <code>{{ expression }}</code> when a template is momentarily
+<p>It is preferable to use <code>ngBind</code> instead of <code>{{ expression }}</code> if a template is momentarily
 displayed by the browser in its raw state before Angular compiles it. Since <code>ngBind</code> is an
 element attribute, it makes the bindings invisible to the user while the page is loading.</p>
 <p>An alternative solution to this problem would be using the
@@ -105,14 +105,15 @@ element attribute, it makes the bindings invisible to the user while the page is
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
   <div class="runnable-example"
-      path="examples/example-example13">
+      path="examples/example-example13"
+      module="bindExample">
 
    
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;script&gt;&#10;  function Ctrl($scope) {&#10;    $scope.name = &#39;Whirled&#39;;&#10;  }&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;Ctrl&quot;&gt;&#10;  Enter name: &lt;input type=&quot;text&quot; ng-model=&quot;name&quot;&gt;&lt;br&gt;&#10;  Hello &lt;span ng-bind=&quot;name&quot;&gt;&lt;/span&gt;!&#10;&lt;/div&gt;</code></pre>
+      <pre><code>&lt;script&gt;&#10;  angular.module(&#39;bindExample&#39;, [])&#10;    .controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;      $scope.name = &#39;Whirled&#39;;&#10;    }]);&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;ExampleController&quot;&gt;&#10;  Enter name: &lt;input type=&quot;text&quot; ng-model=&quot;name&quot;&gt;&lt;br&gt;&#10;  Hello &lt;span ng-bind=&quot;name&quot;&gt;&lt;/span&gt;!&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -126,6 +127,7 @@ element attribute, it makes the bindings invisible to the user while the page is
     <iframe class="runnable-example-frame" src="examples/example-example13/index.html" name="example-example13"></iframe>
   </div>
 </div>
+
 
 </p>
 

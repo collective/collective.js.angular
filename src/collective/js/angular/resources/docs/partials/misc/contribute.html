@@ -45,13 +45,13 @@ Afterwards, go ahead and <a href="http://help.github.com/forking">fork</a> the <
 <p>To build AngularJS, you clone the source code repository and use Grunt to generate the non-minified and
 minified AngularJS files:</p>
 <pre><code class="lang-shell"># Clone your Github repository:
-git clone git@github.com:&lt;github username&gt;/angular.js.git
+git clone &quot;git@github.com:&lt;github username&gt;/angular.js.git&quot;
 
 # Go to the AngularJS directory:
 cd angular.js
 
 # Add the main AngularJS repository as an upstream remote to your repository:
-git remote add upstream https://github.com/angular/angular.js.git
+git remote add upstream &quot;https://github.com/angular/angular.js.git&quot;
 
 # Install node.js dependencies:
 npm install
@@ -103,11 +103,11 @@ made available a local web server based on Node.js.</p>
 <pre><code class="lang-shell">grunt webserver</code></pre>
 </li>
 <li><p>To access the local server, enter the following URL into your web browser:</p>
-<pre><code>http://localhost:8000/</code></pre>
+<pre><code class="lang-text">http://localhost:8000/</code></pre>
 <p>By default, it serves the contents of the AngularJS project directory.</p>
 </li>
 <li><p>To access the locally served docs, visit this URL:</p>
-<pre><code>http://localhost:8000/build/docs/</code></pre>
+<pre><code class="lang-text">http://localhost:8000/build/docs/</code></pre>
 </li>
 </ol>
 <h2 id="running-the-unit-test-suite">Running the Unit Test Suite</h2>
@@ -125,7 +125,7 @@ change. To execute tests in this mode run:</p>
 </li>
 <li><p>To capture more browsers, open this URL in the desired browser (URL might be different if you have multiple instance
 of Karma running, read Karma&#39;s console output for the correct URL):</p>
-<pre><code class="lang-shell">http://localhost:9876/</code></pre>
+<pre><code class="lang-text">http://localhost:9876/</code></pre>
 </li>
 <li><p>To re-run tests just change any source or test file.</p>
 </li>

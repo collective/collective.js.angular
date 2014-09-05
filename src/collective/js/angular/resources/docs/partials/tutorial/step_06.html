@@ -52,7 +52,7 @@ Using the <code>ngSrc</code> directive prevents the browser from making an http 
     it(&#39;should render phone specific links&#39;, function() {
       var query = element(by.model(&#39;query&#39;));
       query.sendKeys(&#39;nexus&#39;);
-      element(by.css(&#39;.phones li a&#39;)).click();
+      element.all(by.css(&#39;.phones li a&#39;)).first().click();
       browser.getLocationAbsUrl().then(function(url) {
         expect(url.split(&#39;#&#39;)[1]).toBe(&#39;/phones/nexus-s&#39;);
       });
@@ -76,4 +76,5 @@ the valid address.</p>
 <p>Now that you have added phone images and links, go to <a href="tutorial/step_07">step 7</a> to learn about Angular
 layout templates and how Angular makes it easy to create applications that have multiple views.</p>
 <ul doc-tutorial-nav="6"></ul>
+
 

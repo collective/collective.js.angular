@@ -1,8 +1,10 @@
 describe("module:ng.filter:number", function() {
+  var rootEl;
   beforeEach(function() {
+    rootEl = browser.rootEl;
     browser.get("./examples/example-example52/index-jquery.html");
   });
-
+  
   it('should format numbers', function() {
     expect(element(by.id('number-default')).getText()).toBe('1,234.568');
     expect(element(by.binding('val | number:0')).getText()).toBe('1,235');

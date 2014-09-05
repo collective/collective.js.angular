@@ -5,19 +5,20 @@
   <title>Example - example-ngValue-directive-production</title>
   
 
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js"></script>
   
 
   
 </head>
-<body ng-app="">
+<body ng-app="valueExample">
    <script>
-    function Ctrl($scope) {
-      $scope.names = ['pizza', 'unicorns', 'robots'];
-      $scope.my = { favorite: 'unicorns' };
-    }
+    angular.module('valueExample', [])
+      .controller('ExampleController', ['$scope', function($scope) {
+        $scope.names = ['pizza', 'unicorns', 'robots'];
+        $scope.my = { favorite: 'unicorns' };
+      }]);
  </script>
-  <form ng-controller="Ctrl">
+  <form ng-controller="ExampleController">
     <h2>Which is your favorite?</h2>
       <label ng-repeat="name in names" for="{{name}}">
         {{name}}

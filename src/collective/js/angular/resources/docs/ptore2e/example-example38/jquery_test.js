@@ -1,8 +1,10 @@
 describe("module:ng.directive:ngInit", function() {
+  var rootEl;
   beforeEach(function() {
+    rootEl = browser.rootEl;
     browser.get("./examples/example-example38/index-jquery.html");
   });
-
+  
   it('should alias index positions', function() {
     var elements = element.all(by.css('.example-init'));
     expect(elements.get(0).getText()).toBe('list[ 0 ][ 0 ] = a;');

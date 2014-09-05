@@ -10,14 +10,15 @@
 
   
 </head>
-<body ng-app="">
+<body ng-app="textInputExample">
    <script>
-   function Ctrl($scope) {
-     $scope.text = 'guest';
-     $scope.word = /^\s*\w*\s*$/;
-   }
+   angular.module('textInputExample', [])
+     .controller('ExampleController', ['$scope', function($scope) {
+       $scope.text = 'guest';
+       $scope.word = /^\s*\w*\s*$/;
+     }]);
  </script>
- <form name="myForm" ng-controller="Ctrl">
+ <form name="myForm" ng-controller="ExampleController">
    Single word: <input type="text" name="input" ng-model="text"
                        ng-pattern="word" required ng-trim="false">
    <span class="error" ng-show="myForm.input.$error.required">
