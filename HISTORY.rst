@@ -1,7 +1,7 @@
 History
 =======
 
-1.2.26.1 (unreleased)
+1.2.26.1 (2014-10-14)
 ---------------------
 
 - Updated forgotten CDN link.
