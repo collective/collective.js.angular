@@ -4,7 +4,8 @@ History
 1.2.26.1 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+- Updated forgotten CDN link.
+  [jensens]
 
 
 1.2.26.0 (2014-10-14)
