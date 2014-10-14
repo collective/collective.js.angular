@@ -1,8 +1,8 @@
 History
 =======
 
-1.3.0.0 (unreleased)
----------------------
+1.3.0.0 (2014-10-14)
+--------------------
 
 - Upgrade to ``angular.js`` 1.3.0. Branched away 1.2.x series from here on.
   [jensens]
