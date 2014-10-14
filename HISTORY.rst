@@ -1,7 +1,7 @@
 History
 =======
 
-1.2.23.3 (unreleased)
+1.2.26.0 (2014-10-14)
 ---------------------
 
 - Nothing changed yet.
