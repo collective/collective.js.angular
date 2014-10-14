@@ -1,4 +1,4 @@
-<a href='http://github.com/angular/angular.js/edit/master/docs/content/guide/unit-testing.ngdoc' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/docs/content/guide/unit-testing.ngdoc?message=docs(guide%2FUnit Testing)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 <p>JavaScript is a dynamically typed language which comes with great power of expression, but it also
@@ -42,13 +42,14 @@ the registry? Most likely by looking it up in a well known place. See #2.)</li>
 on a constructor. This permanently binds the call site to the type. For example, let&#39;s say that we try to
 instantiate an <code>XHR</code> that will retrieve data from the server.</p>
 <pre><code class="lang-js">function MyClass() {
-  this.doWork = function() {
-    var xhr = new XHR();
-    xhr.open(method, url, true);
-    xhr.onreadystatechange = function() {...}
-    xhr.send();
-  }
-}</code></pre>
+this.doWork = function() {
+  var xhr = new XHR();
+  xhr.open(method, url, true);
+  xhr.onreadystatechange = function() {...}
+  xhr.send();
+}
+}
+</code></pre>
 <p>A problem surfaces in tests when we would like to instantiate a <code>MockXHR</code> that would
 allow us to return fake data and simulate network failures. By calling <code>new XHR()</code> we are
 permanently bound to the actual XHR and there is no way to replace it. Yes, we could monkey
@@ -59,18 +60,20 @@ XHR = function MockXHR() {};
 var myClass = new MyClass();
 myClass.doWork();
 // assert that MockXHR got called with the right arguments
-XHR = oldXHR; // if you forget this bad things will happen</code></pre>
+XHR = oldXHR; // if you forget this bad things will happen
+</code></pre>
 <h3 id="global-look-up-">Global look-up:</h3>
 <p>Another way to approach the problem is to look for the service in a well-known location.</p>
 <pre><code class="lang-js">function MyClass() {
-  this.doWork = function() {
-    global.xhr({
-      method:&#39;...&#39;,
-      url:&#39;...&#39;,
-      complete:function(response){ ... }
-    })
-  }
-}</code></pre>
+this.doWork = function() {
+  global.xhr({
+    method:&#39;...&#39;,
+    url:&#39;...&#39;,
+    complete:function(response){ ... }
+  })
+}
+}
+</code></pre>
 <p>While no new dependency instance is created, it is fundamentally the same as <code>new</code> in
 that no  way exists to intercept the call to <code>global.xhr</code> for testing purposes, other then
 through monkey patching. The basic issue for testing is that a global variable needs to be mutated in
@@ -82,20 +85,22 @@ global.xhr = function mockXHR() {};
 var myClass = new MyClass();
 myClass.doWork();
 // assert that mockXHR got called with the right arguments
-global.xhr = oldXHR; // if you forget this bad things will happen</code></pre>
+global.xhr = oldXHR; // if you forget this bad things will happen
+</code></pre>
 <h3 id="service-registry-">Service Registry:</h3>
 <p>It may seem that this can be solved by having a registry of all the services and then
 having the tests replace the services as needed.</p>
 <pre><code class="lang-js">function MyClass() {
-  var serviceRegistry = ????;
-  this.doWork = function() {
-    var xhr = serviceRegistry.get(&#39;xhr&#39;);
-    xhr({
-      method:&#39;...&#39;,
-      url:&#39;...&#39;,
-      complete:function(response){ ... }
-    })
-}</code></pre>
+var serviceRegistry = ????;
+this.doWork = function() {
+  var xhr = serviceRegistry.get(&#39;xhr&#39;);
+  xhr({
+    method:&#39;...&#39;,
+    url:&#39;...&#39;,
+    complete:function(response){ ... }
+  })
+}
+</code></pre>
 <p>However, where does the serviceRegistry come from? If it is:</p>
 <ul>
 <li><code>new</code>-ed up, the test has no chance to reset the services for testing.</li>
@@ -108,17 +113,19 @@ global.serviceLocator.set(&#39;xhr&#39;, function mockXHR() {});
 var myClass = new MyClass();
 myClass.doWork();
 // assert that mockXHR got called with the right arguments
-global.serviceLocator = oldServiceLocator; // if you forget this bad things will happen</code></pre>
+global.serviceLocator = oldServiceLocator; // if you forget this bad things will happen
+</code></pre>
 <h3 id="passing-in-dependencies-">Passing in Dependencies:</h3>
 <p>Last, the dependency can be passed in.</p>
 <pre><code class="lang-js">function MyClass(xhr) {
-  this.doWork = function() {
-    xhr({
-      method:&#39;...&#39;,
-      url:&#39;...&#39;,
-      complete:function(response){ ... }
-    })
-}</code></pre>
+this.doWork = function() {
+  xhr({
+    method:&#39;...&#39;,
+    url:&#39;...&#39;,
+    complete:function(response){ ... }
+  })
+}
+</code></pre>
 <p>This is the preferred method since the code makes no assumptions about the origin of <code>xhr</code> and cares
 instead about whoever created the class  responsible for passing it in. Since the creator of the
 class should be different code than the user of the class, it separates the responsibility of
@@ -127,7 +134,8 @@ creation from the logic. This is dependency-injection in a nutshell.</p>
 <pre><code class="lang-js">function xhrMock(args) {...}
 var myClass = new MyClass(xhrMock);
 myClass.doWork();
-// assert that xhrMock got called with the right arguments</code></pre>
+// assert that xhrMock got called with the right arguments
+</code></pre>
 <p>Notice that no global variables were harmed in the writing of this test.</p>
 <p>Angular comes with <a href="guide/di">dependency injection</a> built-in, making the right thing
 easy to do, but you still need to do it if you wish to take advantage of the testability story.</p>
@@ -136,27 +144,28 @@ easy to do, but you still need to do it if you wish to take advantage of the tes
 for your application contains DOM manipulation, it will be hard to test. See the example
 below:</p>
 <pre><code class="lang-js">function PasswordCtrl() {
-  // get references to DOM elements
-  var msg = $(&#39;.ex1 span&#39;);
-  var input = $(&#39;.ex1 input&#39;);
-  var strength;
+// get references to DOM elements
+var msg = $(&#39;.ex1 span&#39;);
+var input = $(&#39;.ex1 input&#39;);
+var strength;
 
-  this.grade = function() {
-    msg.removeClass(strength);
-    var pwd = input.val();
-    password.text(pwd);
-    if (pwd.length &gt; 8) {
-      strength = &#39;strong&#39;;
-    } else if (pwd.length &gt; 3) {
-      strength = &#39;medium&#39;;
-    } else {
-      strength = &#39;weak&#39;;
-    }
-    msg
-     .addClass(strength)
-     .text(strength);
+this.grade = function() {
+  msg.removeClass(strength);
+  var pwd = input.val();
+  password.text(pwd);
+  if (pwd.length &gt; 8) {
+    strength = &#39;strong&#39;;
+  } else if (pwd.length &gt; 3) {
+    strength = &#39;medium&#39;;
+  } else {
+    strength = &#39;weak&#39;;
   }
-}</code></pre>
+  msg
+   .addClass(strength)
+   .text(strength);
+}
+}
+</code></pre>
 <p>The code above is problematic from a testability point of view since it requires your test to have the right kind
 of DOM present when the code executes. The test would look like this:</p>
 <pre><code class="lang-js">var input = $(&#39;&lt;input type=&quot;text&quot;/&gt;&#39;);
@@ -169,28 +178,31 @@ var pc = new PasswordCtrl();
 input.val(&#39;abc&#39;);
 pc.grade();
 expect(span.text()).toEqual(&#39;weak&#39;);
-$(&#39;body&#39;).empty();</code></pre>
+$(&#39;body&#39;).empty();
+</code></pre>
 <p>In angular the controllers are strictly separated from the DOM manipulation logic and this results in
 a much easier testability story as the following example shows:</p>
 <pre><code class="lang-js">function PasswordCtrl($scope) {
-  $scope.password = &#39;&#39;;
-  $scope.grade = function() {
-    var size = $scope.password.length;
-    if (size &gt; 8) {
-      $scope.strength = &#39;strong&#39;;
-    } else if (size &gt; 3) {
-      $scope.strength = &#39;medium&#39;;
-    } else {
-      $scope.strength = &#39;weak&#39;;
-    }
-  };
-}</code></pre>
+$scope.password = &#39;&#39;;
+$scope.grade = function() {
+  var size = $scope.password.length;
+  if (size &gt; 8) {
+    $scope.strength = &#39;strong&#39;;
+  } else if (size &gt; 3) {
+    $scope.strength = &#39;medium&#39;;
+  } else {
+    $scope.strength = &#39;weak&#39;;
+  }
+};
+}
+</code></pre>
 <p>and the test is straight forward:</p>
 <pre><code class="lang-js">var $scope = {};
 var pc = $controller(&#39;PasswordCtrl&#39;, { $scope: $scope });
 $scope.password = &#39;abc&#39;;
 $scope.grade();
-expect($scope.strength).toEqual(&#39;weak&#39;);</code></pre>
+expect($scope.strength).toEqual(&#39;weak&#39;);
+</code></pre>
 <p>Notice that the test is not only much shorter, it is also easier to follow what is happening. We say
 that such a test tells a story, rather than asserting random bits which don&#39;t seem to be related.</p>
 <h2 id="filters">Filters</h2>
@@ -198,56 +210,60 @@ that such a test tells a story, rather than asserting random bits which don&#39;
 format. They are important because they remove the formatting responsibility from the application
 logic, further simplifying the application logic.</p>
 <pre><code class="lang-js">myModule.filter(&#39;length&#39;, function() {
-  return function(text){
-    return (&#39;&#39;+(text||&#39;&#39;)).length;
-  }
+return function(text){
+  return (&#39;&#39;+(text||&#39;&#39;)).length;
+}
 });
 
 var length = $filter(&#39;length&#39;);
 expect(length(null)).toEqual(0);
-expect(length(&#39;abc&#39;)).toEqual(3);</code></pre>
+expect(length(&#39;abc&#39;)).toEqual(3);
+</code></pre>
 <h2 id="directives">Directives</h2>
 <p>Directives in angular are responsible for encapsulating complex functionality within custom HTML tags,
 attributes, classes or comments. Unit tests are very important for directives because the components
 you create with directives may be used throughout your application and in many different contexts.</p>
 <h3 id="simple-html-element-directive">Simple HTML Element Directive</h3>
 <p>Let&#39;s start with an angular app with no dependencies.</p>
-<pre><code class="lang-js">var app = angular.module(&#39;myApp&#39;, []);</code></pre>
+<pre><code class="lang-js">var app = angular.module(&#39;myApp&#39;, []);
+</code></pre>
 <p>Now we can add a directive to our app.</p>
 <pre><code class="lang-js">app.directive(&#39;aGreatEye&#39;, function () {
-    return {
-        restrict: &#39;E&#39;,
-        replace: true,
-        template: &#39;&lt;h1&gt;lidless, wreathed in flame, {{1 + 1}} times&lt;/h1&gt;&#39;
-    };
-});</code></pre>
+return {
+    restrict: &#39;E&#39;,
+    replace: true,
+    template: &#39;&lt;h1&gt;lidless, wreathed in flame, {{1 + 1}} times&lt;/h1&gt;&#39;
+};
+});
+</code></pre>
 <p>This directive is used as a tag <code>&lt;a-great-eye&gt;&lt;/a-great-eye&gt;</code>. It replaces the entire tag with the
 template <code>&lt;h1&gt;lidless, wreathed in flame, {{1 + 1}} times&lt;/h1&gt;</code>. Now we are going to write a jasmine unit test to
 verify this functionality. Note that the expression <code>{{1 + 1}}</code> times will also be evaluated in the rendered content.</p>
 <pre><code class="lang-js">describe(&#39;Unit testing great quotes&#39;, function() {
-    var $compile;
-    var $rootScope;
+var $compile;
+var $rootScope;
 
-    // Load the myApp module, which contains the directive
-    beforeEach(module(&#39;myApp&#39;));
+// Load the myApp module, which contains the directive
+beforeEach(module(&#39;myApp&#39;));
 
-    // Store references to $rootScope and $compile
-    // so they are available to all tests in this describe block
-    beforeEach(inject(function(_$compile_, _$rootScope_){
-      // The injector unwraps the underscores (_) from around the parameter names when matching
-      $compile = _$compile_;
-      $rootScope = _$rootScope_;
-    }));
+// Store references to $rootScope and $compile
+// so they are available to all tests in this describe block
+beforeEach(inject(function(_$compile_, _$rootScope_){
+  // The injector unwraps the underscores (_) from around the parameter names when matching
+  $compile = _$compile_;
+  $rootScope = _$rootScope_;
+}));
 
-    it(&#39;Replaces the element with the appropriate content&#39;, function() {
-        // Compile a piece of HTML containing the directive
-        var element = $compile(&quot;&lt;a-great-eye&gt;&lt;/a-great-eye&gt;&quot;)($rootScope);
-        // fire all the watches, so the scope expression {{1 + 1}} will be evaluated
-        $rootScope.$digest();
-        // Check that the compiled element contains the templated content
-        expect(element.html()).toContain(&quot;lidless, wreathed in flame, 2 times&quot;);
-    });
-});</code></pre>
+it(&#39;Replaces the element with the appropriate content&#39;, function() {
+    // Compile a piece of HTML containing the directive
+    var element = $compile(&quot;&lt;a-great-eye&gt;&lt;/a-great-eye&gt;&quot;)($rootScope);
+    // fire all the watches, so the scope expression {{1 + 1}} will be evaluated
+    $rootScope.$digest();
+    // Check that the compiled element contains the templated content
+    expect(element.html()).toContain(&quot;lidless, wreathed in flame, 2 times&quot;);
+});
+});
+</code></pre>
 <p>We inject the $compile service and $rootScope before each jasmine test. The $compile service is used
 to render the aGreatEye directive. After rendering the directive we ensure that the directive has
 replaced the content and &quot;lidless, wreathed in flame, 2 times&quot; is present.</p>
@@ -258,43 +274,51 @@ provided via a transclusion function.  The directive&#39;s template is then appe
 element, to which it can then insert the transcluded content into its template.</p>
 <p>Before compilation:</p>
 <pre><code class="lang-html">&lt;div translude-directive&gt;
-  Some transcluded content
-&lt;/div&gt;</code></pre>
+Some transcluded content
+&lt;/div&gt;
+</code></pre>
 <p>After transclusion extraction:</p>
-<pre><code class="lang-html">&lt;div transclude-directive&gt;&lt;/div&gt;</code></pre>
+<pre><code class="lang-html">&lt;div transclude-directive&gt;&lt;/div&gt;
+</code></pre>
 <p>After compilation:</p>
 <pre><code class="lang-html">&lt;div transclude-directive&gt;
-  Some Template
-  &lt;span ng-transclude&gt;Some transcluded content&lt;/span&gt;
-&lt;/div&gt;</code></pre>
+Some Template
+&lt;span ng-transclude&gt;Some transcluded content&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
 <p>If the directive is using &#39;element&#39; transclusion, the compiler will actually remove the
 directive&#39;s entire element from the DOM and replace it with a comment node. The compiler then
 inserts the directive&#39;s template &quot;after&quot; this comment node, as a sibling.</p>
 <p>Before compilation</p>
 <pre><code class="lang-html">&lt;div element-transclude&gt;
-  Some Content
-&lt;/div&gt;</code></pre>
+Some Content
+&lt;/div&gt;
+</code></pre>
 <p>After transclusion extraction</p>
-<pre><code class="lang-html">&lt;!-- elementTransclude --&gt;</code></pre>
+<pre><code class="lang-html">&lt;!-- elementTransclude --&gt;
+</code></pre>
 <p>After compilation:</p>
 <pre><code class="lang-html">&lt;!-- elementTransclude --&gt;
 &lt;div element-transclude&gt;
   Some Template
   &lt;span ng-transclude&gt;Some transcluded content&lt;/span&gt;
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+</code></pre>
 <p>It is important to be aware of this when writing tests for directives that use &#39;element&#39;
 transclusion.  If you place the directive on the root element of the DOM fragment that you
 pass to <a href="api/ng/service/$compile"><code>$compile</code></a>, then the DOM node returned from the linking function will be the
 comment node and you will lose the ability to access the template and transcluded content.</p>
 <pre><code class="lang-javascript">var node = $compile(&#39;&lt;div element-transclude&gt;&lt;/div&gt;&#39;)($rootScope);
 expect(node[0].nodeType).toEqual(node.COMMENT_NODE);
-expect(node[1]).toBeUndefined();</code></pre>
+expect(node[1]).toBeUndefined();
+</code></pre>
 <p>To cope with this you simply ensure that your &#39;element&#39; transclude directive is wrapped in an
 element, such as a <code>&lt;div&gt;</code>.</p>
 <pre><code class="lang-javascript">var node = $compile(&#39;&lt;div&gt;&lt;div element-transclude&gt;&lt;/div&gt;&lt;/div&gt;&#39;)($rootScope);
 var contents = node.contents();
 expect(contents[0].nodeType).toEqual(node.COMMENT_NODE);
-expect(contents[1].nodeType).toEqual(node.ELEMENT_NODE);</code></pre>
+expect(contents[1].nodeType).toEqual(node.ELEMENT_NODE);
+</code></pre>
 <h3 id="testing-directives-with-external-templates">Testing Directives With External Templates</h3>
 <p>If your directive uses <code>templateUrl</code>, consider using
 <a href="https://github.com/karma-runner/karma-ng-html2js-preprocessor">karma-ng-html2js-preprocessor</a>

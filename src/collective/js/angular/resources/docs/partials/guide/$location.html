@@ -1,4 +1,4 @@
-<a href='http://github.com/angular/angular.js/edit/master/docs/content/guide/$location.ngdoc' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/docs/content/guide/$location.ngdoc?message=docs(guide%2FUsing $location)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 <h1 id="what-does-it-do-">What does it do?</h1>
@@ -93,7 +93,8 @@ default: <code>&quot;&quot;</code></p>
 </li>
 </ul>
 <h3 id="example-configuration">Example configuration</h3>
-<pre><code class="lang-js">$locationProvider.html5Mode(true).hashPrefix(&#39;!&#39;);</code></pre>
+<pre><code class="lang-js">$locationProvider.html5Mode(true).hashPrefix(&#39;!&#39;);
+</code></pre>
 <h2 id="getter-and-setter-methods">Getter and setter methods</h2>
 <p><code>$location</code> service provides getter methods for read-only parts of the URL (absUrl, protocol, host,
 port) and getter / setter methods for url, path, search, hash:</p>
@@ -101,19 +102,22 @@ port) and getter / setter methods for url, path, search, hash:</p>
 $location.path();
 
 // change the path
-$location.path(&#39;/newValue&#39;)</code></pre>
+$location.path(&#39;/newValue&#39;)
+</code></pre>
 <p>All of the setter methods return the same <code>$location</code> object to allow chaining. For example, to
 change multiple segments in one go, chain setters like this:</p>
-<pre><code class="lang-js">$location.path(&#39;/newValue&#39;).search({key: value});</code></pre>
+<pre><code class="lang-js">$location.path(&#39;/newValue&#39;).search({key: value});
+</code></pre>
 <h2 id="replace-method">Replace method</h2>
 <p>There is a special <code>replace</code> method which can be used to tell the $location service that the next
 time the $location service is synced with the browser, the last history record should be replaced
 instead of creating a new one. This is useful when you want to implement redirection, which would
 otherwise break the back button (navigating back would retrigger the redirection). To change the
 current URL without creating a new browser history record you can call:</p>
-<pre><code class="lang-js">  $location.path(&#39;/someNewPath&#39;);
-  $location.replace();
-  // or you can chain these as: $location.path(&#39;/someNewPath&#39;).replace();</code></pre>
+<pre><code class="lang-js">$location.path(&#39;/someNewPath&#39;);
+$location.replace();
+// or you can chain these as: $location.path(&#39;/someNewPath&#39;).replace();
+</code></pre>
 <p>Note that the setters don&#39;t update <code>window.location</code> immediately. Instead, the <code>$location</code> service is
 aware of the <a href="api/ng/type/$rootScope.Scope">scope</a> life-cycle and coalesces multiple <code>$location</code>
 mutations into one &quot;commit&quot; to the <code>window.location</code> object during the scope <code>$digest</code> phase. Since
@@ -137,7 +141,7 @@ encoded.</li>
 <h1 id="hashbang-and-html5-modes">Hashbang and HTML5 Modes</h1>
 <p><code>$location</code> service has two configuration modes which control the format of the URL in the browser
 address bar: <strong>Hashbang mode</strong> (the default) and the <strong>HTML5 mode</strong> which is based on using the
-HTML5 <a href="http://www.w3.org/TR/html5/history.html">History API</a>. Applications use the same API in
+HTML5 <a href="http://www.w3.org/TR/html5/introduction.html#history-0">History API</a>. Applications use the same API in
 both modes and the <code>$location</code> service will work with appropriate URL segments and browser APIs to
 facilitate the browser URL change and history management.</p>
 <p><img src="img/guide/hashbang_vs_regular_url.jpg"></p>
@@ -183,29 +187,30 @@ facilitate the browser URL change and history management.</p>
 <p>In this mode, <code>$location</code> uses Hashbang URLs in all browsers.</p>
 <h3 id="example">Example</h3>
 <pre><code class="lang-js">it(&#39;should show example&#39;, inject(
-  function($locationProvider) {
-    $locationProvider.html5Mode(false);
-    $locationProvider.hashPrefix(&#39;!&#39;);
-  },
-  function($location) {
-    // open http://example.com/base/index.html#!/a
-    $location.absUrl() == &#39;http://example.com/base/index.html#!/a&#39;
-    $location.path() == &#39;/a&#39;
+function($locationProvider) {
+  $locationProvider.html5Mode(false);
+  $locationProvider.hashPrefix(&#39;!&#39;);
+},
+function($location) {
+  // open http://example.com/base/index.html#!/a
+  $location.absUrl() == &#39;http://example.com/base/index.html#!/a&#39;
+  $location.path() == &#39;/a&#39;
 
-    $location.path(&#39;/foo&#39;)
-    $location.absUrl() == &#39;http://example.com/base/index.html#!/foo&#39;
+  $location.path(&#39;/foo&#39;)
+  $location.absUrl() == &#39;http://example.com/base/index.html#!/foo&#39;
 
-    $location.search() == {}
-    $location.search({a: &#39;b&#39;, c: true});
-    $location.absUrl() == &#39;http://example.com/base/index.html#!/foo?a=b&amp;c&#39;
+  $location.search() == {}
+  $location.search({a: &#39;b&#39;, c: true});
+  $location.absUrl() == &#39;http://example.com/base/index.html#!/foo?a=b&amp;c&#39;
 
-    $location.path(&#39;/new&#39;).search(&#39;x=y&#39;);
-    $location.absUrl() == &#39;http://example.com/base/index.html#!/new?x=y&#39;
-  }
-));</code></pre>
+  $location.path(&#39;/new&#39;).search(&#39;x=y&#39;);
+  $location.absUrl() == &#39;http://example.com/base/index.html#!/new?x=y&#39;
+}
+));
+</code></pre>
 <h2 id="html5-mode">HTML5 mode</h2>
 <p>In HTML5 mode, the <code>$location</code> service getters and setters interact with the browser URL address
-through the HTML5 history API, which allows for use of regular URL path and search segments,
+through the HTML5 history API. This allows for use of regular URL path and search segments,
 instead of their hashbang equivalents. If the HTML5 History API is not supported by a browser, the
 <code>$location</code> service will fall back to using the hashbang URLs automatically. This frees you from
 having to worry about whether the browser displaying your app supports the history API  or not; the
@@ -216,39 +221,40 @@ having to worry about whether the browser displaying your app supports the histo
 </ul>
 <h3 id="example">Example</h3>
 <pre><code class="lang-js">it(&#39;should show example&#39;, inject(
-  function($locationProvider) {
-    $locationProvider.html5Mode(true);
-    $locationProvider.hashPrefix(&#39;!&#39;);
-  },
-  function($location) {
-    // in browser with HTML5 history support:
-    // open http://example.com/#!/a -&gt; rewrite to http://example.com/a
-    // (replacing the http://example.com/#!/a history record)
-    $location.path() == &#39;/a&#39;
+function($locationProvider) {
+  $locationProvider.html5Mode(true);
+  $locationProvider.hashPrefix(&#39;!&#39;);
+},
+function($location) {
+  // in browser with HTML5 history support:
+  // open http://example.com/#!/a -&gt; rewrite to http://example.com/a
+  // (replacing the http://example.com/#!/a history record)
+  $location.path() == &#39;/a&#39;
 
-    $location.path(&#39;/foo&#39;);
-    $location.absUrl() == &#39;http://example.com/foo&#39;
+  $location.path(&#39;/foo&#39;);
+  $location.absUrl() == &#39;http://example.com/foo&#39;
 
-    $location.search() == {}
-    $location.search({a: &#39;b&#39;, c: true});
-    $location.absUrl() == &#39;http://example.com/foo?a=b&amp;c&#39;
+  $location.search() == {}
+  $location.search({a: &#39;b&#39;, c: true});
+  $location.absUrl() == &#39;http://example.com/foo?a=b&amp;c&#39;
 
-    $location.path(&#39;/new&#39;).search(&#39;x=y&#39;);
-    $location.url() == &#39;new?x=y&#39;
-    $location.absUrl() == &#39;http://example.com/new?x=y&#39;
+  $location.path(&#39;/new&#39;).search(&#39;x=y&#39;);
+  $location.url() == &#39;new?x=y&#39;
+  $location.absUrl() == &#39;http://example.com/new?x=y&#39;
 
-    // in browser without html5 history support:
-    // open http://example.com/new?x=y -&gt; redirect to http://example.com/#!/new?x=y
-    // (again replacing the http://example.com/new?x=y history item)
-    $location.path() == &#39;/new&#39;
-    $location.search() == {x: &#39;y&#39;}
+  // in browser without html5 history support:
+  // open http://example.com/new?x=y -&gt; redirect to http://example.com/#!/new?x=y
+  // (again replacing the http://example.com/new?x=y history item)
+  $location.path() == &#39;/new&#39;
+  $location.search() == {x: &#39;y&#39;}
 
-    $location.path(&#39;/foo/bar&#39;);
-    $location.path() == &#39;/foo/bar&#39;
-    $location.url() == &#39;/foo/bar?x=y&#39;
-    $location.absUrl() == &#39;http://example.com/#!/foo/bar?x=y&#39;
-  }
-));</code></pre>
+  $location.path(&#39;/foo/bar&#39;);
+  $location.path() == &#39;/foo/bar&#39;
+  $location.url() == &#39;/foo/bar?x=y&#39;
+  $location.absUrl() == &#39;http://example.com/#!/foo/bar?x=y&#39;
+}
+));
+</code></pre>
 <h3 id="fallback-for-legacy-browsers">Fallback for legacy browsers</h3>
 <p>For browsers that support the HTML5 history API, <code>$location</code> uses the HTML5 history API to write
 path and search. If the history API is not supported by a browser, <code>$location</code> supplies a Hasbang
@@ -310,12 +316,13 @@ redirect to regular / hashbang url, as this conversion happens only during parsi
   <a ng-click="openPlunkr('examples/example-location-html5-mode')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-location-html5-mode"
       module="html5-mode"
       name="location-html5-mode">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
@@ -365,12 +372,13 @@ redirect to regular / hashbang url, as this conversion happens only during parsi
   <a ng-click="openPlunkr('examples/example-location-hashbang-mode')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-location-hashbang-mode"
       module="hashbang-mode"
       name="location-hashbang-mode">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
@@ -436,7 +444,8 @@ hashPrefix.</p>
 <h2 id="crawling-your-app">Crawling your app</h2>
 <p>To allow indexing of your AJAX application, you have to add special meta tag in the head section of
 your document:</p>
-<pre><code class="lang-html">&lt;meta name=&quot;fragment&quot; content=&quot;!&quot; /&gt;</code></pre>
+<pre><code class="lang-html">&lt;meta name=&quot;fragment&quot; content=&quot;!&quot; /&gt;
+</code></pre>
 <p>This will cause crawler bot to request links with <code>_escaped_fragment_</code> param so that your server
 can recognize the crawler and serve a HTML snapshots. For more information about this technique,
 see <a href="http://code.google.com/web/ajaxcrawling/docs/specification.html">Making AJAX Applications
@@ -444,20 +453,21 @@ Crawlable</a>.</p>
 <h1 id="testing-with-the-location-service">Testing with the $location service</h1>
 <p>When using <code>$location</code> service during testing, you are outside of the angular&#39;s <a href="api/ng/type/$rootScope.Scope">scope</a> life-cycle. This means it&#39;s your responsibility to call <code>scope.$apply()</code>.</p>
 <pre><code class="lang-js">describe(&#39;serviceUnderTest&#39;, function() {
-  beforeEach(module(function($provide) {
-    $provide.factory(&#39;serviceUnderTest&#39;, function($location){
-      // whatever it does...
-    });
+beforeEach(module(function($provide) {
+  $provide.factory(&#39;serviceUnderTest&#39;, function($location){
+    // whatever it does...
   });
+});
 
-  it(&#39;should...&#39;, inject(function($location, $rootScope, serviceUnderTest) {
-    $location.path(&#39;/new/path&#39;);
-    $rootScope.$apply();
+it(&#39;should...&#39;, inject(function($location, $rootScope, serviceUnderTest) {
+  $location.path(&#39;/new/path&#39;);
+  $rootScope.$apply();
 
-    // test whatever the service should do...
+  // test whatever the service should do...
 
-  }));
-});</code></pre>
+}));
+});
+</code></pre>
 <h1 id="migrating-from-earlier-angularjs-releases">Migrating from earlier AngularJS releases</h1>
 <p>In earlier releases of Angular, <code>$location</code> used <code>hashPath</code> or <code>hashSearch</code> to process path and
 search methods. With this release, the <code>$location</code> service processes path and search methods and
@@ -544,11 +554,12 @@ which push $location updates in both directions. For example:
   <a ng-click="openPlunkr('examples/example-example69')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example69"
       module="locationExample">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"

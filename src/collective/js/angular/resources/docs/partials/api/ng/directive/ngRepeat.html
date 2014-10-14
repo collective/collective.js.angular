@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ng/directive/ngRepeat.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ng/directive/ngRepeat.js?message=docs(ngRepeat)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/ngRepeat.js#L3' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/ng/directive/ngRepeat.js#L3' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -73,34 +73,36 @@ the range of the repeater by defining explicit start and end points by using <st
 The <strong>ng-repeat-start</strong> directive works the same as <strong>ng-repeat</strong>, but will repeat all the HTML code (including the tag it&#39;s defined on)
 up to and including the ending HTML tag where <strong>ng-repeat-end</strong> is placed.</p>
 <p>The example below makes use of this feature:</p>
-<pre><code class="lang-html">  &lt;header ng-repeat-start=&quot;item in items&quot;&gt;
-    Header {{ item }}
-  &lt;/header&gt;
-  &lt;div class=&quot;body&quot;&gt;
-    Body {{ item }}
-  &lt;/div&gt;
-  &lt;footer ng-repeat-end&gt;
-    Footer {{ item }}
-  &lt;/footer&gt;</code></pre>
+<pre><code class="lang-html">&lt;header ng-repeat-start=&quot;item in items&quot;&gt;
+  Header {{ item }}
+&lt;/header&gt;
+&lt;div class=&quot;body&quot;&gt;
+  Body {{ item }}
+&lt;/div&gt;
+&lt;footer ng-repeat-end&gt;
+  Footer {{ item }}
+&lt;/footer&gt;
+</code></pre>
 <p>And with an input of <a href="" class="label type-hint type-hint-object">[&#39;A&#39;,&#39;B&#39;]</a> for the items variable in the example above, the output will evaluate to:</p>
-<pre><code class="lang-html">  &lt;header&gt;
-    Header A
-  &lt;/header&gt;
-  &lt;div class=&quot;body&quot;&gt;
-    Body A
-  &lt;/div&gt;
-  &lt;footer&gt;
-    Footer A
-  &lt;/footer&gt;
-  &lt;header&gt;
-    Header B
-  &lt;/header&gt;
-  &lt;div class=&quot;body&quot;&gt;
-    Body B
-  &lt;/div&gt;
-  &lt;footer&gt;
-    Footer B
-  &lt;/footer&gt;</code></pre>
+<pre><code class="lang-html">&lt;header&gt;
+  Header A
+&lt;/header&gt;
+&lt;div class=&quot;body&quot;&gt;
+  Body A
+&lt;/div&gt;
+&lt;footer&gt;
+  Footer A
+&lt;/footer&gt;
+&lt;header&gt;
+  Header B
+&lt;/header&gt;
+&lt;div class=&quot;body&quot;&gt;
+  Body B
+&lt;/div&gt;
+&lt;footer&gt;
+  Footer B
+&lt;/footer&gt;
+</code></pre>
 <p>The custom start and end points for ngRepeat also support all other HTML directive syntax flavors provided in AngularJS (such
 as <strong>data-ng-repeat-start</strong>, <strong>x-ng-repeat-start</strong> and <strong>ng:repeat-start</strong>).</p>
 
@@ -210,13 +212,14 @@ then uses <code>ngRepeat</code> to display every person:
   <a ng-click="openPlunkr('examples/example-example41')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example41"
       module="ngAnimate"
       deps="angular-animate.js"
       animations="true">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"

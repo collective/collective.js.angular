@@ -1,8 +1,8 @@
-describe("module:ng.input:input[number]", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-number-input-directive/index-jquery.html");
+    browser.get("examples/example-number-input-directive/index-jquery.html");
   });
   
   var value = element(by.binding('value'));

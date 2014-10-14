@@ -1,8 +1,8 @@
-describe("module:ng.directive:ngTransclude", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example46/index-jquery.html");
+    browser.get("examples/example-example46/index-jquery.html");
   });
   
    it('should have transcluded', function() {

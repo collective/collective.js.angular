@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ngResource/resource.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ngResource/resource.js?message=docs($resource)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ngResource/resource.js#L62' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/ngResource/resource.js#L62' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -126,9 +126,10 @@ the need to interact with the low level <a href="api/ng/service/$http">$http</a>
       <td>
         <p>Hash with declaration of custom action that should extend
   the default set of resource actions. The declaration should be created in the format of <a href="api/ng/service/$http#usage_parameters">$http.config</a>:</p>
-<pre><code>  {action1: {method:?, params:?, isArray:?, headers:?, ...},
-   action2: {method:?, params:?, isArray:?, headers:?, ...},
-   ...}</code></pre>
+<pre><code>{action1: {method:?, params:?, isArray:?, headers:?, ...},
+ action2: {method:?, params:?, isArray:?, headers:?, ...},
+ ...}
+</code></pre>
 <p>  Where:</p>
 <ul>
 <li><strong><code>action</code></strong> – {string} – The name of action. This name becomes the name of the method on
@@ -145,11 +146,17 @@ see <code>returns</code> section.</li>
 <li><strong><code>transformRequest</code></strong> –
 <code>{function(data, headersGetter)|Array.&lt;function(data, headersGetter)&gt;}</code> –
 transform function or an array of such functions. The transform function takes the http
-request body and headers and returns its transformed (typically serialized) version.</li>
+request body and headers and returns its transformed (typically serialized) version.
+By default, transformRequest will contain one function that checks if the request data is
+an object and serializes to using <code>angular.toJson</code>. To prevent this behavior, set
+<code>transformRequest</code> to an empty array: <code>transformRequest: []</code></li>
 <li><strong><code>transformResponse</code></strong> –
 <code>{function(data, headersGetter)|Array.&lt;function(data, headersGetter)&gt;}</code> –
 transform function or an array of such functions. The transform function takes the http
-response body and headers and returns its transformed (typically deserialized) version.</li>
+response body and headers and returns its transformed (typically deserialized) version.
+By default, transformResponse will contain one function that checks if the response looks like
+a JSON string and deserializes it using <code>angular.fromJson</code>. To prevent this behavior, set
+<code>transformResponse</code> to an empty array: <code>transformResponse: []</code></li>
 <li><strong><code>cache</code></strong> – <code>{boolean|Cache}</code> – If true, a default $http cache will be used to cache the
 GET request, otherwise if a cache instance built with
 <a href="api/ng/service/$cacheFactory">$cacheFactory</a>, this cache will be used for
@@ -182,21 +189,23 @@ with <code>http response</code> object. See <a href="api/ng/service/$http">$http
     <td><a href="" class="label type-hint type-hint-object">Object</a></td>
     <td><p>A resource &quot;class&quot; object with methods for the default set of resource actions
   optionally extended with custom <code>actions</code>. The default set contains these actions:</p>
-<pre><code class="lang-js">  { &#39;get&#39;:    {method:&#39;GET&#39;},
-    &#39;save&#39;:   {method:&#39;POST&#39;},
-    &#39;query&#39;:  {method:&#39;GET&#39;, isArray:true},
-    &#39;remove&#39;: {method:&#39;DELETE&#39;},
-    &#39;delete&#39;: {method:&#39;DELETE&#39;} };</code></pre>
+<pre><code class="lang-js">{ &#39;get&#39;:    {method:&#39;GET&#39;},
+  &#39;save&#39;:   {method:&#39;POST&#39;},
+  &#39;query&#39;:  {method:&#39;GET&#39;, isArray:true},
+  &#39;remove&#39;: {method:&#39;DELETE&#39;},
+  &#39;delete&#39;: {method:&#39;DELETE&#39;} };
+</code></pre>
 <p>  Calling these methods invoke an <a href="api/ng/service/$http"><code>$http</code></a> with the specified http method,
   destination and parameters. When the data is returned from the server then the object is an
   instance of the resource class. The actions <code>save</code>, <code>remove</code> and <code>delete</code> are available on it
   as  methods with the <code>$</code> prefix. This allows you to easily perform CRUD operations (create,
   read, update, delete) on server-side data like this:</p>
-<pre><code class="lang-js">  var User = $resource(&#39;/user/:userId&#39;, {userId:&#39;@id&#39;});
-  var user = User.get({userId:123}, function() {
-    user.abc = true;
-    user.$save();
-  });</code></pre>
+<pre><code class="lang-js">var User = $resource(&#39;/user/:userId&#39;, {userId:&#39;@id&#39;});
+var user = User.get({userId:123}, function() {
+  user.abc = true;
+  user.$save();
+});
+</code></pre>
 <p>  It is important to realize that invoking a $resource object method immediately returns an
   empty reference (object or array depending on <code>isArray</code>). Once the data is returned from the
   server the existing reference is populated with the actual data. This is a useful trick since
@@ -244,38 +253,39 @@ returned by the interceptor.</p>
 
   
   <h2 id="example">Example</h2><h1 id="credit-card-resource">Credit card resource</h1>
-<pre><code class="lang-js">     // Define CreditCard class
-     var CreditCard = $resource(&#39;/user/:userId/card/:cardId&#39;,
-      {userId:123, cardId:&#39;@id&#39;}, {
-       charge: {method:&#39;POST&#39;, params:{charge:true}}
-      });
+<pre><code class="lang-js">// Define CreditCard class
+var CreditCard = $resource(&#39;/user/:userId/card/:cardId&#39;,
+ {userId:123, cardId:&#39;@id&#39;}, {
+  charge: {method:&#39;POST&#39;, params:{charge:true}}
+ });
 
-     // We can retrieve a collection from the server
-     var cards = CreditCard.query(function() {
-       // GET: /user/123/card
-       // server returns: [ {id:456, number:&#39;1234&#39;, name:&#39;Smith&#39;} ];
+// We can retrieve a collection from the server
+var cards = CreditCard.query(function() {
+  // GET: /user/123/card
+  // server returns: [ {id:456, number:&#39;1234&#39;, name:&#39;Smith&#39;} ];
 
-       var card = cards[0];
-       // each item is an instance of CreditCard
-       expect(card instanceof CreditCard).toEqual(true);
-       card.name = &quot;J. Smith&quot;;
-       // non GET methods are mapped onto the instances
-       card.$save();
-       // POST: /user/123/card/456 {id:456, number:&#39;1234&#39;, name:&#39;J. Smith&#39;}
-       // server returns: {id:456, number:&#39;1234&#39;, name: &#39;J. Smith&#39;};
+  var card = cards[0];
+  // each item is an instance of CreditCard
+  expect(card instanceof CreditCard).toEqual(true);
+  card.name = &quot;J. Smith&quot;;
+  // non GET methods are mapped onto the instances
+  card.$save();
+  // POST: /user/123/card/456 {id:456, number:&#39;1234&#39;, name:&#39;J. Smith&#39;}
+  // server returns: {id:456, number:&#39;1234&#39;, name: &#39;J. Smith&#39;};
 
-       // our custom method is mapped as well.
-       card.$charge({amount:9.99});
-       // POST: /user/123/card/456?amount=9.99&amp;charge=true {id:456, number:&#39;1234&#39;, name:&#39;J. Smith&#39;}
-     });
+  // our custom method is mapped as well.
+  card.$charge({amount:9.99});
+  // POST: /user/123/card/456?amount=9.99&amp;charge=true {id:456, number:&#39;1234&#39;, name:&#39;J. Smith&#39;}
+});
 
-     // we can create an instance as well
-     var newCard = new CreditCard({number:&#39;0123&#39;});
-     newCard.name = &quot;Mike Smith&quot;;
-     newCard.$save();
-     // POST: /user/123/card {number:&#39;0123&#39;, name:&#39;Mike Smith&#39;}
-     // server returns: {id:789, number:&#39;0123&#39;, name: &#39;Mike Smith&#39;};
-     expect(newCard.id).toEqual(789);</code></pre>
+// we can create an instance as well
+var newCard = new CreditCard({number:&#39;0123&#39;});
+newCard.name = &quot;Mike Smith&quot;;
+newCard.$save();
+// POST: /user/123/card {number:&#39;0123&#39;, name:&#39;Mike Smith&#39;}
+// server returns: {id:789, number:&#39;0123&#39;, name: &#39;Mike Smith&#39;};
+expect(newCard.id).toEqual(789);
+</code></pre>
 <p>The object returned from this function execution is a resource &quot;class&quot; which has &quot;static&quot; method
 for each action in the definition.</p>
 <p>Calling these methods invoke <code>$http</code> on the <code>url</code> template with the given <code>method</code>, <code>params</code> and
@@ -283,54 +293,58 @@ for each action in the definition.</p>
 When the data is returned from the server then the object is an instance of the resource type and
 all of the non-GET methods are available with <code>$</code> prefix. This allows you to easily support CRUD
 operations (create, read, update, delete) on server-side data.</p>
-<pre><code class="lang-js">     var User = $resource(&#39;/user/:userId&#39;, {userId:&#39;@id&#39;});
-     User.get({userId:123}, function(user) {
-       user.abc = true;
-       user.$save();
-     });</code></pre>
+<pre><code class="lang-js">var User = $resource(&#39;/user/:userId&#39;, {userId:&#39;@id&#39;});
+User.get({userId:123}, function(user) {
+  user.abc = true;
+  user.$save();
+});
+</code></pre>
 <p>It&#39;s worth noting that the success callback for <code>get</code>, <code>query</code> and other methods gets passed
 in the response that came from the server as well as $http header getter function, so one
 could rewrite the above example and get access to http headers as:</p>
-<pre><code class="lang-js">     var User = $resource(&#39;/user/:userId&#39;, {userId:&#39;@id&#39;});
-     User.get({userId:123}, function(u, getResponseHeaders){
-       u.abc = true;
-       u.$save(function(u, putResponseHeaders) {
-         //u =&gt; saved user object
-         //putResponseHeaders =&gt; $http header getter
-       });
-     });</code></pre>
+<pre><code class="lang-js">var User = $resource(&#39;/user/:userId&#39;, {userId:&#39;@id&#39;});
+User.get({userId:123}, function(u, getResponseHeaders){
+  u.abc = true;
+  u.$save(function(u, putResponseHeaders) {
+    //u =&gt; saved user object
+    //putResponseHeaders =&gt; $http header getter
+  });
+});
+</code></pre>
 <p>You can also access the raw <code>$http</code> promise via the <code>$promise</code> property on the object returned</p>
-<pre><code>     var User = $resource(&#39;/user/:userId&#39;, {userId:&#39;@id&#39;});
-     User.get({userId:123})
-         .$promise.then(function(user) {
-           $scope.user = user;
-         });</code></pre>
+<pre><code>var User = $resource(&#39;/user/:userId&#39;, {userId:&#39;@id&#39;});
+User.get({userId:123})
+    .$promise.then(function(user) {
+      $scope.user = user;
+    });
+</code></pre>
 <h1 id="creating-a-custom-put-request">Creating a custom &#39;PUT&#39; request</h1>
 <p>In this example we create a custom method on our resource to make a PUT request</p>
-<pre><code class="lang-js">   var app = angular.module(&#39;app&#39;, [&#39;ngResource&#39;, &#39;ngRoute&#39;]);
+<pre><code class="lang-js">var app = angular.module(&#39;app&#39;, [&#39;ngResource&#39;, &#39;ngRoute&#39;]);
 
-   // Some APIs expect a PUT request in the format URL/object/ID
-   // Here we are creating an &#39;update&#39; method
-   app.factory(&#39;Notes&#39;, [&#39;$resource&#39;, function($resource) {
-   return $resource(&#39;/notes/:id&#39;, null,
-       {
-           &#39;update&#39;: { method:&#39;PUT&#39; }
-       });
-   }]);
+// Some APIs expect a PUT request in the format URL/object/ID
+// Here we are creating an &#39;update&#39; method
+app.factory(&#39;Notes&#39;, [&#39;$resource&#39;, function($resource) {
+return $resource(&#39;/notes/:id&#39;, null,
+    {
+        &#39;update&#39;: { method:&#39;PUT&#39; }
+    });
+}]);
 
-   // In our controller we get the ID from the URL using ngRoute and $routeParams
-   // We pass in $routeParams and our Notes factory along with $scope
-   app.controller(&#39;NotesCtrl&#39;, [&#39;$scope&#39;, &#39;$routeParams&#39;, &#39;Notes&#39;,
-                                      function($scope, $routeParams, Notes) {
-   // First get a note object from the factory
-   var note = Notes.get({ id:$routeParams.id });
-   $id = note.id;
+// In our controller we get the ID from the URL using ngRoute and $routeParams
+// We pass in $routeParams and our Notes factory along with $scope
+app.controller(&#39;NotesCtrl&#39;, [&#39;$scope&#39;, &#39;$routeParams&#39;, &#39;Notes&#39;,
+                                   function($scope, $routeParams, Notes) {
+// First get a note object from the factory
+var note = Notes.get({ id:$routeParams.id });
+$id = note.id;
 
-   // Now call update passing in the ID first then the object you are updating
-   Notes.update({ id:$id }, note);
+// Now call update passing in the ID first then the object you are updating
+Notes.update({ id:$id }, note);
 
-   // This will PUT /notes/ID with the note object in the request payload
-   }]);</code></pre>
+// This will PUT /notes/ID with the note object in the request payload
+}]);
+</code></pre>
 
 </div>
 

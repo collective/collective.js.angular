@@ -1,4 +1,4 @@
-<a href='http://github.com/angular/angular.js/edit/master/docs/content/guide/forms.ngdoc' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/docs/content/guide/forms.ngdoc?message=docs(guide%2FForms)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 <p>Controls (<code>input</code>, <code>select</code>, <code>textarea</code>) are ways for a user to enter data.
@@ -17,11 +17,12 @@ In addition it provides an <a href="api/ng/type/ngModel.NgModelController">API</
   <a ng-click="openPlunkr('examples/example-example95')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example95"
       module="formExample">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
@@ -54,11 +55,12 @@ This ensures that the user is not distracted with an error until after interacti
   <a ng-click="openPlunkr('examples/example-example96')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example96"
       module="formExample">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
@@ -94,11 +96,12 @@ the view using the standard binding primitives.</p>
   <a ng-click="openPlunkr('examples/example-example97')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example97"
       module="formExample">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
@@ -128,11 +131,11 @@ To get a hold of the controller the directive specifies a dependency as shown in
 The validation can occur in two places:</p>
 <ul>
 <li><p><strong>Model to View update</strong> -
-Whenever the bound model changes, all functions in <a href="api/ng/type/ngModel.NgModelController#properties_$formatters">NgModelController#$formatters</a> array are pipe-lined, so that each of these functions has an opportunity to format the value and change validity state of the form control through <a href="api/ng/method/$setValidity">NgModelController#$setValidity</a>.</p>
+Whenever the bound model changes, all functions in <a href="api/ng/type/ngModel.NgModelController#properties_$formatters">NgModelController#$formatters</a> array are pipe-lined, so that each of these functions has an opportunity to format the value and change validity state of the form control through <a href="api/ng/type/ngModel.NgModelController#$setValidity">NgModelController#$setValidity</a>.</p>
 </li>
 <li><p><strong>View to Model update</strong> -
-In a similar way, whenever a user interacts with a control it calls <a href="api/ng/method/$setViewValue">NgModelController#$setViewValue</a>.
-This in turn pipelines all functions in the <a href="api/ng/type/ngModel.NgModelController#properties_$parsers">NgModelController#$parsers</a> array, so that each of these functions has an opportunity to convert the value and change validity state of the form control through <a href="api/ng/method/$setValidity">NgModelController#$setValidity</a>.</p>
+In a similar way, whenever a user interacts with a control it calls <a href="api/ng/type/ngModel.NgModelController#$setViewValue">NgModelController#$setViewValue</a>.
+This in turn pipelines all functions in the <a href="api/ng/type/ngModel.NgModelController#properties_$parsers">NgModelController#$parsers</a> array, so that each of these functions has an opportunity to convert the value and change validity state of the form control through <a href="api/ng/type/ngModel.NgModelController#$setValidity">NgModelController#$setValidity</a>.</p>
 </li>
 </ul>
 <p>In the following example we create two directives.</p>
@@ -140,7 +143,7 @@ This in turn pipelines all functions in the <a href="api/ng/type/ngModel.NgModel
 <li><p>The first one is <code>integer</code> and it validates whether the input is a valid integer.
 For example <code>1.23</code> is an invalid value, since it contains a fraction.
 Note that we unshift the array instead of pushing.
-This is because we want to be first parser and consume the control string value, as we need to execute the validation function before a conversion to number occurs.</p>
+This is because we want it to be the first parser and consume the control string value, as we need to execute the validation function before a conversion to number occurs.</p>
 </li>
 <li><p>The second directive is a <code>smart-float</code>.
 It parses both <code>1.2</code> and <code>1,2</code> into a valid float number <code>1.2</code>.
@@ -153,11 +156,12 @@ Note that we can&#39;t use input type <code>number</code> here as HTML5 browsers
   <a ng-click="openPlunkr('examples/example-example98')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example98"
       module="form-example1">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
@@ -195,11 +199,12 @@ However, if you need more flexibility, you can write your own form control as a 
   <a ng-click="openPlunkr('examples/example-example99')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example99"
       module="form-example2">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"

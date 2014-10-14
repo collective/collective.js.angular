@@ -1,8 +1,8 @@
-describe("expression", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example89/index-jquery.html");
+    browser.get("examples/example-example89/index-jquery.html");
   });
   
   it('should calculate expression in binding', function() {

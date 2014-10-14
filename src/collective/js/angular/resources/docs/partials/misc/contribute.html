@@ -1,4 +1,4 @@
-<a href='http://github.com/angular/angular.js/edit/master/docs/content/misc/contribute.ngdoc' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/docs/content/misc/contribute.ngdoc?message=docs(misc%2FDevelop)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 <h1 id="building-and-testing-angularjs">Building and Testing AngularJS</h1>
@@ -30,10 +30,12 @@ pre-packaged bundle.</p>
 and included in your <a href="http://docs.oracle.com/javase/tutorial/essential/environment/paths.html">PATH</a> variable.</p>
 </li>
 <li><p><a href="http://gruntjs.com">Grunt</a>: We use Grunt as our build system. Install the grunt command-line tool globally with:</p>
-<pre><code class="lang-shell">npm install -g grunt-cli</code></pre>
+<pre><code class="lang-shell">npm install -g grunt-cli
+</code></pre>
 </li>
 <li><p><a href="http://bower.io/">Bower</a>: We use Bower to manage client-side packages for the docs. Install the <code>bower</code> command-line tool globally with:</p>
-<pre><code class="lang-shell">npm install -g bower</code></pre>
+<pre><code class="lang-shell">npm install -g bower
+</code></pre>
 </li>
 </ul>
 <p><strong>Note:</strong> You may need to use sudo (for OSX, *nix, BSD etc) or run your command shell as Administrator (for Windows) to install Grunt &amp;
@@ -60,7 +62,8 @@ npm install
 bower install
 
 # Build AngularJS:
-grunt package</code></pre>
+grunt package
+</code></pre>
 <div class="alert alert-warning">
 <strong>Note:</strong> If you&#39;re using Windows, you must use an elevated command prompt (right click, run as
 Administrator). This is because <code>grunt package</code> creates some symbolic links.
@@ -100,41 +103,50 @@ artifacts.</p>
 made available a local web server based on Node.js.</p>
 <ol>
 <li><p>To start the web server, run:</p>
-<pre><code class="lang-shell">grunt webserver</code></pre>
+<pre><code class="lang-shell">grunt webserver
+</code></pre>
 </li>
 <li><p>To access the local server, enter the following URL into your web browser:</p>
-<pre><code class="lang-text">http://localhost:8000/</code></pre>
+<pre><code class="lang-text">http://localhost:8000/
+</code></pre>
 <p>By default, it serves the contents of the AngularJS project directory.</p>
 </li>
 <li><p>To access the locally served docs, visit this URL:</p>
-<pre><code class="lang-text">http://localhost:8000/build/docs/</code></pre>
+<pre><code class="lang-text">http://localhost:8000/build/docs/
+</code></pre>
 </li>
 </ol>
 <h2 id="running-the-unit-test-suite">Running the Unit Test Suite</h2>
 <p>We write unit and integration tests with Jasmine and execute them with Karma. To run all of the
 tests once on Chrome run:</p>
-<pre><code class="lang-shell">grunt test:unit</code></pre>
+<pre><code class="lang-shell">grunt test:unit
+</code></pre>
 <p>To run the tests on other browsers (Chrome, ChromeCanary, Firefox, Opera and Safari are pre-configured) use:</p>
-<pre><code class="lang-shell">grunt test:unit --browsers Opera,Firefox</code></pre>
+<pre><code class="lang-shell">grunt test:unit --browsers Opera,Firefox
+</code></pre>
 <p>Note there should be <em>no spaces between browsers</em>. <code>Opera, Firefox</code> is INVALID.</p>
 <p>During development it&#39;s however more productive to continuously run unit tests every time the source or test files
 change. To execute tests in this mode run:</p>
 <ol>
 <li><p>To start the Karma server, capture Chrome browser and run unit tests, run:</p>
-<pre><code class="lang-shell">grunt autotest</code></pre>
+<pre><code class="lang-shell">grunt autotest
+</code></pre>
 </li>
 <li><p>To capture more browsers, open this URL in the desired browser (URL might be different if you have multiple instance
 of Karma running, read Karma&#39;s console output for the correct URL):</p>
-<pre><code class="lang-text">http://localhost:9876/</code></pre>
+<pre><code class="lang-text">http://localhost:9876/
+</code></pre>
 </li>
 <li><p>To re-run tests just change any source or test file.</p>
 </li>
 </ol>
 <p>To learn more about all of the preconfigured Grunt tasks run:</p>
-<pre><code class="lang-shell">grunt --help</code></pre>
+<pre><code class="lang-shell">grunt --help
+</code></pre>
 <h2 id="running-the-end-to-end-test-suite">Running the End-to-end Test Suite</h2>
 <p>Angular&#39;s end to end tests are run with Protractor. Simply run:</p>
-<pre><code class="lang-shell">grunt test:e2e</code></pre>
+<pre><code class="lang-shell">grunt test:e2e
+</code></pre>
 <p>This will start the webserver and run the tests on Chrome.</p>
 
 

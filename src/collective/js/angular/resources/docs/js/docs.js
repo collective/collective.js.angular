@@ -6,6 +6,7 @@ angular.module('docsApp', [
   'DocsController',
   'versionsData',
   'pagesData',
+  'navData',
   'directives',
   'errors',
   'examples',
@@ -13,14 +14,13 @@ angular.module('docsApp', [
   'tutorials',
   'versions',
   'bootstrap',
-  'bootstrapPrettify',
   'ui.bootstrap.dropdown'
 ])
 
 
-.config(function($locationProvider) {
+.config(['$locationProvider', function($locationProvider) {
   $locationProvider.html5Mode(true).hashPrefix('!');
-});
+}]);
 
 angular.module('directives', [])
 
@@ -63,30 +63,9 @@ angular.module('DocsController', [])
   function($scope, $rootScope, $location, $window, $cookies, openPlunkr,
               NG_PAGES, NG_NAVIGATION, NG_VERSION) {
 
-
   $scope.openPlunkr = openPlunkr;
 
   $scope.docsVersion = NG_VERSION.isSnapshot ? 'snapshot' : NG_VERSION.version;
-
-  $scope.fold = function(url) {
-    if(url) {
-      $scope.docs_fold = '/notes/' + url;
-      if(/\/build/.test($window.location.href)) {
-        $scope.docs_fold = '/build/docs' + $scope.docs_fold;
-      }
-      window.scrollTo(0,0);
-    }
-    else {
-      $scope.docs_fold = null;
-    }
-  };
-  var OFFLINE_COOKIE_NAME = 'ng-offline',
-      INDEX_PATH = /^(\/|\/index[^\.]*.html)$/;
-
-
-  /**********************************
-   Publish methods
-   ***********************************/
 
   $scope.navClass = function(navItem) {
     return {
@@ -95,55 +74,22 @@ angular.module('DocsController', [])
     };
   };
 
-  $scope.afterPartialLoaded = function() {
+
+
+  $scope.$on('$includeContentLoaded', function() {
     var pagePath = $scope.currentPage ? $scope.currentPage.path : $location.path();
     $window._gaq.push(['_trackPageview', pagePath]);
-  };
-
-  /** stores a cookie that is used by apache to decide which manifest ot send */
-  $scope.enableOffline = function() {
-    //The cookie will be good for one year!
-    var date = new Date();
-    date.setTime(date.getTime()+(365*24*60*60*1000));
-    var expires = "; expires="+date.toGMTString();
-    var value = angular.version.full;
-    document.cookie = OFFLINE_COOKIE_NAME + "="+value+expires+"; path=" + $location.path;
-
-    //force the page to reload so server can serve new manifest file
-    window.location.reload(true);
-  };
-
-
-
-  /**********************************
-   Watches
-   ***********************************/
-
+  });
 
   $scope.$watch(function docsPathWatch() {return $location.path(); }, function docsPathWatchAction(path) {
 
-    var currentPage = $scope.currentPage = NG_PAGES[path];
-    if ( !currentPage && path.charAt(0)==='/' ) {
-      // Strip off leading slash
-      path = path.substr(1);
-    }
-
-    currentPage = $scope.currentPage = NG_PAGES[path];
-    if ( !currentPage && path.charAt(path.length-1) === '/' && path.length > 1 ) {
-      // Strip off trailing slash
-      path = path.substr(0, path.length-1);
-    }
-
-    currentPage = $scope.currentPage = NG_PAGES[path];
-    if ( !currentPage && /\/index$/.test(path) ) {
-      // Strip off index from the end
-      path = path.substr(0, path.length - 6);
-    }
+    path = path.replace(/^\/?(.+?)(\/index)?\/?$/, '$1');
 
     currentPage = $scope.currentPage = NG_PAGES[path];
 
     if ( currentPage ) {
-      $scope.currentArea = currentPage && NG_NAVIGATION[currentPage.area];
+      $scope.partialPath = 'partials/' + path + '.html';
+      $scope.currentArea = NG_NAVIGATION[currentPage.area];
       var pathParts = currentPage.path.split('/');
       var breadcrumb = $scope.breadcrumb = [];
       var breadcrumbPath = '';
@@ -155,6 +101,7 @@ angular.module('DocsController', [])
     } else {
       $scope.currentArea = NG_NAVIGATION['api'];
       $scope.breadcrumb = [];
+      $scope.partialPath = 'Error404.html';
     }
   });
 
@@ -164,26 +111,14 @@ angular.module('DocsController', [])
 
   $scope.versionNumber = angular.version.full;
   $scope.version = angular.version.full + "  " + angular.version.codeName;
-  $scope.subpage = false;
-  $scope.offlineEnabled = ($cookies[OFFLINE_COOKIE_NAME] == angular.version.full);
-  $scope.futurePartialTitle = null;
   $scope.loading = 0;
-  $scope.$cookies = $cookies;
 
-  $cookies.platformPreference = $cookies.platformPreference || 'gitUnix';
 
+  var INDEX_PATH = /^(\/|\/index[^\.]*.html)$/;
   if (!$location.path() || INDEX_PATH.test($location.path())) {
     $location.path('/api').replace();
   }
 
-  // bind escape to hash reset callback
-  angular.element(window).on('keydown', function(e) {
-    if (e.keyCode === 27) {
-      $scope.$apply(function() {
-        $scope.subpage = false;
-      });
-    }
-  });
 }]);
 
 angular.module('errors', ['ngSanitize'])
@@ -327,31 +262,6 @@ angular.module('examples', [])
   };
 }]);
 
-angular.module('docsApp.navigationService', [])
-
-.factory('navigationService', function($window) {
-  var service = {
-    currentPage: null,
-    currentVersion: null,
-    changePage: function(newPage) {
-
-    },
-    changeVersion: function(newVersion) {
-
-      //TODO =========
-    //   var currentPagePath = '';
-
-    // // preserve URL path when switching between doc versions
-    // if (angular.isObject($rootScope.currentPage) && $rootScope.currentPage.section && $rootScope.currentPage.id) {
-    //   currentPagePath = '/' + $rootScope.currentPage.section + '/' + $rootScope.currentPage.id;
-    // }
-
-    // $window.location = version.url + currentPagePath;
-
-    }
-  };
-});
-
 angular.module('search', [])
 
 .controller('DocsSearchCtrl', ['$scope', '$location', 'docsSearch', function($scope, $location, docsSearch) {
@@ -364,22 +274,35 @@ angular.module('search', [])
   $scope.search = function(q) {
     var MIN_SEARCH_LENGTH = 2;
     if(q.length >= MIN_SEARCH_LENGTH) {
-      var results = docsSearch(q);
-      var totalAreas = 0;
-      for(var i in results) {
-        ++totalAreas;
-      }
-      if(totalAreas > 0) {
-        $scope.colClassName = 'cols-' + totalAreas;
-      }
-      $scope.hasResults = totalAreas > 0;
-      $scope.results = results;
+      docsSearch(q).then(function(hits) {
+        var results = {};
+        angular.forEach(hits, function(hit) {
+          var area = hit.area;
+
+          var limit = (area == 'api') ? 40 : 14;
+          results[area] = results[area] || [];
+          if(results[area].length < limit) {
+            results[area].push(hit);
+          }
+        });
+
+        var totalAreas = 0;
+        for(var i in results) {
+          ++totalAreas;
+        }
+        if(totalAreas > 0) {
+          $scope.colClassName = 'cols-' + totalAreas;
+        }
+        $scope.hasResults = totalAreas > 0;
+        $scope.results = results;
+      });
     }
     else {
       clearResults();
     }
     if(!$scope.$$phase) $scope.$apply();
   };
+
   $scope.submit = function() {
     var result;
     for(var i in $scope.results) {
@@ -393,76 +316,124 @@ angular.module('search', [])
       $scope.hideResults();
     }
   };
+
   $scope.hideResults = function() {
     clearResults();
     $scope.q = '';
   };
 }])
 
-.controller('Error404SearchCtrl', ['$scope', '$location', 'docsSearch', function($scope, $location, docsSearch) {
-  $scope.results = docsSearch($location.path().split(/[\/\.:]/).pop());
+
+.controller('Error404SearchCtrl', ['$scope', '$location', 'docsSearch',
+        function($scope, $location, docsSearch) {
+  docsSearch($location.path().split(/[\/\.:]/).pop()).then(function(results) {
+    $scope.results = {};
+    angular.forEach(results, function(result) {
+      var area = $scope.results[result.area] || [];
+      area.push(result);
+      $scope.results[result.area] = area;
+    });
+  });
 }])
 
-.factory('lunrSearch', function() {
-  return function(properties) {
-    if (window.RUNNING_IN_NG_TEST_RUNNER) return null;
 
-    var engine = lunr(properties);
-    return {
-      store : function(values) {
-        engine.add(values);
-      },
-      search : function(q) {
-        return engine.search(q);
-      }
-    };
-  };
-})
+.provider('docsSearch', function() {
 
-.factory('docsSearch', ['$rootScope','lunrSearch', 'NG_PAGES',
-    function($rootScope, lunrSearch, NG_PAGES) {
-  if (window.RUNNING_IN_NG_TEST_RUNNER) {
-    return null;
-  }
+  // This version of the service builds the index in the current thread,
+  // which blocks rendering and other browser activities.
+  // It should only be used where the browser does not support WebWorkers
+  function localSearchFactory($http, $timeout, NG_PAGES) {
 
-  var index = lunrSearch(function() {
-    this.ref('id');
-    this.field('title', {boost: 50});
-    this.field('keywords', { boost : 20 });
-  });
+    console.log('Using Local Search Index');
 
-  angular.forEach(NG_PAGES, function(page, key) {
-    if(page.searchTerms) {
-      index.store({
-        id : key,
-        title : page.searchTerms.titleWords,
-        keywords : page.searchTerms.keywords
+    // Create the lunr index
+    var index = lunr(function() {
+      this.ref('path');
+      this.field('titleWords', {boost: 50});
+      this.field('members', { boost: 40});
+      this.field('keywords', { boost : 20 });
+    });
+
+    // Delay building the index by loading the data asynchronously
+    var indexReadyPromise = $http.get('js/search-data.json').then(function(response) {
+      var searchData = response.data;
+      // Delay building the index for 500ms to allow the page to render
+      return $timeout(function() {
+        // load the page data into the index
+        angular.forEach(searchData, function(page) {
+          index.add(page);
+        });
+      }, 500);
+    });
+
+    // The actual service is a function that takes a query string and
+    // returns a promise to the search results
+    // (In this case we just resolve the promise immediately as it is not
+    // inherently an async process)
+    return function(q) {
+      return indexReadyPromise.then(function() {
+        var hits = index.search(q);
+        var results = [];
+        angular.forEach(hits, function(hit) {
+          results.push(NG_PAGES[hit.ref]);
+        });
+        return results;
       });
     };
-  });
+  }
+  localSearchFactory.$inject = ['$http', '$timeout', 'NG_PAGES'];
 
-  return function(q) {
-    var results = {
-      api : [],
-      tutorial : [],
-      guide : [],
-      error : [],
-      misc : []
+  // This version of the service builds the index in a WebWorker,
+  // which does not block rendering and other browser activities.
+  // It should only be used where the browser does support WebWorkers
+  function webWorkerSearchFactory($q, $rootScope, NG_PAGES) {
+
+    console.log('Using WebWorker Search Index')
+
+    var searchIndex = $q.defer();
+    var results;
+
+    var worker = new Worker('js/search-worker.js');
+
+    // The worker will send us a message in two situations:
+    // - when the index has been built, ready to run a query
+    // - when it has completed a search query and the results are available
+    worker.onmessage = function(oEvent) {
+      $rootScope.$apply(function() {
+
+        switch(oEvent.data.e) {
+          case 'index-ready':
+            searchIndex.resolve();
+            break;
+          case 'query-ready':
+            var pages = oEvent.data.d.map(function(path) {
+              return NG_PAGES[path];
+            });
+            results.resolve(pages);
+            break;
+        }
+      });
     };
-    angular.forEach(index.search(q), function(result) {
-      var key = result.ref;
-      var item = NG_PAGES[key];
-      var area = item.area;
-      item.path = key;
 
-      var limit = area == 'api' ? 40 : 14;
-      if(results[area].length < limit) {
-        results[area].push(item);
-      }
-    });
-    return results;
+    // The actual service is a function that takes a query string and
+    // returns a promise to the search results
+    return function(q) {
+
+      // We only run the query once the index is ready
+      return searchIndex.promise.then(function() {
+
+        results = $q.defer();
+        worker.postMessage({ q: q });
+        return results.promise;
+      });
+    };
+  }
+  webWorkerSearchFactory.$inject = ['$q', '$rootScope', 'NG_PAGES'];
+
+  return {
+    $get: window.Worker ? webWorkerSearchFactory : localSearchFactory
   };
-}])
+})
 
 .directive('focused', function($timeout) {
   return function(scope, element, attrs) {
@@ -508,7 +479,7 @@ angular.module('search', [])
 
 angular.module('tutorials', [])
 
-.directive('docTutorialNav', function(templateMerge) {
+.directive('docTutorialNav', function() {
   var pages = [
     '',
     'step_00', 'step_01', 'step_02', 'step_03', 'step_04',
@@ -516,23 +487,22 @@ angular.module('tutorials', [])
     'step_10', 'step_11', 'step_12', 'the_end'
   ];
   return {
-    compile: function(element, attrs) {
-      var seq = 1 * attrs.docTutorialNav,
-          props = {
-            seq: seq,
-            prev: pages[seq],
-            next: pages[2 + seq],
-            diffLo: seq ? (seq - 1): '0~1',
-            diffHi: seq
-          };
+    scope: {},
+    template:
+      '<a ng-href="tutorial/{{prev}}"><li class="btn btn-primary"><i class="glyphicon glyphicon-step-backward"></i> Previous</li></a>\n' +
+      '<a ng-href="http://angular.github.io/angular-phonecat/step-{{seq}}/app"><li class="btn btn-primary"><i class="glyphicon glyphicon-play"></i> Live Demo</li></a>\n' +
+      '<a ng-href="https://github.com/angular/angular-phonecat/compare/step-{{diffLo}}...step-{{diffHi}}"><li class="btn btn-primary"><i class="glyphicon glyphicon-search"></i> Code Diff</li></a>\n' +
+      '<a ng-href="tutorial/{{next}}"><li class="btn btn-primary">Next <i class="glyphicon glyphicon-step-forward"></i></li></a>',
+    link: function(scope, element, attrs) {
+      var seq = 1 * attrs.docTutorialNav;
+      scope.seq = seq;
+      scope.prev = pages[seq];
+      scope.next = pages[2 + seq];
+      scope.diffLo = seq ? (seq - 1): '0~1';
+      scope.diffHi = seq;
 
       element.addClass('btn-group');
       element.addClass('tutorial-nav');
-      element.append(templateMerge(
-        '<a href="tutorial/{{prev}}"><li class="btn btn-primary"><i class="glyphicon glyphicon-step-backward"></i> Previous</li></a>\n' +
-        '<a href="http://angular.github.io/angular-phonecat/step-{{seq}}/app"><li class="btn btn-primary"><i class="glyphicon glyphicon-play"></i> Live Demo</li></a>\n' +
-        '<a href="https://github.com/angular/angular-phonecat/compare/step-{{diffLo}}...step-{{diffHi}}"><li class="btn btn-primary"><i class="glyphicon glyphicon-search"></i> Code Diff</li></a>\n' +
-        '<a href="tutorial/{{next}}"><li class="btn btn-primary">Next <i class="glyphicon glyphicon-step-forward"></i></li></a>', props));
     }
   };
 })
@@ -556,9 +526,6 @@ angular.module('tutorials', [])
       '</p>'
   };
 });
-
-"use strict";
-
 angular.module('versions', [])
 
 .controller('DocsVersionsCtrl', ['$scope', '$location', '$window', 'NG_VERSIONS', function($scope, $location, $window, NG_VERSIONS) {

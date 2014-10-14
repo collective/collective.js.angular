@@ -1,8 +1,8 @@
-describe("module:ng.directive:ngPluralize", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example40/index-jquery.html");
+    browser.get("examples/example-example40/index-jquery.html");
   });
   
   it('should show correct pluralized string', function() {

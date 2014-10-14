@@ -1,8 +1,8 @@
-describe("module:ng.directive:ngClassEven", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example19/index-jquery.html");
+    browser.get("examples/example-example19/index-jquery.html");
   });
   
   it('should check ng-class-odd and ng-class-even', function() {

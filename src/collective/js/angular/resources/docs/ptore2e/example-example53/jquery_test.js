@@ -1,8 +1,8 @@
-describe("module:ng.filter:date", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example53/index-jquery.html");
+    browser.get("examples/example-example53/index-jquery.html");
   });
   
   it('should format date', function() {
@@ -12,5 +12,7 @@ describe("module:ng.filter:date", function() {
        toMatch(/2010\-10\-2\d \d{2}:\d{2}:\d{2} (\-|\+)?\d{4}/);
     expect(element(by.binding("'1288323623006' | date:'MM/dd/yyyy @ h:mma'")).getText()).
        toMatch(/10\/2\d\/2010 @ \d{1,2}:\d{2}(AM|PM)/);
+    expect(element(by.binding("'1288323623006' | date:\"MM/dd/yyyy 'at' h:mma\"")).getText()).
+       toMatch(/10\/2\d\/2010 at \d{1,2}:\d{2}(AM|PM)/);
   });
 });

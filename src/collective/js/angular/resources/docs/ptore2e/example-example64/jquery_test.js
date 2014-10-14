@@ -1,8 +1,8 @@
-describe("module:ngSanitize.filter:linky", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example64/index-jquery.html");
+    browser.get("examples/example-example64/index-jquery.html");
   });
   
   it('should linkify the snippet with urls', function() {

@@ -1,8 +1,8 @@
-describe("module", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example101/index-jquery.html");
+    browser.get("examples/example-example101/index-jquery.html");
   });
   
   it('should add Hello to the name', function() {

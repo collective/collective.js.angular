@@ -1,8 +1,8 @@
-describe("module:ng.filter:currency", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example51/index-jquery.html");
+    browser.get("examples/example-example51/index-jquery.html");
   });
   
   it('should init with 1234.56', function() {

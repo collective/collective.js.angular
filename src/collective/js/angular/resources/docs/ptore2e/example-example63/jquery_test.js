@@ -1,8 +1,8 @@
-describe("module:ng.service:$window", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example63/index-jquery.html");
+    browser.get("examples/example-example63/index-jquery.html");
   });
   
  it('should display the greeting in the input box', function() {

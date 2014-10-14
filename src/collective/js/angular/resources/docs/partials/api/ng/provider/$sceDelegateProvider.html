@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ng/sce.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ng/sce.js?message=docs($sceDelegateProvider)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/sce.js#L92' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/ng/sce.js#L92' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -36,19 +36,20 @@ that the URLs used for sourcing Angular templates are safe.  Refer <a href="api/
 <li>and you have an open redirect at <code>http://myapp.example.com/clickThru?...</code>.</li>
 </ul>
 <p>Here is what a secure configuration for this scenario might look like:</p>
-<pre><code> angular.module(&#39;myApp&#39;, []).config(function($sceDelegateProvider) {
-   $sceDelegateProvider.resourceUrlWhitelist([
-     // Allow same origin resource loads.
-     &#39;self&#39;,
-     // Allow loading from our assets domain.  Notice the difference between * and **.
-     &#39;http://srv*.assets.example.com/**&#39;
-   ]);
+<pre><code>angular.module(&#39;myApp&#39;, []).config(function($sceDelegateProvider) {
+  $sceDelegateProvider.resourceUrlWhitelist([
+    // Allow same origin resource loads.
+    &#39;self&#39;,
+    // Allow loading from our assets domain.  Notice the difference between * and **.
+    &#39;http://srv*.assets.example.com/**&#39;
+  ]);
 
-   // The blacklist overrides the whitelist so the open redirect here is blocked.
-   $sceDelegateProvider.resourceUrlBlacklist([
-     &#39;http://myapp.example.com/clickThru**&#39;
-   ]);
- });</code></pre>
+  // The blacklist overrides the whitelist so the open redirect here is blocked.
+  $sceDelegateProvider.resourceUrlBlacklist([
+    &#39;http://myapp.example.com/clickThru**&#39;
+  ]);
+});
+</code></pre>
 
 </div>
 
@@ -101,7 +102,8 @@ that the URLs used for sourcing Angular templates are safe.  Refer <a href="api/
 <pre><code>Follow <a href="api/ng/service/$sce#resourceUrlPatternItem">this link</a> for a description of the items
 allowed in this array.
 
-Note: **an empty whitelist array will block all URLs**!</code></pre>
+Note: **an empty whitelist array will block all URLs**!
+</code></pre>
 
         
       </td>
@@ -169,7 +171,8 @@ The typical usage for the blacklist is to **block
 [open redirects](http://cwe.mitre.org/data/definitions/601.html)** served by your domain as
 these would otherwise be trusted but actually return content from the redirected domain.
 
-Finally, **the blacklist overrides the whitelist** and has the final say.</code></pre>
+Finally, **the blacklist overrides the whitelist** and has the final say.
+</code></pre>
 
         
       </td>

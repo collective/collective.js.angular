@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ng/rootScope.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ng/rootScope.js?message=docs($rootScope.Scope)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/rootScope.js#L85' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/ng/rootScope.js#L85' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -25,19 +25,21 @@
 <a href="api/ng/type/$rootScope.Scope#$new">$new()</a> method. (Most scopes are created automatically when
 compiled HTML template is executed.)</p>
 <p>Here is a simple scope snippet to show how you can interact with the scope.</p>
-<pre><code class="lang-html">&lt;file src=&quot;./test/ng/rootScopeSpec.js&quot; tag=&quot;docs1&quot; /&gt;</code></pre>
+<pre><code class="lang-html">&lt;file src=&quot;./test/ng/rootScopeSpec.js&quot; tag=&quot;docs1&quot; /&gt;
+</code></pre>
 <h1 id="inheritance">Inheritance</h1>
 <p>A scope can inherit from a parent scope, as in this example:</p>
-<pre><code class="lang-js">         var parent = $rootScope;
-         var child = parent.$new();
+<pre><code class="lang-js">var parent = $rootScope;
+var child = parent.$new();
 
-         parent.salutation = &quot;Hello&quot;;
-         child.name = &quot;World&quot;;
-         expect(child.salutation).toEqual(&#39;Hello&#39;);
+parent.salutation = &quot;Hello&quot;;
+child.name = &quot;World&quot;;
+expect(child.salutation).toEqual(&#39;Hello&#39;);
 
-         child.salutation = &quot;Welcome&quot;;
-         expect(child.salutation).toEqual(&#39;Welcome&#39;);
-         expect(parent.salutation).toEqual(&#39;Hello&#39;);</code></pre>
+child.salutation = &quot;Welcome&quot;;
+expect(child.salutation).toEqual(&#39;Welcome&#39;);
+expect(parent.salutation).toEqual(&#39;Hello&#39;);
+</code></pre>
 
 </div>
 
@@ -128,9 +130,8 @@ compiled HTML template is executed.)</p>
 
 </h3>
     <div><p>Creates a new child <a href="api/ng/type/$rootScope.Scope">scope</a>.</p>
-<p>The parent scope will propagate the <a href="api/ng/type/$rootScope.Scope#$digest">$digest()</a> and
-<a href="api/ng/type/$rootScope.Scope#$digest">$digest()</a> events. The scope can be removed from the
-scope hierarchy using <a href="api/ng/type/$rootScope.Scope#$destroy">$destroy()</a>.</p>
+<p>The parent scope will propagate the <a href="api/ng/type/$rootScope.Scope#$digest">$digest()</a> event.
+The scope can be removed from the scope hierarchy using <a href="api/ng/type/$rootScope.Scope#$destroy">$destroy()</a>.</p>
 <p><a href="api/ng/type/$rootScope.Scope#$destroy">$destroy()</a> must be called on a scope when it is
 desired for the scope and its child scopes to be permanently detached from the parent and
 thus stop participating in model change detection and listener notification by invoking.</p>
@@ -224,57 +225,58 @@ can compare the <code>newVal</code> and <code>oldVal</code>. If these two values
 listener was called due to initialization.</p>
 <p>The example below contains an illustration of using a function as your $watch listener</p>
 <h1 id="example">Example</h1>
-<pre><code class="lang-js">           // let&#39;s assume that scope was dependency injected as the $rootScope
-           var scope = $rootScope;
-           scope.name = &#39;misko&#39;;
-           scope.counter = 0;
+<pre><code class="lang-js">// let&#39;s assume that scope was dependency injected as the $rootScope
+var scope = $rootScope;
+scope.name = &#39;misko&#39;;
+scope.counter = 0;
 
-           expect(scope.counter).toEqual(0);
-           scope.$watch(&#39;name&#39;, function(newValue, oldValue) {
-             scope.counter = scope.counter + 1;
-           });
-           expect(scope.counter).toEqual(0);
+expect(scope.counter).toEqual(0);
+scope.$watch(&#39;name&#39;, function(newValue, oldValue) {
+  scope.counter = scope.counter + 1;
+});
+expect(scope.counter).toEqual(0);
 
-           scope.$digest();
-           // the listener is always called during the first $digest loop after it was registered
-           expect(scope.counter).toEqual(1);
+scope.$digest();
+// the listener is always called during the first $digest loop after it was registered
+expect(scope.counter).toEqual(1);
 
-           scope.$digest();
-           // but now it will not be called unless the value changes
-           expect(scope.counter).toEqual(1);
+scope.$digest();
+// but now it will not be called unless the value changes
+expect(scope.counter).toEqual(1);
 
-           scope.name = &#39;adam&#39;;
-           scope.$digest();
-           expect(scope.counter).toEqual(2);
+scope.name = &#39;adam&#39;;
+scope.$digest();
+expect(scope.counter).toEqual(2);
 
 
 
-           // Using a listener function
-           var food;
-           scope.foodCounter = 0;
-           expect(scope.foodCounter).toEqual(0);
-           scope.$watch(
-             // This is the listener function
-             function() { return food; },
-             // This is the change handler
-             function(newValue, oldValue) {
-               if ( newValue !== oldValue ) {
-                 // Only increment the counter if the value changed
-                 scope.foodCounter = scope.foodCounter + 1;
-               }
-             }
-           );
-           // No digest has been run so the counter will be zero
-           expect(scope.foodCounter).toEqual(0);
+// Using a listener function
+var food;
+scope.foodCounter = 0;
+expect(scope.foodCounter).toEqual(0);
+scope.$watch(
+  // This is the listener function
+  function() { return food; },
+  // This is the change handler
+  function(newValue, oldValue) {
+    if ( newValue !== oldValue ) {
+      // Only increment the counter if the value changed
+      scope.foodCounter = scope.foodCounter + 1;
+    }
+  }
+);
+// No digest has been run so the counter will be zero
+expect(scope.foodCounter).toEqual(0);
 
-           // Run the digest but since food has not changed count will still be zero
-           scope.$digest();
-           expect(scope.foodCounter).toEqual(0);
+// Run the digest but since food has not changed count will still be zero
+scope.$digest();
+expect(scope.foodCounter).toEqual(0);
 
-           // Update food and run digest.  Now the counter will increment
-           food = &#39;cheeseburger&#39;;
-           scope.$digest();
-           expect(scope.foodCounter).toEqual(1);</code></pre>
+// Update food and run digest.  Now the counter will increment
+food = &#39;cheeseburger&#39;;
+scope.$digest();
+expect(scope.foodCounter).toEqual(1);
+</code></pre>
 </div>
 
     
@@ -385,24 +387,25 @@ call to $digest() to see if any items have been added, removed, or moved.</li>
 adding, removing, and moving items belonging to an object or array.</li>
 </ul>
 <h1 id="example">Example</h1>
-<pre><code class="lang-js">          $scope.names = [&#39;igor&#39;, &#39;matias&#39;, &#39;misko&#39;, &#39;james&#39;];
-          $scope.dataCount = 4;
+<pre><code class="lang-js">$scope.names = [&#39;igor&#39;, &#39;matias&#39;, &#39;misko&#39;, &#39;james&#39;];
+$scope.dataCount = 4;
 
-          $scope.$watchCollection(&#39;names&#39;, function(newNames, oldNames) {
-            $scope.dataCount = newNames.length;
-          });
+$scope.$watchCollection(&#39;names&#39;, function(newNames, oldNames) {
+  $scope.dataCount = newNames.length;
+});
 
-          expect($scope.dataCount).toEqual(4);
-          $scope.$digest();
+expect($scope.dataCount).toEqual(4);
+$scope.$digest();
 
-          //still at 4 ... no changes
-          expect($scope.dataCount).toEqual(4);
+//still at 4 ... no changes
+expect($scope.dataCount).toEqual(4);
 
-          $scope.names.pop();
-          $scope.$digest();
+$scope.names.pop();
+$scope.$digest();
 
-          //now there&#39;s been a change
-          expect($scope.dataCount).toEqual(3);</code></pre>
+//now there&#39;s been a change
+expect($scope.dataCount).toEqual(3);
+</code></pre>
 </div>
 
     
@@ -502,27 +505,28 @@ you can register a <code>watchExpression</code> function with
 <a href="api/ng/type/$rootScope.Scope#$watch">$watch()</a> with no <code>listener</code>.</p>
 <p>In unit tests, you may need to call <code>$digest()</code> to simulate the scope life cycle.</p>
 <h1 id="example">Example</h1>
-<pre><code class="lang-js">           var scope = ...;
-           scope.name = &#39;misko&#39;;
-           scope.counter = 0;
+<pre><code class="lang-js">var scope = ...;
+scope.name = &#39;misko&#39;;
+scope.counter = 0;
 
-           expect(scope.counter).toEqual(0);
-           scope.$watch(&#39;name&#39;, function(newValue, oldValue) {
-             scope.counter = scope.counter + 1;
-           });
-           expect(scope.counter).toEqual(0);
+expect(scope.counter).toEqual(0);
+scope.$watch(&#39;name&#39;, function(newValue, oldValue) {
+  scope.counter = scope.counter + 1;
+});
+expect(scope.counter).toEqual(0);
 
-           scope.$digest();
-           // the listener is always called during the first $digest loop after it was registered
-           expect(scope.counter).toEqual(1);
+scope.$digest();
+// the listener is always called during the first $digest loop after it was registered
+expect(scope.counter).toEqual(1);
 
-           scope.$digest();
-           // but now it will not be called unless the value changes
-           expect(scope.counter).toEqual(1);
+scope.$digest();
+// but now it will not be called unless the value changes
+expect(scope.counter).toEqual(1);
 
-           scope.name = &#39;adam&#39;;
-           scope.$digest();
-           expect(scope.counter).toEqual(2);</code></pre>
+scope.name = &#39;adam&#39;;
+scope.$digest();
+expect(scope.counter).toEqual(2);
+</code></pre>
 </div>
 
     
@@ -567,12 +571,13 @@ clean up DOM bindings before an element is removed from the DOM.</p>
 the expression are propagated (uncaught). This is useful when evaluating Angular
 expressions.</p>
 <h1 id="example">Example</h1>
-<pre><code class="lang-js">           var scope = ng.$rootScope.Scope();
-           scope.a = 1;
-           scope.b = 2;
+<pre><code class="lang-js">var scope = ng.$rootScope.Scope();
+scope.a = 1;
+scope.b = 2;
 
-           expect(scope.$eval(&#39;a+b&#39;)).toEqual(3);
-           expect(scope.$eval(function(scope){ return scope.a + scope.b; })).toEqual(3);</code></pre>
+expect(scope.$eval(&#39;a+b&#39;)).toEqual(3);
+expect(scope.$eval(function(scope){ return scope.a + scope.b; })).toEqual(3);
+</code></pre>
 </div>
 
     
@@ -719,15 +724,16 @@ cycle of <a href="api/ng/service/$exceptionHandler">exception handling</a>,
 <a href="api/ng/type/$rootScope.Scope#$digest">executing watches</a>.</p>
 <h2 id="life-cycle">Life cycle</h2>
 <h1 id="pseudo-code-of-apply-">Pseudo-Code of <code>$apply()</code></h1>
-<pre><code class="lang-js">           function $apply(expr) {
-             try {
-               return $eval(expr);
-             } catch (e) {
-               $exceptionHandler(e);
-             } finally {
-               $root.$digest();
-             }
-           }</code></pre>
+<pre><code class="lang-js">function $apply(expr) {
+  try {
+    return $eval(expr);
+  } catch (e) {
+    $exceptionHandler(e);
+  } finally {
+    $root.$digest();
+  }
+}
+</code></pre>
 <p>Scope&#39;s <code>$apply()</code> method transitions through the following stages:</p>
 <ol>
 <li>The <a href="guide/expression">expression</a> is executed using the
@@ -1066,7 +1072,30 @@ clean up DOM bindings before an element is removed from the DOM.</p>
     <table class="variables-matrix return-arguments">
   <tr>
     <td></td>
+    <td><p>Unique scope ID (monotonically increasing) useful for debugging.</p>
+</td>
+  </tr>
+</table>
+  </li>
+  
+  <li id="$parent">
+    <h3><code>$parent</code></h3>
+    <table class="variables-matrix return-arguments">
+  <tr>
     <td></td>
+    <td><p>Reference to the parent scope.</p>
+</td>
+  </tr>
+</table>
+  </li>
+  
+  <li id="$root">
+    <h3><code>$root</code></h3>
+    <table class="variables-matrix return-arguments">
+  <tr>
+    <td></td>
+    <td><p>Reference to the root scope.</p>
+</td>
   </tr>
 </table>
   </li>

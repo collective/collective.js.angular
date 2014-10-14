@@ -1,8 +1,8 @@
-describe("module:ng.directive:ngSelected", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example9/index-jquery.html");
+    browser.get("examples/example-example9/index-jquery.html");
   });
   
   it('should select Greetings!', function() {

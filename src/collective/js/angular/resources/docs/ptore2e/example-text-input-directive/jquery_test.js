@@ -1,8 +1,8 @@
-describe("module:ng.input:input[text]", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-text-input-directive/index-jquery.html");
+    browser.get("examples/example-text-input-directive/index-jquery.html");
   });
   
   var text = element(by.binding('text'));

@@ -1,7 +1,7 @@
-<a href='http://github.com/angular/angular.js/edit/master/docs/content/error/$parse/isecdom.ngdoc' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/docs/content/error/$parse/isecdom.ngdoc?message=docs(error%2Fisecdom)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
-<h1>Error: $parse:isecdom
+<h1>Error: error:isecdom
   <div><span class='hint'>Referencing a DOM node in Expression</span></div>
 </h1>
 
@@ -22,10 +22,12 @@ directly on the scope chain.</p>
 <h1 id="event-handlers-and-return-values">Event Handlers and Return Values</h1>
 <p>The <code>$parse:isecdom</code> error also occurs when an event handler invokes a function that returns a DOM
 node.</p>
-<pre><code class="lang-html">  &lt;button ng-click=&quot;iWillReturnDOM()&quot;&gt;click me&lt;/button&gt;</code></pre>
-<pre><code class="lang-js">  $scope.iWillReturnDOM = function() {
-    return someDomNode;
-  }</code></pre>
+<pre><code class="lang-html">&lt;button ng-click=&quot;iWillReturnDOM()&quot;&gt;click me&lt;/button&gt;
+</code></pre>
+<pre><code class="lang-js">$scope.iWillReturnDOM = function() {
+  return someDomNode;
+}
+</code></pre>
 <p>To fix this issue, avoid returning DOM nodes from event handlers.</p>
 <p><em>Note: This error often means that you are accessing DOM from your controllers, which is usually
 a sign of poor coding style that violates separation of concerns.</em></p>

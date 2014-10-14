@@ -1,8 +1,8 @@
-describe("module:ng.filter:json", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example54/index-jquery.html");
+    browser.get("examples/example-example54/index-jquery.html");
   });
   
   it('should jsonify filtered objects', function() {

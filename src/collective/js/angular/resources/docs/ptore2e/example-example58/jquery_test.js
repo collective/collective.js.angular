@@ -1,8 +1,8 @@
-describe("module:ng.service:$http", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example58/index-jquery.html");
+    browser.get("examples/example-example58/index-jquery.html");
   });
   
 var status = element(by.binding('status'));
@@ -19,12 +19,13 @@ it('should make an xhr GET request', function() {
   expect(data.getText()).toMatch(/Hello, \$http!/);
 });
 
-it('should make a JSONP request to angularjs.org', function() {
-  sampleJsonpBtn.click();
-  fetchBtn.click();
-  expect(status.getText()).toMatch('200');
-  expect(data.getText()).toMatch(/Super Hero!/);
-});
+// Commented out due to flakes. See https://github.com/angular/angular.js/issues/9185
+// it('should make a JSONP request to angularjs.org', function() {
+//   sampleJsonpBtn.click();
+//   fetchBtn.click();
+//   expect(status.getText()).toMatch('200');
+//   expect(data.getText()).toMatch(/Super Hero!/);
+// });
 
 it('should make JSONP request to invalid URL and invoke the error handler',
     function() {

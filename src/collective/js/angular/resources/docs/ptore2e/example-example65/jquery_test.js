@@ -1,8 +1,8 @@
-describe("module:ngSanitize.service:$sanitize", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example65/index-jquery.html");
+    browser.get("examples/example-example65/index-jquery.html");
   });
   
   it('should sanitize the html snippet by default', function() {

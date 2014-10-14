@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ngMock/angular-mocks.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ngMock/angular-mocks.js?message=docs(angular.mock.inject)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ngMock/angular-mocks.js#L2036' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/ngMock/angular-mocks.js#L2038' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -47,42 +47,43 @@ beforeEach( inject( function(_myService_){
 // Use myService in a series of tests.
 it(&#39;makes use of myService&#39;, function() {
   myService.doStuff();
-});</code></pre>
+});
+</code></pre>
 <p>See also <a href="api/ngMock/function/angular.mock.module">angular.mock.module</a></p>
 <h2 id="example">Example</h2>
 <p>Example of what a typical jasmine tests looks like with the inject method.</p>
-<pre><code class="lang-js">
-  angular.module(&#39;myApplicationModule&#39;, [])
-      .value(&#39;mode&#39;, &#39;app&#39;)
-      .value(&#39;version&#39;, &#39;v1.0.1&#39;);
+<pre><code class="lang-js">angular.module(&#39;myApplicationModule&#39;, [])
+    .value(&#39;mode&#39;, &#39;app&#39;)
+    .value(&#39;version&#39;, &#39;v1.0.1&#39;);
 
 
-  describe(&#39;MyApp&#39;, function() {
+describe(&#39;MyApp&#39;, function() {
 
-    // You need to load modules that you want to test,
-    // it loads only the &quot;ng&quot; module by default.
-    beforeEach(module(&#39;myApplicationModule&#39;));
-
-
-    // inject() is used to inject arguments of all given functions
-    it(&#39;should provide a version&#39;, inject(function(mode, version) {
-      expect(version).toEqual(&#39;v1.0.1&#39;);
-      expect(mode).toEqual(&#39;app&#39;);
-    }));
+  // You need to load modules that you want to test,
+  // it loads only the &quot;ng&quot; module by default.
+  beforeEach(module(&#39;myApplicationModule&#39;));
 
 
-    // The inject and module method can also be used inside of the it or beforeEach
-    it(&#39;should override a version and test the new version is injected&#39;, function() {
-      // module() takes functions or strings (module aliases)
-      module(function($provide) {
-        $provide.value(&#39;version&#39;, &#39;overridden&#39;); // override version here
-      });
+  // inject() is used to inject arguments of all given functions
+  it(&#39;should provide a version&#39;, inject(function(mode, version) {
+    expect(version).toEqual(&#39;v1.0.1&#39;);
+    expect(mode).toEqual(&#39;app&#39;);
+  }));
 
-      inject(function(version) {
-        expect(version).toEqual(&#39;overridden&#39;);
-      });
+
+  // The inject and module method can also be used inside of the it or beforeEach
+  it(&#39;should override a version and test the new version is injected&#39;, function() {
+    // module() takes functions or strings (module aliases)
+    module(function($provide) {
+      $provide.value(&#39;version&#39;, &#39;overridden&#39;); // override version here
     });
-  });</code></pre>
+
+    inject(function(version) {
+      expect(version).toEqual(&#39;overridden&#39;);
+    });
+  });
+});
+</code></pre>
 
 </div>
 

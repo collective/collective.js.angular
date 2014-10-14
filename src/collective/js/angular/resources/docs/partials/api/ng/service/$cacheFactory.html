@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ng/cacheFactory.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ng/cacheFactory.js?message=docs($cacheFactory)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/cacheFactory.js#L3' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/ng/cacheFactory.js#L3' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -24,16 +24,16 @@
 <div class="api-profile-description">
   <p>Factory that constructs <a href="api/ng/type/$cacheFactory.Cache">Cache</a> objects and gives access to
 them.</p>
-<pre><code class="lang-js">
- var cache = $cacheFactory(&#39;cacheId&#39;);
- expect($cacheFactory.get(&#39;cacheId&#39;)).toBe(cache);
- expect($cacheFactory.get(&#39;noSuchCacheId&#39;)).not.toBeDefined();
+<pre><code class="lang-js">var cache = $cacheFactory(&#39;cacheId&#39;);
+expect($cacheFactory.get(&#39;cacheId&#39;)).toBe(cache);
+expect($cacheFactory.get(&#39;noSuchCacheId&#39;)).not.toBeDefined();
 
- cache.put(&quot;key&quot;, &quot;value&quot;);
- cache.put(&quot;another key&quot;, &quot;another value&quot;);
+cache.put(&quot;key&quot;, &quot;value&quot;);
+cache.put(&quot;another key&quot;, &quot;another value&quot;);
 
- // We&#39;ve specified no options on creation
- expect(cache.info()).toEqual({id: &#39;cacheId&#39;, size: 2});</code></pre>
+// We&#39;ve specified no options on creation
+expect(cache.info()).toEqual({id: &#39;cacheId&#39;, size: 2});
+</code></pre>
 
 </div>
 
@@ -221,11 +221,12 @@ it.</li>
   <a ng-click="openPlunkr('examples/example-example3')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example3"
       module="cacheExampleApp">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"

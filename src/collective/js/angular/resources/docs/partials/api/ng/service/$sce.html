@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ng/sce.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ng/sce.js?message=docs($sce)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/sce.js#L395' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/ng/sce.js#L395' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -40,7 +40,8 @@ to the top of your HTML document.</p>
 security vulnerabilities such as XSS, clickjacking, etc. a lot easier.</p>
 <p>Here&#39;s an example of a binding in a privileged context:</p>
 <pre><code>&lt;input ng-model=&quot;userHtml&quot;&gt;
-&lt;div ng-bind-html=&quot;userHtml&quot;&gt;&lt;/div&gt;</code></pre>
+&lt;div ng-bind-html=&quot;userHtml&quot;&gt;&lt;/div&gt;
+</code></pre>
 <p>Notice that <code>ng-bind-html</code> is bound to <code>userHtml</code> controlled by the user.  With SCE
 disabled, this application allows the user to render arbitrary HTML into the DIV.
 In a more realistic example, one may be rendering user comments, blog articles, etc. via
@@ -68,12 +69,13 @@ obtain values that will be accepted by SCE / privileged contexts.</p>
 <p>As an example, <a href="api/ng/directive/ngBindHtml">ngBindHtml</a> uses <a href="api/ng/service/$sce#parseAsHtml">$sce.parseAsHtml(binding expression)</a>.  Here&#39;s the actual code (slightly
 simplified):</p>
 <pre><code>var ngBindHtmlDirective = [&#39;$sce&#39;, function($sce) {
-  return function(scope, element, attr) {
-    scope.$watch($sce.parseAsHtml(attr.ngBindHtml), function(value) {
-      element.html(value || &#39;&#39;);
-    });
-  };
-}];</code></pre>
+return function(scope, element, attr) {
+  scope.$watch($sce.parseAsHtml(attr.ngBindHtml), function(value) {
+    element.html(value || &#39;&#39;);
+  });
+};
+}];
+</code></pre>
 <h2 id="impact-on-loading-templates">Impact on loading templates</h2>
 <p>This applies both to the <a href="api/ng/directive/ngInclude"><code>ng-include</code></a> directive as well as
 <code>templateUrl</code>&#39;s specified by <a href="guide/directive">directives</a>.</p>
@@ -192,12 +194,13 @@ Closure library&#39;s <a href="http://docs.closure-library.googlecode.com/git/cl
   <a ng-click="openPlunkr('examples/example-example62')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example62"
       module="mySceApp"
       deps="angular-sanitize.js">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
@@ -241,10 +244,11 @@ for cases where you have a lot of existing code that was written before SCE was 
 you&#39;re migrating them a module at a time.</p>
 <p>That said, here&#39;s how you can completely disable SCE:</p>
 <pre><code>angular.module(&#39;myAppWithSceDisabledmyApp&#39;, []).config(function($sceProvider) {
-  // Completely disable SCE.  For demonstration purposes only!
-  // Do not use in new projects.
-  $sceProvider.enabled(false);
-});</code></pre>
+// Completely disable SCE.  For demonstration purposes only!
+// Do not use in new projects.
+$sceProvider.enabled(false);
+});
+</code></pre>
 
 </div>
 

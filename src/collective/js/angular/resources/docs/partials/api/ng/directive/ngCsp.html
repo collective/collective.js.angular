@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ng/directive/ngCsp.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ng/directive/ngCsp.js?message=docs(ngCsp)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/ngCsp.js#L3' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/ng/directive/ngCsp.js#L3' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -39,7 +39,8 @@ To make those directives work in CSP mode, include the <code>angular-csp.css</co
 autodetection however triggers a CSP error to be logged in the console:</p>
 <pre><code>Refused to evaluate a string as JavaScript because &#39;unsafe-eval&#39; is not an allowed source of
 script in the following Content Security Policy directive: &quot;default-src &#39;self&#39;&quot;. Note that
-&#39;script-src&#39; was not explicitly set, so &#39;default-src&#39; is used as a fallback.</code></pre>
+&#39;script-src&#39; was not explicitly set, so &#39;default-src&#39; is used as a fallback.
+</code></pre>
 <p>This error is harmless but annoying. To prevent the error from showing up, put the <code>ngCsp</code>
 directive on the root element of the application or on the <code>angular.js</code> script tag, whichever
 appears first in the html document.</p>
@@ -76,11 +77,12 @@ appears first in the html document.</p>
 
   
   <h2 id="example">Example</h2><p>This example shows how to apply the <code>ngCsp</code> directive to the <code>html</code> tag.</p>
-<pre><code class="lang-html">     &lt;!doctype html&gt;
-     &lt;html ng-app ng-csp&gt;
-     ...
-     ...
-     &lt;/html&gt;</code></pre>
+<pre><code class="lang-html">&lt;!doctype html&gt;
+&lt;html ng-app ng-csp&gt;
+...
+...
+&lt;/html&gt;
+</code></pre>
 
 </div>
 

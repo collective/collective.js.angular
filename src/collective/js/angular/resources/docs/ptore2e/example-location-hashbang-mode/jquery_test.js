@@ -1,8 +1,8 @@
-describe("$location", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-location-hashbang-mode/index-jquery.html");
+    browser.get("examples/example-location-hashbang-mode/index-jquery.html");
   });
   
   var addressBar = element(by.css("#addressBar")),

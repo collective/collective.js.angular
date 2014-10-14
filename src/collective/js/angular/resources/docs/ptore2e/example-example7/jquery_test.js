@@ -1,8 +1,8 @@
-describe("module:ng.directive:ngChecked", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example7/index-jquery.html");
+    browser.get("examples/example-example7/index-jquery.html");
   });
   
   it('should check both checkBoxes', function() {

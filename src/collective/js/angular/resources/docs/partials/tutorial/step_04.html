@@ -1,4 +1,4 @@
-<a href='http://github.com/angular/angular.js/edit/master/docs/content/tutorial/step_04.ngdoc' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/docs/content/tutorial/step_04.ngdoc?message=docs(tutorial%2F4 - Two-way Data Binding)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 <ul doc-tutorial-nav="4"></ul>
@@ -16,20 +16,21 @@ order in which the phones are listed.</li>
 
 <h2 id="template">Template</h2>
 <p><strong><code>app/index.html</code>:</strong></p>
-<pre><code class="lang-html">  Search: &lt;input ng-model=&quot;query&quot;&gt;
-  Sort by:
-  &lt;select ng-model=&quot;orderProp&quot;&gt;
-    &lt;option value=&quot;name&quot;&gt;Alphabetical&lt;/option&gt;
-    &lt;option value=&quot;age&quot;&gt;Newest&lt;/option&gt;
-  &lt;/select&gt;
+<pre><code class="lang-html">Search: &lt;input ng-model=&quot;query&quot;&gt;
+Sort by:
+&lt;select ng-model=&quot;orderProp&quot;&gt;
+  &lt;option value=&quot;name&quot;&gt;Alphabetical&lt;/option&gt;
+  &lt;option value=&quot;age&quot;&gt;Newest&lt;/option&gt;
+&lt;/select&gt;
 
 
-  &lt;ul class=&quot;phones&quot;&gt;
-    &lt;li ng-repeat=&quot;phone in phones | filter:query | orderBy:orderProp&quot;&gt;
-      &lt;span&gt;{{phone.name}}&lt;/span&gt;
-      &lt;p&gt;{{phone.snippet}}&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ul&gt;</code></pre>
+&lt;ul class=&quot;phones&quot;&gt;
+  &lt;li ng-repeat=&quot;phone in phones | filter:query | orderBy:orderProp&quot;&gt;
+    &lt;span&gt;{{phone.name}}&lt;/span&gt;
+    &lt;p&gt;{{phone.snippet}}&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
 <p>We made the following changes to the <code>index.html</code> template:</p>
 <ul>
 <li>First, we added a <code>&lt;select&gt;</code> html element named <code>orderProp</code>, so that our users can pick from the
@@ -65,7 +66,8 @@ phonecatApp.controller(&#39;PhoneListCtrl&#39;, function ($scope) {
   ];
 
   $scope.orderProp = &#39;age&#39;;
-});</code></pre>
+});
+</code></pre>
 <ul>
 <li><p>We modified the <code>phones</code> model - the array of phones - and added an <code>age</code> property to each phone
 record. This property is used to order phones by age.</p>
@@ -87,26 +89,27 @@ the unit test first.</p>
 <p><strong><code>test/unit/controllersSpec.js</code>:</strong></p>
 <pre><code class="lang-js">describe(&#39;PhoneCat controllers&#39;, function() {
 
-  describe(&#39;PhoneListCtrl&#39;, function(){
-    var scope, ctrl;
+describe(&#39;PhoneListCtrl&#39;, function(){
+  var scope, ctrl;
 
-    beforeEach(module(&#39;phonecatApp&#39;));
+  beforeEach(module(&#39;phonecatApp&#39;));
 
-    beforeEach(inject(function($controller) {
-      scope = {};
-      ctrl = $controller(&#39;PhoneListCtrl&#39;, {$scope:scope});
-    }));
+  beforeEach(inject(function($controller) {
+    scope = {};
+    ctrl = $controller(&#39;PhoneListCtrl&#39;, {$scope:scope});
+  }));
 
-    it(&#39;should create &quot;phones&quot; model with 3 phones&#39;, function() {
-      expect(scope.phones.length).toBe(3);
-    });
-
-
-    it(&#39;should set the default value of orderProp model&#39;, function() {
-      expect(scope.orderProp).toBe(&#39;age&#39;);
-    });
+  it(&#39;should create &quot;phones&quot; model with 3 phones&#39;, function() {
+    expect(scope.phones.length).toBe(3);
   });
-});</code></pre>
+
+
+  it(&#39;should set the default value of orderProp model&#39;, function() {
+    expect(scope.orderProp).toBe(&#39;age&#39;);
+  });
+});
+});
+</code></pre>
 <p>The unit test now verifies that the default ordering property is set.</p>
 <p>We used Jasmine&#39;s API to extract the controller construction into a <code>beforeEach</code> block, which is
 shared by all tests in the parent <code>describe</code> block.</p>
@@ -117,31 +120,32 @@ shared by all tests in the parent <code>describe</code> block.</p>
 <p>Let&#39;s turn our attention to the end-to-end test.</p>
 <p><strong><code>test/e2e/scenarios.js</code>:</strong></p>
 <pre><code class="lang-js">...
-    it(&#39;should be possible to control phone order via the drop down select box&#39;, function() {
+it(&#39;should be possible to control phone order via the drop down select box&#39;, function() {
 
-      var phoneNameColumn = element.all(by.repeater(&#39;phone in phones&#39;).column(&#39;{{phone.name}}&#39;));
-      var query = element(by.model(&#39;query&#39;));
+  var phoneNameColumn = element.all(by.repeater(&#39;phone in phones&#39;).column(&#39;{{phone.name}}&#39;));
+  var query = element(by.model(&#39;query&#39;));
 
-      function getNames() {
-        return phoneNameColumn.map(function(elm) {
-          return elm.getText();
-        });
-      }
+  function getNames() {
+    return phoneNameColumn.map(function(elm) {
+      return elm.getText();
+    });
+  }
 
-      query.sendKeys(&#39;tablet&#39;); //let&#39;s narrow the dataset to make the test assertions shorter
+  query.sendKeys(&#39;tablet&#39;); //let&#39;s narrow the dataset to make the test assertions shorter
 
-      expect(getNames()).toEqual([
-        &quot;Motorola XOOM\u2122 with Wi-Fi&quot;,
-        &quot;MOTOROLA XOOM\u2122&quot;
-      ]);
+  expect(getNames()).toEqual([
+    &quot;Motorola XOOM\u2122 with Wi-Fi&quot;,
+    &quot;MOTOROLA XOOM\u2122&quot;
+  ]);
 
-      element(by.model(&#39;orderProp&#39;)).element(by.css(&#39;option[value=&quot;name&quot;]&#39;)).click();
+  element(by.model(&#39;orderProp&#39;)).element(by.css(&#39;option[value=&quot;name&quot;]&#39;)).click();
 
-      expect(getNames()).toEqual([
-        &quot;MOTOROLA XOOM\u2122&quot;,
-        &quot;Motorola XOOM\u2122 with Wi-Fi&quot;
-      ]);
-    });...</code></pre>
+  expect(getNames()).toEqual([
+    &quot;MOTOROLA XOOM\u2122&quot;,
+    &quot;Motorola XOOM\u2122 with Wi-Fi&quot;
+  ]);
+});...
+</code></pre>
 <p>The end-to-end test verifies that the ordering mechanism of the select box is working correctly.</p>
 <p>You can now rerun <code>npm run protractor</code> to see the tests run.</p>
 <h1 id="experiments">Experiments</h1>

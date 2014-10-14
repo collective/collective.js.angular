@@ -1,4 +1,4 @@
-<a href='http://github.com/angular/angular.js/edit/master/docs/content/tutorial/step_00.ngdoc' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/docs/content/tutorial/step_00.ngdoc?message=docs(tutorial%2F0 - Bootstrapping)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 <ul doc-tutorial-nav="0"></ul>
@@ -8,12 +8,14 @@
 with the most important source code files, learn how to start the development servers bundled with
 angular-seed, and run the application in the browser.</p>
 <p>In <code>angular-phonecat</code> directory, run this command:</p>
-<pre><code>git checkout -f step-0</code></pre>
+<pre><code>git checkout -f step-0
+</code></pre>
 <p>This resets your workspace to step 0 of the tutorial app.</p>
 <p>You must repeat this for every future step in the tutorial and change the number to the number of
 the step you are on. This will cause any changes you made within your working directory to be lost.</p>
 <p>If you haven&#39;t already done so you need to install the dependencies by running:</p>
-<pre><code>npm install</code></pre>
+<pre><code>npm install
+</code></pre>
 <p>To see the app running in a browser, open a <em>separate</em> terminal/command line tab or window, then
 run <code>npm start</code> to start the web server. Now, open a browser window for the app and navigate to
 <a href="http://localhost:8000/app/" target="_blank"><code>http://localhost:8000/app/</code></a></p>
@@ -35,11 +37,13 @@ The code contains some key Angular elements that we will need as we progress.</p
   &lt;p&gt;Nothing here {{&#39;yet&#39; + &#39;!&#39;}}&lt;/p&gt;
 
 &lt;/body&gt;
-&lt;/html&gt;</code></pre>
+&lt;/html&gt;
+</code></pre>
 <h2 id="what-is-the-code-doing-">What is the code doing?</h2>
 <ul>
 <li><p><code>ng-app</code> directive:</p>
-<pre><code>    &lt;html ng-app&gt;</code></pre>
+<pre><code>&lt;html ng-app&gt;
+</code></pre>
 <p>The <code>ng-app</code> attribute represents an Angular directive named <code>ngApp</code> (Angular uses
 <code>name-with-dashes</code> for its custom attributes and <code>camelCase</code> for the corresponding directives
 which implement them).
@@ -49,7 +53,8 @@ This gives application developers the freedom to tell Angular if the entire html
 portion of it should be treated as the Angular application.</p>
 </li>
 <li><p>AngularJS script tag:</p>
-<pre><code>    &lt;script src=&quot;bower_components/angular/angular.js&quot;&gt;</code></pre>
+<pre><code>&lt;script src=&quot;bower_components/angular/angular.js&quot;&gt;
+</code></pre>
 <p>This code downloads the <code>angular.js</code> script and registers a callback that will be executed by the
 browser when the containing HTML page is fully downloaded. When the callback is executed, Angular
 looks for the <a href="api/ng/directive/ngApp">ngApp</a> directive. If
@@ -57,7 +62,8 @@ Angular finds the directive, it will bootstrap the application with the root of 
 being the element on which the <code>ngApp</code> directive was defined.</p>
 </li>
 <li><p>Double-curly binding with an expression:</p>
-<pre><code>    Nothing here {{&#39;yet&#39; + &#39;!&#39;}}</code></pre>
+<pre><code>Nothing here {{&#39;yet&#39; + &#39;!&#39;}}
+</code></pre>
 <p>This line demonstrates two core features of Angular&#39;s templating capabilities:</p>
 <ul>
 <li>a binding, denoted by double-curlies <code>{{ }}</code></li>
@@ -111,7 +117,8 @@ a typical web app (via <code>npm</code>).</p>
 <h1 id="experiments">Experiments</h1>
 <ul>
 <li><p>Try adding a new expression to the <code>index.html</code> that will do some math:</p>
-<pre><code>    &lt;p&gt;1 + 2 = {{ 1 + 2 }}&lt;/p&gt;</code></pre>
+<pre><code>&lt;p&gt;1 + 2 = {{ 1 + 2 }}&lt;/p&gt;
+</code></pre>
 </li>
 </ul>
 <h1 id="summary">Summary</h1>

@@ -1,4 +1,4 @@
-<a href='http://github.com/angular/angular.js/edit/master/docs/content/guide/concepts.ngdoc' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/docs/content/guide/concepts.ngdoc?message=docs(guide%2FConceptual Overview)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 <h1 id="conceptual-overview">Conceptual Overview</h1>
@@ -79,12 +79,13 @@ For a more in-depth explanation, see the <a href="tutorial/">tutorial</a>.</p>
   <a ng-click="openPlunkr('examples/example-guide-concepts-1')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-guide-concepts-1"
       name="guide-concepts-1"
       ng-app-included="true">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
@@ -112,8 +113,8 @@ initializes our application. Angular also defines a directive for the <a href="a
 element that adds extra behavior to the element. The <a href="api/ng/directive/ngModel"><code>ng-model</code></a> directive
 stores/updates the value of the input field into/from a variable.</p>
 <div class="alert alert-info">
-<strong>Custom directives to access the DOM</strong>: In Angular, the only place where an application touches the DOM is
- within directives. This is good as artifacts that access the DOM are hard to test.
+<strong>Custom directives to access the DOM</strong>: In Angular, the only place where an application should access the DOM is
+ within directives. This is important because artifacts that access the DOM are hard to test.
  If you need to access the DOM directly you should write a custom directive for this. The
  <a href="guide/directive">directives guide</a> explains how to do this.
 </div>
@@ -145,12 +146,13 @@ different currencies and also pay the invoice.</p>
   <a ng-click="openPlunkr('examples/example-guide-concepts-2')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-guide-concepts-2"
       name="guide-concepts-2"
       ng-app-included="true">
 
-   
+  
     <div class="runnable-example-file" 
       name="invoice1.js"
       language="js"
@@ -208,12 +210,13 @@ from the web, e.g. by calling the Yahoo Finance API, without changing the contro
   <a ng-click="openPlunkr('examples/example-guide-concepts-21')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-guide-concepts-21"
       name="guide-concepts-2"
       ng-app-included="true">
 
-   
+  
     <div class="runnable-example-file" 
       name="finance2.js"
       language="js"
@@ -290,12 +293,13 @@ The following example shows how this is done with Angular:</p>
   <a ng-click="openPlunkr('examples/example-guide-concepts-3')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-guide-concepts-3"
       name="guide-concepts-3"
       ng-app-included="true">
 
-   
+  
     <div class="runnable-example-file" 
       name="invoice3.js"
       language="js"

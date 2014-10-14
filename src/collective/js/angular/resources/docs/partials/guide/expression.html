@@ -1,4 +1,4 @@
-<a href='http://github.com/angular/angular.js/edit/master/docs/content/guide/expression.ngdoc' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/docs/content/guide/expression.ngdoc?message=docs(guide%2FExpressions)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 <h1 id="angular-expressions">Angular Expressions</h1>
@@ -37,15 +37,16 @@ the method from your view. If you want to <code>eval()</code> an Angular express
   <a ng-click="openPlunkr('examples/example-example89')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example89">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
       type="html">
-      <pre><code>1+2={{1+2}}</code></pre>
+      <pre><code>&lt;span&gt;&#10;  1+2={{1+2}}&#10;&lt;/span&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -69,11 +70,12 @@ the method from your view. If you want to <code>eval()</code> an Angular express
   <a ng-click="openPlunkr('examples/example-example90')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example90"
       module="expressionExample">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
@@ -115,11 +117,12 @@ provide mockable access to globals.</p>
   <a ng-click="openPlunkr('examples/example-example91')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example91"
       module="expressionExample">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
@@ -152,7 +155,8 @@ provide mockable access to globals.</p>
 <p>Expression evaluation is forgiving to undefined and null. In JavaScript, evaluating <code>a.b.c</code> throws
 an exception if <code>a</code> is not an object. While this makes sense for a general purpose language, the
 expression evaluations are primarily used for data binding, which often look like this:</p>
-<pre><code>    {{a.b.c}}</code></pre>
+<pre><code>{{a.b.c}}
+</code></pre>
 <p>It makes more sense to show nothing than to throw an exception if <code>a</code> is undefined (perhaps we are
 waiting for the server response, and it will become defined soon). If expression evaluation wasn&#39;t
 forgiving we&#39;d have to write bindings that clutter the code, for example: <code>{{((a||{}).b||{}).c}}</code></p>
@@ -171,11 +175,12 @@ expose a <code>$event</code> object within the scope of that expression.</p>
   <a ng-click="openPlunkr('examples/example-example92')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example92"
       module="eventExampleApp">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"

@@ -1,4 +1,4 @@
-<a href='http://github.com/angular/angular.js/edit/master/docs/content/guide/bootstrap.ngdoc' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/docs/content/guide/bootstrap.ngdoc?message=docs(guide%2FBootstrap)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 <h1 id="bootstrap">Bootstrap</h1>
@@ -13,7 +13,8 @@ initialization.</p>
     ...
     &lt;script src=&quot;angular.js&quot;&gt;
   &lt;/body&gt;
-&lt;/html&gt;</code></pre>
+&lt;/html&gt;
+</code></pre>
 <ol>
 <li>Place the <code>script</code> tag at the bottom of the page. Placing script tags at the end of the page
 improves app load time because the HTML loading is not blocked by loading of the <code>angular.js</code>
@@ -60,7 +61,8 @@ portion of the DOM as an Angular application.</li>
     I can add: {{ 1+2 }}.
     &lt;script src=&quot;angular.js&quot;&gt;&lt;/script&gt;
   &lt;/body&gt;
-&lt;/html&gt;</code></pre>
+&lt;/html&gt;
+</code></pre>
 <h2 id="manual-initialization">Manual Initialization</h2>
 <p>If you need to have more control over the initialization process, you can use a manual
 bootstrapping method instead. Examples of when you&#39;d need to do this include using script loaders
@@ -69,7 +71,9 @@ or the need to perform an operation before Angular compiles a page.</p>
 <pre><code class="lang-html">&lt;!doctype html&gt;
 &lt;html&gt;
 &lt;body&gt;
-  Hello {{greetMe}}!
+  &lt;div ng-controller=&quot;MyController&quot;&gt;
+    Hello {{greetMe}}!
+  &lt;/div&gt;
   &lt;script src=&quot;http://code.angularjs.org/snapshot/angular.js&quot;&gt;&lt;/script&gt;
 
   &lt;script&gt;
@@ -83,7 +87,8 @@ or the need to perform an operation before Angular compiles a page.</p>
     });
   &lt;/script&gt;
 &lt;/body&gt;
-&lt;/html&gt;</code></pre>
+&lt;/html&gt;
+</code></pre>
 <p>Note that we provided the name of our application module to be loaded into the injector as the second
 parameter of the <a href="api/ng/function/angular.bootstrap"><code>angular.bootstrap</code></a> function. Notice that <code>angular.bootstrap</code> will not create modules
 on the fly. You must create any custom <a href="guide/module">modules</a> before you pass them as a parameter.</p>

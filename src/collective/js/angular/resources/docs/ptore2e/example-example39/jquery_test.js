@@ -1,8 +1,8 @@
-describe("module:ng.directive:ngNonBindable", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example39/index-jquery.html");
+    browser.get("examples/example-example39/index-jquery.html");
   });
   
  it('should check ng-non-bindable', function() {

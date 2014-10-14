@@ -1,8 +1,8 @@
-describe("module:ng.directive:ngClass", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example16/index-jquery.html");
+    browser.get("examples/example-example16/index-jquery.html");
   });
   
   var ps = element.all(by.css('p'));

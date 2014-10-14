@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/loader.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/loader.js?message=docs(angular.module)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/loader.js#L30' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/loader.js#L30' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -39,9 +39,11 @@ myModule.value(&#39;appName&#39;, &#39;MyCoolApp&#39;);
 myModule.config([&#39;$locationProvider&#39;, function($locationProvider) {
   // Configure existing providers
   $locationProvider.hashPrefix(&#39;!&#39;);
-}]);</code></pre>
+}]);
+</code></pre>
 <p>Then you can create an injector and load your modules like this:</p>
-<pre><code class="lang-js">var injector = angular.injector([&#39;ng&#39;, &#39;myModule&#39;])</code></pre>
+<pre><code class="lang-js">var injector = angular.injector([&#39;ng&#39;, &#39;myModule&#39;])
+</code></pre>
 <p>However it&#39;s more likely that you&#39;ll just use
 <a href="api/ng/directive/ngApp">ngApp</a> or
 <a href="api/ng/function/angular.bootstrap"><code>angular.bootstrap</code></a> to simplify this process for you.</p>
@@ -121,7 +123,7 @@ myModule.config([&#39;$locationProvider&#39;, function($locationProvider) {
       </td>
       <td>
         <p>Optional configuration function for the module. Same as
-       <a href="api/ng/method/config">Module#config()</a>.</p>
+       <a href="api/ng/type/angular.Module#config">Module#config()</a>.</p>
 
         
       </td>

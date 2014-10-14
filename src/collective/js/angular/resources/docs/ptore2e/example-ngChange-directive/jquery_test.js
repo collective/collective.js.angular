@@ -1,8 +1,8 @@
-describe("module:ng.directive:ngChange", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-ngChange-directive/index-jquery.html");
+    browser.get("examples/example-ngChange-directive/index-jquery.html");
   });
   
   var counter = element(by.binding('counter'));

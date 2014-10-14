@@ -1,4 +1,4 @@
-<a href='http://github.com/angular/angular.js/edit/master/docs/content/guide/migration.ngdoc' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/docs/content/guide/migration.ngdoc?message=docs(guide%2FMigrating from 1.0 to 1.2)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 <h1 id="migrating-from-1-0-to-1-2">Migrating from 1.0 to 1.2</h1>
@@ -55,24 +55,32 @@ below should still apply, but you may want to consult the
 <p>Applications that use <code>$route</code>, <code>ngView</code>, and/or <code>$routeParams</code> will now need to load an
 <code>angular-route.js</code> file and have their application&#39;s module dependency on the <code>ngRoute</code> module.</p>
 <p>Before:</p>
-<pre><code class="lang-html">&lt;script src=&quot;angular.js&quot;&gt;&lt;/script&gt;</code></pre>
-<pre><code class="lang-javascript">var myApp = angular.module(&#39;myApp&#39;, [&#39;someOtherModule&#39;]);</code></pre>
+<pre><code class="lang-html">&lt;script src=&quot;angular.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<pre><code class="lang-javascript">var myApp = angular.module(&#39;myApp&#39;, [&#39;someOtherModule&#39;]);
+</code></pre>
 <p>After:</p>
 <pre><code class="lang-html">&lt;script src=&quot;angular.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;angular-route.js&quot;&gt;&lt;/script&gt;</code></pre>
-<pre><code class="lang-javascript">var myApp = angular.module(&#39;myApp&#39;, [&#39;ngRoute&#39;, &#39;someOtherModule&#39;]);</code></pre>
+&lt;script src=&quot;angular-route.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<pre><code class="lang-javascript">var myApp = angular.module(&#39;myApp&#39;, [&#39;ngRoute&#39;, &#39;someOtherModule&#39;]);
+</code></pre>
 <p>See <a href="https://github.com/angular/angular.js/commit/5599b55b04788c2e327d7551a4a699d75516dd21">5599b55b</a>.</p>
 <h2 id="templates-no-longer-automatically-unwrap-promises">Templates no longer automatically unwrap promises</h2>
 <p><code>$parse</code> and templates in general will no longer automatically unwrap promises.</p>
 <p>Before:</p>
-<pre><code class="lang-javascript">$scope.foo = $http({method: &#39;GET&#39;, url: &#39;/someUrl&#39;});</code></pre>
-<pre><code class="lang-html">&lt;p&gt;{{foo}}&lt;/p&gt;</code></pre>
+<pre><code class="lang-javascript">$scope.foo = $http({method: &#39;GET&#39;, url: &#39;/someUrl&#39;});
+</code></pre>
+<pre><code class="lang-html">&lt;p&gt;{{foo}}&lt;/p&gt;
+</code></pre>
 <p>After:</p>
 <pre><code class="lang-javascript">$http({method: &#39;GET&#39;, url: &#39;/someUrl&#39;})
-  .success(function(data) {
-    $scope.foo = data;
-  });</code></pre>
-<pre><code class="lang-html">&lt;p&gt;{{foo}}&lt;/p&gt;</code></pre>
+.success(function(data) {
+  $scope.foo = data;
+});
+</code></pre>
+<pre><code class="lang-html">&lt;p&gt;{{foo}}&lt;/p&gt;
+</code></pre>
 <p>This feature has been deprecated. If absolutely needed, it can be reenabled for now via the
 <code>$parseProvider.unwrapPromises(true)</code> API.</p>
 <p>See <a href="https://github.com/angular/angular.js/commit/5dc35b527b3c99f6544b8cb52e93c6510d3ac577">5dc35b52</a>,
@@ -81,10 +89,12 @@ below should still apply, but you may want to consult the
 <p>To migrate the code, follow the example below. Here, <code>*highlight</code> becomes <code>:highlight*</code></p>
 <p>Before:</p>
 <pre><code class="lang-javascript">$routeProvider.when(&#39;/Book1/:book/Chapter/:chapter/*highlight/edit&#39;,
-          {controller: noop, templateUrl: &#39;Chapter.html&#39;});</code></pre>
+{controller: noop, templateUrl: &#39;Chapter.html&#39;});
+</code></pre>
 <p>After:</p>
 <pre><code class="lang-javascript">$routeProvider.when(&#39;/Book1/:book/Chapter/:chapter/:highlight*/edit&#39;,
-        {controller: noop, templateUrl: &#39;Chapter.html&#39;});</code></pre>
+{controller: noop, templateUrl: &#39;Chapter.html&#39;});
+</code></pre>
 <p>See <a href="https://github.com/angular/angular.js/commit/04cebcc133c8b433a3ac5f72ed19f3631778142b">04cebcc1</a>.</p>
 <h2 id="you-can-only-bind-one-expression-to-src-ng-src-or-action-">You can only bind one expression to <code>*[src]</code>, <code>*[ng-src]</code> or <code>action</code></h2>
 <p>With the exception of <code>&lt;a&gt;</code> and <code>&lt;img&gt;</code> elements, you cannot bind more than one expression to the
@@ -122,9 +132,11 @@ enforced for <code>form</code> tags with <code>action</code> attributes.</p>
 <p>Before:</p>
 <pre><code class="lang-javascript">scope.baseUrl = &#39;page&#39;;
 scope.a = 1;
-scope.b = 2;</code></pre>
+scope.b = 2;
+</code></pre>
 <pre><code class="lang-html">&lt;!-- Are a and b properly escaped here? Is baseUrl controlled by user? --&gt;
-&lt;iframe src=&quot;{{baseUrl}}?a={{a}&amp;b={{b}}&quot;&gt;</code></pre>
+&lt;iframe src=&quot;{{baseUrl}}?a={{a}&amp;b={{b}}&quot;&gt;
+</code></pre>
 <p>After:</p>
 <pre><code class="lang-javascript">var baseUrl = &quot;page&quot;;
 scope.getIframeSrc = function() {
@@ -137,8 +149,10 @@ scope.getIframeSrc = function() {
 
   // `baseUrl` isn&#39;t exposed to a user&#39;s control, so we don&#39;t have to worry about escaping it.
   return baseUrl + &quot;?&quot; + qs;
-};</code></pre>
-<pre><code class="lang-html">&lt;iframe src=&quot;{{getIframeSrc()}}&quot;&gt;</code></pre>
+};
+</code></pre>
+<pre><code class="lang-html">&lt;iframe src=&quot;{{getIframeSrc()}}&quot;&gt;
+</code></pre>
 <p>See <a href="https://github.com/angular/angular.js/commit/38deedd6e3d806eb8262bb43f26d47245f6c2739">38deedd6</a>.</p>
 <h2 id="interpolations-inside-dom-event-handlers-are-now-disallowed">Interpolations inside DOM event handlers are now disallowed</h2>
 <p>DOM event handlers execute arbitrary Javascript code. Using an interpolation for such handlers
@@ -149,10 +163,12 @@ makes them much safer.</p>
 <p>To migrate the code follow the example below:</p>
 <p>Before:</p>
 <pre><code>JS:   scope.foo = &#39;alert(1)&#39;;
-HTML: &lt;div onclick=&quot;{{foo}}&quot;&gt;</code></pre>
+HTML: &lt;div onclick=&quot;{{foo}}&quot;&gt;
+</code></pre>
 <p>After:</p>
 <pre><code>JS:   scope.foo = function() { alert(1); }
-HTML: &lt;div ng-click=&quot;foo()&quot;&gt;</code></pre>
+HTML: &lt;div ng-click=&quot;foo()&quot;&gt;
+</code></pre>
 <p>See <a href="https://github.com/angular/angular.js/commit/39841f2ec9b17b3b2920fd1eb548d444251f4f56">39841f2e</a>.</p>
 <h2 id="directives-cannot-end-with-start-or-end">Directives cannot end with -start or -end</h2>
 <p>This change was necessary to enable multi-element directives. The best fix is to rename existing
@@ -166,11 +182,14 @@ to use with non-ES5 browsers, like IE8.</p>
 of the <a href="http://dom.spec.whatwg.org/">DOM promises standard</a>.</p>
 <p>To migrate the code follow the example below.</p>
 <p>Before:</p>
-<pre><code class="lang-javascript">$http.get(&#39;/foo&#39;).always(doSomething);</code></pre>
+<pre><code class="lang-javascript">$http.get(&#39;/foo&#39;).always(doSomething);
+</code></pre>
 <p>After:</p>
-<pre><code class="lang-javascript">$http.get(&#39;/foo&#39;).finally(doSomething);</code></pre>
+<pre><code class="lang-javascript">$http.get(&#39;/foo&#39;).finally(doSomething);
+</code></pre>
 <p>Or for IE8-compatible code:</p>
-<pre><code class="lang-javascript">$http.get(&#39;/foo&#39;)[&#39;finally&#39;](doSomething);</code></pre>
+<pre><code class="lang-javascript">$http.get(&#39;/foo&#39;)[&#39;finally&#39;](doSomething);
+</code></pre>
 <p>See <a href="https://github.com/angular/angular.js/commit/f078762d48d0d5d9796dcdf2cb0241198677582c">f078762d</a>.</p>
 <h2 id="ngmobile-is-now-ngtouch">ngMobile is now ngTouch</h2>
 <p>Many touch-enabled devices are not mobile devices, so we decided to rename this module to better
@@ -181,35 +200,41 @@ reflect its concerns.</p>
 <h2 id="resource-then-has-been-removed">resource.$then has been removed</h2>
 <p>Resource instances do not have a <code>$then</code> function anymore. Use the <code>$promise.then</code> instead.</p>
 <p>Before:</p>
-<pre><code class="lang-javascript">Resource.query().$then(callback);</code></pre>
+<pre><code class="lang-javascript">Resource.query().$then(callback);
+</code></pre>
 <p>After:</p>
-<pre><code class="lang-javascript">Resource.query().$promise.then(callback);</code></pre>
+<pre><code class="lang-javascript">Resource.query().$promise.then(callback);
+</code></pre>
 <p>See <a href="https://github.com/angular/angular.js/commit/05772e15fbecfdc63d4977e2e8839d8b95d6a92d">05772e15</a>.</p>
 <h2 id="resource-methods-return-the-promise">Resource methods return the promise</h2>
 <p>Methods of a resource instance return the promise rather than the instance itself.</p>
 <p>Before:</p>
-<pre><code class="lang-javascript">resource.$save().chaining = true;</code></pre>
+<pre><code class="lang-javascript">resource.$save().chaining = true;
+</code></pre>
 <p>After:</p>
 <pre><code class="lang-javascript">resource.$save();
-resource.chaining = true;</code></pre>
+resource.chaining = true;
+</code></pre>
 <p>See <a href="https://github.com/angular/angular.js/commit/05772e15fbecfdc63d4977e2e8839d8b95d6a92d">05772e15</a>.</p>
 <h2 id="resource-promises-are-resolved-with-the-resource-instance">Resource promises are resolved with the resource instance</h2>
 <p>On success, the resource promise is resolved with the resource instance rather than HTTP response object.</p>
 <p>Use interceptor API to access the HTTP response object.</p>
 <p>Before:</p>
-<pre><code class="lang-javascript">Resource.query().$then(function(response) {...});</code></pre>
+<pre><code class="lang-javascript">Resource.query().$then(function(response) {...});
+</code></pre>
 <p>After:</p>
 <pre><code class="lang-javascript">var Resource = $resource(&#39;/url&#39;, {}, {
-  get: {
-    method: &#39;get&#39;,
-    interceptor: {
-      response: function(response) {
-        // expose response
-        return response;
-      }
+get: {
+  method: &#39;get&#39;,
+  interceptor: {
+    response: function(response) {
+      // expose response
+      return response;
     }
   }
-});</code></pre>
+}
+});
+</code></pre>
 <p>See <a href="https://github.com/angular/angular.js/commit/05772e15fbecfdc63d4977e2e8839d8b95d6a92d">05772e15</a>.</p>
 <h2 id="-location-search-supports-multiple-keys">$location.search supports multiple keys</h2>
 <p><a href="api/ng/service/$location#search"><code>$location.search</code></a> now supports multiple keys with the
@@ -236,16 +261,19 @@ trusted.</p>
 <p>See <a href="https://github.com/angular/angular.js/commit/dae694739b9581bea5dbc53522ec00d87b26ae55">dae69473</a>.</p>
 <h2 id="form-names-that-are-expressions-are-evaluated">Form names that are expressions are evaluated</h2>
 <p>If you have form names that will evaluate as an expression:</p>
-<pre><code>&lt;form name=&quot;ctrl.form&quot;&gt;</code></pre>
+<pre><code>&lt;form name=&quot;ctrl.form&quot;&gt;
+</code></pre>
 <p>And if you are accessing the form from your controller:</p>
 <p>Before:</p>
 <pre><code class="lang-javascript">function($scope) {
-  $scope[&#39;ctrl.form&#39;] // form controller instance
-}</code></pre>
+$scope[&#39;ctrl.form&#39;] // form controller instance
+}
+</code></pre>
 <p>After:</p>
 <pre><code class="lang-javascript">function($scope) {
-  $scope.ctrl.form // form controller instance
-}</code></pre>
+$scope.ctrl.form // form controller instance
+}
+</code></pre>
 <p>This makes it possible to access a form from a controller using the new &quot;controller as&quot; syntax.
 Supporting the previous behavior offers no benefit.</p>
 <p>See <a href="https://github.com/angular/angular.js/commit/8ea802a1d23ad8ecacab892a3a451a308d9c39d7">8ea802a1</a>.</p>
@@ -383,9 +411,11 @@ to the same isolate scope. For example, say we have the following directives:</p
       console.log(&#39;two = &#39; + $scope.$id);
     }
   };
-});</code></pre>
+});
+</code></pre>
 <p>Now what happens if we use both directives on the same element?</p>
-<pre><code>&lt;div isolate-scope non-isolate-scope&gt;&lt;/div&gt;</code></pre>
+<pre><code>&lt;div isolate-scope non-isolate-scope&gt;&lt;/div&gt;
+</code></pre>
 <p>In Angular 1.0, the nonIsolateScope directive will have access to the isolateScope directive’s scope. The
 log statements will print the same id, because the scope is the same. But in Angular 1.2, the nonIsolateScope
 will not use the same scope as isolateScope. Instead, it will inherit the parent scope. The log statements
@@ -400,7 +430,8 @@ from within the isolate scope), change the isolate directive to use scope locals
     scope: {},
     template: &#39;{{value}}&#39;
   };
-});</code></pre>
+});
+</code></pre>
 <p><strong>After</strong></p>
 <pre><code>&lt;input ng-model=&quot;value&quot; ng-isolate&gt;
 
@@ -409,7 +440,8 @@ from within the isolate scope), change the isolate directive to use scope locals
     scope: {value: &#39;=ngModel&#39;},
     template: &#39;{{value}}
   };
-});</code></pre>
+});
+</code></pre>
 <p>See <a href="https://github.com/angular/angular.js/commit/909cabd36d779598763cc358979ecd85bb40d4d7">909cabd3</a>,
 <a href="https://github.com/angular/angular.js/issues/1924">#1924</a> and
 <a href="https://github.com/angular/angular.js/issues/2500">#2500</a>.</p>
@@ -479,17 +511,19 @@ load and use your copy of the locale file provided that you maintain it yourself
 Make sure your services return the correct type wanted.</p>
 <p><strong>Coffeescript example</strong></p>
 <pre><code>myApp.service &#39;applicationSrvc&#39;, -&gt;
-  @something = &quot;value&quot;
-  @someFunct = -&gt;
-    &quot;something else&quot;</code></pre>
+@something = &quot;value&quot;
+@someFunct = -&gt;
+  &quot;something else&quot;
+</code></pre>
 <p>pre 1.2 this service would return the whole object as the service.</p>
 <p>post 1.2 this service returns <code>someFunct</code> as the value of the service</p>
 <p>you would need to change this services to</p>
 <pre><code>myApp.service &#39;applicationSrvc&#39;, -&gt;
-  @something = &quot;value&quot;
-  @someFunct = -&gt;
-    &quot;something else&quot;
-  return</code></pre>
+@something = &quot;value&quot;
+@someFunct = -&gt;
+  &quot;something else&quot;
+return
+</code></pre>
 <p>to continue to return the complete instance.</p>
 <p>See <a href="https://github.com/angular/angular.js/commit/c22adbf160f32c1839fbb35382b7a8c6bcec2927">c22adbf1</a>.</p>
 

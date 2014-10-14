@@ -1,8 +1,8 @@
-describe("module:ng.directive:ngSubmit", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example32/index-jquery.html");
+    browser.get("examples/example-example32/index-jquery.html");
   });
   
   it('should check ng-submit', function() {

@@ -1,4 +1,4 @@
-<a href='http://github.com/angular/angular.js/edit/master/docs/content/guide/i18n.ngdoc' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/docs/content/guide/i18n.ngdoc?message=docs(guide%2Fi18n and l10n)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 <h1 id="i18n-and-l10n">i18n and l10n</h1>
@@ -41,13 +41,14 @@ starts, Angular is automatically pre-configured with localization rules for the 
 <p>You can also include the locale specific js file in the index.html page. For example, if one client
 requires German locale, you would serve index_de-de.html which will look something like this:</p>
 <pre><code class="lang-html">&lt;html ng-app&gt;
- &lt;head&gt;
+&lt;head&gt;
 ….
-   &lt;script src=&quot;angular.js&quot;&gt;&lt;/script&gt;
-   &lt;script src=&quot;i18n/angular-locale_de-de.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;angular.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;i18n/angular-locale_de-de.js&quot;&gt;&lt;/script&gt;
 ….
- &lt;/head&gt;
-&lt;/html&gt;</code></pre>
+&lt;/head&gt;
+&lt;/html&gt;
+</code></pre>
 <h3 id="comparison-of-the-two-approaches">Comparison of the two approaches</h3>
 <p>Both approaches described above require you to prepare different <code>index.html</code> pages or JavaScript
 files for each locale that your app may use. You also need to configure your server to serve
@@ -69,7 +70,8 @@ explicitly provide a currency symbol.
 
 <p>Let&#39;s say you are writing a banking app and you want to display an account balance of 1000 dollars.
 You write the following binding using the currency filter:</p>
-<pre><code class="lang-html">{{ 1000 | currency }}</code></pre>
+<pre><code class="lang-html">{{ 1000 | currency }}
+</code></pre>
 <p>If your app is currently in the <code>en-US</code> locale, the browser will show <code>$1000.00</code>. If someone in the
 Japanese locale (<code>ja</code>) views your app, their browser will show a balance of <code>¥1000.00</code> instead.
 This is problematic because $1000 is not the same as ¥1000.</p>

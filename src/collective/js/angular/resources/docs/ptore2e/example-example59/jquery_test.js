@@ -1,8 +1,8 @@
-describe("module:ng.provider:$interpolateProvider", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example59/index-jquery.html");
+    browser.get("examples/example-example59/index-jquery.html");
   });
   
 it('should interpolate binding with custom symbols', function() {

@@ -1,8 +1,8 @@
-describe("module:ng.directive:ngDisabled", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example6/index-jquery.html");
+    browser.get("examples/example-example6/index-jquery.html");
   });
   
   it('should toggle button', function() {

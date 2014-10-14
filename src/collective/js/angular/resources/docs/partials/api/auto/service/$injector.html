@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/auto/injector.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/auto/injector.js?message=docs($injector)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/auto/injector.js#L101' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/auto/injector.js#L101' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -26,24 +26,26 @@
 <a href="api/auto/service/$provide">provider</a>, instantiate types, invoke methods,
 and load modules.</p>
 <p>The following always holds true:</p>
-<pre><code class="lang-js">  var $injector = angular.injector();
-  expect($injector.get(&#39;$injector&#39;)).toBe($injector);
-  expect($injector.invoke(function($injector){
-    return $injector;
-  }).toBe($injector);</code></pre>
+<pre><code class="lang-js">var $injector = angular.injector();
+expect($injector.get(&#39;$injector&#39;)).toBe($injector);
+expect($injector.invoke(function($injector){
+  return $injector;
+}).toBe($injector);
+</code></pre>
 <h1 id="injection-function-annotation">Injection Function Annotation</h1>
 <p>JavaScript does not have annotations, and annotations are needed for dependency injection. The
 following are all valid ways of annotating function with injection arguments and are equivalent.</p>
-<pre><code class="lang-js">  // inferred (only works if code not minified/obfuscated)
-  $injector.invoke(function(serviceA){});
+<pre><code class="lang-js">// inferred (only works if code not minified/obfuscated)
+$injector.invoke(function(serviceA){});
 
-  // annotated
-  function explicit(serviceA) {};
-  explicit.$inject = [&#39;serviceA&#39;];
-  $injector.invoke(explicit);
+// annotated
+function explicit(serviceA) {};
+explicit.$inject = [&#39;serviceA&#39;];
+$injector.invoke(explicit);
 
-  // inline
-  $injector.invoke([&#39;serviceA&#39;, function(serviceA){}]);</code></pre>
+// inline
+$injector.invoke([&#39;serviceA&#39;, function(serviceA){}]);
+</code></pre>
 <h2 id="inference">Inference</h2>
 <p>In JavaScript calling <code>toString()</code> on a function returns the function definition. The definition
 can then be parsed and the function arguments can be extracted. <em>NOTE:</em> This does not work with
@@ -366,52 +368,55 @@ dependencies.</p>
 <p>The simplest form is to extract the dependencies from the arguments of the function. This is done
 by converting the function into a string using <code>toString()</code> method and extracting the argument
 names.</p>
-<pre><code class="lang-js">  // Given
-  function MyController($scope, $route) {
-    // ...
-  }
+<pre><code class="lang-js">// Given
+function MyController($scope, $route) {
+  // ...
+}
 
-  // Then
-  expect(injector.annotate(MyController)).toEqual([&#39;$scope&#39;, &#39;$route&#39;]);</code></pre>
+// Then
+expect(injector.annotate(MyController)).toEqual([&#39;$scope&#39;, &#39;$route&#39;]);
+</code></pre>
 <p>This method does not work with code minification / obfuscation. For this reason the following
 annotation strategies are supported.</p>
 <h1 id="the-inject-property">The <code>$inject</code> property</h1>
 <p>If a function has an <code>$inject</code> property and its value is an array of strings, then the strings
 represent names of services to be injected into the function.</p>
-<pre><code class="lang-js">  // Given
-  var MyController = function(obfuscatedScope, obfuscatedRoute) {
-    // ...
-  }
-  // Define function dependencies
-  MyController[&#39;$inject&#39;] = [&#39;$scope&#39;, &#39;$route&#39;];
+<pre><code class="lang-js">// Given
+var MyController = function(obfuscatedScope, obfuscatedRoute) {
+  // ...
+}
+// Define function dependencies
+MyController[&#39;$inject&#39;] = [&#39;$scope&#39;, &#39;$route&#39;];
 
-  // Then
-  expect(injector.annotate(MyController)).toEqual([&#39;$scope&#39;, &#39;$route&#39;]);</code></pre>
+// Then
+expect(injector.annotate(MyController)).toEqual([&#39;$scope&#39;, &#39;$route&#39;]);
+</code></pre>
 <h1 id="the-array-notation">The array notation</h1>
 <p>It is often desirable to inline Injected functions and that&#39;s when setting the <code>$inject</code> property
 is very inconvenient. In these situations using the array notation to specify the dependencies in
 a way that survives minification is a better choice:</p>
-<pre><code class="lang-js">  // We wish to write this (not minification / obfuscation safe)
-  injector.invoke(function($compile, $rootScope) {
-    // ...
-  });
+<pre><code class="lang-js">// We wish to write this (not minification / obfuscation safe)
+injector.invoke(function($compile, $rootScope) {
+  // ...
+});
 
-  // We are forced to write break inlining
-  var tmpFn = function(obfuscatedCompile, obfuscatedRootScope) {
-    // ...
-  };
-  tmpFn.$inject = [&#39;$compile&#39;, &#39;$rootScope&#39;];
-  injector.invoke(tmpFn);
+// We are forced to write break inlining
+var tmpFn = function(obfuscatedCompile, obfuscatedRootScope) {
+  // ...
+};
+tmpFn.$inject = [&#39;$compile&#39;, &#39;$rootScope&#39;];
+injector.invoke(tmpFn);
 
-  // To better support inline function the inline annotation is supported
-  injector.invoke([&#39;$compile&#39;, &#39;$rootScope&#39;, function(obfCompile, obfRootScope) {
-    // ...
-  }]);
+// To better support inline function the inline annotation is supported
+injector.invoke([&#39;$compile&#39;, &#39;$rootScope&#39;, function(obfCompile, obfRootScope) {
+  // ...
+}]);
 
-  // Therefore
-  expect(injector.annotate(
-     [&#39;$compile&#39;, &#39;$rootScope&#39;, function(obfus_$compile, obfus_$rootScope) {}])
-   ).toEqual([&#39;$compile&#39;, &#39;$rootScope&#39;]);</code></pre>
+// Therefore
+expect(injector.annotate(
+   [&#39;$compile&#39;, &#39;$rootScope&#39;, function(obfus_$compile, obfus_$rootScope) {}])
+ ).toEqual([&#39;$compile&#39;, &#39;$rootScope&#39;]);
+</code></pre>
 </div>
 
     

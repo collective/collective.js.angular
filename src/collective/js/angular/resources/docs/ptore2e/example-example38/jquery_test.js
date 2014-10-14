@@ -1,8 +1,8 @@
-describe("module:ng.directive:ngInit", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example38/index-jquery.html");
+    browser.get("examples/example-example38/index-jquery.html");
   });
   
   it('should alias index positions', function() {

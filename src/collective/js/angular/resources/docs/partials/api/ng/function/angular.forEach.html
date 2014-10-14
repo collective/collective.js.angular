@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/Angular.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/Angular.js?message=docs(angular.forEach)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/Angular.js#L204' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/Angular.js#L204' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -26,12 +26,13 @@ is the value of an object property or an array element and <code>key</code> is t
 array element index. Specifying a <code>context</code> for the function is optional.</p>
 <p>It is worth noting that <code>.forEach</code> does not iterate over inherited properties because it filters
 using the <code>hasOwnProperty</code> method.</p>
-<pre><code class="lang-js">     var values = {name: &#39;misko&#39;, gender: &#39;male&#39;};
-     var log = [];
-     angular.forEach(values, function(value, key) {
-       this.push(key + &#39;: &#39; + value);
-     }, log);
-     expect(log).toEqual([&#39;name: misko&#39;, &#39;gender: male&#39;]);</code></pre>
+<pre><code class="lang-js">var values = {name: &#39;misko&#39;, gender: &#39;male&#39;};
+var log = [];
+angular.forEach(values, function(value, key) {
+  this.push(key + &#39;: &#39; + value);
+}, log);
+expect(log).toEqual([&#39;name: misko&#39;, &#39;gender: male&#39;]);
+</code></pre>
 
 </div>
 

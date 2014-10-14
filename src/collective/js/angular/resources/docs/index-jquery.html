@@ -33,7 +33,7 @@
       addTag('link', {rel: 'stylesheet', href: 'css/animations.css', type: 'text/css'});
       
 
-      addTag('script', {src: 'components/jquery-1.10.2/jquery.js' }, sync);
+      addTag('script', {src: 'components/jquery-2.1.1/jquery.js' }, sync);
       addTag('script', {src: '../angular.min.js' }, sync);
       addTag('script', {src: '../angular-resource.min.js' }, sync);
       addTag('script', {src: '../angular-route.min.js' }, sync);
@@ -41,16 +41,16 @@
       addTag('script', {src: '../angular-sanitize.min.js' }, sync);
       addTag('script', {src: '../angular-touch.min.js' }, sync);
       addTag('script', {src: '../angular-animate.min.js' }, sync);
-      addTag('script', {src: 'components/marked-0.3.1/lib/marked.js' }, sync);
-      addTag('script', {src: 'js/angular-bootstrap/bootstrap.js' }, sync);
-      addTag('script', {src: 'js/angular-bootstrap/bootstrap-prettify.js' }, sync);
-      addTag('script', {src: 'js/angular-bootstrap/dropdown-toggle.js' }, sync);
+      addTag('script', {src: 'components/marked-0.3.2/lib/marked.js' }, sync);
+      addTag('script', {src: 'js/angular-bootstrap/bootstrap.min.js' }, sync);
+      addTag('script', {src: 'js/angular-bootstrap/dropdown-toggle.min.js' }, sync);
       addTag('script', {src: 'components/lunr.js-0.4.2/lunr.min.js' }, sync);
       addTag('script', {src: 'components/google-code-prettify-1.0.1/src/prettify.js' }, sync);
       addTag('script', {src: 'components/google-code-prettify-1.0.1/src/lang-css.js' }, sync);
       addTag('script', {src: 'js/versions-data.js' }, sync);
       addTag('script', {src: 'js/pages-data.js' }, sync);
-      addTag('script', {src: 'js/docs.js' }, sync);
+      addTag('script', {src: 'js/nav-data.js' }, sync);
+      addTag('script', {src: 'js/docs.min.js' }, sync);
       
 
       function addTag(name, attributes, sync) {
@@ -77,15 +77,6 @@
       }
     })();
 
-
-    // force page reload when new update is available
-    window.applicationCache && window.applicationCache.addEventListener('updateready', function(e) {
-      if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
-        window.applicationCache.swapCache();
-        window.location.reload();
-      }
-    }, false);
-
     // GA asynchronous tracker
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-8594346-3']);
@@ -106,7 +97,7 @@
           <div class="row">
             <div class="col-md-9 header-branding">
               <a class="brand navbar-brand" href="http://angularjs.org">
-                <img class="logo" src="img/angularjs-for-header-only.svg">
+                <img width="117" height="30" class="logo" ng-src="img/angularjs-for-header-only.svg">
               </a>
               <ul class="nav navbar-nav">
                 <li class="divider-vertical"></li>
@@ -240,7 +231,7 @@
         </div>
         <div class="grid-right">
           <div id="loading" ng-show="loading">Loading...</div>
-          <div ng-hide="loading" ng-include="currentPage.outputPath || 'Error404.html'" onload="afterPartialLoaded()"  autoscroll></div>
+          <div ng-hide="loading" ng-include="partialPath" autoscroll></div>
         </div>
       </div>
     </section>

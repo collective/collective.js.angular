@@ -1,8 +1,8 @@
-describe("module:ng.service:$sce", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example62/index-jquery.html");
+    browser.get("examples/example-example62/index-jquery.html");
   });
   
 describe('SCE doc demo', function() {

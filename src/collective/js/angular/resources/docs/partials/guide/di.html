@@ -1,4 +1,4 @@
-<a href='http://github.com/angular/angular.js/edit/master/docs/content/guide/di.ngdoc' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/docs/content/guide/di.ngdoc?message=docs(guide%2FDependency Injection)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 <h1 id="dependency-injection">Dependency Injection</h1>
@@ -24,12 +24,13 @@ dependencies for test isolation.</p>
 <p>The third option is the most viable, since it removes the responsibility of locating the
 dependency from the component. The dependency is simply handed to the component.</p>
 <pre><code class="lang-js">function SomeClass(greeter) {
-  this.greeter = greeter;
+this.greeter = greeter;
 }
 
 SomeClass.prototype.doSomething = function(name) {
-  this.greeter.greet(name);
-}</code></pre>
+this.greeter.greet(name);
+}
+</code></pre>
 <p>In the above example <code>SomeClass</code> is not concerned with creating or locating the <code>greeter</code>
 dependency, it is simply handed the <code>greeter</code> when it is instantiated.</p>
 <p>This is desirable, but it puts the responsibility of getting hold of the dependency on the
@@ -40,37 +41,43 @@ code that constructs <code>SomeClass</code>.</p>
 construction and lookup of dependencies.</p>
 <p>Here is an example of using the injector service:</p>
 <pre><code class="lang-js">// Provide the wiring information in a module
-var myModule = angular.module(&#39;myModule&#39;, []);</code></pre>
+var myModule = angular.module(&#39;myModule&#39;, []);
+</code></pre>
 <p>Teach the injector how to build a <code>greeter</code> service. Notice that <code>greeter</code> is dependent on the
 <code>$window</code> service. The <code>greeter</code> service is an object that contains a <code>greet</code> method.</p>
 <pre><code class="lang-js">myModule.factory(&#39;greeter&#39;, function($window) {
-  return {
-    greet: function(text) {
-      $window.alert(text);
-    }
-  };
-});</code></pre>
+return {
+  greet: function(text) {
+    $window.alert(text);
+  }
+};
+});
+</code></pre>
 <p>Create a new injector that can provide components defined in our <code>myModule</code> module and request our
 <code>greeter</code> service from the injector. (This is usually done automatically by angular bootstrap).</p>
 <pre><code class="lang-js">var injector = angular.injector([&#39;myModule&#39;, &#39;ng&#39;]);
-var greeter = injector.get(&#39;greeter&#39;);</code></pre>
+var greeter = injector.get(&#39;greeter&#39;);
+</code></pre>
 <p>Asking for dependencies solves the issue of hard coding, but it also means that the injector needs
 to be passed throughout the application. Passing the injector breaks the
 <a href="http://en.wikipedia.org/wiki/Law_of_Demeter">Law of Demeter</a>. To remedy this, we use a declarative
 notation in our HTML templates, to hand the responsibility of creating components over to the
 injector, as in this example:</p>
 <pre><code class="lang-html">&lt;div ng-controller=&quot;MyController&quot;&gt;
-  &lt;button ng-click=&quot;sayHello()&quot;&gt;Hello&lt;/button&gt;
-&lt;/div&gt;</code></pre>
+&lt;button ng-click=&quot;sayHello()&quot;&gt;Hello&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
 <pre><code class="lang-js">function MyController($scope, greeter) {
-  $scope.sayHello = function() {
-    greeter.greet(&#39;Hello World&#39;);
-  };
-}</code></pre>
+$scope.sayHello = function() {
+  greeter.greet(&#39;Hello World&#39;);
+};
+}
+</code></pre>
 <p>When Angular compiles the HTML, it processes the <code>ng-controller</code> directive, which in turn
 asks the injector to create an instance of the controller and its dependencies.</p>
-<pre><code class="lang-js">injector.instantiate(MyController);</code></pre>
-<p>This is all done behinds the scenes. Notice that by having the <code>ng-controller</code> ask the injector to
+<pre><code class="lang-js">injector.instantiate(MyController);
+</code></pre>
+<p>This is all done behind the scenes. Notice that by having the <code>ng-controller</code> ask the injector to
 instantiate the class, it can satisfy all of the dependencies of <code>MyController</code> without the
 controller ever knowing about the injector.</p>
 <p>This is the best outcome. The application code simply declares the dependencies it needs, without
@@ -92,8 +99,9 @@ information:</p>
 <p>The simplest way to get hold of the dependencies is to assume that the function parameter names
 are the names of the dependencies.</p>
 <pre><code class="lang-js">function MyController($scope, greeter) {
-  // ...
-}</code></pre>
+// ...
+}
+</code></pre>
 <p>Given a function the injector can infer the names of the services to inject by examining the
 function declaration and extracting the parameter names. In the above example <code>$scope</code>, and
 <code>greeter</code> are two services which need to be injected into the function.</p>
@@ -105,9 +113,10 @@ rename the method parameter names. This makes this way of annotating only useful
 the function needs to be annotated with the <code>$inject</code> property. The <code>$inject</code> property is an array
 of service names to inject.</p>
 <pre><code class="lang-js">var MyController = function(renamed$scope, renamedGreeter) {
-  ...
+...
 }
-MyController[&#39;$inject&#39;] = [&#39;$scope&#39;, &#39;greeter&#39;];</code></pre>
+MyController[&#39;$inject&#39;] = [&#39;$scope&#39;, &#39;greeter&#39;];
+</code></pre>
 <p>In this scenario the ordering of the values in the <code>$inject</code> array must match the ordering of the
 arguments to inject. Using the above code snippet as an example, <code>$scope</code> will be injected into
 <code>renamed$scope</code> and <code>greeter</code> into <code>renamedGreeter</code>. Care must be taken that the <code>$inject</code>
@@ -119,20 +128,23 @@ information with the function.</p>
 directives or services defined inline by a factory function.</p>
 <p>For example:</p>
 <pre><code class="lang-js">someModule.factory(&#39;greeter&#39;, function($window) {
-  // ...
-});</code></pre>
+// ...
+});
+</code></pre>
 <p>Results in code bloat due to needing a temporary variable:</p>
 <pre><code class="lang-js">var greeterFactory = function(renamed$window) {
-  // ...
+// ...
 };
 
 greeterFactory.$inject = [&#39;$window&#39;];
 
-someModule.factory(&#39;greeter&#39;, greeterFactory);</code></pre>
+someModule.factory(&#39;greeter&#39;, greeterFactory);
+</code></pre>
 <p>For this reason the third annotation style is provided as well.</p>
 <pre><code class="lang-js">someModule.factory(&#39;greeter&#39;, [&#39;$window&#39;, function(renamed$window) {
-  // ...
-}]);</code></pre>
+// ...
+}]);
+</code></pre>
 <p>Here, instead of simply providing the factory function, we pass an array whose elements consist of
 a list of strings (the names of the dependencies) followed by the function itself.</p>
 <p>Keep in mind that all of the annotation styles are equivalent and can be used anywhere in Angular
@@ -164,37 +176,40 @@ into <code>run</code> and <code>config</code> blocks.</p>
 services, and filters. The factory methods are registered with the module, and the recommended way
 of declaring factories is:</p>
 <pre><code class="lang-js">angular.module(&#39;myModule&#39;, [])
-  .factory(&#39;serviceId&#39;, [&#39;depService&#39;, function(depService) {
-    ...
-  }])
-  .directive(&#39;directiveName&#39;, [&#39;depService&#39;, function(depService) {
-    ...
-  }])
-  .filter(&#39;filterName&#39;, [&#39;depService&#39;, function(depService) {
-    ...
-  }]);</code></pre>
+.factory(&#39;serviceId&#39;, [&#39;depService&#39;, function(depService) {
+  ...
+}])
+.directive(&#39;directiveName&#39;, [&#39;depService&#39;, function(depService) {
+  ...
+}])
+.filter(&#39;filterName&#39;, [&#39;depService&#39;, function(depService) {
+  ...
+}]);
+</code></pre>
 <h3 id="module-methods">Module Methods</h3>
 <p>We can specify functions to run at configuration and run time for a module by calling the <code>run</code> and
 <code>config</code> methods. These functions are injectable with dependencies just like the factory functions
 above.</p>
 <pre><code class="lang-js">angular.module(&#39;myModule&#39;, [])
-  .config([&#39;depProvider&#39;, function(depProvider){
-    ...
-  }])
-  .run([&#39;depService&#39;, function(depService) {
-    ...
-  }]);</code></pre>
+.config([&#39;depProvider&#39;, function(depProvider){
+  ...
+}])
+.run([&#39;depService&#39;, function(depService) {
+  ...
+}]);
+</code></pre>
 <h3 id="controllers">Controllers</h3>
 <p>Controllers are &quot;classes&quot; or &quot;constructor functions&quot; that are responsible for providing the
 application behavior that supports the declarative markup in the template. The recommended way of
 declaring Controllers is using the array notation:</p>
 <pre><code class="lang-js">someModule.controller(&#39;MyController&#39;, [&#39;$scope&#39;, &#39;dep1&#39;, &#39;dep2&#39;, function($scope, dep1, dep2) {
+...
+$scope.aMethod = function() {
   ...
-  $scope.aMethod = function() {
-    ...
-  }
-  ...
-}]);</code></pre>
+}
+...
+}]);
+</code></pre>
 <p>This avoids the creation of global functions for controllers and also protects against minification.</p>
 <p>Controllers are special in that, unlike services, there can be many instances of them in the
 application. For example, there would be one instance for every <code>ng-controller</code> directive in the template.</p>

@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ng/directive/form.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ng/directive/form.js?message=docs(form)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/form.js#L227' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/ng/directive/form.js#L228' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -67,7 +67,26 @@ doesn&#39;t trigger submit</li>
 hitting enter in any of the input fields will trigger the click handler on the <em>first</em> button or
 input[type=submit] (<code>ngClick</code>) <em>and</em> a submit handler on the enclosing form (<code>ngSubmit</code>)</li>
 </ul>
-
+<h2 id="animation-hooks">Animation Hooks</h2>
+<p>Animations in ngForm are triggered when any of the associated CSS classes are added and removed.
+These classes are: <code>.ng-pristine</code>, <code>.ng-dirty</code>, <code>.ng-invalid</code> and <code>.ng-valid</code> as well as any
+other validations that are performed within the form. Animations in ngForm are similar to how
+they work in ngClass and animations can be hooked into using CSS transitions, keyframes as well
+as JS animations.</p>
+<p>The following example shows a simple way to utilize CSS transitions to style a form element
+that has been rendered as invalid after it has been validated:</p>
+<pre>
+//be sure to include ngAnimate as a module to hook into more
+//advanced animations
+.my-form {
+  transition:0.5s linear all;
+  background: white;
+}
+.my-form.ng-invalid {
+  background: red;
+  color:white;
+}
+</pre>
 </div>
 
 
@@ -121,26 +140,7 @@ input[type=submit] (<code>ngClick</code>) <em>and</em> a submit handler on the e
       <td>
         <p>Name of the form. If specified, the form controller will be published into
                       related scope, under this name.</p>
-<h2 id="animation-hooks">Animation Hooks</h2>
-<p>Animations in ngForm are triggered when any of the associated CSS classes are added and removed.
-These classes are: <code>.ng-pristine</code>, <code>.ng-dirty</code>, <code>.ng-invalid</code> and <code>.ng-valid</code> as well as any
-other validations that are performed within the form. Animations in ngForm are similar to how
-they work in ngClass and animations can be hooked into using CSS transitions, keyframes as well
-as JS animations.</p>
-<p>The following example shows a simple way to utilize CSS transitions to style a form element
-that has been rendered as invalid after it has been validated:</p>
-<pre>
-//be sure to include ngAnimate as a module to hook into more
-//advanced animations
-.my-form {
-  transition:0.5s linear all;
-  background: white;
-}
-.my-form.ng-invalid {
-  background: red;
-  color:white;
-}
-</pre>
+
         
       </td>
     </tr>
@@ -159,6 +159,7 @@ that has been rendered as invalid after it has been validated:</p>
   <a ng-click="openPlunkr('examples/example-example11')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example11"
       deps="angular-animate.js"
@@ -166,7 +167,7 @@ that has been rendered as invalid after it has been validated:</p>
       fixBase="true"
       module="formExample">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"

@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ngRoute/directive/ngView.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ngRoute/directive/ngView.js?message=docs(ngView)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ngRoute/directive/ngView.js#L7' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/ngRoute/directive/ngView.js#L7' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -107,10 +107,11 @@ leave - animation is used to animate existing content away.</p>
       </td>
       <td>
         <p>Whether <code>ngView</code> should call <a href="api/ng/service/$anchorScroll">$anchorScroll</a> to scroll the viewport after the view is updated.</p>
-<pre><code>             - If the attribute is not set, disable scrolling.
-             - If the attribute is set without value, enable scrolling.
-             - Otherwise enable scrolling only if the `autoscroll` attribute value evaluated
-               as an expression yields a truthy value.</code></pre>
+<pre><code>- If the attribute is not set, disable scrolling.
+- If the attribute is set without value, enable scrolling.
+- Otherwise enable scrolling only if the `autoscroll` attribute value evaluated
+  as an expression yields a truthy value.
+</code></pre>
 
         
       </td>
@@ -147,6 +148,7 @@ leave - animation is used to animate existing content away.</p>
   <a ng-click="openPlunkr('examples/example-ngView-directive')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-ngView-directive"
       name="ngView-directive"
@@ -155,7 +157,7 @@ leave - animation is used to animate existing content away.</p>
       animations="true"
       fixBase="true">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
@@ -188,7 +190,7 @@ leave - animation is used to animate existing content away.</p>
       name="script.js"
       language="js"
       type="js">
-      <pre><code>angular.module(&#39;ngViewExample&#39;, [&#39;ngRoute&#39;, &#39;ngAnimate&#39;])&#10;  .config([&#39;$routeProvider&#39;, &#39;$locationProvider&#39;,&#10;    function($routeProvider, $locationProvider) {&#10;      $routeProvider&#10;        .when(&#39;/Book/:bookId&#39;, {&#10;          templateUrl: &#39;book.html&#39;,&#10;          controller: &#39;BookCtrl&#39;,&#10;          controllerAs: &#39;book&#39;&#10;        })&#10;        .when(&#39;/Book/:bookId/ch/:chapterId&#39;, {&#10;          templateUrl: &#39;chapter.html&#39;,&#10;          controller: &#39;ChapterCtrl&#39;,&#10;          controllerAs: &#39;chapter&#39;&#10;        });&#10;&#10;      // configure html5 to get links working on jsfiddle&#10;      $locationProvider.html5Mode(true);&#10;  }])&#10;  .controller(&#39;MainCtrl&#39;, [&#39;$route&#39;, &#39;$routeParams&#39;, &#39;$location&#39;,&#10;    function($route, $routeParams, $location) {&#10;      this.$route = $route;&#10;      this.$location = $location;&#10;      this.$routeParams = $routeParams;&#10;  }])&#10;  .controller(&#39;BookCtrl&#39;, [&#39;$routeParams&#39;, function($routeParams) {&#10;    this.name = &quot;BookCtrl&quot;;&#10;    this.params = $routeParams;&#10;  }])&#10;  .controller(&#39;ChapterCtrl&#39;, [&#39;$routeParams&#39;, function($routeParams) {&#10;    this.name = &quot;ChapterCtrl&quot;;&#10;    this.params = $routeParams;&#10;  }]);</code></pre>
+      <pre><code>angular.module(&#39;ngViewExample&#39;, [&#39;ngRoute&#39;, &#39;ngAnimate&#39;])&#10;  .config([&#39;$routeProvider&#39;, &#39;$locationProvider&#39;,&#10;    function($routeProvider, $locationProvider) {&#10;      $routeProvider&#10;        .when(&#39;/Book/:bookId&#39;, {&#10;          templateUrl: &#39;book.html&#39;,&#10;          controller: &#39;BookCtrl&#39;,&#10;          controllerAs: &#39;book&#39;&#10;        })&#10;        .when(&#39;/Book/:bookId/ch/:chapterId&#39;, {&#10;          templateUrl: &#39;chapter.html&#39;,&#10;          controller: &#39;ChapterCtrl&#39;,&#10;          controllerAs: &#39;chapter&#39;&#10;        });&#10;&#10;      $locationProvider.html5Mode(true);&#10;  }])&#10;  .controller(&#39;MainCtrl&#39;, [&#39;$route&#39;, &#39;$routeParams&#39;, &#39;$location&#39;,&#10;    function($route, $routeParams, $location) {&#10;      this.$route = $route;&#10;      this.$location = $location;&#10;      this.$routeParams = $routeParams;&#10;  }])&#10;  .controller(&#39;BookCtrl&#39;, [&#39;$routeParams&#39;, function($routeParams) {&#10;    this.name = &quot;BookCtrl&quot;;&#10;    this.params = $routeParams;&#10;  }])&#10;  .controller(&#39;ChapterCtrl&#39;, [&#39;$routeParams&#39;, function($routeParams) {&#10;    this.name = &quot;ChapterCtrl&quot;;&#10;    this.params = $routeParams;&#10;  }]);</code></pre>
     </div>
   
     <div class="runnable-example-file" 

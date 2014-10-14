@@ -1,8 +1,8 @@
-describe("module:ng.filter:number", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example52/index-jquery.html");
+    browser.get("examples/example-example52/index-jquery.html");
   });
   
   it('should format numbers', function() {

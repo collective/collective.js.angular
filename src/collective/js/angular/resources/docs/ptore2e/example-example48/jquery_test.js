@@ -1,8 +1,8 @@
-describe("module:ng.directive:select", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example48/index-jquery.html");
+    browser.get("examples/example-example48/index-jquery.html");
   });
   
    it('should check ng-options', function() {

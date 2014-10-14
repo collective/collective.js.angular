@@ -1,8 +1,8 @@
-describe("module:ng.directive:input", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-input-directive/index-jquery.html");
+    browser.get("examples/example-input-directive/index-jquery.html");
   });
   
   var user = element(by.binding('{{user}}'));

@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ng/directive/ngPluralize.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ng/directive/ngPluralize.js?message=docs(ngPluralize)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/ngPluralize.js#L3' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/ng/directive/ngPluralize.js#L3' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -42,10 +42,11 @@ You can also provide an optional attribute, <code>offset</code>.</p>
 string to be displayed. The value of the attribute should be a JSON object.</p>
 <p>The following example shows how to configure ngPluralize:</p>
 <pre><code class="lang-html">&lt;ng-pluralize count=&quot;personCount&quot;
-                 when=&quot;{&#39;0&#39;: &#39;Nobody is viewing.&#39;,
-                     &#39;one&#39;: &#39;1 person is viewing.&#39;,
-                     &#39;other&#39;: &#39;{} people are viewing.&#39;}&quot;&gt;
-&lt;/ng-pluralize&gt;</code></pre>
+when=&quot;{&#39;0&#39;: &#39;Nobody is viewing.&#39;,
+    &#39;one&#39;: &#39;1 person is viewing.&#39;,
+    &#39;other&#39;: &#39;{} people are viewing.&#39;}&quot;&gt;
+&lt;/ng-pluralize&gt;
+</code></pre>
 <p>In the example, <code>&quot;0: Nobody is viewing.&quot;</code> is an explicit number rule. If you did not
 specify this rule, 0 would be matched to the &quot;other&quot; category and &quot;0 people are viewing&quot;
 would be shown instead of &quot;Nobody is viewing&quot;. You can specify an explicit number rule for
@@ -62,12 +63,13 @@ you might display &quot;John, Kate and 2 others are viewing this document&quot;.
 The offset attribute allows you to offset a number by any desired value.
 Let&#39;s take a look at an example:</p>
 <pre><code class="lang-html">&lt;ng-pluralize count=&quot;personCount&quot; offset=2
-              when=&quot;{&#39;0&#39;: &#39;Nobody is viewing.&#39;,
-                     &#39;1&#39;: &#39;{{person1}} is viewing.&#39;,
-                     &#39;2&#39;: &#39;{{person1}} and {{person2}} are viewing.&#39;,
-                     &#39;one&#39;: &#39;{{person1}}, {{person2}} and one other person are viewing.&#39;,
-                     &#39;other&#39;: &#39;{{person1}}, {{person2}} and {} other people are viewing.&#39;}&quot;&gt;
-&lt;/ng-pluralize&gt;</code></pre>
+when=&quot;{&#39;0&#39;: &#39;Nobody is viewing.&#39;,
+       &#39;1&#39;: &#39;{{person1}} is viewing.&#39;,
+       &#39;2&#39;: &#39;{{person1}} and {{person2}} are viewing.&#39;,
+       &#39;one&#39;: &#39;{{person1}}, {{person2}} and one other person are viewing.&#39;,
+       &#39;other&#39;: &#39;{{person1}}, {{person2}} and {} other people are viewing.&#39;}&quot;&gt;
+&lt;/ng-pluralize&gt;
+</code></pre>
 <p>Notice that we are still using two plural categories(one, other), but we added
 three explicit number rules 0, 1 and 2.
 When one person, perhaps John, views the document, &quot;John is viewing&quot; will be shown.
@@ -186,11 +188,12 @@ plural categories &quot;one&quot; and &quot;other&quot;.</p>
   <a ng-click="openPlunkr('examples/example-example40')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example40"
       module="pluralizeExample">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"

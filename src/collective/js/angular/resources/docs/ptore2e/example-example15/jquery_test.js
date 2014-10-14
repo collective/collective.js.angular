@@ -1,8 +1,8 @@
-describe("module:ng.directive:ngBindHtml", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example15/index-jquery.html");
+    browser.get("examples/example-example15/index-jquery.html");
   });
   
   it('should check ng-bind-html', function() {

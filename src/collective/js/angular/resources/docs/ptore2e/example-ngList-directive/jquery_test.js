@@ -1,8 +1,8 @@
-describe("module:ng.directive:ngList", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-ngList-directive/index-jquery.html");
+    browser.get("examples/example-ngList-directive/index-jquery.html");
   });
   
   var listInput = element(by.model('names'));

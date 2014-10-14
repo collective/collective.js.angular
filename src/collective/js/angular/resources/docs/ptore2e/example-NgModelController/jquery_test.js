@@ -1,8 +1,8 @@
-describe("module:ng.type:ngModel.NgModelController", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-NgModelController/index-jquery.html");
+    browser.get("examples/example-NgModelController/index-jquery.html");
   });
   
 it('should data-bind and become invalid', function() {

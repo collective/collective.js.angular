@@ -1,8 +1,8 @@
-describe("module:ng.filter:filter", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example50/index-jquery.html");
+    browser.get("examples/example-example50/index-jquery.html");
   });
   
   var expectFriendNames = function(expectedNames, key) {

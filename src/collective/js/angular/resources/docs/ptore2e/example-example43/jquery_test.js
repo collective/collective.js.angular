@@ -1,8 +1,8 @@
-describe("module:ng.directive:ngHide", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example43/index-jquery.html");
+    browser.get("examples/example-example43/index-jquery.html");
   });
   
   var thumbsUp = element(by.css('span.glyphicon-thumbs-up'));

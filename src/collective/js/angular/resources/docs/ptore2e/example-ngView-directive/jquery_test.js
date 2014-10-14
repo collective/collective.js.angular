@@ -1,8 +1,8 @@
-describe("module:ngRoute.directive:ngView", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-ngView-directive/index-jquery.html");
+    browser.get("examples/example-ngView-directive/index-jquery.html");
   });
   
   it('should load and compile correct template', function() {

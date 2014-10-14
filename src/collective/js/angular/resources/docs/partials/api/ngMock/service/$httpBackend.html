@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ngMock/angular-mocks.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ngMock/angular-mocks.js?message=docs($httpBackend)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ngMock/angular-mocks.js#L873' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/ngMock/angular-mocks.js#L875' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -102,92 +102,94 @@ the async api of the backend, while allowing the test to execute synchronously.<
 <h1 id="unit-testing-with-mock-httpbackend">Unit testing with mock $httpBackend</h1>
 <p>The following code shows how to setup and use the mock backend when unit testing a controller.
 First we create the controller under test:</p>
-<pre><code class="lang-js">  // The controller code
-  function MyController($scope, $http) {
-    var authToken;
+<pre><code class="lang-js">// The controller code
+function MyController($scope, $http) {
+  var authToken;
 
-    $http.get(&#39;/auth.py&#39;).success(function(data, status, headers) {
-      authToken = headers(&#39;A-Token&#39;);
-      $scope.user = data;
+  $http.get(&#39;/auth.py&#39;).success(function(data, status, headers) {
+    authToken = headers(&#39;A-Token&#39;);
+    $scope.user = data;
+  });
+
+  $scope.saveMessage = function(message) {
+    var headers = { &#39;Authorization&#39;: authToken };
+    $scope.status = &#39;Saving...&#39;;
+
+    $http.post(&#39;/add-msg.py&#39;, message, { headers: headers } ).success(function(response) {
+      $scope.status = &#39;&#39;;
+    }).error(function() {
+      $scope.status = &#39;ERROR!&#39;;
     });
-
-    $scope.saveMessage = function(message) {
-      var headers = { &#39;Authorization&#39;: authToken };
-      $scope.status = &#39;Saving...&#39;;
-
-      $http.post(&#39;/add-msg.py&#39;, message, { headers: headers } ).success(function(response) {
-        $scope.status = &#39;&#39;;
-      }).error(function() {
-        $scope.status = &#39;ERROR!&#39;;
-      });
-    };
-  }</code></pre>
+  };
+}
+</code></pre>
 <p>Now we setup the mock backend and create the test specs:</p>
-<pre><code class="lang-js">    // testing controller
-    describe(&#39;MyController&#39;, function() {
-       var $httpBackend, $rootScope, createController;
+<pre><code class="lang-js">// testing controller
+describe(&#39;MyController&#39;, function() {
+   var $httpBackend, $rootScope, createController;
 
-       beforeEach(inject(function($injector) {
-         // Set up the mock http service responses
-         $httpBackend = $injector.get(&#39;$httpBackend&#39;);
-         // backend definition common for all tests
-         $httpBackend.when(&#39;GET&#39;, &#39;/auth.py&#39;).respond({userId: &#39;userX&#39;}, {&#39;A-Token&#39;: &#39;xxx&#39;});
+   beforeEach(inject(function($injector) {
+     // Set up the mock http service responses
+     $httpBackend = $injector.get(&#39;$httpBackend&#39;);
+     // backend definition common for all tests
+     $httpBackend.when(&#39;GET&#39;, &#39;/auth.py&#39;).respond({userId: &#39;userX&#39;}, {&#39;A-Token&#39;: &#39;xxx&#39;});
 
-         // Get hold of a scope (i.e. the root scope)
-         $rootScope = $injector.get(&#39;$rootScope&#39;);
-         // The $controller service is used to create instances of controllers
-         var $controller = $injector.get(&#39;$controller&#39;);
+     // Get hold of a scope (i.e. the root scope)
+     $rootScope = $injector.get(&#39;$rootScope&#39;);
+     // The $controller service is used to create instances of controllers
+     var $controller = $injector.get(&#39;$controller&#39;);
 
-         createController = function() {
-           return $controller(&#39;MyController&#39;, {&#39;$scope&#39; : $rootScope });
-         };
-       }));
-
-
-       afterEach(function() {
-         $httpBackend.verifyNoOutstandingExpectation();
-         $httpBackend.verifyNoOutstandingRequest();
-       });
+     createController = function() {
+       return $controller(&#39;MyController&#39;, {&#39;$scope&#39; : $rootScope });
+     };
+   }));
 
 
-       it(&#39;should fetch authentication token&#39;, function() {
-         $httpBackend.expectGET(&#39;/auth.py&#39;);
-         var controller = createController();
-         $httpBackend.flush();
-       });
+   afterEach(function() {
+     $httpBackend.verifyNoOutstandingExpectation();
+     $httpBackend.verifyNoOutstandingRequest();
+   });
 
 
-       it(&#39;should send msg to server&#39;, function() {
-         var controller = createController();
-         $httpBackend.flush();
-
-         // now you don’t care about the authentication, but
-         // the controller will still send the request and
-         // $httpBackend will respond without you having to
-         // specify the expectation and response for this request
-
-         $httpBackend.expectPOST(&#39;/add-msg.py&#39;, &#39;message content&#39;).respond(201, &#39;&#39;);
-         $rootScope.saveMessage(&#39;message content&#39;);
-         expect($rootScope.status).toBe(&#39;Saving...&#39;);
-         $httpBackend.flush();
-         expect($rootScope.status).toBe(&#39;&#39;);
-       });
+   it(&#39;should fetch authentication token&#39;, function() {
+     $httpBackend.expectGET(&#39;/auth.py&#39;);
+     var controller = createController();
+     $httpBackend.flush();
+   });
 
 
-       it(&#39;should send auth header&#39;, function() {
-         var controller = createController();
-         $httpBackend.flush();
+   it(&#39;should send msg to server&#39;, function() {
+     var controller = createController();
+     $httpBackend.flush();
 
-         $httpBackend.expectPOST(&#39;/add-msg.py&#39;, undefined, function(headers) {
-           // check if the header was send, if it wasn&#39;t the expectation won&#39;t
-           // match the request and the test will fail
-           return headers[&#39;Authorization&#39;] == &#39;xxx&#39;;
-         }).respond(201, &#39;&#39;);
+     // now you don’t care about the authentication, but
+     // the controller will still send the request and
+     // $httpBackend will respond without you having to
+     // specify the expectation and response for this request
 
-         $rootScope.saveMessage(&#39;whatever&#39;);
-         $httpBackend.flush();
-       });
-    });</code></pre>
+     $httpBackend.expectPOST(&#39;/add-msg.py&#39;, &#39;message content&#39;).respond(201, &#39;&#39;);
+     $rootScope.saveMessage(&#39;message content&#39;);
+     expect($rootScope.status).toBe(&#39;Saving...&#39;);
+     $httpBackend.flush();
+     expect($rootScope.status).toBe(&#39;&#39;);
+   });
+
+
+   it(&#39;should send auth header&#39;, function() {
+     var controller = createController();
+     $httpBackend.flush();
+
+     $httpBackend.expectPOST(&#39;/add-msg.py&#39;, undefined, function(headers) {
+       // check if the header was send, if it wasn&#39;t the expectation won&#39;t
+       // match the request and the test will fail
+       return headers[&#39;Authorization&#39;] == &#39;xxx&#39;;
+     }).respond(201, &#39;&#39;);
+
+     $rootScope.saveMessage(&#39;whatever&#39;);
+     $httpBackend.flush();
+   });
+});
+</code></pre>
 
 </div>
 
@@ -1497,7 +1499,8 @@ request is handled. See #expect for more info.</p>
 requests were not made, verifyNoOutstandingExpectation throws an exception.</p>
 <p>Typically, you would call this method following each test case that asserts requests using an
 &quot;afterEach&quot; clause.</p>
-<pre><code class="lang-js">  afterEach($httpBackend.verifyNoOutstandingExpectation);</code></pre>
+<pre><code class="lang-js">afterEach($httpBackend.verifyNoOutstandingExpectation);
+</code></pre>
 </div>
 
     
@@ -1515,7 +1518,8 @@ requests were not made, verifyNoOutstandingExpectation throws an exception.</p>
     <div><p>Verifies that there are no outstanding requests that need to be flushed.</p>
 <p>Typically, you would call this method following each test case that asserts requests using an
 &quot;afterEach&quot; clause.</p>
-<pre><code class="lang-js">  afterEach($httpBackend.verifyNoOutstandingRequest);</code></pre>
+<pre><code class="lang-js">afterEach($httpBackend.verifyNoOutstandingRequest);
+</code></pre>
 </div>
 
     

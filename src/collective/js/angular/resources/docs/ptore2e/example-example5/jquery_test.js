@@ -1,8 +1,8 @@
-describe("module:ng.directive:ngHref", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example5/index-jquery.html");
+    browser.get("examples/example-example5/index-jquery.html");
   });
   
   it('should execute ng-click but not reload when href without value', function() {

@@ -1,4 +1,4 @@
-<a href='http://github.com/angular/angular.js/edit/master/docs/content/guide/directive.ngdoc' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/docs/content/guide/directive.ngdoc?message=docs(guide%2FDirectives)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 <h1 id="creating-custom-directives">Creating Custom Directives</h1>
@@ -33,9 +33,11 @@ mirrors the process of compiling source code in
 <p>Before we can write a directive, we need to know how Angular&#39;s <a href="guide/compiler">HTML compiler</a>
 determines when to use a given directive.</p>
 <p>In the following example, we say that the <code>&lt;input&gt;</code> element <strong>matches</strong> the <code>ngModel</code> directive.</p>
-<pre><code class="lang-html">&lt;input ng-model=&quot;foo&quot;&gt;</code></pre>
+<pre><code class="lang-html">&lt;input ng-model=&quot;foo&quot;&gt;
+</code></pre>
 <p>The following also <strong>matches</strong> <code>ngModel</code>:</p>
-<pre><code class="lang-html">&lt;input data-ng:model=&quot;foo&quot;&gt;</code></pre>
+<pre><code class="lang-html">&lt;input data-ng:model=&quot;foo&quot;&gt;
+</code></pre>
 <p>Angular <strong>normalizes</strong> an element&#39;s tag and attribute name to determine which elements match which
 directives. We typically refer to directives by their case-sensitive
 <a href="http://en.wikipedia.org/wiki/CamelCase">camelCase</a> <strong>normalized</strong> name (e.g. <code>ngModel</code>).
@@ -54,11 +56,12 @@ attributes on DOM elements (e.g. <code>ng-model</code>).</p>
   <a ng-click="openPlunkr('examples/example-example76')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example76"
       module="docsBindExample">
 
-   
+  
     <div class="runnable-example-file" 
       name="script.js"
       language="js"
@@ -101,7 +104,8 @@ from within a template:</p>
 <pre><code class="lang-html">&lt;my-dir&gt;&lt;/my-dir&gt;
 &lt;span my-dir=&quot;exp&quot;&gt;&lt;/span&gt;
 &lt;!-- directive: my-dir exp --&gt;
-&lt;span class=&quot;my-dir: exp;&quot;&gt;&lt;/span&gt;</code></pre>
+&lt;span class=&quot;my-dir: exp;&quot;&gt;&lt;/span&gt;
+</code></pre>
 <div class="alert alert-success">
 <strong>Best Practice:</strong> Prefer using directives via tag name and attributes over comment and class names.
 Doing so generally makes it easier to determine what directives a given element matches.
@@ -123,25 +127,28 @@ using the <a href="api/ng/service/$interpolate">$interpolate</a> service to see 
 expressions. These expressions are registered as <a href="api/ng/type/$rootScope.Scope#$watch">watches</a>
 and will update as part of normal <a href="api/ng/type/$rootScope.Scope#$digest">digest</a> cycle. An
 example of interpolation is shown below:</p>
-<pre><code class="lang-html">&lt;a ng-href=&quot;img/{{username}}.jpg&quot;&gt;Hello {{username}}!&lt;/a&gt;</code></pre>
+<pre><code class="lang-html">&lt;a ng-href=&quot;img/{{username}}.jpg&quot;&gt;Hello {{username}}!&lt;/a&gt;
+</code></pre>
 <h3 id="-ngattr-attribute-bindings"><code>ngAttr</code> attribute bindings</h3>
 <p>Web browsers are sometimes picky about what values they consider valid for attributes.</p>
 <p>For example, considering this template:</p>
 <pre><code class="lang-html">&lt;svg&gt;
-  &lt;circle cx=&quot;{{cx}}&quot;&gt;&lt;/circle&gt;
-&lt;/svg&gt;</code></pre>
+&lt;circle cx=&quot;{{cx}}&quot;&gt;&lt;/circle&gt;
+&lt;/svg&gt;
+</code></pre>
 <p>We would expect Angular to be able to bind to this, but when we check the console we see
 something like <code>Error: Invalid value for attribute cx=&quot;{{cx}}&quot;</code>. Because of the SVG DOM API&#39;s
 restrictions, you cannot simply write <code>cx=&quot;{{cx}}&quot;</code>.</p>
 <p>With <code>ng-attr-cx</code> you can work around this problem.</p>
 <p>If an attribute with a binding is prefixed with the <code>ngAttr</code> prefix (denormalized as <code>ng-attr-</code>)
-then during the binding will be applied to the corresponding unprefixed attribute. This allows
+then during the binding it will be applied to the corresponding unprefixed attribute. This allows
 you to bind to attributes that would otherwise be eagerly processed by browsers
 (e.g. an SVG element&#39;s <code>circle[cx]</code> attributes).</p>
 <p>For example, we could fix the example above by instead writing:</p>
 <pre><code class="lang-html">&lt;svg&gt;
-  &lt;circle ng-attr-cx=&quot;{{cx}}&quot;&gt;&lt;/circle&gt;
-&lt;/svg&gt;</code></pre>
+&lt;circle ng-attr-cx=&quot;{{cx}}&quot;&gt;&lt;/circle&gt;
+&lt;/svg&gt;
+</code></pre>
 <h2 id="creating-directives">Creating Directives</h2>
 <p>First let&#39;s talk about the <a href="api/ng/provider/$compileProvider#directive">API for registering directives</a>. Much like
 controllers, directives are registered on modules. To register a directive, you use the
@@ -181,11 +188,12 @@ several others. This is a good opportunity to use a directive to simplify your t
   <a ng-click="openPlunkr('examples/example-example77')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example77"
       module="docsSimpleDirective">
 
-   
+  
     <div class="runnable-example-file" 
       name="script.js"
       language="js"
@@ -227,11 +235,12 @@ using <code>templateUrl</code> instead:</p>
   <a ng-click="openPlunkr('examples/example-example78')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example78"
       module="docsTemplateUrlDirective">
 
-   
+  
     <div class="runnable-example-file" 
       name="script.js"
       language="js"
@@ -284,11 +293,12 @@ create directives that are triggered by element or class name, you need to use t
   <a ng-click="openPlunkr('examples/example-example79')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example79"
       module="docsRestrictDirective">
 
-   
+  
     <div class="runnable-example-file" 
       name="script.js"
       language="js"
@@ -344,11 +354,12 @@ re-use such a directive:</p>
   <a ng-click="openPlunkr('examples/example-example80')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example80"
       module="docsScopeProblemExample">
 
-   
+  
     <div class="runnable-example-file" 
       name="script.js"
       language="js"
@@ -387,11 +398,12 @@ we call an <strong>isolate scope</strong>. To do this, we can use a directive&#3
   <a ng-click="openPlunkr('examples/example-example81')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example81"
       module="docsIsolateScopeDirective">
 
-   
+  
     <div class="runnable-example-file" 
       name="script.js"
       language="js"
@@ -427,7 +439,8 @@ which we have exposed on our controller&#39;s scope. The second binds <code>info
 scope: {
   customerInfo: &#39;=info&#39;
 },
-//...</code></pre>
+//...
+</code></pre>
 <p>The <strong>scope option</strong> is an object that contains a property for each isolate scope binding.  In this
 case it has just one property:</p>
 <ul>
@@ -448,7 +461,8 @@ scope: {
   // same as &#39;=customer&#39;
   customer: &#39;=&#39;
 },
-...</code></pre>
+...
+</code></pre>
 <p>Besides making it possible to bind different data to the scope inside a directive, using an isolated
 scope has another effect.</p>
 <p>We can show this by adding another property, <code>vojta</code>, to our scope and trying to access it from
@@ -459,11 +473,12 @@ within our directive&#39;s template:</p>
   <a ng-click="openPlunkr('examples/example-example82')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example82"
       module="docsIsolationExample">
 
-   
+  
     <div class="runnable-example-file" 
       name="script.js"
       language="js"
@@ -532,11 +547,12 @@ We also want to remove the <code>$interval</code> if the directive is deleted so
   <a ng-click="openPlunkr('examples/example-example83')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example83"
       module="docsTimeDirective">
 
-   
+  
     <div class="runnable-example-file" 
       name="script.js"
       language="js"
@@ -589,11 +605,12 @@ wrap any arbitrary content.</p>
   <a ng-click="openPlunkr('examples/example-example84')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example84"
       module="docsTransclusionDirective">
 
-   
+  
     <div class="runnable-example-file" 
       name="script.js"
       language="js"
@@ -632,11 +649,12 @@ that redefines <code>name</code> as <code>Jeff</code>. What do you think the <co
   <a ng-click="openPlunkr('examples/example-example85')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example85"
       module="docsTransclusionExample">
 
-   
+  
     <div class="runnable-example-file" 
       name="script.js"
       language="js"
@@ -688,11 +706,12 @@ own behavior to it.</p>
   <a ng-click="openPlunkr('examples/example-example86')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example86"
       module="docsIsoFnBindExample">
 
-   
+  
     <div class="runnable-example-file" 
       name="script.js"
       language="js"
@@ -750,11 +769,12 @@ element?</p>
   <a ng-click="openPlunkr('examples/example-example87')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example87"
       module="dragModule">
 
-   
+  
     <div class="runnable-example-file" 
       name="script.js"
       language="js"
@@ -787,11 +807,12 @@ to which tab is active.</p>
   <a ng-click="openPlunkr('examples/example-example88')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example88"
       module="docsTabsExample">
 
-   
+  
     <div class="runnable-example-file" 
       name="script.js"
       language="js"
@@ -844,23 +865,24 @@ When a directive requires a controller, it receives that controller as the fourt
 <p>If multiple controllers are required, the <code>require</code> option of the directive can take an array argument.
 The corresponding parameter being sent to the <code>link</code> function will also be an array.</p>
 <pre><code class="lang-js">angular.module(&#39;docsTabsExample&#39;, [])
-  .directive(&#39;myPane&#39;, function() {
-    return {
-      require: [&#39;^myTabs&#39;, &#39;^ngModel&#39;],
-      restrict: &#39;E&#39;,
-      transclude: true,
-      scope: {
-        title: &#39;@&#39;
-      },
-      link: function(scope, element, attrs, controllers) {
-        var tabsCtrl = controllers[0],
-            modelCtrl = controllers[1];
+.directive(&#39;myPane&#39;, function() {
+  return {
+    require: [&#39;^myTabs&#39;, &#39;^ngModel&#39;],
+    restrict: &#39;E&#39;,
+    transclude: true,
+    scope: {
+      title: &#39;@&#39;
+    },
+    link: function(scope, element, attrs, controllers) {
+      var tabsCtrl = controllers[0],
+          modelCtrl = controllers[1];
 
-        tabsCtrl.addPane(scope);
-      },
-      templateUrl: &#39;my-pane.html&#39;
-    };
-  });</code></pre>
+      tabsCtrl.addPane(scope);
+    },
+    templateUrl: &#39;my-pane.html&#39;
+  };
+});
+</code></pre>
 <p>Savvy readers may be wondering what the difference is between <code>link</code> and <code>controller</code>.
 The basic difference is that <code>controller</code> can expose an API, and <code>link</code> functions can interact with
 controllers using <code>require</code>.</p>

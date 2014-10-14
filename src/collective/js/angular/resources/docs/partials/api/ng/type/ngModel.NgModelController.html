@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ng/directive/input.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ng/directive/input.js?message=docs(ngModel.NgModelController)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/input.js#L916' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/ng/directive/input.js#L916' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -41,13 +41,14 @@ that content using the <code>$sce</code> service.</p>
   <a ng-click="openPlunkr('examples/example-NgModelController')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-NgModelController"
       name="NgModelController"
       module="customControl"
       deps="angular-sanitize.js">
 
-   
+  
     <div class="runnable-example-file" 
       name="style.css"
       language="css"
@@ -353,7 +354,7 @@ which includes any validators. The value that comes out of this <code>$parsers</
        through to the next. The last return value is used to populate the model.
        Used to sanitize / convert the value as well as validation. For validation,
        the parsers should update the validity state using
-       <a href="api/ng/method/$setValidity">$setValidity()</a>,
+       <a href="api/ng/type/ngModel.NgModelController#$setValidity">$setValidity()</a>,
        and return <code>undefined</code> for invalid values.</p>
 </td>
   </tr>
@@ -369,11 +370,12 @@ which includes any validators. The value that comes out of this <code>$parsers</
        the model value changes. Each function is called, in turn, passing the value through to the
        next. Used to format / convert values for display in the control and validation.</p>
 <pre><code class="lang-js">function formatter(value) {
-  if (value) {
-    return value.toUpperCase();
-  }
+if (value) {
+  return value.toUpperCase();
 }
-ngModel.$formatters.push(formatter);</code></pre>
+}
+ngModel.$formatters.push(formatter);
+</code></pre>
 </td>
   </tr>
 </table>

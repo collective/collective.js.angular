@@ -1,4 +1,4 @@
-<a href='http://github.com/angular/angular.js/edit/master/docs/content/guide/controller.ngdoc' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/docs/content/guide/controller.ngdoc?message=docs(guide%2FControllers)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 <h1 id="understanding-controllers">Understanding Controllers</h1>
@@ -37,7 +37,8 @@ property containing the string <code>&#39;Hola!&#39;</code> to the <code>$scope<
 
 myApp.controller(&#39;GreetingController&#39;, [&#39;$scope&#39;, function($scope) {
   $scope.greeting = &#39;Hola!&#39;;
-}]);</code></pre>
+}]);
+</code></pre>
 <p>We create an <a href="guide/module">Angular Module</a>, <code>myApp</code>, for our application. Then we add the controller&#39;s
 constructor function to the module using the <code>.controller()</code> method. This keeps the controller&#39;s
 constructor function out of the global scope.</p>
@@ -50,8 +51,9 @@ of the Controller on the <code>$scope</code> service provided by Angular. See th
 <p>We attach our controller to the DOM using the <code>ng-controller</code> directive. The <code>greeting</code> property can
 now be data-bound to the template:</p>
 <pre><code class="lang-js">&lt;div ng-controller=&quot;GreetingController&quot;&gt;
-  {{ greeting }}
-&lt;/div&gt;</code></pre>
+{{ greeting }}
+&lt;/div&gt;
+</code></pre>
 <h1 id="adding-behavior-to-a-scope-object">Adding Behavior to a Scope Object</h1>
 <p>In order to react to events or execute computation in the view we must provide behavior to the
 scope. We add behavior to the scope by attaching methods to the <code>$scope</code> object.  These methods are
@@ -61,12 +63,14 @@ then available to be called from the template/view.</p>
 
 myApp.controller(&#39;DoubleController&#39;, [&#39;$scope&#39;, function($scope) {
   $scope.double = function(value) { return value * 2; };
-}]);</code></pre>
+}]);
+</code></pre>
 <p>Once the Controller has been attached to the DOM, the <code>double</code> method can be invoked in an Angular
 expression in the template:</p>
 <pre><code class="lang-js">&lt;div ng-controller=&quot;DoubleController&quot;&gt;
-  Two times &lt;input ng-model=&quot;num&quot;&gt; equals {{ double(num) }}
-&lt;/div&gt;</code></pre>
+Two times &lt;input ng-model=&quot;num&quot;&gt; equals {{ double(num) }}
+&lt;/div&gt;
+</code></pre>
 <p>As discussed in the <a href="guide/concepts">Concepts</a> section of this guide, any
 objects (or primitives) assigned to the scope become model properties. Any methods assigned to
 the scope are available in the template/view, and can be invoked via angular expressions
@@ -97,11 +101,12 @@ string &quot;very&quot;. Depending on which button is clicked, the <code>spice</
   <a ng-click="openPlunkr('examples/example-example73')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example73"
       module="spicyApp1">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
@@ -143,11 +148,12 @@ previous example.</p>
   <a ng-click="openPlunkr('examples/example-example74')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example74"
       module="spicyApp2">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
@@ -186,11 +192,12 @@ more information about scope inheritance.</p>
   <a ng-click="openPlunkr('examples/example-example75')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-example75"
       module="scopeInheritance">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
@@ -235,60 +242,63 @@ examples, all of the properties could be replaced with methods that return strin
 <p>Although there are many ways to test a Controller, one of the best conventions, shown below,
 involves injecting the <a href="api/ng/service/$rootScope">$rootScope</a> and <a href="api/ng/service/$controller">$controller</a>:</p>
 <p><strong>Controller Definition:</strong></p>
-<pre><code class="lang-js">    var myApp = angular.module(&#39;myApp&#39;,[]);
+<pre><code class="lang-js">var myApp = angular.module(&#39;myApp&#39;,[]);
 
-    myApp.controller(&#39;MyController&#39;, function($scope) {
-      $scope.spices = [{&quot;name&quot;:&quot;pasilla&quot;, &quot;spiciness&quot;:&quot;mild&quot;},
-                       {&quot;name&quot;:&quot;jalapeno&quot;, &quot;spiciness&quot;:&quot;hot hot hot!&quot;},
-                       {&quot;name&quot;:&quot;habanero&quot;, &quot;spiciness&quot;:&quot;LAVA HOT!!&quot;}];
-      $scope.spice = &quot;habanero&quot;;
-    });</code></pre>
+myApp.controller(&#39;MyController&#39;, function($scope) {
+  $scope.spices = [{&quot;name&quot;:&quot;pasilla&quot;, &quot;spiciness&quot;:&quot;mild&quot;},
+                   {&quot;name&quot;:&quot;jalapeno&quot;, &quot;spiciness&quot;:&quot;hot hot hot!&quot;},
+                   {&quot;name&quot;:&quot;habanero&quot;, &quot;spiciness&quot;:&quot;LAVA HOT!!&quot;}];
+  $scope.spice = &quot;habanero&quot;;
+});
+</code></pre>
 <p><strong>Controller Test:</strong></p>
 <pre><code class="lang-js">describe(&#39;myController function&#39;, function() {
 
-  describe(&#39;myController&#39;, function() {
-    var $scope;
+describe(&#39;myController&#39;, function() {
+  var $scope;
 
-    beforeEach(module(&#39;myApp&#39;));
+  beforeEach(module(&#39;myApp&#39;));
 
-    beforeEach(inject(function($rootScope, $controller) {
-      $scope = $rootScope.$new();
-      $controller(&#39;MyController&#39;, {$scope: $scope});
-    }));
+  beforeEach(inject(function($rootScope, $controller) {
+    $scope = $rootScope.$new();
+    $controller(&#39;MyController&#39;, {$scope: $scope});
+  }));
 
-    it(&#39;should create &quot;spices&quot; model with 3 spices&#39;, function() {
-      expect($scope.spices.length).toBe(3);
-    });
-
-    it(&#39;should set the default value of spice&#39;, function() {
-      expect($scope.spice).toBe(&#39;habanero&#39;);
-    });
+  it(&#39;should create &quot;spices&quot; model with 3 spices&#39;, function() {
+    expect($scope.spices.length).toBe(3);
   });
-});</code></pre>
+
+  it(&#39;should set the default value of spice&#39;, function() {
+    expect($scope.spice).toBe(&#39;habanero&#39;);
+  });
+});
+});
+</code></pre>
 <p>If you need to test a nested Controller you need to create the same scope hierarchy
 in your test that exists in the DOM:</p>
 <pre><code class="lang-js">describe(&#39;state&#39;, function() {
-    var mainScope, childScope, grandChildScope;
+var mainScope, childScope, grandChildScope;
 
-    beforeEach(module(&#39;myApp&#39;));
+beforeEach(module(&#39;myApp&#39;));
 
-    beforeEach(inject(function($rootScope, $controller) {
-        mainScope = $rootScope.$new();
-        $controller(&#39;MainController&#39;, {$scope: mainScope});
-        childScope = mainScope.$new();
-        $controller(&#39;ChildController&#39;, {$scope: childScope});
-        grandChildScope = childScope.$new();
-        $controller(&#39;GrandChildController&#39;, {$scope: grandChildScope});
-    }));
+beforeEach(inject(function($rootScope, $controller) {
+    mainScope = $rootScope.$new();
+    $controller(&#39;MainController&#39;, {$scope: mainScope});
+    childScope = mainScope.$new();
+    $controller(&#39;ChildController&#39;, {$scope: childScope});
+    grandChildScope = childScope.$new();
+    $controller(&#39;GrandChildController&#39;, {$scope: grandChildScope});
+}));
 
-    it(&#39;should have over and selected&#39;, function() {
-        expect(mainScope.timeOfDay).toBe(&#39;morning&#39;);
-        expect(mainScope.name).toBe(&#39;Nikki&#39;);
-        expect(childScope.timeOfDay).toBe(&#39;morning&#39;);
-        expect(childScope.name).toBe(&#39;Mattie&#39;);
-        expect(grandChildScope.timeOfDay).toBe(&#39;evening&#39;);
-        expect(grandChildScope.name).toBe(&#39;Gingerbreak Baby&#39;);
-    });
-});</code></pre>
+it(&#39;should have over and selected&#39;, function() {
+    expect(mainScope.timeOfDay).toBe(&#39;morning&#39;);
+    expect(mainScope.name).toBe(&#39;Nikki&#39;);
+    expect(childScope.timeOfDay).toBe(&#39;morning&#39;);
+    expect(childScope.name).toBe(&#39;Mattie&#39;);
+    expect(grandChildScope.timeOfDay).toBe(&#39;evening&#39;);
+    expect(grandChildScope.name).toBe(&#39;Gingerbreak Baby&#39;);
+});
+});
+</code></pre>
 
 

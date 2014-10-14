@@ -1,8 +1,8 @@
-describe("module:ng.service:$compile", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example4/index-jquery.html");
+    browser.get("examples/example-example4/index-jquery.html");
   });
   
   it('should auto compile', function() {
