@@ -1,7 +1,7 @@
-<a href='http://github.com/angular/angular.js/edit/master/docs/content/error/$injector/nomod.ngdoc' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/docs/content/error/$injector/nomod.ngdoc?message=docs(error%2Fnomod)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
-<h1>Error: $injector:nomod
+<h1>Error: error:nomod
   <div><span class='hint'>Module Unavailable</span></div>
 </h1>
 
@@ -21,10 +21,12 @@ require.js, or testing harness like karma).</p>
 and an array of dependent modules, like so:</p>
 <pre><code class="lang-js">// When defining a module with no module dependencies,
 // the array of dependencies should be defined and empty.
-var myApp = angular.module(&#39;myApp&#39;, []);</code></pre>
+var myApp = angular.module(&#39;myApp&#39;, []);
+</code></pre>
 <p>To retrieve a reference to the same module for further configuration, call
 <code>angular.module</code> without the array argument.</p>
-<pre><code class="lang-js">var myApp = angular.module(&#39;myApp&#39;);</code></pre>
+<pre><code class="lang-js">var myApp = angular.module(&#39;myApp&#39;);
+</code></pre>
 <p>Calling <code>angular.module</code> without the array of dependencies when the module has not yet been defined
 causes this error to be thrown. To fix it, define your module with a name and an empty array, as in
 the first example above.</p>

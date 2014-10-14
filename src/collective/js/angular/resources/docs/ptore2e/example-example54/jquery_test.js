@@ -1,11 +1,13 @@
-describe("module:ng.filter:json", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example54/index-jquery.html");
+    browser.get("examples/example-example54/index-jquery.html");
   });
   
-  it('should jsonify filtered objects', function() {
-    expect(element(by.binding("{'name':'value'}")).getText()).toMatch(/\{\n  "name": ?"value"\n}/);
+  it('should select Greetings!', function() {
+    expect(element(by.id('greet')).getAttribute('selected')).toBeFalsy();
+    element(by.model('selected')).click();
+    expect(element(by.id('greet')).getAttribute('selected')).toBeTruthy();
   });
 });

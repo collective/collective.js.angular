@@ -10,18 +10,8 @@
 
   
 </head>
-<body ng-app="numberFilterExample">
-    <script>
-    angular.module('numberFilterExample', [])
-      .controller('ExampleController', ['$scope', function($scope) {
-        $scope.val = 1234.56789;
-      }]);
-  </script>
-  <div ng-controller="ExampleController">
-    Enter number: <input ng-model='val'><br>
-    Default formatting: <span id='number-default'>{{val | number}}</span><br>
-    No fractions: <span>{{val | number:0}}</span><br>
-    Negative number: <span>{{-val | number:4}}</span>
-  </div>
+<body ng-app="">
+    Check me to check both: <input type="checkbox" ng-model="master"><br/>
+  <input id="checkSlave" type="checkbox" ng-checked="master">
 </body>
 </html>

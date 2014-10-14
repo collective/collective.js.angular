@@ -6,15 +6,14 @@
   
 
   <script src="../../../angular.min.js"></script>
+  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="">
-    Check me to select: <input type="checkbox" ng-model="selected"><br/>
-  <select>
-    <option>Hello!</option>
-    <option id="greet" ng-selected="selected">Greetings!</option>
-  </select>
+<body ng-app="docsTemplateUrlDirective">
+    <div ng-controller="Controller">
+    <div my-customer></div>
+  </div>
 </body>
 </html>

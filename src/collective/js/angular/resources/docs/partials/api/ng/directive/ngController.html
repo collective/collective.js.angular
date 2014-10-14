@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ng/directive/ngController.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/ngController.js?message=docs(ngController)%3A%20describe%20your%20change...#L3' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/ngController.js#L3' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/directive/ngController.js#L3' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -47,7 +47,7 @@ and executed twice.</p>
   <h2>Directive Info</h2>
   <ul>
     <li>This directive creates new scope.</li>
-    <li>This directive executes at priority level 0.</li>
+    <li>This directive executes at priority level 500.</li>
   </ul>
 
   
@@ -84,10 +84,14 @@ and executed twice.</p>
         <a href="" class="label type-hint type-hint-expression">expression</a>
       </td>
       <td>
-        <p>Name of a globally accessible constructor function or an
-    <a href="guide/expression">expression</a> that on the current scope evaluates to a
-    constructor function. The controller instance can be published into a scope property
-    by specifying <code>as propertyName</code>.</p>
+        <p>Name of a constructor function registered with the current
+<a href="api/ng/provider/$controllerProvider">$controllerProvider</a> or an <a href="guide/expression">expression</a>
+that on the current scope evaluates to a constructor function.</p>
+<p>The controller instance can be published into a scope property by specifying
+<code>ng-controller=&quot;as propertyName&quot;</code>.</p>
+<p>If the current <code>$controllerProvider</code> is configured to use globals (via
+<a href="api/ng/provider/$controllerProvider#allowGlobals"><code>$controllerProvider.allowGlobals()</code></a>), this may
+also be the name of a globally accessible constructor function (not recommended).</p>
 
         
       </td>
@@ -130,12 +134,13 @@ inheritance masking primitives.</li>
   <a ng-click="openPlunkr('examples/example-ngControllerAs')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-ngControllerAs"
       name="ngControllerAs"
       module="controllerAsExample">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
@@ -171,12 +176,13 @@ inheritance masking primitives.</li>
   <a ng-click="openPlunkr('examples/example-ngController')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-ngController"
       name="ngController"
       module="controllerExample">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"

@@ -5,15 +5,16 @@
   <title>Example - example-example10-production</title>
   
 
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.5/angular.min.js"></script>
+  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="">
-    Check me check multiple: <input type="checkbox" ng-model="open"><br/>
-  <details id="details" ng-open="open">
-     <summary>Show/Hide me</summary>
-  </details>
+<body ng-app="docsTemplateUrlDirective">
+    <div ng-controller="Controller">
+    <div my-customer type="name"></div>
+    <div my-customer type="address"></div>
+  </div>
 </body>
 </html>

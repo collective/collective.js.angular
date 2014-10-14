@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ng/directive/ngRepeat.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/ngRepeat.js?message=docs(ngRepeat)%3A%20describe%20your%20change...#L3' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/ngRepeat.js#L3' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/directive/ngRepeat.js#L3' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -73,34 +73,36 @@ the range of the repeater by defining explicit start and end points by using <st
 The <strong>ng-repeat-start</strong> directive works the same as <strong>ng-repeat</strong>, but will repeat all the HTML code (including the tag it&#39;s defined on)
 up to and including the ending HTML tag where <strong>ng-repeat-end</strong> is placed.</p>
 <p>The example below makes use of this feature:</p>
-<pre><code class="lang-html">  &lt;header ng-repeat-start=&quot;item in items&quot;&gt;
-    Header {{ item }}
-  &lt;/header&gt;
-  &lt;div class=&quot;body&quot;&gt;
-    Body {{ item }}
-  &lt;/div&gt;
-  &lt;footer ng-repeat-end&gt;
-    Footer {{ item }}
-  &lt;/footer&gt;</code></pre>
+<pre><code class="lang-html">&lt;header ng-repeat-start=&quot;item in items&quot;&gt;
+  Header {{ item }}
+&lt;/header&gt;
+&lt;div class=&quot;body&quot;&gt;
+  Body {{ item }}
+&lt;/div&gt;
+&lt;footer ng-repeat-end&gt;
+  Footer {{ item }}
+&lt;/footer&gt;
+</code></pre>
 <p>And with an input of <a href="" class="label type-hint type-hint-object">[&#39;A&#39;,&#39;B&#39;]</a> for the items variable in the example above, the output will evaluate to:</p>
-<pre><code class="lang-html">  &lt;header&gt;
-    Header A
-  &lt;/header&gt;
-  &lt;div class=&quot;body&quot;&gt;
-    Body A
-  &lt;/div&gt;
-  &lt;footer&gt;
-    Footer A
-  &lt;/footer&gt;
-  &lt;header&gt;
-    Header B
-  &lt;/header&gt;
-  &lt;div class=&quot;body&quot;&gt;
-    Body B
-  &lt;/div&gt;
-  &lt;footer&gt;
-    Footer B
-  &lt;/footer&gt;</code></pre>
+<pre><code class="lang-html">&lt;header&gt;
+  Header A
+&lt;/header&gt;
+&lt;div class=&quot;body&quot;&gt;
+  Body A
+&lt;/div&gt;
+&lt;footer&gt;
+  Footer A
+&lt;/footer&gt;
+&lt;header&gt;
+  Header B
+&lt;/header&gt;
+&lt;div class=&quot;body&quot;&gt;
+  Body B
+&lt;/div&gt;
+&lt;footer&gt;
+  Footer B
+&lt;/footer&gt;
+</code></pre>
 <p>The custom start and end points for ngRepeat also support all other HTML directive syntax flavors provided in AngularJS (such
 as <strong>data-ng-repeat-start</strong>, <strong>x-ng-repeat-start</strong> and <strong>ng:repeat-start</strong>).</p>
 
@@ -130,7 +132,7 @@ as <strong>data-ng-repeat-start</strong>, <strong>x-ng-repeat-start</strong> and
     
   </div>
   
-  <h2>Animations</h2>
+  <h2 id="animations">Animations</h2>
   <p><strong>.enter</strong> - when a new item is added to the list or when an item is revealed after a filter</p>
 <p><strong>.leave</strong> - when an item is removed from the list or when an item is filtered out</p>
 <p><strong>.move</strong> - when an adjacent item is filtered out causing a reorder or when the item contents are reordered</p>
@@ -188,6 +190,12 @@ property is same.</p>
 <p>For example: <code>item in items | filter:searchText track by item.id</code> is a pattern that might be used to apply a filter
 to items in conjunction with a tracking expression.</p>
 </li>
+<li><p><code>variable in expression as alias_expression</code> – You can also provide an optional alias expression which will then store the
+intermediate results of the repeater after the filters have been applied. Typically this is used to render a special message
+when a filter is active on the repeater, but the filtered result set is empty.</p>
+<p>For example: <code>item in items | filter:x as results</code> will store the fragment of the repeated items as <code>results</code>, but only after
+the items have been processed through the filter.</p>
+</li>
 </ul>
 
         
@@ -207,21 +215,22 @@ then uses <code>ngRepeat</code> to display every person:
   
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example41')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example86')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
-      path="examples/example-example41"
+      path="examples/example-example86"
       module="ngAnimate"
       deps="angular-animate.js"
       animations="true">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;div ng-init=&quot;friends = [&#10;  {name:&#39;John&#39;, age:25, gender:&#39;boy&#39;},&#10;  {name:&#39;Jessie&#39;, age:30, gender:&#39;girl&#39;},&#10;  {name:&#39;Johanna&#39;, age:28, gender:&#39;girl&#39;},&#10;  {name:&#39;Joy&#39;, age:15, gender:&#39;girl&#39;},&#10;  {name:&#39;Mary&#39;, age:28, gender:&#39;girl&#39;},&#10;  {name:&#39;Peter&#39;, age:95, gender:&#39;boy&#39;},&#10;  {name:&#39;Sebastian&#39;, age:50, gender:&#39;boy&#39;},&#10;  {name:&#39;Erika&#39;, age:27, gender:&#39;girl&#39;},&#10;  {name:&#39;Patrick&#39;, age:40, gender:&#39;boy&#39;},&#10;  {name:&#39;Samantha&#39;, age:60, gender:&#39;girl&#39;}&#10;]&quot;&gt;&#10;  I have {{friends.length}} friends. They are:&#10;  &lt;input type=&quot;search&quot; ng-model=&quot;q&quot; placeholder=&quot;filter friends...&quot; /&gt;&#10;  &lt;ul class=&quot;example-animate-container&quot;&gt;&#10;    &lt;li class=&quot;animate-repeat&quot; ng-repeat=&quot;friend in friends | filter:q&quot;&gt;&#10;      [{{$index + 1}}] {{friend.name}} who is {{friend.age}} years old.&#10;    &lt;/li&gt;&#10;  &lt;/ul&gt;&#10;&lt;/div&gt;</code></pre>
+      <pre><code>&lt;div ng-init=&quot;friends = [&#10;  {name:&#39;John&#39;, age:25, gender:&#39;boy&#39;},&#10;  {name:&#39;Jessie&#39;, age:30, gender:&#39;girl&#39;},&#10;  {name:&#39;Johanna&#39;, age:28, gender:&#39;girl&#39;},&#10;  {name:&#39;Joy&#39;, age:15, gender:&#39;girl&#39;},&#10;  {name:&#39;Mary&#39;, age:28, gender:&#39;girl&#39;},&#10;  {name:&#39;Peter&#39;, age:95, gender:&#39;boy&#39;},&#10;  {name:&#39;Sebastian&#39;, age:50, gender:&#39;boy&#39;},&#10;  {name:&#39;Erika&#39;, age:27, gender:&#39;girl&#39;},&#10;  {name:&#39;Patrick&#39;, age:40, gender:&#39;boy&#39;},&#10;  {name:&#39;Samantha&#39;, age:60, gender:&#39;girl&#39;}&#10;]&quot;&gt;&#10;  I have {{friends.length}} friends. They are:&#10;  &lt;input type=&quot;search&quot; ng-model=&quot;q&quot; placeholder=&quot;filter friends...&quot; /&gt;&#10;  &lt;ul class=&quot;example-animate-container&quot;&gt;&#10;    &lt;li class=&quot;animate-repeat&quot; ng-repeat=&quot;friend in friends | filter:q as results&quot;&gt;&#10;      [{{$index + 1}}] {{friend.name}} who is {{friend.age}} years old.&#10;    &lt;/li&gt;&#10;    &lt;li class=&quot;animate-repeat&quot; ng-if=&quot;results.length == 0&quot;&gt;&#10;      &lt;strong&gt;No results found...&lt;/strong&gt;&#10;    &lt;/li&gt;&#10;  &lt;/ul&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -239,7 +248,7 @@ then uses <code>ngRepeat</code> to display every person:
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example41/index.html" name="example-example41"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example86/index.html" name="example-example86"></iframe>
   </div>
 </div>
 

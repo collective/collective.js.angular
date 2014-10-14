@@ -3,58 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <title>Example - example-example48-debug</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
   
 
   <script src="../../../angular.js"></script>
+  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="selectExample">
-    <script>
-  angular.module('selectExample', [])
-    .controller('ExampleController', ['$scope', function($scope) {
-      $scope.colors = [
-        {name:'black', shade:'dark'},
-        {name:'white', shade:'light'},
-        {name:'red', shade:'dark'},
-        {name:'blue', shade:'dark'},
-        {name:'yellow', shade:'light'}
-      ];
-      $scope.myColor = $scope.colors[2]; // red
-    }]);
-  </script>
-  <div ng-controller="ExampleController">
-    <ul>
-      <li ng-repeat="color in colors">
-        Name: <input ng-model="color.name">
-        [<a href ng-click="colors.splice($index, 1)">X</a>]
-      </li>
-      <li>
-        [<a href ng-click="colors.push({})">add</a>]
-      </li>
-    </ul>
-    <hr/>
-    Color (null not allowed):
-    <select ng-model="myColor" ng-options="color.name for color in colors"></select><br>
+<body ng-app="cacheExampleApp">
+    <div ng-controller="CacheController">
+    <input ng-model="newCacheKey" placeholder="Key">
+    <input ng-model="newCacheValue" placeholder="Value">
+    <button ng-click="put(newCacheKey, newCacheValue)">Cache</button>
 
-    Color (null allowed):
-    <span  class="nullable">
-      <select ng-model="myColor" ng-options="color.name for color in colors">
-        <option value="">-- choose color --</option>
-      </select>
-    </span><br/>
+    <p ng-if="keys.length">Cached Values</p>
+    <div ng-repeat="key in keys">
+      <span ng-bind="key"></span>
+      <span>: </span>
+      <b ng-bind="cache.get(key)"></b>
+    </div>
 
-    Color grouped by shade:
-    <select ng-model="myColor" ng-options="color.name group by color.shade for color in colors">
-    </select><br/>
-
-
-    Select <a href ng-click="myColor = { name:'not in list', shade: 'other' }">bogus</a>.<br>
-    <hr/>
-    Currently selected: {{ {selected_color:myColor}  }}
-    <div style="border:solid 1px black; height:20px"
-         ng-style="{'background-color':myColor.name}">
+    <p>Cache Info</p>
+    <div ng-repeat="(key, value) in cache.info()">
+      <span ng-bind="key"></span>
+      <span>: </span>
+      <b ng-bind="value"></b>
     </div>
   </div>
 </body>

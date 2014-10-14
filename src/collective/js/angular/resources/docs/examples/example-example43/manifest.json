@@ -1,9 +1,6 @@
 {
   "name": "example-example43",
   "files": [
-    "index-production.html",
-    "glyphicons.css",
-    "animations.css",
-    "protractor.js"
+    "index-production.html"
   ]
 }

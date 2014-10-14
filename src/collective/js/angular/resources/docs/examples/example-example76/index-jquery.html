@@ -5,22 +5,14 @@
   <title>Example - example-example76-jquery</title>
   
 
-  <script src="../../components/jquery-1.10.2/jquery.js"></script>
+  <script src="../../components/jquery-2.1.1/jquery.js"></script>
   <script src="../../../angular.js"></script>
-  <script src="script.js"></script>
-  <script src="protractorTest.js"></script>
   
 
   
 </head>
-<body ng-app="docsBindExample">
-    <div ng-controller="Controller">
-    Hello <input ng-model='name'> <hr/>
-    <span ng-bind="name"></span> <br/>
-    <span ng:bind="name"></span> <br/>
-    <span ng_bind="name"></span> <br/>
-    <span data-ng-bind="name"></span> <br/>
-    <span x-ng-bind="name"></span> <br/>
-  </div>
+<body ng-app="">
+   <input ng-keypress="count = count + 1" ng-init="count=0">
+ key press count: {{count}}
 </body>
 </html>

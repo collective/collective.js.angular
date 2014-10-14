@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ng/directive/input.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/input.js?message=docs(ngModel)%3A%20describe%20your%20change...#L2232' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/input.js#L1261' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/directive/input.js#L2232' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -28,8 +28,8 @@ which is created and exposed by this directive.</p>
 <li>Binding the view into the model, which other directives such as <code>input</code>, <code>textarea</code> or <code>select</code>
 require.</li>
 <li>Providing validation behavior (i.e. required, number, email, url).</li>
-<li>Keeping the state of the control (valid/invalid, dirty/pristine, validation errors).</li>
-<li>Setting related css classes on the element (<code>ng-valid</code>, <code>ng-invalid</code>, <code>ng-dirty</code>, <code>ng-pristine</code>) including animations.</li>
+<li>Keeping the state of the control (valid/invalid, dirty/pristine, touched/untouched, validation errors).</li>
+<li>Setting related css classes on the element (<code>ng-valid</code>, <code>ng-invalid</code>, <code>ng-dirty</code>, <code>ng-pristine</code>, <code>ng-touched</code>, <code>ng-untouched</code>) including animations.</li>
 <li>Registering the control with its parent <a href="api/ng/directive/form">form</a>.</li>
 </ul>
 <p>Note: <code>ngModel</code> will try to bind to the property given by evaluating the expression on the
@@ -48,6 +48,11 @@ implicitly and added to the scope.</p>
 <li><a href="api/ng/input/input[number]">number</a></li>
 <li><a href="api/ng/input/input[email]">email</a></li>
 <li><a href="api/ng/input/input[url]">url</a></li>
+<li><a href="api/ng/input/input[date]">date</a></li>
+<li><a href="api/ng/input/input[dateTimeLocal]">dateTimeLocal</a></li>
+<li><a href="api/ng/input/input[time]">time</a></li>
+<li><a href="api/ng/input/input[month]">month</a></li>
+<li><a href="api/ng/input/input[week]">week</a></li>
 </ul>
 </li>
 <li><a href="api/ng/directive/select">select</a></li>
@@ -116,17 +121,18 @@ that has been rendered as invalid after it has been validated:</p>
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example12')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example57')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
-      path="examples/example-example12"
+      path="examples/example-example57"
       deps="angular-animate.js"
       animations="true"
       fixBase="true"
       module="inputExample">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
@@ -135,7 +141,57 @@ that has been rendered as invalid after it has been validated:</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example12/index.html" name="example-example12"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example57/index.html" name="example-example57"></iframe>
+  </div>
+</div>
+
+
+</p>
+<h2 id="binding-to-a-getter-setter">Binding to a getter/setter</h2>
+<p>Sometimes it&#39;s helpful to bind <code>ngModel</code> to a getter/setter function.  A getter/setter is a
+function that returns a representation of the model when called with zero arguments, and sets
+the internal state of a model when called with an argument. It&#39;s sometimes useful to use this
+for models that have an internal representation that&#39;s different than what the model exposes
+to the view.</p>
+<div class="alert alert-success">
+<strong>Best Practice:</strong> It&#39;s best to keep getters fast because Angular is likely to call them more
+frequently than other parts of your code.
+</div>
+
+<p>You use this behavior by adding <code>ng-model-options=&quot;{ getterSetter: true }&quot;</code> to an element that
+has <code>ng-model</code> attached to it. You can also add <code>ng-model-options=&quot;{ getterSetter: true }&quot;</code> to
+a <code>&lt;form&gt;</code>, which will enable this behavior for all <code>&lt;input&gt;</code>s within it. See
+<a href="api/ng/directive/ngModelOptions"><code>ngModelOptions</code></a> for more.</p>
+<p>The following example shows how to use <code>ngModel</code> with a getter/setter:</p>
+<p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-ngModel-getter-setter')" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+
+  <div class="runnable-example"
+      path="examples/example-ngModel-getter-setter"
+      name="ngModel-getter-setter"
+      module="getterSetterExample">
+
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-controller=&quot;ExampleController&quot;&gt;&#10;  &lt;form name=&quot;userForm&quot;&gt;&#10;    Name:&#10;    &lt;input type=&quot;text&quot; name=&quot;userName&quot;&#10;           ng-model=&quot;user.name&quot;&#10;           ng-model-options=&quot;{ getterSetter: true }&quot; /&gt;&#10;  &lt;/form&gt;&#10;  &lt;pre&gt;user.name = &lt;span ng-bind=&quot;user.name()&quot;&gt;&lt;/span&gt;&lt;/pre&gt;&#10;&lt;/div&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="app.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&#39;getterSetterExample&#39;, [])&#10;  .controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;    var _name = &#39;Brian&#39;;&#10;    $scope.user = {&#10;      name: function (newName) {&#10;        if (angular.isDefined(newName)) {&#10;          _name = newName;&#10;        }&#10;        return _name;&#10;      }&#10;    };&#10;  }]);</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-ngModel-getter-setter/index.html" name="example-ngModel-getter-setter"></iframe>
   </div>
 </div>
 

@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ngMock/angular-mocks.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ngMock/angular-mocks.js?message=docs($httpBackend)%3A%20describe%20your%20change...#L894' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ngMock/angular-mocks.js#L873' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ngMock/angular-mocks.js#L894' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -102,92 +102,115 @@ the async api of the backend, while allowing the test to execute synchronously.<
 <h1 id="unit-testing-with-mock-httpbackend">Unit testing with mock $httpBackend</h1>
 <p>The following code shows how to setup and use the mock backend when unit testing a controller.
 First we create the controller under test:</p>
-<pre><code class="lang-js">  // The controller code
-  function MyController($scope, $http) {
-    var authToken;
+<pre><code class="lang-js">// The module code
+angular
+  .module(&#39;MyApp&#39;, [])
+  .controller(&#39;MyController&#39;, MyController);
 
-    $http.get(&#39;/auth.py&#39;).success(function(data, status, headers) {
-      authToken = headers(&#39;A-Token&#39;);
-      $scope.user = data;
+// The controller code
+function MyController($scope, $http) {
+  var authToken;
+
+  $http.get(&#39;/auth.py&#39;).success(function(data, status, headers) {
+    authToken = headers(&#39;A-Token&#39;);
+    $scope.user = data;
+  });
+
+  $scope.saveMessage = function(message) {
+    var headers = { &#39;Authorization&#39;: authToken };
+    $scope.status = &#39;Saving...&#39;;
+
+    $http.post(&#39;/add-msg.py&#39;, message, { headers: headers } ).success(function(response) {
+      $scope.status = &#39;&#39;;
+    }).error(function() {
+      $scope.status = &#39;ERROR!&#39;;
     });
-
-    $scope.saveMessage = function(message) {
-      var headers = { &#39;Authorization&#39;: authToken };
-      $scope.status = &#39;Saving...&#39;;
-
-      $http.post(&#39;/add-msg.py&#39;, message, { headers: headers } ).success(function(response) {
-        $scope.status = &#39;&#39;;
-      }).error(function() {
-        $scope.status = &#39;ERROR!&#39;;
-      });
-    };
-  }</code></pre>
+  };
+}
+</code></pre>
 <p>Now we setup the mock backend and create the test specs:</p>
-<pre><code class="lang-js">    // testing controller
-    describe(&#39;MyController&#39;, function() {
-       var $httpBackend, $rootScope, createController;
+<pre><code class="lang-js">// testing controller
+describe(&#39;MyController&#39;, function() {
+   var $httpBackend, $rootScope, createController, authRequestHandler;
 
-       beforeEach(inject(function($injector) {
-         // Set up the mock http service responses
-         $httpBackend = $injector.get(&#39;$httpBackend&#39;);
-         // backend definition common for all tests
-         $httpBackend.when(&#39;GET&#39;, &#39;/auth.py&#39;).respond({userId: &#39;userX&#39;}, {&#39;A-Token&#39;: &#39;xxx&#39;});
+   // Set up the module
+   beforeEach(module(&#39;MyApp&#39;));
 
-         // Get hold of a scope (i.e. the root scope)
-         $rootScope = $injector.get(&#39;$rootScope&#39;);
-         // The $controller service is used to create instances of controllers
-         var $controller = $injector.get(&#39;$controller&#39;);
+   beforeEach(inject(function($injector) {
+     // Set up the mock http service responses
+     $httpBackend = $injector.get(&#39;$httpBackend&#39;);
+     // backend definition common for all tests
+     authRequestHandler = $httpBackend.when(&#39;GET&#39;, &#39;/auth.py&#39;)
+                            .respond({userId: &#39;userX&#39;}, {&#39;A-Token&#39;: &#39;xxx&#39;});
 
-         createController = function() {
-           return $controller(&#39;MyController&#39;, {&#39;$scope&#39; : $rootScope });
-         };
-       }));
+     // Get hold of a scope (i.e. the root scope)
+     $rootScope = $injector.get(&#39;$rootScope&#39;);
+     // The $controller service is used to create instances of controllers
+     var $controller = $injector.get(&#39;$controller&#39;);
 
-
-       afterEach(function() {
-         $httpBackend.verifyNoOutstandingExpectation();
-         $httpBackend.verifyNoOutstandingRequest();
-       });
+     createController = function() {
+       return $controller(&#39;MyController&#39;, {&#39;$scope&#39; : $rootScope });
+     };
+   }));
 
 
-       it(&#39;should fetch authentication token&#39;, function() {
-         $httpBackend.expectGET(&#39;/auth.py&#39;);
-         var controller = createController();
-         $httpBackend.flush();
-       });
+   afterEach(function() {
+     $httpBackend.verifyNoOutstandingExpectation();
+     $httpBackend.verifyNoOutstandingRequest();
+   });
 
 
-       it(&#39;should send msg to server&#39;, function() {
-         var controller = createController();
-         $httpBackend.flush();
-
-         // now you don’t care about the authentication, but
-         // the controller will still send the request and
-         // $httpBackend will respond without you having to
-         // specify the expectation and response for this request
-
-         $httpBackend.expectPOST(&#39;/add-msg.py&#39;, &#39;message content&#39;).respond(201, &#39;&#39;);
-         $rootScope.saveMessage(&#39;message content&#39;);
-         expect($rootScope.status).toBe(&#39;Saving...&#39;);
-         $httpBackend.flush();
-         expect($rootScope.status).toBe(&#39;&#39;);
-       });
+   it(&#39;should fetch authentication token&#39;, function() {
+     $httpBackend.expectGET(&#39;/auth.py&#39;);
+     var controller = createController();
+     $httpBackend.flush();
+   });
 
 
-       it(&#39;should send auth header&#39;, function() {
-         var controller = createController();
-         $httpBackend.flush();
+   it(&#39;should fail authentication&#39;, function() {
 
-         $httpBackend.expectPOST(&#39;/add-msg.py&#39;, undefined, function(headers) {
-           // check if the header was send, if it wasn&#39;t the expectation won&#39;t
-           // match the request and the test will fail
-           return headers[&#39;Authorization&#39;] == &#39;xxx&#39;;
-         }).respond(201, &#39;&#39;);
+     // Notice how you can change the response even after it was set
+     authRequestHandler.respond(401, &#39;&#39;);
 
-         $rootScope.saveMessage(&#39;whatever&#39;);
-         $httpBackend.flush();
-       });
-    });</code></pre>
+     $httpBackend.expectGET(&#39;/auth.py&#39;);
+     var controller = createController();
+     $httpBackend.flush();
+     expect($rootScope.status).toBe(&#39;Failed...&#39;);
+   });
+
+
+   it(&#39;should send msg to server&#39;, function() {
+     var controller = createController();
+     $httpBackend.flush();
+
+     // now you don’t care about the authentication, but
+     // the controller will still send the request and
+     // $httpBackend will respond without you having to
+     // specify the expectation and response for this request
+
+     $httpBackend.expectPOST(&#39;/add-msg.py&#39;, &#39;message content&#39;).respond(201, &#39;&#39;);
+     $rootScope.saveMessage(&#39;message content&#39;);
+     expect($rootScope.status).toBe(&#39;Saving...&#39;);
+     $httpBackend.flush();
+     expect($rootScope.status).toBe(&#39;&#39;);
+   });
+
+
+   it(&#39;should send auth header&#39;, function() {
+     var controller = createController();
+     $httpBackend.flush();
+
+     $httpBackend.expectPOST(&#39;/add-msg.py&#39;, undefined, function(headers) {
+       // check if the header was send, if it wasn&#39;t the expectation won&#39;t
+       // match the request and the test will fail
+       return headers[&#39;Authorization&#39;] == &#39;xxx&#39;;
+     }).respond(201, &#39;&#39;);
+
+     $rootScope.saveMessage(&#39;whatever&#39;);
+     $httpBackend.flush();
+   });
+});
+</code></pre>
 
 </div>
 
@@ -247,10 +270,11 @@ First we create the controller under test:</p>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -303,14 +327,16 @@ First we create the controller under test:</p>
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
     <td><p>Returns an object with <code>respond</code> method that controls how a matched
-  request is handled.</p>
+  request is handled. You can save this object for later use and invoke <code>respond</code> again in
+  order to change how a matched request is handled.</p>
 <ul>
 <li>respond –
   <code>{function([status,] data[, headers, statusText])
   | function(function(method, url, data, headers)}</code>
 – The respond method takes a set of static data to be returned or a function that can
 return an array containing response status (number), response data (string), response
-headers (Object), and the text for the status (string).</li>
+headers (Object), and the text for the status (string). The respond method returns the
+<code>requestHandler</code> object for possible overrides.</li>
 </ul>
 </td>
   </tr>
@@ -346,10 +372,11 @@ headers (Object), and the text for the status (string).</li>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -384,7 +411,8 @@ headers (Object), and the text for the status (string).</li>
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
     <td><p>Returns an object with <code>respond</code> method that control how a matched
-request is handled.</p>
+request is handled. You can save this object for later use and invoke <code>respond</code> again in
+order to change how a matched request is handled.</p>
 </td>
   </tr>
 </table>
@@ -419,10 +447,11 @@ request is handled.</p>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -457,7 +486,8 @@ request is handled.</p>
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
     <td><p>Returns an object with <code>respond</code> method that control how a matched
-request is handled.</p>
+request is handled. You can save this object for later use and invoke <code>respond</code> again in
+order to change how a matched request is handled.</p>
 </td>
   </tr>
 </table>
@@ -492,10 +522,11 @@ request is handled.</p>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -530,7 +561,8 @@ request is handled.</p>
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
     <td><p>Returns an object with <code>respond</code> method that control how a matched
-request is handled.</p>
+request is handled. You can save this object for later use and invoke <code>respond</code> again in
+order to change how a matched request is handled.</p>
 </td>
   </tr>
 </table>
@@ -565,10 +597,11 @@ request is handled.</p>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -620,7 +653,8 @@ request is handled.</p>
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
     <td><p>Returns an object with <code>respond</code> method that control how a matched
-request is handled.</p>
+request is handled. You can save this object for later use and invoke <code>respond</code> again in
+order to change how a matched request is handled.</p>
 </td>
   </tr>
 </table>
@@ -655,10 +689,11 @@ request is handled.</p>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -710,7 +745,8 @@ request is handled.</p>
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
     <td><p>Returns an object with <code>respond</code> method that control how a matched
-request is handled.</p>
+request is handled. You can save this object for later use and invoke <code>respond</code> again in
+order to change how a matched request is handled.</p>
 </td>
   </tr>
 </table>
@@ -745,10 +781,11 @@ request is handled.</p>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -767,7 +804,8 @@ request is handled.</p>
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
     <td><p>Returns an object with <code>respond</code> method that control how a matched
-request is handled.</p>
+request is handled. You can save this object for later use and invoke <code>respond</code> again in
+order to change how a matched request is handled.</p>
 </td>
   </tr>
 </table>
@@ -818,10 +856,11 @@ request is handled.</p>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -875,14 +914,16 @@ request is handled.</p>
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
     <td><p>Returns an object with <code>respond</code> method that control how a matched
- request is handled.</p>
+ request is handled. You can save this object for later use and invoke <code>respond</code> again in
+ order to change how a matched request is handled.</p>
 <ul>
 <li>respond –
 <code>{function([status,] data[, headers, statusText])
 | function(function(method, url, data, headers)}</code>
 – The respond method takes a set of static data to be returned or a function that can
 return an array containing response status (number), response data (string), response
-headers (Object), and the text for the status (string).</li>
+headers (Object), and the text for the status (string). The respond method returns the
+<code>requestHandler</code> object for possible overrides.</li>
 </ul>
 </td>
   </tr>
@@ -918,10 +959,11 @@ headers (Object), and the text for the status (string).</li>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -956,7 +998,8 @@ headers (Object), and the text for the status (string).</li>
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
     <td><p>Returns an object with <code>respond</code> method that control how a matched
-request is handled. See #expect for more info.</p>
+request is handled. You can save this object for later use and invoke <code>respond</code> again in
+order to change how a matched request is handled. See #expect for more info.</p>
 </td>
   </tr>
 </table>
@@ -991,10 +1034,11 @@ request is handled. See #expect for more info.</p>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -1029,7 +1073,8 @@ request is handled. See #expect for more info.</p>
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
     <td><p>Returns an object with <code>respond</code> method that control how a matched
-  request is handled.</p>
+  request is handled. You can save this object for later use and invoke <code>respond</code> again in
+  order to change how a matched request is handled.</p>
 </td>
   </tr>
 </table>
@@ -1064,10 +1109,11 @@ request is handled. See #expect for more info.</p>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -1102,7 +1148,8 @@ request is handled. See #expect for more info.</p>
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
     <td><p>Returns an object with <code>respond</code> method that control how a matched
-  request is handled.</p>
+  request is handled. You can save this object for later use and invoke <code>respond</code> again in
+  order to change how a matched request is handled.</p>
 </td>
   </tr>
 </table>
@@ -1137,10 +1184,11 @@ request is handled. See #expect for more info.</p>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -1193,7 +1241,8 @@ request is handled. See #expect for more info.</p>
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
     <td><p>Returns an object with <code>respond</code> method that control how a matched
-  request is handled.</p>
+  request is handled. You can save this object for later use and invoke <code>respond</code> again in
+  order to change how a matched request is handled.</p>
 </td>
   </tr>
 </table>
@@ -1228,10 +1277,11 @@ request is handled. See #expect for more info.</p>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -1284,7 +1334,8 @@ request is handled. See #expect for more info.</p>
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
     <td><p>Returns an object with <code>respond</code> method that control how a matched
-  request is handled.</p>
+  request is handled. You can save this object for later use and invoke <code>respond</code> again in
+  order to change how a matched request is handled.</p>
 </td>
   </tr>
 </table>
@@ -1319,10 +1370,11 @@ request is handled. See #expect for more info.</p>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -1375,7 +1427,8 @@ request is handled. See #expect for more info.</p>
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
     <td><p>Returns an object with <code>respond</code> method that control how a matched
-  request is handled.</p>
+  request is handled. You can save this object for later use and invoke <code>respond</code> again in
+  order to change how a matched request is handled.</p>
 </td>
   </tr>
 </table>
@@ -1410,10 +1463,11 @@ request is handled. See #expect for more info.</p>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -1432,7 +1486,8 @@ request is handled. See #expect for more info.</p>
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
     <td><p>Returns an object with <code>respond</code> method that control how a matched
-  request is handled.</p>
+  request is handled. You can save this object for later use and invoke <code>respond</code> again in
+  order to change how a matched request is handled.</p>
 </td>
   </tr>
 </table>
@@ -1497,7 +1552,8 @@ request is handled. See #expect for more info.</p>
 requests were not made, verifyNoOutstandingExpectation throws an exception.</p>
 <p>Typically, you would call this method following each test case that asserts requests using an
 &quot;afterEach&quot; clause.</p>
-<pre><code class="lang-js">  afterEach($httpBackend.verifyNoOutstandingExpectation);</code></pre>
+<pre><code class="lang-js">afterEach($httpBackend.verifyNoOutstandingExpectation);
+</code></pre>
 </div>
 
     
@@ -1515,7 +1571,8 @@ requests were not made, verifyNoOutstandingExpectation throws an exception.</p>
     <div><p>Verifies that there are no outstanding requests that need to be flushed.</p>
 <p>Typically, you would call this method following each test case that asserts requests using an
 &quot;afterEach&quot; clause.</p>
-<pre><code class="lang-js">  afterEach($httpBackend.verifyNoOutstandingRequest);</code></pre>
+<pre><code class="lang-js">afterEach($httpBackend.verifyNoOutstandingRequest);
+</code></pre>
 </div>
 
     

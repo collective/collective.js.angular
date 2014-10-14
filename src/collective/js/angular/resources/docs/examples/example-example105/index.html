@@ -6,17 +6,20 @@
   
 
   <script src="../../../angular.min.js"></script>
-  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="myServiceModule">
-    <div id="simple" ng-controller="MyController">
-    <p>Let's try this simple notify service, injected into the controller...</p>
-    <input ng-init="message='test'" ng-model="message" >
-    <button ng-click="callNotify(message);">NOTIFY</button>
-    <p>(you have to click 3 times to see an alert)</p>
+<body ng-app="">
+    <div ng-init="username='A user'">
+    <p ng-init="apptitle='Escaping demo'">{{apptitle}}: \{\{ username = "defaced value"; \}\}
+      </p>
+    <p><strong>{{username}}</strong> attempts to inject code which will deface the
+      application, but fails to accomplish their task, because the server has correctly
+      escaped the interpolation start/end markers with REVERSE SOLIDUS U+005C (backslash)
+      characters.</p>
+    <p>Instead, the result of the attempted script injection is visible, and can be removed
+      from the database by an administrator.</p>
   </div>
 </body>
 </html>

@@ -1,8 +1,8 @@
-describe("module:ng.input:input[email]", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-email-input-directive/index-jquery.html");
+    browser.get("examples/example-email-input-directive/index-jquery.html");
   });
   
   var text = element(by.binding('text'));

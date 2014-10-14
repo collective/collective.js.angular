@@ -1,4 +1,4 @@
-<a href='http://github.com/angular/angular.js/edit/master/docs/content/misc/faq.ngdoc' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/docs/content/misc/faq.ngdoc?message=docs(misc%2FFAQ)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 <h1 id="faq">FAQ</h1>
@@ -11,7 +11,7 @@ a typical framework and that&#39;s why many confuse it with a library.</p>
 <p>AngularJS is 100% JavaScript, 100% client-side and compatible with both desktop and mobile browsers.
 So it&#39;s definitely not a plugin or some other native browser extension.</p>
 <h3 id="is-angularjs-a-templating-system-">Is AngularJS a templating system?</h3>
-<p>At the highest level, Angular does look like a just another templating system. But there is one
+<p>At the highest level, Angular does look like just another templating system. But there is one
 important reason why the Angular templating system is different, that makes it very good fit for
 application development: bidirectional data binding. The template is compiled in the browser and
 the compilation step produces a live view. This means you, the developers, don&#39;t need to write
@@ -24,12 +24,12 @@ attacks. AngularJS does round-trip escaping on all strings for you and even offe
 for server-side communication.</p>
 <p>AngularJS was designed to be compatible with other security measures like Content Security Policy
 (CSP), HTTPS (SSL/TLS) and server-side authentication and authorization that greatly reduce the
-possible attack vectors and we highly recommended their use.</p>
+possible attack vectors and we highly recommend their use.</p>
 <h3 id="can-i-download-the-source-build-and-host-the-angularjs-environment-locally-">Can I download the source, build, and host the AngularJS environment locally?</h3>
 <p>Yes. See instructions in <a href="misc/downloading"><code>Downloading</code></a>.</p>
 <h3 id="what-browsers-does-angular-work-with-">What browsers does Angular work with?</h3>
 <p>We run our extensive test suite against the following browsers: Safari, Chrome, Firefox, Opera,
-IE8, IE9 and mobile browsers (Android, Chrome Mobile, iOS Safari). See <a href="guide/ie">Internet
+IE9 and mobile browsers (Android, Chrome Mobile, iOS Safari). See <a href="guide/ie">Internet
 Explorer Compatibility</a> for more details in supporting legacy IE browsers.</p>
 <h3 id="what-s-angular-s-performance-like-">What&#39;s Angular&#39;s performance like?</h3>
 <p>The startup time heavily depends on your network connection, state of the cache, browser used and
@@ -46,8 +46,8 @@ in Angular.</p>
 <p>Yes, Angular can use <a href="http://jquery.com/">jQuery</a> if it&#39;s present in your app when the
 application is being bootstrapped. If jQuery is not present in your script path, Angular falls back
 to its own implementation of the subset of jQuery that we call <a href="api/ng/function/angular.element">jQLite</a>.</p>
-<p>Due to a change to use <code>on()</code>/<code>off()</code> rather than <code>bind()</code>/<code>unbind()</code>, Angular 1.2 only operates with
-jQuery 1.7.1 or above. However, Angular does not currently support jQuery 2.x or above.</p>
+<p>Angular 1.3 only supports jQuery 2.1 or above. jQuery 1.7 and newer might work correctly with Angular
+but we don&#39;t guarantee that.</p>
 <h3 id="what-is-testability-like-in-angular-">What is testability like in Angular?</h3>
 <p>Very testable and designed this way from ground up. It has an integrated dependency injection
 framework, provides mocks for many heavy dependencies (server-side communication). See
@@ -65,7 +65,7 @@ The logo design is licensed under a &quot;<a href="http://creativecommons.org/li
 make our schwag will be happy to do a custom run for you, based on our existing template. By using the design they have on file,
 they&#39;ll waive the setup costs, and you can order any quantity you need.</p>
 <p><strong>Stickers</strong>
-For orders of 250 stickers or more within Canada or the United States, contact Tom Witting (or anyone in sales) via email at <a href="&#109;&#x61;&#105;&#x6c;&#116;&#111;&#x3a;&#x74;&#x6f;&#x6d;&#64;&#x73;&#116;&#105;&#99;&#107;&#101;&#x72;&#x67;&#x69;&#x61;&#110;&#x74;&#x2e;&#99;&#x6f;&#x6d;">&#x74;&#x6f;&#x6d;&#64;&#x73;&#116;&#105;&#99;&#107;&#101;&#x72;&#x67;&#x69;&#x61;&#110;&#x74;&#x2e;&#99;&#x6f;&#x6d;</a>, and tell him you want to order some AngularJS
+For orders of 250 stickers or more within Canada or the United States, contact Tom Witting (or anyone in sales) via email at <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#116;&#x6f;&#x6d;&#64;&#x73;&#116;&#105;&#99;&#107;&#x65;&#x72;&#103;&#x69;&#97;&#x6e;&#116;&#x2e;&#99;&#x6f;&#109;">&#116;&#x6f;&#x6d;&#64;&#x73;&#116;&#105;&#99;&#107;&#x65;&#x72;&#103;&#x69;&#97;&#x6e;&#116;&#x2e;&#99;&#x6f;&#109;</a>, and tell him you want to order some AngularJS
 stickers just like the ones in job #42711. You&#39;ll have to give them your own info for billing and shipping.</p>
 <p>As long as the design stays exactly the same, <a href="http://www.stickergiant.com">StickerGiant</a> will give you a reorder discount.</p>
 <p>For a smaller order, or for other countries, we suggest downloading the logo artwork and making your own.</p>
@@ -94,7 +94,8 @@ Store the data from the server in an array on your <code>$scope</code>, and bind
 Conditionally showing and hiding things using jQuery is a common pattern in other apps, but Angular has a better way.
 <code>ng-show</code> (and <code>ng-hide</code>) conditionally show and hide elements based on boolean expressions.
 Describe the conditions for showing and hiding an element in terms of <code>$scope</code> variables:</p>
-<pre><code>&lt;div ng-show=&quot;!loggedIn&quot;&gt;Click &lt;a href=&quot;#/login&quot;&gt;here&lt;/a&gt; to log in&lt;/div&gt;</code></pre>
+<pre><code>&lt;div ng-show=&quot;!loggedIn&quot;&gt;Click &lt;a href=&quot;#/login&quot;&gt;here&lt;/a&gt; to log in&lt;/div&gt;
+</code></pre>
 <p>Note also the counterpart <code>ng-hide</code> and similar <code>ng-disabled</code>.
 Note especially the powerful <code>ng-switch</code> that should be used instead of several mutually exclusive <code>ng-show</code>s.</p>
 <p><strong>ng-class</strong></p>
@@ -103,7 +104,8 @@ Conditionally applying classes to elements is another thing commonly done manual
 Angular, of course, has a better way.
 You can give <code>ng-class</code> a whitespace-separated set of class names, and then it&#39;s identical to ordinary <code>class</code>.
 That&#39;s not very exciting, so there&#39;s a second syntax:</p>
-<pre><code>&lt;div ng-class=&quot;{ errorClass: isError, warningClass: isWarning, okClass: !isError &amp;&amp; !isWarning }&quot;&gt;...&lt;/div&gt;</code></pre>
+<pre><code>&lt;div ng-class=&quot;{ errorClass: isError, warningClass: isWarning, okClass: !isError &amp;&amp; !isWarning }&quot;&gt;...&lt;/div&gt;
+</code></pre>
 <p>Where you give <code>ng-class</code> an object, whose keys are CSS class names and whose values are conditional expressions using <code>$scope</code> variables.
 The element will then have all the classes whose conditions are truthy, and none of those whose conditions are falsy.</p>
 <p>Note also the handy <code>ng-class-even</code> and <code>ng-class-odd</code>, and the related though somewhat different <code>ng-style</code>.</p>
@@ -124,7 +126,7 @@ Therefore applying other directives (such as <code>ng-show</code>, <code>ng-cont
 <p>If you want to apply a directive to the whole repeat, wrap the repeat in a parent element and put it there.
 If you want to apply a directive to each inner piece of the repeat, put it on a child of the element with <code>ng-repeat</code>.</p>
 <h3 id="-rootscope-exists-but-it-can-be-used-for-evil"><code>$rootScope</code> exists, but it can be used for evil</h3>
-<p>Scopes in Angular form a hierarchy, prototypically inheriting from a root scope at the top of the tree.
+<p>Scopes in Angular form a hierarchy, prototypally inheriting from a root scope at the top of the tree.
 Usually this can be ignored, since most views have a controller, and therefore a scope, of their own.</p>
 <p>Occasionally there are pieces of data that you want to make global to the whole app.
 For these, you can inject <code>$rootScope</code> and set values on it like any other scope.

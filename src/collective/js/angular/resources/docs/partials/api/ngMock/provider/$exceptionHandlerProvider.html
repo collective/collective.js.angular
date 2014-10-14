@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ngMock/angular-mocks.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ngMock/angular-mocks.js?message=docs($exceptionHandlerProvider)%3A%20describe%20your%20change...#L191' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ngMock/angular-mocks.js#L179' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ngMock/angular-mocks.js#L191' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -25,7 +25,7 @@
 
 <div class="api-profile-description">
   <p>Configures the mock implementation of <a href="api/ng/service/$exceptionHandler"><code>$exceptionHandler</code></a> to rethrow or to log errors
-passed into the <code>$exceptionHandler</code>.</p>
+passed to the <code>$exceptionHandler</code>.</p>
 
 </div>
 
@@ -74,12 +74,13 @@ passed into the <code>$exceptionHandler</code>.</p>
       <td>
         <p>Mode of operation, defaults to <code>rethrow</code>.</p>
 <ul>
-<li><code>rethrow</code>: If any errors are passed into the handler in tests, it typically<pre><code>       means that there is a bug in the application or test, so this mock will
-       make these tests fail.</code></pre>
+<li><code>rethrow</code>: If any errors are passed to the handler in tests, it typically means that there<pre><code>is a bug in the application or test, so this mock will make these tests fail.
+</code></pre>
 </li>
-<li><code>log</code>: Sometimes it is desirable to test that an error is thrown, for this case the <code>log</code><pre><code>   mode stores an array of errors in `$exceptionHandler.errors`, to allow later
-   assertion of them. See <a href="api/ngMock/service/$log#assertEmpty">assertEmpty()</a> and
-   <a href="api/ngMock/service/$log#reset">reset()</a></code></pre>
+<li><code>log</code>: Sometimes it is desirable to test that an error is thrown, for this case the <code>log</code><pre><code>mode stores an array of errors in `$exceptionHandler.errors`, to allow later
+assertion of them. See <a href="api/ngMock/service/$log#assertEmpty">assertEmpty()</a> and
+<a href="api/ngMock/service/$log#reset">reset()</a>
+</code></pre>
 </li>
 </ul>
 

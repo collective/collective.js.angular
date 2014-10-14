@@ -5,16 +5,18 @@
   <title>Example - example-example25-jquery</title>
   
 
-  <script src="../../components/jquery-1.10.2/jquery.js"></script>
+  <script src="../../components/jquery-2.1.1/jquery.js"></script>
   <script src="../../../angular.js"></script>
+  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="">
-   <button ng-mouseover="count = count + 1" ng-init="count=0">
-   Increment (when mouse is over)
- </button>
- count: {{count}}
+<body ng-app="oneTimeBidingExampleApp">
+    <div ng-controller="EventController">
+    <button ng-click="clickMe($event)">Click Me</button>
+    <p id="one-time-binding-example">One time binding: {{::name}}</p>
+    <p id="normal-binding-example">Normal binding: {{name}}</p>
+  </div>
 </body>
 </html>

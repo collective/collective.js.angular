@@ -1,9 +1,17 @@
-  #scrollArea {
-    height: 350px;
-    overflow: auto;
+  .css-class-add, .css-class-remove {
+    -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
   }
 
-  #bottom {
-    display: block;
-    margin-top: 2000px;
+  .css-class,
+  .css-class-add.css-class-add-active {
+    color: red;
+    font-size:3em;
+  }
+
+  .css-class-remove.css-class-remove-active {
+    font-size:1.0em;
+    color:black;
   }

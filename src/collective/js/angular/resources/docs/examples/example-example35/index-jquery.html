@@ -5,14 +5,22 @@
   <title>Example - example-example35-jquery</title>
   
 
-  <script src="../../components/jquery-1.10.2/jquery.js"></script>
+  <script src="../../components/jquery-2.1.1/jquery.js"></script>
   <script src="../../../angular.js"></script>
+  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="">
-   <input ng-paste="paste=true" ng-init="paste=false" placeholder='paste here'>
- pasted: {{paste}}
+<body ng-app="form-example2">
+    <div contentEditable="true" ng-model="content" title="Click to edit">Some</div>
+  <pre>model = {{content}}</pre>
+
+  <style type="text/css">
+    div[contentEditable] {
+      cursor: pointer;
+      background-color: #D0D0D0;
+    }
+  </style>
 </body>
 </html>

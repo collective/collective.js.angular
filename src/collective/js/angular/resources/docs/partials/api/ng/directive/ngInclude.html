@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ng/directive/ngInclude.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/ngInclude.js?message=docs(ngInclude)%3A%20describe%20your%20change...#L3' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/ngInclude.js#L3' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/directive/ngInclude.js#L3' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -24,7 +24,7 @@
 <p>By default, the template URL is restricted to the same domain and protocol as the
 application document. This is done by calling <a href="api/ng/service/$sce#getTrustedResourceUrl">$sce.getTrustedResourceUrl</a> on it. To load templates from other domains or protocols
 you may either <a href="api/ng/provider/$sceDelegateProvider#resourceUrlWhitelist">whitelist them</a> or
-<a href="ng.$sce#trustAsResourceUrl">wrap them</a> as trusted values. Refer to Angular&#39;s <a href="api/ng/service/$sce">Strict Contextual Escaping</a>.</p>
+<a href="api/ng/service/$sce#trustAsResourceUrl">wrap them</a> as trusted values. Refer to Angular&#39;s <a href="api/ng/service/$sce">Strict Contextual Escaping</a>.</p>
 <p>In addition, the browser&#39;s
 <a href="https://code.google.com/p/browsersec/wiki/Part2#Same-origin_policy_for_XMLHttpRequest">Same Origin Policy</a>
 and <a href="http://www.w3.org/TR/cors/">Cross-Origin Resource Sharing (CORS)</a>
@@ -66,7 +66,7 @@ access on some browsers.</p>
     
   </div>
   
-  <h2>Animations</h2>
+  <h2 id="animations">Animations</h2>
   <p>enter - animation is used to bring new content into the browser.
 leave - animation is used to animate existing content away.</p>
 <p>The enter and leave animation occur concurrently.</p>
@@ -129,9 +129,10 @@ leave - animation is used to animate existing content away.</p>
       </td>
       <td>
         <p>Whether <code>ngInclude</code> should call <a href="api/ng/service/$anchorScroll">$anchorScroll</a> to scroll the viewport after the content is loaded.</p>
-<pre><code>             - If the attribute is not set, disable scrolling.
-             - If the attribute is set without value, enable scrolling.
-             - Otherwise enable scrolling only if the expression evaluates to truthy value.</code></pre>
+<pre><code>- If the attribute is not set, disable scrolling.
+- If the attribute is set without value, enable scrolling.
+- Otherwise enable scrolling only if the expression evaluates to truthy value.
+</code></pre>
 
         
       </td>
@@ -171,6 +172,20 @@ leave - animation is used to animate existing content away.</p>
       <div class="target">the current ngInclude scope</div>
     </div>
     </li>
+  
+  <li id="$includeContentError">
+    <h3>$includeContentError</h3>
+    <div><p>Emitted when a template HTTP request yields an erronous response (status &lt; 200 || status &gt; 299)</p>
+</div>
+    <div class="inline">
+      <h4>Type:</h4>
+      <div class="type">emit</div>
+    </div>
+    <div class="inline">
+      <h4>Target:</h4>
+      <div class="target">the scope ngInclude was declared in</div>
+    </div>
+    </li>
   </ul>
 
 
@@ -179,16 +194,17 @@ leave - animation is used to animate existing content away.</p>
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example37')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example82')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
-      path="examples/example-example37"
+      path="examples/example-example82"
       module="includeExample"
       deps="angular-animate.js"
       animations="true">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
@@ -232,7 +248,7 @@ leave - animation is used to animate existing content away.</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example37/index.html" name="example-example37"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example82/index.html" name="example-example82"></iframe>
   </div>
 </div>
 

@@ -5,16 +5,18 @@
   <title>Example - example-example23-jquery</title>
   
 
-  <script src="../../components/jquery-1.10.2/jquery.js"></script>
+  <script src="../../components/jquery-2.1.1/jquery.js"></script>
   <script src="../../../angular.js"></script>
+  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="">
-   <button ng-mousedown="count = count + 1" ng-init="count=0">
-   Increment (on mouse down)
- </button>
- count: {{count}}
+<body ng-app="expressionExample">
+    <div class="example2" ng-controller="ExampleController">
+    Name: <input ng-model="name" type="text"/>
+    <button ng-click="greet()">Greet</button>
+    <button ng-click="window.alert('Should not see me')">Won't greet</button>
+  </div>
 </body>
 </html>

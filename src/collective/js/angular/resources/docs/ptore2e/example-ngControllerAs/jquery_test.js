@@ -1,8 +1,8 @@
-describe("module:ng.directive:ngController", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-ngControllerAs/index-jquery.html");
+    browser.get("examples/example-ngControllerAs/index-jquery.html");
   });
   
   it('should check controller as', function() {

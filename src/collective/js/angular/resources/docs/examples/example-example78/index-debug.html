@@ -6,14 +6,12 @@
   
 
   <script src="../../../angular.js"></script>
-  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="docsTemplateUrlDirective">
-    <div ng-controller="Controller">
-    <div my-customer></div>
-  </div>
+<body ng-app="">
+   <input ng-copy="copied=true" ng-init="copied=false; value='copy me'" ng-model="value">
+ copied: {{copied}}
 </body>
 </html>

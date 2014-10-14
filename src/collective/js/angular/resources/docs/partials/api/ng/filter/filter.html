@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ng/filter/filter.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/filter/filter.js?message=docs(filter)%3A%20describe%20your%20change...#L3' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/filter/filter.js#L3' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/filter/filter.js#L3' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -93,11 +93,13 @@ by <code>array</code>. For example <code>{name:&quot;M&quot;, phone:&quot;1&quot
 which have property <code>name</code> containing &quot;M&quot; and property <code>phone</code> containing &quot;1&quot;. A special
 property name <code>$</code> can be used (as in <code>{$:&quot;text&quot;}</code>) to accept a match against any
 property of the object. That&#39;s equivalent to the simple substring match with a <code>string</code>
-as described above.</p>
+as described above. The predicate can be negated by prefixing the string with <code>!</code>.
+For Example <code>{name: &quot;!M&quot;}</code> predicate will return an array of items which have property <code>name</code>
+not containing &quot;M&quot;.</p>
 </li>
-<li><p><code>function(value)</code>: A predicate function can be used to write arbitrary filters. The function is
-called for each element of <code>array</code>. The final result is an array of those elements that
-the predicate returned true for.</p>
+<li><p><code>function(value, index)</code>: A predicate function can be used to write arbitrary filters. The
+function is called for each element of <code>array</code>. The final result is an array of those
+elements that the predicate returned true for.</p>
 </li>
 </ul>
 
@@ -148,13 +150,14 @@ insensitive way.</p>
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example50')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example95')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
-  <div class="runnable-example"
-      path="examples/example-example50">
 
-   
+  <div class="runnable-example"
+      path="examples/example-example95">
+
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
@@ -170,7 +173,7 @@ insensitive way.</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example50/index.html" name="example-example50"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example95/index.html" name="example-example95"></iframe>
   </div>
 </div>
 

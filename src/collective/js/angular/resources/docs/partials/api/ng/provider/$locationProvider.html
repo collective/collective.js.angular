@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ng/location.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/location.js?message=docs($locationProvider)%3A%20describe%20your%20change...#L618' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/location.js#L551' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/location.js#L618' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -122,10 +122,23 @@
         <div><em>(optional)</em></div>
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-boolean">boolean</a>
+        <a href="" class="label type-hint type-hint-boolean">boolean</a><a href="" class="label type-hint type-hint-object">Object</a>
       </td>
       <td>
-        <p>Use HTML5 strategy if available.</p>
+        <p>If boolean, sets <code>html5Mode.enabled</code> to value.
+  If object, sets <code>enabled</code>, <code>requireBase</code> and <code>rewriteLinks</code> to respective values. Supported
+  properties:</p>
+<ul>
+<li><strong>enabled</strong> – <code>{boolean}</code> – (default: false) If true, will rely on <code>history.pushState</code> to
+change urls where supported. Will fall back to hash-prefixed paths in browsers that do not
+support <code>pushState</code>.</li>
+<li><strong>requireBase</strong> - <code>{boolean}</code> - (default: <code>true</code>) When html5Mode is enabled, specifies
+whether or not a <base> tag is required to be present. If <code>enabled</code> and <code>requireBase</code> are
+true, and a base tag is not present, an error will be thrown when <code>$location</code> is injected.
+See the <a href="guide/$location">$location guide for more information</a></li>
+<li><strong>rewriteLinks</strong> - <code>{boolean}</code> - (default: <code>true</code>) When html5Mode is enabled,
+enables/disables url rewriting for relative links.</li>
+</ul>
 
         
       </td>
@@ -142,8 +155,8 @@
     <h4>Returns</h4>
     <table class="variables-matrix return-arguments">
   <tr>
-    <td><a href="" class="label type-hint type-hint-object">*</a></td>
-    <td><p>current value if used as getter or itself (chaining) if used as setter</p>
+    <td><a href="" class="label type-hint type-hint-object">Object</a></td>
+    <td><p>html5Mode object if used as getter or itself (chaining) if used as setter</p>
 </td>
   </tr>
 </table>

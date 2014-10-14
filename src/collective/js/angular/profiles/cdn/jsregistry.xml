@@ -3,7 +3,7 @@
 
     <javascript
         enabled="true"
-        id="//ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"
+        id="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0/angular.min.js"
         />
 
 </object>

@@ -1,20 +1,22 @@
-describe("module:ng.service:$sce", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example62/index-jquery.html");
+    browser.get("examples/example-example62/index-jquery.html");
   });
   
-describe('SCE doc demo', function() {
-  it('should sanitize untrusted values', function() {
-    expect(element.all(by.css('.htmlComment')).first().getInnerHtml())
-        .toBe('<span>Is <i>anyone</i> reading this?</span>');
-  });
+  it('should check ng-class', function() {
+    expect(element(by.css('.base-class')).getAttribute('class')).not.
+      toMatch(/my-class/);
 
-  it('should NOT sanitize explicitly trusted values', function() {
-    expect(element(by.id('explicitlyTrustedHtml')).getInnerHtml()).toBe(
-        '<span onmouseover="this.textContent=&quot;Explicitly trusted HTML bypasses ' +
-        'sanitization.&quot;">Hover over this text.</span>');
+    element(by.id('setbtn')).click();
+
+    expect(element(by.css('.base-class')).getAttribute('class')).
+      toMatch(/my-class/);
+
+    element(by.id('clearbtn')).click();
+
+    expect(element(by.css('.base-class')).getAttribute('class')).not.
+      toMatch(/my-class/);
   });
-});
 });

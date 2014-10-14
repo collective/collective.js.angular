@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ng/directive/input.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/input.js?message=docs(input)%3A%20describe%20your%20change...#L1348' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/input.js#L782' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/directive/input.js#L1348' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -230,12 +230,13 @@ and polyfills the HTML5 validation behavior for older browsers.</p>
   <a ng-click="openPlunkr('examples/example-input-directive')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-input-directive"
       name="input-directive"
       module="inputExample">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
@@ -247,7 +248,7 @@ and polyfills the HTML5 validation behavior for older browsers.</p>
       name="protractor.js"
       type="protractor"
       language="js">
-      <pre><code>var user = element(by.binding(&#39;{{user}}&#39;));&#10;var userNameValid = element(by.binding(&#39;myForm.userName.$valid&#39;));&#10;var lastNameValid = element(by.binding(&#39;myForm.lastName.$valid&#39;));&#10;var lastNameError = element(by.binding(&#39;myForm.lastName.$error&#39;));&#10;var formValid = element(by.binding(&#39;myForm.$valid&#39;));&#10;var userNameInput = element(by.model(&#39;user.name&#39;));&#10;var userLastInput = element(by.model(&#39;user.last&#39;));&#10;&#10;it(&#39;should initialize to model&#39;, function() {&#10;  expect(user.getText()).toContain(&#39;{&quot;name&quot;:&quot;guest&quot;,&quot;last&quot;:&quot;visitor&quot;}&#39;);&#10;  expect(userNameValid.getText()).toContain(&#39;true&#39;);&#10;  expect(formValid.getText()).toContain(&#39;true&#39;);&#10;});&#10;&#10;it(&#39;should be invalid if empty when required&#39;, function() {&#10;  userNameInput.clear();&#10;  userNameInput.sendKeys(&#39;&#39;);&#10;&#10;  expect(user.getText()).toContain(&#39;{&quot;last&quot;:&quot;visitor&quot;}&#39;);&#10;  expect(userNameValid.getText()).toContain(&#39;false&#39;);&#10;  expect(formValid.getText()).toContain(&#39;false&#39;);&#10;});&#10;&#10;it(&#39;should be valid if empty when min length is set&#39;, function() {&#10;  userLastInput.clear();&#10;  userLastInput.sendKeys(&#39;&#39;);&#10;&#10;  expect(user.getText()).toContain(&#39;{&quot;name&quot;:&quot;guest&quot;,&quot;last&quot;:&quot;&quot;}&#39;);&#10;  expect(lastNameValid.getText()).toContain(&#39;true&#39;);&#10;  expect(formValid.getText()).toContain(&#39;true&#39;);&#10;});&#10;&#10;it(&#39;should be invalid if less than required min length&#39;, function() {&#10;  userLastInput.clear();&#10;  userLastInput.sendKeys(&#39;xx&#39;);&#10;&#10;  expect(user.getText()).toContain(&#39;{&quot;name&quot;:&quot;guest&quot;}&#39;);&#10;  expect(lastNameValid.getText()).toContain(&#39;false&#39;);&#10;  expect(lastNameError.getText()).toContain(&#39;minlength&#39;);&#10;  expect(formValid.getText()).toContain(&#39;false&#39;);&#10;});&#10;&#10;it(&#39;should be invalid if longer than max length&#39;, function() {&#10;  userLastInput.clear();&#10;  userLastInput.sendKeys(&#39;some ridiculously long name&#39;);&#10;&#10;  expect(user.getText()).toContain(&#39;{&quot;name&quot;:&quot;guest&quot;}&#39;);&#10;  expect(lastNameValid.getText()).toContain(&#39;false&#39;);&#10;  expect(lastNameError.getText()).toContain(&#39;maxlength&#39;);&#10;  expect(formValid.getText()).toContain(&#39;false&#39;);&#10;});</code></pre>
+      <pre><code>var user = element(by.exactBinding(&#39;user&#39;));&#10;var userNameValid = element(by.binding(&#39;myForm.userName.$valid&#39;));&#10;var lastNameValid = element(by.binding(&#39;myForm.lastName.$valid&#39;));&#10;var lastNameError = element(by.binding(&#39;myForm.lastName.$error&#39;));&#10;var formValid = element(by.binding(&#39;myForm.$valid&#39;));&#10;var userNameInput = element(by.model(&#39;user.name&#39;));&#10;var userLastInput = element(by.model(&#39;user.last&#39;));&#10;&#10;it(&#39;should initialize to model&#39;, function() {&#10;  expect(user.getText()).toContain(&#39;{&quot;name&quot;:&quot;guest&quot;,&quot;last&quot;:&quot;visitor&quot;}&#39;);&#10;  expect(userNameValid.getText()).toContain(&#39;true&#39;);&#10;  expect(formValid.getText()).toContain(&#39;true&#39;);&#10;});&#10;&#10;it(&#39;should be invalid if empty when required&#39;, function() {&#10;  userNameInput.clear();&#10;  userNameInput.sendKeys(&#39;&#39;);&#10;&#10;  expect(user.getText()).toContain(&#39;{&quot;last&quot;:&quot;visitor&quot;}&#39;);&#10;  expect(userNameValid.getText()).toContain(&#39;false&#39;);&#10;  expect(formValid.getText()).toContain(&#39;false&#39;);&#10;});&#10;&#10;it(&#39;should be valid if empty when min length is set&#39;, function() {&#10;  userLastInput.clear();&#10;  userLastInput.sendKeys(&#39;&#39;);&#10;&#10;  expect(user.getText()).toContain(&#39;{&quot;name&quot;:&quot;guest&quot;,&quot;last&quot;:&quot;&quot;}&#39;);&#10;  expect(lastNameValid.getText()).toContain(&#39;true&#39;);&#10;  expect(formValid.getText()).toContain(&#39;true&#39;);&#10;});&#10;&#10;it(&#39;should be invalid if less than required min length&#39;, function() {&#10;  userLastInput.clear();&#10;  userLastInput.sendKeys(&#39;xx&#39;);&#10;&#10;  expect(user.getText()).toContain(&#39;{&quot;name&quot;:&quot;guest&quot;}&#39;);&#10;  expect(lastNameValid.getText()).toContain(&#39;false&#39;);&#10;  expect(lastNameError.getText()).toContain(&#39;minlength&#39;);&#10;  expect(formValid.getText()).toContain(&#39;false&#39;);&#10;});&#10;&#10;it(&#39;should be invalid if longer than max length&#39;, function() {&#10;  userLastInput.clear();&#10;  userLastInput.sendKeys(&#39;some ridiculously long name&#39;);&#10;&#10;  expect(user.getText()).toContain(&#39;{&quot;name&quot;:&quot;guest&quot;}&#39;);&#10;  expect(lastNameValid.getText()).toContain(&#39;false&#39;);&#10;  expect(lastNameError.getText()).toContain(&#39;maxlength&#39;);&#10;  expect(formValid.getText()).toContain(&#39;false&#39;);&#10;});</code></pre>
     </div>
   
 

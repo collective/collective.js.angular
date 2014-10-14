@@ -5,22 +5,18 @@
   <title>Example - example-example13-jquery</title>
   
 
-  <script src="../../components/jquery-1.10.2/jquery.js"></script>
+  <script src="../../components/jquery-2.1.1/jquery.js"></script>
   <script src="../../../angular.js"></script>
+  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="bindExample">
-    <script>
-    angular.module('bindExample', [])
-      .controller('ExampleController', ['$scope', function($scope) {
-        $scope.name = 'Whirled';
-      }]);
-  </script>
-  <div ng-controller="ExampleController">
-    Enter name: <input type="text" ng-model="name"><br>
-    Hello <span ng-bind="name"></span>!
+<body ng-app="docsIsolateScopeDirective">
+    <div ng-controller="Controller">
+    <my-customer info="naomi"></my-customer>
+    <hr>
+    <my-customer info="igor"></my-customer>
   </div>
 </body>
 </html>

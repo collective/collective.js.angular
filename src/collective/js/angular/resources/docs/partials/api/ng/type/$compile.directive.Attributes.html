@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ng/compile.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/compile.js?message=docs($compile.directive.Attributes)%3A%20describe%20your%20change...#L2453' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/compile.js#L1997' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/compile.js#L2453' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -23,7 +23,8 @@
   <p>A shared object between directive compile / linking functions which contains normalized DOM
 element attributes. The values reflect current binding state <code>{{ }}</code>. The normalization is
 needed since all of these are treated as equivalent in Angular:</p>
-<pre><code>   &lt;span ng:bind=&quot;a&quot; ng-bind=&quot;a&quot; data-ng-bind=&quot;a&quot; x-ng-bind=&quot;a&quot;&gt;</code></pre>
+<pre><code>&lt;span ng:bind=&quot;a&quot; ng-bind=&quot;a&quot; data-ng-bind=&quot;a&quot; x-ng-bind=&quot;a&quot;&gt;
+</code></pre>
 
 </div>
 
@@ -251,7 +252,7 @@ changes.</p>
       <td>
         <p>Function that will be called whenever
                 the interpolated value of the attribute changes.
-       See the <a href="guide/directive#Attributes">Directives</a> guide for more info.</p>
+       See the <a href="guide/directive#text-and-attribute-bindings">Directives</a> guide for more info.</p>
 
         
       </td>
@@ -269,7 +270,7 @@ changes.</p>
     <table class="variables-matrix return-arguments">
   <tr>
     <td><a href="" class="label type-hint type-hint-function">function()</a></td>
-    <td><p>the <code>fn</code> parameter.</p>
+    <td><p>Returns a deregistration function for this observer.</p>
 </td>
   </tr>
 </table>

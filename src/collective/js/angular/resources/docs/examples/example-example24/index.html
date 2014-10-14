@@ -6,14 +6,16 @@
   
 
   <script src="../../../angular.min.js"></script>
+  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="">
-   <button ng-mouseup="count = count + 1" ng-init="count=0">
-   Increment (on mouse up)
- </button>
- count: {{count}}
+<body ng-app="eventExampleApp">
+    <div ng-controller="EventController">
+    <button ng-click="clickMe($event)">Event</button>
+    <p><code>$event</code>: <pre> {{$event | json}}</pre></p>
+    <p><code>clickEvent</code>: <pre>{{clickEvent | json}}</pre></p>
+  </div>
 </body>
 </html>

@@ -1,13 +1,14 @@
-describe("module:ng.service:$window", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example63/index-jquery.html");
+    browser.get("examples/example-example63/index-jquery.html");
   });
   
- it('should display the greeting in the input box', function() {
-  element(by.model('greeting')).sendKeys('Hello, E2E Tests');
-  // If we click the button it will block the test runner
-  // element(':button').click();
- });
+  it('should check ng-class-odd and ng-class-even', function() {
+    expect(element(by.repeater('name in names').row(0).column('name')).getAttribute('class')).
+      toMatch(/odd/);
+    expect(element(by.repeater('name in names').row(1).column('name')).getAttribute('class')).
+      toMatch(/even/);
+  });
 });

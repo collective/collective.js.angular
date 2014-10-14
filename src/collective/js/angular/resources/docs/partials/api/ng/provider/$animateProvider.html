@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ng/animate.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/animate.js?message=docs($animateProvider)%3A%20describe%20your%20change...#L5' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/animate.js#L5' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/animate.js#L5' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -58,15 +58,16 @@ must be called once the element animation is complete. If a function is returned
 animation service will use this function to cancel the animation whenever a cancel event is
 triggered.</li>
 </ul>
-<pre><code class="lang-js">  return {
-    eventFn : function(element, done) {
-      //code to run the animation
-      //once complete, then run done()
-      return function cancellationFunction() {
-        //code to cancel the animation
-      }
+<pre><code class="lang-js">return {
+  eventFn : function(element, done) {
+    //code to run the animation
+    //once complete, then run done()
+    return function cancellationFunction() {
+      //code to cancel the animation
     }
-  }</code></pre>
+  }
+}
+</code></pre>
 </div>
 
     

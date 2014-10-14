@@ -5,28 +5,37 @@
   <title>Example - example-example57-jquery</title>
   
 
-  <script src="../../components/jquery-1.10.2/jquery.js"></script>
+  <script src="../../components/jquery-2.1.1/jquery.js"></script>
   <script src="../../../angular.js"></script>
-  <script src="script.js"></script>
+  <script src="../../../angular-animate.js"></script>
   
 
-  
+  <script type="text/javascript">
+    angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
+  </script>
 </head>
-<body ng-app="orderByExample">
-    <div ng-controller="ExampleController">
-    <table class="friend">
-      <tr>
-        <th><a href="" ng-click="reverse=false;order('name', false)">Name</a>
-          (<a href="" ng-click="order('-name',false)">^</a>)</th>
-        <th><a href="" ng-click="reverse=!reverse;order('phone', reverse)">Phone Number</a></th>
-        <th><a href="" ng-click="reverse=!reverse;order('age',reverse)">Age</a></th>
-      </tr>
-      <tr ng-repeat="friend in friends">
-        <td>{{friend.name}}</td>
-        <td>{{friend.phone}}</td>
-        <td>{{friend.age}}</td>
-      </tr>
-    </table>
-  </div>
+<body ng-app="inputExample">
+    <script>
+   angular.module('inputExample', [])
+     .controller('ExampleController', ['$scope', function($scope) {
+       $scope.val = '1';
+     }]);
+  </script>
+  <style>
+    .my-input {
+      -webkit-transition:all linear 0.5s;
+      transition:all linear 0.5s;
+      background: transparent;
+    }
+    .my-input.ng-invalid {
+      color:white;
+      background: red;
+    }
+  </style>
+  Update input to see transitions when valid/invalid.
+  Integer is a valid value.
+  <form name="testForm" ng-controller="ExampleController">
+    <input ng-model="val" ng-pattern="/^\d+$/" name="anim" class="my-input" />
+  </form>
 </body>
 </html>

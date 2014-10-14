@@ -1,36 +1,16 @@
-describe("module:ng.service:$http", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example58/index-jquery.html");
+    browser.get("examples/example-example58/index-jquery.html");
   });
   
-var status = element(by.binding('status'));
-var data = element(by.binding('data'));
-var fetchBtn = element(by.id('fetchbtn'));
-var sampleGetBtn = element(by.id('samplegetbtn'));
-var sampleJsonpBtn = element(by.id('samplejsonpbtn'));
-var invalidJsonpBtn = element(by.id('invalidjsonpbtn'));
+  it('should check ng-bind', function() {
+    var nameInput = element(by.model('name'));
 
-it('should make an xhr GET request', function() {
-  sampleGetBtn.click();
-  fetchBtn.click();
-  expect(status.getText()).toMatch('200');
-  expect(data.getText()).toMatch(/Hello, \$http!/);
-});
-
-it('should make a JSONP request to angularjs.org', function() {
-  sampleJsonpBtn.click();
-  fetchBtn.click();
-  expect(status.getText()).toMatch('200');
-  expect(data.getText()).toMatch(/Super Hero!/);
-});
-
-it('should make JSONP request to invalid URL and invoke the error handler',
-    function() {
-  invalidJsonpBtn.click();
-  fetchBtn.click();
-  expect(status.getText()).toMatch('0');
-  expect(data.getText()).toMatch('Request failed');
-});
+    expect(element(by.binding('name')).getText()).toBe('Whirled');
+    nameInput.clear();
+    nameInput.sendKeys('world');
+    expect(element(by.binding('name')).getText()).toBe('world');
+  });
 });

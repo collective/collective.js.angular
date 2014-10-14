@@ -1,4 +1,4 @@
-<a href='http://github.com/angular/angular.js/edit/master/docs/content/tutorial/step_02.ngdoc' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/docs/content/tutorial/step_02.ngdoc?message=docs(tutorial%2F2 - Angular Templates)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 <ul doc-tutorial-nav="2"></ul>
@@ -38,7 +38,8 @@ view.</p>
   &lt;/ul&gt;
 
 &lt;/body&gt;
-&lt;/html&gt;</code></pre>
+&lt;/html&gt;
+</code></pre>
 <p>We replaced the hard-coded phone list with the <a href="api/ng/directive/ngRepeat">ngRepeat directive</a>
 and two <a href="guide/expression">Angular expressions</a>:</p>
 <ul>
@@ -66,8 +67,7 @@ where <code>phonecatApp</code> is the name of our module.  This module will cont
 the <code>PhoneListCtrl</code> <strong>controller</strong>. The <strong>controller</strong> is simply a constructor function that takes a
 <code>$scope</code> parameter:</p>
 <p><strong><code>app/js/controllers.js</code>:</strong></p>
-<pre><code class="lang-js">
-var phonecatApp = angular.module(&#39;phonecatApp&#39;, []);
+<pre><code class="lang-js">var phonecatApp = angular.module(&#39;phonecatApp&#39;, []);
 
 phonecatApp.controller(&#39;PhoneListCtrl&#39;, function ($scope) {
   $scope.phones = [
@@ -78,7 +78,8 @@ phonecatApp.controller(&#39;PhoneListCtrl&#39;, function ($scope) {
     {&#39;name&#39;: &#39;MOTOROLA XOOM™&#39;,
      &#39;snippet&#39;: &#39;The Next, Next Generation tablet.&#39;}
   ];
-});</code></pre>
+});
+</code></pre>
 <p>Here we declared a controller called <code>PhoneListCtrl</code> and registered it in an AngularJS
 module, <code>phonecatApp</code>. Notice that our <code>ng-app</code> directive (on the <code>&lt;html&gt;</code> tag) now specifies the <code>phonecatApp</code>
 module name as the module to load when bootstrapping the Angular application.</p>
@@ -110,14 +111,15 @@ developed. If our controller is available on the global namespace then we could 
 with a mock <code>scope</code> object:</p>
 <pre><code class="lang-js">describe(&#39;PhoneListCtrl&#39;, function(){
 
-  it(&#39;should create &quot;phones&quot; model with 3 phones&#39;, function() {
-    var scope = {},
-        ctrl = new PhoneListCtrl(scope);
+it(&#39;should create &quot;phones&quot; model with 3 phones&#39;, function() {
+  var scope = {},
+      ctrl = new PhoneListCtrl(scope);
 
-    expect(scope.phones.length).toBe(3);
-  });
+  expect(scope.phones.length).toBe(3);
+});
 
-});</code></pre>
+});
+</code></pre>
 <p>The test instantiates <code>PhoneListCtrl</code> and verifies that the phones array property on the scope
 contains three records. This example demonstrates how easy it is to create a unit test for code in
 Angular. Since testing is such a critical part of software development, we make it easy to create
@@ -131,16 +133,17 @@ Here is the same test using <code>$controller</code>:</p>
 <p><strong><code>test/unit/controllersSpec.js</code>:</strong></p>
 <pre><code class="lang-js">describe(&#39;PhoneListCtrl&#39;, function(){
 
-  beforeEach(module(&#39;phonecatApp&#39;));
+beforeEach(module(&#39;phonecatApp&#39;));
 
-  it(&#39;should create &quot;phones&quot; model with 3 phones&#39;, inject(function($controller) {
-    var scope = {},
-        ctrl = $controller(&#39;PhoneListCtrl&#39;, {$scope:scope});
+it(&#39;should create &quot;phones&quot; model with 3 phones&#39;, inject(function($controller) {
+  var scope = {},
+      ctrl = $controller(&#39;PhoneListCtrl&#39;, {$scope:scope});
 
-    expect(scope.phones.length).toBe(3);
-  }));
+  expect(scope.phones.length).toBe(3);
+}));
 
-});</code></pre>
+});
+</code></pre>
 <ul>
 <li>Before each test we tell Angular to load the <code>phonecatApp</code> module.</li>
 <li>We ask Angular to <code>inject</code> the <code>$controller</code> service into our test function</li>
@@ -180,27 +183,34 @@ browser is limited, which results in your karma tests running extremely slow.
 <h1 id="experiments">Experiments</h1>
 <ul>
 <li><p>Add another binding to <code>index.html</code>. For example:</p>
-<pre><code class="lang-html">&lt;p&gt;Total number of phones: {{phones.length}}&lt;/p&gt;</code></pre>
+<pre><code class="lang-html">&lt;p&gt;Total number of phones: {{phones.length}}&lt;/p&gt;
+</code></pre>
 </li>
 <li><p>Create a new model property in the controller and bind to it from the template. For example:</p>
-<pre><code>    $scope.name = &quot;World&quot;;</code></pre>
+<pre><code>$scope.name = &quot;World&quot;;
+</code></pre>
 <p>Then add a new binding to <code>index.html</code>:</p>
-<pre><code>    &lt;p&gt;Hello, {{name}}!&lt;/p&gt;</code></pre>
+<pre><code>&lt;p&gt;Hello, {{name}}!&lt;/p&gt;
+</code></pre>
 <p>Refresh your browser and verify that it says &quot;Hello, World!&quot;.</p>
 </li>
-<li><p>Update the unit test for the controller in ./test/unit/controllersSpec.js to reflect the previous change. For example by adding:</p>
-<pre><code>    expect(scope.name).toBe(&#39;World&#39;);</code></pre>
+<li><p>Update the unit test for the controller in <code>./test/unit/controllersSpec.js</code> to reflect the previous change. For example by adding:</p>
+<pre><code>expect(scope.name).toBe(&#39;World&#39;);
+</code></pre>
 </li>
 <li><p>Create a repeater in <code>index.html</code> that constructs a simple table:</p>
-<pre><code>    &lt;table&gt;
-      &lt;tr&gt;&lt;th&gt;row number&lt;/th&gt;&lt;/tr&gt;
-      &lt;tr ng-repeat=&quot;i in [0, 1, 2, 3, 4, 5, 6, 7]&quot;&gt;&lt;td&gt;{{i}}&lt;/td&gt;&lt;/tr&gt;
-    &lt;/table&gt;</code></pre>
+<pre><code>&lt;table&gt;
+  &lt;tr&gt;&lt;th&gt;row number&lt;/th&gt;&lt;/tr&gt;
+  &lt;tr ng-repeat=&quot;i in [0, 1, 2, 3, 4, 5, 6, 7]&quot;&gt;&lt;td&gt;{{i}}&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
 <p>Now, make the list 1-based by incrementing <code>i</code> by one in the binding:</p>
-<pre><code>    &lt;table&gt;
-      &lt;tr&gt;&lt;th&gt;row number&lt;/th&gt;&lt;/tr&gt;
-      &lt;tr ng-repeat=&quot;i in [0, 1, 2, 3, 4, 5, 6, 7]&quot;&gt;&lt;td&gt;{{i+1}}&lt;/td&gt;&lt;/tr&gt;
-    &lt;/table&gt;</code></pre>
+<pre><code>&lt;table&gt;
+  &lt;tr&gt;&lt;th&gt;row number&lt;/th&gt;&lt;/tr&gt;
+  &lt;tr ng-repeat=&quot;i in [0, 1, 2, 3, 4, 5, 6, 7]&quot;&gt;&lt;td&gt;{{i+1}}&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+<p>Extra points: try and make an 8x8 table using an additional <code>ng-repeat</code>.</p>
 </li>
 <li><p>Make the unit test fail by changing <code>expect(scope.phones.length).toBe(3)</code> to instead use <code>toBe(4)</code>.</p>
 </li>

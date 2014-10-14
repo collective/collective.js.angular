@@ -6,14 +6,12 @@
   
 
   <script src="../../../angular.min.js"></script>
-  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="docsTransclusionDirective">
-    <div ng-controller="Controller">
-    <my-dialog>Check out the contents, {{name}}!</my-dialog>
-  </div>
+<body ng-app="">
+    <div>Normal: {{1 + 2}}</div>
+  <div ng-non-bindable>Ignored: {{1 + 2}}</div>
 </body>
 </html>

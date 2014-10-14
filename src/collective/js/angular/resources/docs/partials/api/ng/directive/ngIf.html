@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ng/directive/ngIf.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/ngIf.js?message=docs(ngIf)%3A%20describe%20your%20change...#L3' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/ngIf.js#L3' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/directive/ngIf.js#L3' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -31,7 +31,7 @@ position within the DOM, such as the <code>:first-child</code> or <code>:last-ch
 <p>Note that when an element is removed using <code>ngIf</code> its scope is destroyed and a new scope
 is created when the element is restored.  The scope created within <code>ngIf</code> inherits from
 its parent scope using
-<a href="https://github.com/angular/angular.js/wiki/The-Nuances-of-Scope-Prototypal-Inheritance">prototypal inheritance</a>.
+<a href="https://github.com/angular/angular.js/wiki/Understanding-Scopes#javascript-prototypal-inheritance">prototypal inheritance</a>.
 An important implication of this is if <code>ngModel</code> is used within <code>ngIf</code> to bind to
 a javascript primitive defined in the parent scope. In this case any modifications made to the
 variable within the child scope will override (hide) the value in the parent scope.</p>
@@ -68,9 +68,9 @@ and <code>leave</code> effects.</p>
     
   </div>
   
-  <h2>Animations</h2>
-  <p>enter - happens just after the ngIf contents change and a new DOM element is created and injected into the ngIf container
-leave - happens just before the ngIf contents are removed from the DOM</p>
+  <h2 id="animations">Animations</h2>
+  <p>enter - happens just after the <code>ngIf</code> contents change and a new DOM element is created and injected into the <code>ngIf</code> container
+leave - happens just before the <code>ngIf</code> contents are removed from the DOM</p>
 
   <a href="api/ngAnimate/service/$animate">Click here</a> to learn more about the steps involved in the animation.
 <section class="api-section">
@@ -115,21 +115,22 @@ leave - happens just before the ngIf contents are removed from the DOM</p>
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example36')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example81')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
-      path="examples/example-example36"
+      path="examples/example-example81"
       module="ngAnimate"
       deps="angular-animate.js"
       animations="true">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
       type="html">
-      <pre><code>Click me: &lt;input type=&quot;checkbox&quot; ng-model=&quot;checked&quot; ng-init=&quot;checked=true&quot; /&gt;&lt;br/&gt;&#10;Show when checked:&#10;&lt;span ng-if=&quot;checked&quot; class=&quot;animate-if&quot;&gt;&#10;  I&#39;m removed when the checkbox is unchecked.&#10;&lt;/span&gt;</code></pre>
+      <pre><code>Click me: &lt;input type=&quot;checkbox&quot; ng-model=&quot;checked&quot; ng-init=&quot;checked=true&quot; /&gt;&lt;br/&gt;&#10;Show when checked:&#10;&lt;span ng-if=&quot;checked&quot; class=&quot;animate-if&quot;&gt;&#10;  This is removed when the checkbox is unchecked.&#10;&lt;/span&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -140,7 +141,7 @@ leave - happens just before the ngIf contents are removed from the DOM</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example36/index.html" name="example-example36"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example81/index.html" name="example-example81"></iframe>
   </div>
 </div>
 

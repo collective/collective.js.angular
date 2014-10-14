@@ -1,4 +1,4 @@
-<a href='http://github.com/angular/angular.js/edit/master/docs/content/tutorial/step_07.ngdoc' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/docs/content/tutorial/step_07.ngdoc?message=docs(tutorial%2F7 - Routing & Multiple Views)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 <ul doc-tutorial-nav="7"></ul>
@@ -20,25 +20,28 @@ is distributed separately from the core Angular framework.</p>
 <p>We are using <a href="http://bower.io">Bower</a> to install client side dependencies.  This step updates the
 <code>bower.json</code> configuration file to include the new dependency:</p>
 <pre><code class="lang-json">{
-  &quot;name&quot;: &quot;angular-seed&quot;,
-  &quot;description&quot;: &quot;A starter project for AngularJS&quot;,
-  &quot;version&quot;: &quot;0.0.0&quot;,
-  &quot;homepage&quot;: &quot;https://github.com/angular/angular-seed&quot;,
-  &quot;license&quot;: &quot;MIT&quot;,
-  &quot;private&quot;: true,
-  &quot;dependencies&quot;: {
-    &quot;angular&quot;: &quot;1.2.x&quot;,
-    &quot;angular-mocks&quot;: &quot;~1.2.x&quot;,
-    &quot;bootstrap&quot;: &quot;~3.1.1&quot;,
-    &quot;angular-route&quot;: &quot;~1.2.x&quot;
-  }
-}</code></pre>
-<p>The new dependency <code>&quot;angular-route&quot;: &quot;~1.2.x&quot;</code> tells bower to install a version of the
-angular-route component that is compatible with version 1.2.x.  We must tell bower to download
+&quot;name&quot;: &quot;angular-phonecat&quot;,
+&quot;description&quot;: &quot;A starter project for AngularJS&quot;,
+&quot;version&quot;: &quot;0.0.0&quot;,
+&quot;homepage&quot;: &quot;https://github.com/angular/angular-phonecat&quot;,
+&quot;license&quot;: &quot;MIT&quot;,
+&quot;private&quot;: true,
+&quot;dependencies&quot;: {
+  &quot;angular&quot;: &quot;~1.3.0&quot;,
+  &quot;angular-mocks&quot;: &quot;~1.3.0&quot;,
+  &quot;jquery&quot;: &quot;2.1.1&quot;,
+  &quot;bootstrap&quot;: &quot;~3.1.1&quot;,
+  &quot;angular-route&quot;: &quot;~1.3.0&quot;
+}
+}
+</code></pre>
+<p>The new dependency <code>&quot;angular-route&quot;: &quot;~1.3.0&quot;</code> tells bower to install a version of the
+angular-route component that is compatible with version 1.3.x.  We must tell bower to download
 and install this dependency.</p>
 <p>If you have bower installed globally then you can run <code>bower install</code> but for this project we have
 preconfigured npm to run bower install for us:</p>
-<pre><code>npm install</code></pre>
+<pre><code>npm install
+</code></pre>
 <h2 id="multiple-views-routing-and-layout-template">Multiple Views, Routing and Layout Template</h2>
 <p>Our app is slowly growing and becoming more complex. Before step 7, the app provided our users with
 a single view (the list of all phones), and all of the template code was located in the
@@ -105,7 +108,8 @@ loading the additional <code>angular-route.js</code> file, which we download via
   &lt;div ng-view&gt;&lt;/div&gt;
 
 &lt;/body&gt;
-&lt;/html&gt;</code></pre>
+&lt;/html&gt;
+</code></pre>
 <p>We have added two new <code>&lt;script&gt;</code> tags in our index file to load up extra JavaScript files into our
 application:</p>
 <ul>
@@ -117,32 +121,33 @@ line containing a div with the <code>ng-view</code> attribute. The code that we 
 <code>phone-list.html</code> template:</p>
 <p><strong><code>app/partials/phone-list.html</code>:</strong></p>
 <pre><code class="lang-html">&lt;div class=&quot;container-fluid&quot;&gt;
-  &lt;div class=&quot;row&quot;&gt;
-    &lt;div class=&quot;col-md-2&quot;&gt;
-      &lt;!--Sidebar content--&gt;
+&lt;div class=&quot;row&quot;&gt;
+  &lt;div class=&quot;col-md-2&quot;&gt;
+    &lt;!--Sidebar content--&gt;
 
-      Search: &lt;input ng-model=&quot;query&quot;&gt;
-      Sort by:
-      &lt;select ng-model=&quot;orderProp&quot;&gt;
-        &lt;option value=&quot;name&quot;&gt;Alphabetical&lt;/option&gt;
-        &lt;option value=&quot;age&quot;&gt;Newest&lt;/option&gt;
-      &lt;/select&gt;
+    Search: &lt;input ng-model=&quot;query&quot;&gt;
+    Sort by:
+    &lt;select ng-model=&quot;orderProp&quot;&gt;
+      &lt;option value=&quot;name&quot;&gt;Alphabetical&lt;/option&gt;
+      &lt;option value=&quot;age&quot;&gt;Newest&lt;/option&gt;
+    &lt;/select&gt;
 
-    &lt;/div&gt;
-    &lt;div class=&quot;col-md-10&quot;&gt;
-      &lt;!--Body content--&gt;
-
-      &lt;ul class=&quot;phones&quot;&gt;
-        &lt;li ng-repeat=&quot;phone in phones | filter:query | orderBy:orderProp&quot; class=&quot;thumbnail&quot;&gt;
-          &lt;a href=&quot;#/phones/{{phone.id}}&quot; class=&quot;thumb&quot;&gt;&lt;img ng-src=&quot;{{phone.imageUrl}}&quot;&gt;&lt;/a&gt;
-          &lt;a href=&quot;#/phones/{{phone.id}}&quot;&gt;{{phone.name}}&lt;/a&gt;
-          &lt;p&gt;{{phone.snippet}}&lt;/p&gt;
-        &lt;/li&gt;
-      &lt;/ul&gt;
-
-    &lt;/div&gt;
   &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+  &lt;div class=&quot;col-md-10&quot;&gt;
+    &lt;!--Body content--&gt;
+
+    &lt;ul class=&quot;phones&quot;&gt;
+      &lt;li ng-repeat=&quot;phone in phones | filter:query | orderBy:orderProp&quot; class=&quot;thumbnail&quot;&gt;
+        &lt;a href=&quot;#/phones/{{phone.id}}&quot; class=&quot;thumb&quot;&gt;&lt;img ng-src=&quot;{{phone.imageUrl}}&quot;&gt;&lt;/a&gt;
+        &lt;a href=&quot;#/phones/{{phone.id}}&quot;&gt;{{phone.name}}&lt;/a&gt;
+        &lt;p&gt;{{phone.snippet}}&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
 <div style="display:none">
 TODO!
 <img  class="diagram" src="img/tutorial/tutorial_07_final.png">
@@ -150,7 +155,8 @@ TODO!
 
 <p>We also added a placeholder template for the phone details view:</p>
 <p><strong><code>app/partials/phone-detail.html</code>:</strong></p>
-<pre><code class="lang-html">TBD: detail view for &lt;span&gt;{{phoneId}}&lt;/span&gt;</code></pre>
+<pre><code class="lang-html">TBD: detail view for &lt;span&gt;{{phoneId}}&lt;/span&gt;
+</code></pre>
 <p>Note how we are using the <code>phoneId</code> expression which will be defined in the <code>PhoneDetailCtrl</code> controller.</p>
 <h2 id="the-app-module">The App Module</h2>
 <p>To improve the organization of the app, we are making use of Angular&#39;s <code>ngRoute</code> module and we&#39;ve
@@ -161,11 +167,12 @@ to add the modules as dependencies of our app. By listing these two modules as d
 <code>phonecatApp</code>, we can use the directives and services they provide.</p>
 <p><strong><code>app/js/app.js</code>:</strong></p>
 <pre><code class="lang-js">var phonecatApp = angular.module(&#39;phonecatApp&#39;, [
-  &#39;ngRoute&#39;,
-  &#39;phonecatControllers&#39;
+&#39;ngRoute&#39;,
+&#39;phonecatControllers&#39;
 ]);
 
-...</code></pre>
+...
+</code></pre>
 <p>Notice the second argument passed to <code>angular.module</code>, <code>[&#39;ngRoute&#39;, &#39;phonecatControllers&#39;]</code>. This
 array lists the modules that <code>phonecatApp</code> depends on.</p>
 <pre><code class="lang-js">...
@@ -184,7 +191,8 @@ phonecatApp.config([&#39;$routeProvider&#39;,
       otherwise({
         redirectTo: &#39;/phones&#39;
       });
-  }]);</code></pre>
+  }]);
+</code></pre>
 <p>Using the <code>phonecatApp.config()</code> method, we request the <code>$routeProvider</code> to be injected into our
 config function and use the <a href="api/ngRoute/provider/$routeProvider#when"><code>$routeProvider.when()</code></a> method to
 define our routes.</p>
@@ -195,7 +203,7 @@ construct this view, Angular will use the <code>phone-list.html</code> template 
 controller.</p>
 </li>
 <li><p><code>when(&#39;/phones/:phoneId&#39;)</code>: The phone details view will be shown when the URL hash fragment
-matches &#39;/phone/:phoneId&#39;, where <code>:phoneId</code> is a variable part of the URL. To construct the phone
+matches &#39;/phones/:phoneId&#39;, where <code>:phoneId</code> is a variable part of the URL. To construct the phone
 details view, Angular will use the <code>phone-detail.html</code> template and the <code>PhoneDetailCtrl</code>
 controller.</p>
 </li>
@@ -225,7 +233,8 @@ phonecatControllers.controller(&#39;PhoneListCtrl&#39;, [&#39;$scope&#39;, &#39;
 phonecatControllers.controller(&#39;PhoneDetailCtrl&#39;, [&#39;$scope&#39;, &#39;$routeParams&#39;,
   function($scope, $routeParams) {
     $scope.phoneId = $routeParams.phoneId;
-  }]);</code></pre>
+  }]);
+</code></pre>
 <p>Again, note that we created a new module called <code>phonecatControllers</code>. For small AngularJS
 applications, it&#39;s common to create just one module for all of your controllers if there are just a
 few. As your application grows it is quite common to refactor your code into additional modules.
@@ -237,30 +246,31 @@ your app.</p>
 <p>To automatically verify that everything is wired properly, we wrote end-to-end tests that navigate
 to various URLs and verify that the correct view was rendered.</p>
 <pre><code class="lang-js">...
-   it(&#39;should redirect index.html to index.html#/phones&#39;, function() {
-    browser.get(&#39;app/index.html&#39;);
-    browser.getLocationAbsUrl().then(function(url) {
-        expect(url.split(&#39;#&#39;)[1]).toBe(&#39;/phones&#39;);
-      });
-  });
-
-  describe(&#39;Phone list view&#39;, function() {
-    beforeEach(function() {
-      browser.get(&#39;app/index.html#/phones&#39;);
+ it(&#39;should redirect index.html to index.html#/phones&#39;, function() {
+  browser.get(&#39;app/index.html&#39;);
+  browser.getLocationAbsUrl().then(function(url) {
+      expect(url.split(&#39;#&#39;)[1]).toBe(&#39;/phones&#39;);
     });
+});
+
+describe(&#39;Phone list view&#39;, function() {
+  beforeEach(function() {
+    browser.get(&#39;app/index.html#/phones&#39;);
+  });
 ...
 
-  describe(&#39;Phone detail view&#39;, function() {
+describe(&#39;Phone detail view&#39;, function() {
 
-    beforeEach(function() {
-      browser.get(&#39;app/index.html#/phones/nexus-s&#39;);
-    });
+  beforeEach(function() {
+    browser.get(&#39;app/index.html#/phones/nexus-s&#39;);
+  });
 
 
-    it(&#39;should display placeholder page with phoneId&#39;, function() {
-      expect(element(by.binding(&#39;phoneId&#39;)).getText()).toBe(&#39;nexus-s&#39;);
-    });
-  });</code></pre>
+  it(&#39;should display placeholder page with phoneId&#39;, function() {
+    expect(element(by.binding(&#39;phoneId&#39;)).getText()).toBe(&#39;nexus-s&#39;);
+  });
+});
+</code></pre>
 <p>You can now rerun <code>npm run protractor</code> to see the tests run.</p>
 <h1 id="experiments">Experiments</h1>
 <ul>

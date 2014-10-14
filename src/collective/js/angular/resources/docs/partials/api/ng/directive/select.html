@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ng/directive/select.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/select.js?message=docs(select)%3A%20describe%20your%20change...#L4' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/select.js#L4' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/directive/select.js#L4' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -42,6 +42,31 @@ of <a href="api/ng/directive/ngRepeat">ngRepeat</a> when you want the
 <code>select</code> model to be bound to a non-string value. This is because an option element can only
 be bound to string values at present.
 </div>
+
+<div class="alert alert-info">
+<strong>Note:</strong> Using <code>select as</code> will bind the result of the <code>select as</code> expression to the model, but
+the value of the <code>&lt;select&gt;</code> and <code>&lt;option&gt;</code> html elements will be either the index (for array data sources)
+or property name (for object data sources) of the value within the collection.
+</div>
+
+<p><strong>Note:</strong> Using <code>select as</code> together with <code>trackexpr</code> is not recommended.
+Reasoning:</p>
+<ul>
+<li>Example: &lt;select ng-options=&quot;item.subItem as item.label for item in values track by item.id&quot; ng-model=&quot;selected&quot;&gt;
+values: [{id: 1, label: &#39;aLabel&#39;, subItem: {name: &#39;aSubItem&#39;}}, {id: 2, label: &#39;bLabel&#39;, subItem: {name: &#39;bSubItem&#39;}}],
+$scope.selected = {name: &#39;aSubItem&#39;};</li>
+<li>track by is always applied to <code>value</code>, with the purpose of preserving the selection,
+(to <code>item</code> in this case)</li>
+<li>to calculate whether an item is selected we do the following:<ol>
+<li>apply <code>track by</code> to the values in the array, e.g.
+In the example: [1,2]</li>
+<li>apply <code>track by</code> to the already selected value in <code>ngModel</code>:
+In the example: this is not possible, as <code>track by</code> refers to <code>item.id</code>, but the selected
+value from <code>ngModel</code> is <code>{name: aSubItem}</code>.</li>
+</ol>
+</li>
+</ul>
+
 </div>
 
 
@@ -191,7 +216,8 @@ be bound to string values at present.
  DOM element.</li>
 <li><code>trackexpr</code>: Used when working with an array of objects. The result of this expression will be
  used to identify the objects in the array. The <code>trackexpr</code> will most likely refer to the
-<code>value</code> variable (e.g. <code>value.propertyName</code>).</li>
+<code>value</code> variable (e.g. <code>value.propertyName</code>). With this the selection is preserved
+ even when the options are recreated (e.g. reloaded from the server).</li>
 </ul>
 
         
@@ -209,19 +235,20 @@ be bound to string values at present.
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example48')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example93')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
-      path="examples/example-example48"
+      path="examples/example-example93"
       module="selectExample">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;script&gt;&#10;angular.module(&#39;selectExample&#39;, [])&#10;  .controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;    $scope.colors = [&#10;      {name:&#39;black&#39;, shade:&#39;dark&#39;},&#10;      {name:&#39;white&#39;, shade:&#39;light&#39;},&#10;      {name:&#39;red&#39;, shade:&#39;dark&#39;},&#10;      {name:&#39;blue&#39;, shade:&#39;dark&#39;},&#10;      {name:&#39;yellow&#39;, shade:&#39;light&#39;}&#10;    ];&#10;    $scope.myColor = $scope.colors[2]; // red&#10;  }]);&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;ExampleController&quot;&gt;&#10;  &lt;ul&gt;&#10;    &lt;li ng-repeat=&quot;color in colors&quot;&gt;&#10;      Name: &lt;input ng-model=&quot;color.name&quot;&gt;&#10;      [&lt;a href ng-click=&quot;colors.splice($index, 1)&quot;&gt;X&lt;/a&gt;]&#10;    &lt;/li&gt;&#10;    &lt;li&gt;&#10;      [&lt;a href ng-click=&quot;colors.push({})&quot;&gt;add&lt;/a&gt;]&#10;    &lt;/li&gt;&#10;  &lt;/ul&gt;&#10;  &lt;hr/&gt;&#10;  Color (null not allowed):&#10;  &lt;select ng-model=&quot;myColor&quot; ng-options=&quot;color.name for color in colors&quot;&gt;&lt;/select&gt;&lt;br&gt;&#10;&#10;  Color (null allowed):&#10;  &lt;span  class=&quot;nullable&quot;&gt;&#10;    &lt;select ng-model=&quot;myColor&quot; ng-options=&quot;color.name for color in colors&quot;&gt;&#10;      &lt;option value=&quot;&quot;&gt;-- choose color --&lt;/option&gt;&#10;    &lt;/select&gt;&#10;  &lt;/span&gt;&lt;br/&gt;&#10;&#10;  Color grouped by shade:&#10;  &lt;select ng-model=&quot;myColor&quot; ng-options=&quot;color.name group by color.shade for color in colors&quot;&gt;&#10;  &lt;/select&gt;&lt;br/&gt;&#10;&#10;&#10;  Select &lt;a href ng-click=&quot;myColor = { name:&#39;not in list&#39;, shade: &#39;other&#39; }&quot;&gt;bogus&lt;/a&gt;.&lt;br&gt;&#10;  &lt;hr/&gt;&#10;  Currently selected: {{ {selected_color:myColor}  }}&#10;  &lt;div style=&quot;border:solid 1px black; height:20px&quot;&#10;       ng-style=&quot;{&#39;background-color&#39;:myColor.name}&quot;&gt;&#10;  &lt;/div&gt;&#10;&lt;/div&gt;</code></pre>
+      <pre><code>&lt;script&gt;&#10;angular.module(&#39;selectExample&#39;, [])&#10;  .controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;    $scope.colors = [&#10;      {name:&#39;black&#39;, shade:&#39;dark&#39;},&#10;      {name:&#39;white&#39;, shade:&#39;light&#39;},&#10;      {name:&#39;red&#39;, shade:&#39;dark&#39;},&#10;      {name:&#39;blue&#39;, shade:&#39;dark&#39;},&#10;      {name:&#39;yellow&#39;, shade:&#39;light&#39;}&#10;    ];&#10;    $scope.myColor = $scope.colors[2]; // red&#10;  }]);&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;ExampleController&quot;&gt;&#10;  &lt;ul&gt;&#10;    &lt;li ng-repeat=&quot;color in colors&quot;&gt;&#10;      Name: &lt;input ng-model=&quot;color.name&quot;&gt;&#10;      [&lt;a href ng-click=&quot;colors.splice($index, 1)&quot;&gt;X&lt;/a&gt;]&#10;    &lt;/li&gt;&#10;    &lt;li&gt;&#10;      [&lt;a href ng-click=&quot;colors.push({})&quot;&gt;add&lt;/a&gt;]&#10;    &lt;/li&gt;&#10;  &lt;/ul&gt;&#10;  &lt;hr/&gt;&#10;  Color (null not allowed):&#10;  &lt;select ng-model=&quot;myColor&quot; ng-options=&quot;color.name for color in colors&quot;&gt;&lt;/select&gt;&lt;br&gt;&#10;&#10;  Color (null allowed):&#10;  &lt;span  class=&quot;nullable&quot;&gt;&#10;    &lt;select ng-model=&quot;myColor&quot; ng-options=&quot;color.name for color in colors&quot;&gt;&#10;      &lt;option value=&quot;&quot;&gt;-- choose color --&lt;/option&gt;&#10;    &lt;/select&gt;&#10;  &lt;/span&gt;&lt;br/&gt;&#10;&#10;  Color grouped by shade:&#10;  &lt;select ng-model=&quot;myColor&quot; ng-options=&quot;color.name group by color.shade for color in colors&quot;&gt;&#10;  &lt;/select&gt;&lt;br/&gt;&#10;&#10;&#10;  Select &lt;a href ng-click=&quot;myColor = { name:&#39;not in list&#39;, shade: &#39;other&#39; }&quot;&gt;bogus&lt;/a&gt;.&lt;br&gt;&#10;  &lt;hr/&gt;&#10;  Currently selected: {{ {selected_color:myColor} }}&#10;  &lt;div style=&quot;border:solid 1px black; height:20px&quot;&#10;       ng-style=&quot;{&#39;background-color&#39;:myColor.name}&quot;&gt;&#10;  &lt;/div&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -232,7 +259,7 @@ be bound to string values at present.
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example48/index.html" name="example-example48"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example93/index.html" name="example-example93"></iframe>
   </div>
 </div>
 

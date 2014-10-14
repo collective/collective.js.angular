@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/Angular.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/Angular.js?message=docs(ngApp)%3A%20describe%20your%20change...#L1166' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/Angular.js#L1203' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/Angular.js#L1166' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -38,14 +38,15 @@ would not be resolved to <code>3</code>.</p>
 <p> 
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example1')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example44')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
-      path="examples/example-example1"
+      path="examples/example-example44"
       module="ngAppDemo">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
@@ -61,7 +62,48 @@ would not be resolved to <code>3</code>.</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example1/index.html" name="example-example1"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example44/index.html" name="example-example44"></iframe>
+  </div>
+</div>
+
+
+</p>
+<p>Using <code>ngStrictDi</code>, you would see something like this:</p>
+<p> 
+
+<div>
+  <a ng-click="openPlunkr('examples/example-example45')" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+
+  <div class="runnable-example"
+      path="examples/example-example45"
+      ng-app-included="true">
+
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;div ng-app=&quot;ngAppStrictDemo&quot; ng-strict-di&gt;&#10;&lt;div ng-controller=&quot;GoodController1&quot;&gt;&#10;    I can add: {{a}} + {{b}} =  {{ a+b }}&#10;&#10;    &lt;p&gt;This renders because the controller does not fail to&#10;       instantiate, by using explicit annotation style (see&#10;       script.js for details)&#10;    &lt;/p&gt;&#10;&lt;/div&gt;&#10;&#10;&lt;div ng-controller=&quot;GoodController2&quot;&gt;&#10;    Name: &lt;input ng-model=&quot;name&quot;&gt;&lt;br /&gt;&#10;    Hello, {{name}}!&#10;&#10;    &lt;p&gt;This renders because the controller does not fail to&#10;       instantiate, by using explicit annotation style&#10;       (see script.js for details)&#10;    &lt;/p&gt;&#10;&lt;/div&gt;&#10;&#10;&lt;div ng-controller=&quot;BadController&quot;&gt;&#10;    I can add: {{a}} + {{b}} =  {{ a+b }}&#10;&#10;    &lt;p&gt;The controller could not be instantiated, due to relying&#10;       on automatic function annotations (which are disabled in&#10;       strict mode). As such, the content of this section is not&#10;       interpolated, and there should be an error in your web console.&#10;    &lt;/p&gt;&#10;&lt;/div&gt;&#10;&lt;/div&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&#39;ngAppStrictDemo&#39;, [])&#10;// BadController will fail to instantiate, due to relying on automatic function annotation,&#10;// rather than an explicit annotation&#10;.controller(&#39;BadController&#39;, function($scope) {&#10;  $scope.a = 1;&#10;  $scope.b = 2;&#10;})&#10;// Unlike BadController, GoodController1 and GoodController2 will not fail to be instantiated,&#10;// due to using explicit annotations using the array style and $inject property, respectively.&#10;.controller(&#39;GoodController1&#39;, [&#39;$scope&#39;, function($scope) {&#10;  $scope.a = 1;&#10;  $scope.b = 2;&#10;}])&#10;.controller(&#39;GoodController2&#39;, GoodController2);&#10;function GoodController2($scope) {&#10;  $scope.name = &quot;World&quot;;&#10;}&#10;GoodController2.$inject = [&#39;$scope&#39;];</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="style.css"
+      language="css"
+      type="css">
+      <pre><code>div[ng-controller] {&#10;margin-bottom: 1em;&#10;-webkit-border-radius: 4px;&#10;border-radius: 4px;&#10;border: 1px solid;&#10;padding: .5em;&#10;}&#10;div[ng-controller^=Good] {&#10;border-color: #d6e9c6;&#10;background-color: #dff0d8;&#10;color: #3c763d;&#10;}&#10;div[ng-controller^=Bad] {&#10;border-color: #ebccd1;&#10;background-color: #f2dede;&#10;color: #a94442;&#10;margin-bottom: 0;&#10;}</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-example45/index.html" name="example-example45"></iframe>
   </div>
 </div>
 
@@ -89,7 +131,7 @@ would not be resolved to <code>3</code>.</p>
   
     <ul>
     <li>as attribute:
-        <pre><code>&lt;ANY&#10;  ng-app=&quot;&quot;&gt;&#10;...&#10;&lt;/ANY&gt;</code></pre>
+        <pre><code>&lt;ANY&#10;  ng-app=&quot;&quot;&#10;  [ng-strict-di=&quot;&quot;]&gt;&#10;...&#10;&lt;/ANY&gt;</code></pre>
       </li>
     
   </div>
@@ -119,6 +161,26 @@ would not be resolved to <code>3</code>.</p>
       <td>
         <p>an optional application
   <a href="api/ng/function/angular.module">module</a> name to load.</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        ngStrictDi
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-boolean">boolean</a>
+      </td>
+      <td>
+        <p>if this attribute is present on the app element, the injector will be
+  created in &quot;strict-di&quot; mode. This means that the application will fail to invoke functions which
+  do not use explicit function annotation (and are thus unsuitable for minification), as described
+  in <a href="guide/di">the Dependency Injection guide</a>, and useful debugging info will assist in
+  tracking down the root of these bugs.</p>
 
         
       </td>

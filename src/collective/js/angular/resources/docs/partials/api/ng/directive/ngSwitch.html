@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ng/directive/ngSwitch.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/ngSwitch.js?message=docs(ngSwitch)%3A%20describe%20your%20change...#L3' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/ngSwitch.js#L3' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/directive/ngSwitch.js#L3' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -49,7 +49,7 @@ value of the expression <code>$scope.someVal</code>.
   <h2>Directive Info</h2>
   <ul>
     <li>This directive creates new scope.</li>
-    <li>This directive executes at priority level 800.</li>
+    <li>This directive executes at priority level 1200.</li>
   </ul>
 
   
@@ -57,15 +57,16 @@ value of the expression <code>$scope.someVal</code>.
   <div class="usage">
   
     <pre><code>&lt;ANY ng-switch=&quot;expression&quot;&gt;
-  &lt;ANY ng-switch-when=&quot;matchValue1&quot;&gt;...&lt;/ANY&gt;
-  &lt;ANY ng-switch-when=&quot;matchValue2&quot;&gt;...&lt;/ANY&gt;
-  &lt;ANY ng-switch-default&gt;...&lt;/ANY&gt;
-&lt;/ANY&gt;</code></pre>
+&lt;ANY ng-switch-when=&quot;matchValue1&quot;&gt;...&lt;/ANY&gt;
+&lt;ANY ng-switch-when=&quot;matchValue2&quot;&gt;...&lt;/ANY&gt;
+&lt;ANY ng-switch-default&gt;...&lt;/ANY&gt;
+&lt;/ANY&gt;
+</code></pre>
 
   
   </div>
   
-  <h2>Animations</h2>
+  <h2 id="animations">Animations</h2>
   <p>enter - happens after the ngSwitch contents change and the matched child element is placed inside the container
 leave - happens just after the ngSwitch contents change and just before the former contents are removed from the DOM</p>
 
@@ -119,16 +120,17 @@ case match.</li>
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example45')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example90')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
-      path="examples/example-example45"
+      path="examples/example-example90"
       module="switchExample"
       deps="angular-animate.js"
       animations="true">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
@@ -158,7 +160,7 @@ case match.</li>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example45/index.html" name="example-example45"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example90/index.html" name="example-example90"></iframe>
   </div>
 </div>
 

@@ -1,13 +1,10 @@
-  it('should calculate expression in binding', function() {
-    if (browser.params.browser == 'safari') {
-      // Safari can't handle dialogs.
-      return;
-    }
-    element(by.css('[ng-click="greet()"]')).click();
-
-    var alertDialog = browser.switchTo().alert();
-
-    expect(alertDialog.getText()).toEqual('Hello World');
-
-    alertDialog.accept();
-  });
+   it('should have transcluded', function() {
+     var titleElement = element(by.model('title'));
+     titleElement.clear();
+     titleElement.sendKeys('TITLE');
+     var textElement = element(by.model('text'));
+     textElement.clear();
+     textElement.sendKeys('TEXT');
+     expect(element(by.binding('title')).getText()).toEqual('TITLE');
+     expect(element(by.binding('text')).getText()).toEqual('TEXT');
+   });

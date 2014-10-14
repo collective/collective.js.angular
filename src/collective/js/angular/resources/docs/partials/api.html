@@ -1,4 +1,4 @@
-<a href='http://github.com/angular/angular.js/edit/master/docs/content/api/index.ngdoc' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/docs/content/api/index.ngdoc?message=docs(API Reference)%3A%20describe%20your%20change...#L1' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 <h1 id="angularjs-api-docs">AngularJS API Docs</h1>
@@ -6,14 +6,14 @@
 <p>The documentation is organized into <strong><a href="guide/module">modules</a></strong> which contain various components of an AngularJS application.
 These components are <a href="guide/directive">directives</a>, <a href="guide/services">services</a>, <a href="guide/filter">filters</a>, <a href="guide/providers">providers</a>, <a href="guide/templates">templates</a>, global APIs, and testing mocks.</p>
 <div class="alert alert-info">
-<strong>Angular Namespaces <code>$</code> and <code>$$</code></strong>
+<strong>Angular Prefixes <code>$</code> and <code>$$</code></strong>:
 
 To prevent accidental name collisions with your code,
 Angular prefixes names of public objects with <code>$</code> and names of private objects with <code>$$</code>.
 Please do not use the <code>$</code> or <code>$$</code> prefix in your code.
 </div>
 
-<h2 id="angular-namespace">Angular Namespace</h2>
+<h2 id="angular-modules">Angular Modules</h2>
 <h2 id="-link-ng-ng-core-module-"><a href="api/ng">ng (core module)</a></h2>
 <p>This module is provided by default and contains the core components of AngularJS.</p>
 <table class="definition-table spaced">
@@ -146,7 +146,7 @@ or JavaScript callbacks.</p>
       <a href="api/ngAnimate">JS-based animations</a>
     </td>
     <td>
-      Use <a href="api/ng/method/animation">module.animation()</a> to register a JavaScript animation. Once registered the animation can be triggered by referencing the CSS class within the HTML template code.
+      Use <a href="api/ng/type/angular.Module#animation">module.animation()</a> to register a JavaScript animation. Once registered the animation can be triggered by referencing the CSS class within the HTML template code.
     </td>
   </tr>
 </table>
@@ -224,7 +224,7 @@ or JavaScript callbacks.</p>
   </tr>
   <tr>
     <td>
-      <a href="api/ngTouch#filter">Filters</a>
+      <a href="api/ngSanitize#filter">Filters</a>
     </td>
     <td>
       The <a href="api/ngSanitize/filter/linky">linky filter</a> is used to turn URLs into HTML links within the provided string.

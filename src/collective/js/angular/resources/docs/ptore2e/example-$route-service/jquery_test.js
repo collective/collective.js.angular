@@ -1,8 +1,8 @@
-describe("module:ngRoute.service:$route", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-$route-service/index-jquery.html");
+    browser.get("examples/example-$route-service/index-jquery.html");
   });
   
   it('should load and compile correct template', function() {

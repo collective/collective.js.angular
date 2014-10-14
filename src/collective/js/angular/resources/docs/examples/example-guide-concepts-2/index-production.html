@@ -5,7 +5,7 @@
   <title>Example - example-guide-concepts-2-production</title>
   
 
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.5/angular.min.js"></script>
   <script src="invoice1.js"></script>
   
 
@@ -15,10 +15,10 @@
       <div ng-app="invoice1" ng-controller="InvoiceController as invoice">
       <b>Invoice:</b>
       <div>
-        Quantity: <input type="number" ng-model="invoice.qty" required >
+        Quantity: <input type="number" min="0" ng-model="invoice.qty" required >
       </div>
       <div>
-        Costs: <input type="number" ng-model="invoice.cost" required >
+        Costs: <input type="number" min="0" ng-model="invoice.cost" required >
         <select ng-model="invoice.inCurr">
           <option ng-repeat="c in invoice.currencies">{{c}}</option>
         </select>

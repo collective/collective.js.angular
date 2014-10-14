@@ -5,14 +5,21 @@
   <title>Example - example-example7-jquery</title>
   
 
-  <script src="../../components/jquery-1.10.2/jquery.js"></script>
+  <script src="../../components/jquery-2.1.1/jquery.js"></script>
   <script src="../../../angular.js"></script>
+  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="">
-    Check me to check both: <input type="checkbox" ng-model="master"><br/>
-  <input id="checkSlave" type="checkbox" ng-checked="master">
+<body ng-app="docsBindExample">
+    <div ng-controller="Controller">
+    Hello <input ng-model='name'> <hr/>
+    <span ng-bind="name"></span> <br/>
+    <span ng:bind="name"></span> <br/>
+    <span ng_bind="name"></span> <br/>
+    <span data-ng-bind="name"></span> <br/>
+    <span x-ng-bind="name"></span> <br/>
+  </div>
 </body>
 </html>

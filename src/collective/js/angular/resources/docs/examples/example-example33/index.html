@@ -6,12 +6,18 @@
   
 
   <script src="../../../angular.min.js"></script>
+  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="">
-   <input ng-copy="copied=true" ng-init="copied=false; value='copy me'" ng-model="value">
- copied: {{copied}}
+<body ng-app="debounceExample">
+    <div ng-controller="ExampleController">
+    <form>
+      Name:
+      <input type="text" ng-model="user.name" ng-model-options="{ debounce: 250 }" /><br />
+    </form>
+    <pre>username = "{{user.name}}"</pre>
+  </div>
 </body>
 </html>

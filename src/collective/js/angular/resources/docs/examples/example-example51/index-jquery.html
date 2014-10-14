@@ -5,23 +5,14 @@
   <title>Example - example-example51-jquery</title>
   
 
-  <script src="../../components/jquery-1.10.2/jquery.js"></script>
+  <script src="../../components/jquery-2.1.1/jquery.js"></script>
   <script src="../../../angular.js"></script>
   
 
   
 </head>
-<body ng-app="currencyExample">
-    <script>
-    angular.module('currencyExample', [])
-      .controller('ExampleController', ['$scope', function($scope) {
-        $scope.amount = 1234.56;
-      }]);
-  </script>
-  <div ng-controller="ExampleController">
-    <input type="number" ng-model="amount"> <br>
-    default currency symbol ($): <span id="currency-default">{{amount | currency}}</span><br>
-    custom currency identifier (USD$): <span>{{amount | currency:"USD$"}}</span>
-  </div>
+<body ng-app="">
+    Click me to toggle: <input type="checkbox" ng-model="checked"><br/>
+  <button ng-model="button" ng-disabled="checked">Button</button>
 </body>
 </html>

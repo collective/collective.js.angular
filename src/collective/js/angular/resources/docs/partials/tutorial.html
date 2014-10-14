@@ -1,4 +1,4 @@
-<a href='http://github.com/angular/angular.js/edit/master/docs/content/tutorial/index.ngdoc' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/docs/content/tutorial/index.ngdoc?message=docs(tutorial%2FTutorial)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 <h1 id="phonecat-tutorial-app">PhoneCat Tutorial App</h1>
@@ -56,14 +56,16 @@ access to the <code>git</code> command line tool.  The main commands that you wi
 <h3 id="download-angular-phonecat">Download angular-phonecat</h3>
 <p>Clone the <a href="https://github.com/angular/angular-phonecat">angular-phonecat repository</a> located at GitHub by running the following
 command:</p>
-<pre><code>git clone --depth=14 https://github.com/angular/angular-phonecat.git</code></pre>
+<pre><code>git clone --depth=14 https://github.com/angular/angular-phonecat.git
+</code></pre>
 <p>This command creates the <code>angular-phonecat</code> directory in your current directory.</p>
 <div class="alert alert-info">The <code>--depth=14</code> option just tells Git to pull down only the last 14 commits.  This makes the
 download much smaller and faster.
 </div>
 
 <p>Change your current directory to <code>angular-phonecat</code>.</p>
-<pre><code>cd angular-phonecat</code></pre>
+<pre><code>cd angular-phonecat
+</code></pre>
 <p>The tutorial instructions, from now on, assume you are running all commands from the
 <code>angular-phonecat</code> directory.</p>
 <h3 id="install-node-js">Install Node.js</h3>
@@ -71,12 +73,14 @@ download much smaller and faster.
 <a href="http://nodejs.org/">Node.js v0.10.27+</a>.</p>
 <p>You can download a Node.js installer for your operating system from <a href="http://nodejs.org/download/">http://nodejs.org/download/</a>.</p>
 <p>Check the version of Node.js that you have installed by running the following command:</p>
-<pre><code>node --version</code></pre>
+<pre><code>node --version
+</code></pre>
 <p>In Debian based distributions, there is a name clash with another utility called <code>node</code>. The
 suggested solution is to also install the <code>nodejs-legacy</code> apt package, which renames <code>node</code> to
 <code>nodejs</code>.</p>
 <pre><code>apt-get install nodejs-legacy
-nodejs --version</code></pre>
+nodejs --version
+</code></pre>
 <div class="alert alert-info">If you need to run a different versions of node.js
   in your local environment, consider installing
   <a href="https://github.com/creationix/nvm" title="Node Version Manager Github Repo link">
@@ -85,7 +89,8 @@ nodejs --version</code></pre>
 </div>
 
 <p>Once you have Node.js installed on your machine you can download the tool dependencies by running:</p>
-<pre><code>npm install</code></pre>
+<pre><code>npm install
+</code></pre>
 <p>This command will download the following tools, into the <code>node_modules</code> directory:</p>
 <ul>
 <li><a href="http://bower.io/">Bower</a> - client-side code package manager</li>
@@ -115,10 +120,12 @@ globally and run directly from a terminal/command prompt. You don&#39;t need to 
 tutorial, but if you decide you do want to run them directly, you can install these modules globally
 using, <code>sudo npm install -g ...</code>.</p>
 <p>For instance to install the Bower command line executable you would do:</p>
-<pre><code>sudo npm install -g bower</code></pre>
+<pre><code>sudo npm install -g bower
+</code></pre>
 <p><em>(Omit the sudo if running on Windows)</em></p>
 <p>Then you can run the bower tool directly, such as:</p>
-<pre><code>bower install</code></pre>
+<pre><code>bower install
+</code></pre>
 <h3 id="running-development-web-server">Running Development Web Server</h3>
 <p>While Angular applications are purely client-side code, and it is possible to open them in a web
 browser directly from the file system, it is better to serve them from a HTTP web server.  In
@@ -126,17 +133,25 @@ particular, for security reasons, most modern browsers will not allow JavaScript
 requests if the page is loaded directly from the file system.</p>
 <p>The angular-phonecat project is configured with a simple static web server for hosting the
 application during development. Start the web server by running:</p>
-<pre><code>npm start</code></pre>
+<pre><code>npm start
+</code></pre>
 <p>This will create a local webserver that is listening to port 8000 on your local machine.
 You can now browse to the application at:</p>
-<pre><code>http://localhost:8000/app/index.html</code></pre>
+<pre><code>http://localhost:8000/app/index.html
+</code></pre>
+<div class="alert alert-info">
+To serve the web app on a different ip address or port, edit the &quot;start&quot; script within package.json.
+You can <code>-a</code> to set the address and <code>-p</code> to set the port.
+</div>
+
 <h3 id="running-unit-tests">Running Unit Tests</h3>
 <p>We use unit tests to ensure that the JavaScript code in our application is operating correctly.
 Unit tests focus on testing small isolated parts of the application. The unit tests are kept in the
 <code>test/unit</code> directory.</p>
 <p>The angular-phonecat project is configured to use <a href="https://github.com/karma-runner/karma">Karma</a> to run the unit tests for the
 application.  Start Karma by running:</p>
-<pre><code>npm test</code></pre>
+<pre><code>npm test
+</code></pre>
 <p>This will start the Karma unit test runner. Karma will read the configuration file at
 <code>test/karma.conf.js</code>.  This configuration file tells Karma to:</p>
 <ul>
@@ -156,13 +171,16 @@ the real application running in the browser.</p>
 <p>The angular-phonecat project is configured to use <a href="https://github.com/angular/protractor">Protractor</a> to run the End to End
 tests for the application.  Protractor relies upon a set of drivers to allow it to interact with
 the browser. You can install these drivers by running:</p>
-<pre><code>npm run update-webdriver</code></pre>
+<pre><code>npm run update-webdriver
+</code></pre>
 <p><em>(You should only need to do this once.)</em></p>
 <p>Since Protractor works by interacting with a running application, we need to start our web server:</p>
-<pre><code>npm start</code></pre>
+<pre><code>npm start
+</code></pre>
 <p>Then in a separate terminal/command line window, we can run the Protractor test scripts against the
 application by running:</p>
-<pre><code>npm run protractor</code></pre>
+<pre><code>npm run protractor
+</code></pre>
 <p>Protractor will read the configuration file at <code>test/protractor-conf.js</code>.  This configuration tells
 Protractor to:</p>
 <ul>

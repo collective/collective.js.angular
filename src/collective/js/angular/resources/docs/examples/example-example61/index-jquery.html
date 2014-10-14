@@ -3,24 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <title>Example - example-example61-jquery</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
   
 
-  <script src="../../components/jquery-1.10.2/jquery.js"></script>
+  <script src="../../components/jquery-2.1.1/jquery.js"></script>
   <script src="../../../angular.js"></script>
-  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="logExample">
-    <div ng-controller="LogController">
-    <p>Reload this page with open console, enter text and hit the log button...</p>
-    Message:
-    <input type="text" ng-model="message"/>
-    <button ng-click="$log.log(message)">log</button>
-    <button ng-click="$log.warn(message)">warn</button>
-    <button ng-click="$log.info(message)">info</button>
-    <button ng-click="$log.error(message)">error</button>
-  </div>
+<body ng-app="">
+    <p ng-class="{strike: deleted, bold: important, red: error}">Map Syntax Example</p>
+  <input type="checkbox" ng-model="deleted"> deleted (apply "strike" class)<br>
+  <input type="checkbox" ng-model="important"> important (apply "bold" class)<br>
+  <input type="checkbox" ng-model="error"> error (apply "red" class)
+  <hr>
+  <p ng-class="style">Using String Syntax</p>
+  <input type="text" ng-model="style" placeholder="Type: bold strike red">
+  <hr>
+  <p ng-class="[style1, style2, style3]">Using Array Syntax</p>
+  <input ng-model="style1" placeholder="Type: bold, strike or red"><br>
+  <input ng-model="style2" placeholder="Type: bold, strike or red"><br>
+  <input ng-model="style3" placeholder="Type: bold, strike or red"><br>
 </body>
 </html>

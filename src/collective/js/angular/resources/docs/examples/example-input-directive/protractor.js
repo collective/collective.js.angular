@@ -1,4 +1,4 @@
-  var user = element(by.binding('{{user}}'));
+  var user = element(by.exactBinding('user'));
   var userNameValid = element(by.binding('myForm.userName.$valid'));
   var lastNameValid = element(by.binding('myForm.lastName.$valid'));
   var lastNameError = element(by.binding('myForm.lastName.$error'));

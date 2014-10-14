@@ -5,19 +5,14 @@
   <title>Example - example-ngList-directive-production</title>
   
 
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.5/angular.min.js"></script>
+  <script src="app.js"></script>
   
 
   
 </head>
 <body ng-app="listExample">
-   <script>
-   angular.module('listExample', [])
-     .controller('ExampleController', ['$scope', function($scope) {
-       $scope.names = ['igor', 'misko', 'vojta'];
-     }]);
- </script>
- <form name="myForm" ng-controller="ExampleController">
+   <form name="myForm" ng-controller="ExampleController">
    List: <input name="namesInput" ng-model="names" ng-list required>
    <span class="error" ng-show="myForm.namesInput.$error.required">
      Required!</span>

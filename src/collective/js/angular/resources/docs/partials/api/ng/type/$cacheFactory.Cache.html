@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ng/cacheFactory.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/cacheFactory.js?message=docs($cacheFactory.Cache)%3A%20describe%20your%20change...#L102' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/cacheFactory.js#L102' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/cacheFactory.js#L102' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -23,29 +23,31 @@
   <p>A cache object used to store and retrieve data, primarily used by
 <a href="api/ng/service/$http">$http</a> and the <a href="api/ng/directive/script">script</a> directive to cache
 templates and other data.</p>
-<pre><code class="lang-js"> angular.module(&#39;superCache&#39;)
-   .factory(&#39;superCache&#39;, [&#39;$cacheFactory&#39;, function($cacheFactory) {
-     return $cacheFactory(&#39;super-cache&#39;);
-   }]);</code></pre>
+<pre><code class="lang-js">angular.module(&#39;superCache&#39;)
+  .factory(&#39;superCache&#39;, [&#39;$cacheFactory&#39;, function($cacheFactory) {
+    return $cacheFactory(&#39;super-cache&#39;);
+  }]);
+</code></pre>
 <p>Example test:</p>
-<pre><code class="lang-js"> it(&#39;should behave like a cache&#39;, inject(function(superCache) {
-   superCache.put(&#39;key&#39;, &#39;value&#39;);
-   superCache.put(&#39;another key&#39;, &#39;another value&#39;);
+<pre><code class="lang-js">it(&#39;should behave like a cache&#39;, inject(function(superCache) {
+  superCache.put(&#39;key&#39;, &#39;value&#39;);
+  superCache.put(&#39;another key&#39;, &#39;another value&#39;);
 
-   expect(superCache.info()).toEqual({
-     id: &#39;super-cache&#39;,
-     size: 2
-   });
+  expect(superCache.info()).toEqual({
+    id: &#39;super-cache&#39;,
+    size: 2
+  });
 
-   superCache.remove(&#39;another key&#39;);
-   expect(superCache.get(&#39;another key&#39;)).toBeUndefined();
+  superCache.remove(&#39;another key&#39;);
+  expect(superCache.get(&#39;another key&#39;)).toBeUndefined();
 
-   superCache.removeAll();
-   expect(superCache.info()).toEqual({
-     id: &#39;super-cache&#39;,
-     size: 0
-   });
- }));</code></pre>
+  superCache.removeAll();
+  expect(superCache.info()).toEqual({
+    id: &#39;super-cache&#39;,
+    size: 0
+  });
+}));
+</code></pre>
 
 </div>
 

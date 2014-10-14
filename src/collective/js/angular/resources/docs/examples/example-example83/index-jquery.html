@@ -5,17 +5,25 @@
   <title>Example - example-example83-jquery</title>
   
 
-  <script src="../../components/jquery-1.10.2/jquery.js"></script>
+  <script src="../../components/jquery-2.1.1/jquery.js"></script>
   <script src="../../../angular.js"></script>
-  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="docsTimeDirective">
-    <div ng-controller="Controller">
-    Date format: <input ng-model="format"> <hr/>
-    Current time is: <span my-current-time="format"></span>
+<body ng-app="initExample">
+  <script>
+  angular.module('initExample', [])
+    .controller('ExampleController', ['$scope', function($scope) {
+      $scope.list = [['a', 'b'], ['c', 'd']];
+    }]);
+</script>
+<div ng-controller="ExampleController">
+  <div ng-repeat="innerList in list" ng-init="outerIndex = $index">
+    <div ng-repeat="value in innerList" ng-init="innerIndex = $index">
+       <span class="example-init">list[ {{outerIndex}} ][ {{innerIndex}} ] = {{value}};</span>
+    </div>
   </div>
+</div>
 </body>
 </html>

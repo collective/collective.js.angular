@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ng/sce.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/sce.js?message=docs($sce)%3A%20describe%20your%20change...#L395' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/sce.js#L395' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/sce.js#L395' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -31,16 +31,17 @@ contexts to result in a value that is marked as safe to use for that context.  O
 such a context is binding arbitrary html controlled by the user via <code>ng-bind-html</code>.  We refer
 to these contexts as privileged or SCE contexts.</p>
 <p>As of version 1.2, Angular ships with SCE enabled by default.</p>
-<p>Note:  When enabled (the default), IE8 in quirks mode is not supported.  In this mode, IE8 allows
+<p>Note:  When enabled (the default), IE<11 in quirks mode is not supported.  In this mode, IE<11 allow
 one to execute arbitrary javascript by the use of the expression() syntax.  Refer
-<a href="http://blogs.msdn.com/b/ie/archive/2008/10/16/ending-expressions.aspx">http://blogs.msdn.com/b/ie/archive/2008/10/16/ending-expressions.aspx</a> to learn more about them.
+<http://blogs.msdn.com/b/ie/archive/2008/10/16/ending-expressions.aspx> to learn more about them.
 You can ensure your document is in standards mode and not quirks mode by adding <code>&lt;!doctype html&gt;</code>
 to the top of your HTML document.</p>
 <p>SCE assists in writing code in way that (a) is secure by default and (b) makes auditing for
 security vulnerabilities such as XSS, clickjacking, etc. a lot easier.</p>
 <p>Here&#39;s an example of a binding in a privileged context:</p>
 <pre><code>&lt;input ng-model=&quot;userHtml&quot;&gt;
-&lt;div ng-bind-html=&quot;userHtml&quot;&gt;&lt;/div&gt;</code></pre>
+&lt;div ng-bind-html=&quot;userHtml&quot;&gt;&lt;/div&gt;
+</code></pre>
 <p>Notice that <code>ng-bind-html</code> is bound to <code>userHtml</code> controlled by the user.  With SCE
 disabled, this application allows the user to render arbitrary HTML into the DIV.
 In a more realistic example, one may be rendering user comments, blog articles, etc. via
@@ -63,17 +64,18 @@ exposed by that code doesn&#39;t markup arbitrary values as safe then becomes a 
 (and shorthand methods such as <a href="api/ng/service/$sce#trustAsHtml">$sce.trustAsHtml</a>, etc.) to
 obtain values that will be accepted by SCE / privileged contexts.</p>
 <h2 id="how-does-it-work-">How does it work?</h2>
-<p>In privileged contexts, directives and code will bind to the result of <a href="api/ng/service/$sce#getTrusted">$sce.getTrusted(context, value)</a> rather than to the value directly.  Directives use <a href="api/ng/service/$sce#parse">$sce.parseAs</a> rather than <code>$parse</code> to watch attribute bindings, which performs the
+<p>In privileged contexts, directives and code will bind to the result of <a href="api/ng/service/$sce#getTrusted">$sce.getTrusted(context, value)</a> rather than to the value directly.  Directives use <a href="api/ng/service/$sce#parseAs">$sce.parseAs</a> rather than <code>$parse</code> to watch attribute bindings, which performs the
 <a href="api/ng/service/$sce#getTrusted">$sce.getTrusted</a> behind the scenes on non-constant literals.</p>
 <p>As an example, <a href="api/ng/directive/ngBindHtml">ngBindHtml</a> uses <a href="api/ng/service/$sce#parseAsHtml">$sce.parseAsHtml(binding expression)</a>.  Here&#39;s the actual code (slightly
 simplified):</p>
 <pre><code>var ngBindHtmlDirective = [&#39;$sce&#39;, function($sce) {
-  return function(scope, element, attr) {
-    scope.$watch($sce.parseAsHtml(attr.ngBindHtml), function(value) {
-      element.html(value || &#39;&#39;);
-    });
-  };
-}];</code></pre>
+return function(scope, element, attr) {
+  scope.$watch($sce.parseAsHtml(attr.ngBindHtml), function(value) {
+    element.html(value || &#39;&#39;);
+  });
+};
+}];
+</code></pre>
 <h2 id="impact-on-loading-templates">Impact on loading templates</h2>
 <p>This applies both to the <a href="api/ng/directive/ngInclude"><code>ng-include</code></a> directive as well as
 <code>templateUrl</code>&#39;s specified by <a href="guide/directive">directives</a>.</p>
@@ -89,7 +91,7 @@ policy apply in addition to this and may further restrict whether the template i
 loaded.  This means that without the right CORS policy, loading templates from a different domain
 won&#39;t work on all browsers.  Also, loading templates from <code>file://</code> URL does not work on some
 browsers.</p>
-<h2 id="this-feels-like-too-much-overhead-for-the-developer-">This feels like too much overhead for the developer?</h2>
+<h2 id="this-feels-like-too-much-overhead">This feels like too much overhead</h2>
 <p>It&#39;s important to remember that SCE only applies to interpolation expressions.</p>
 <p>If your expressions are constant literals, they&#39;re automatically trusted and you don&#39;t need to
 call <code>$sce.trustAs</code> on them (remember to include the <code>ngSanitize</code> module) (e.g.
@@ -189,27 +191,28 @@ Closure library&#39;s <a href="http://docs.closure-library.googlecode.com/git/cl
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example62')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example108')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
-      path="examples/example-example62"
+      path="examples/example-example108"
       module="mySceApp"
       deps="angular-sanitize.js">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;div ng-controller=&quot;myAppController as myCtrl&quot;&gt;&#10;&lt;i ng-bind-html=&quot;myCtrl.explicitlyTrustedHtml&quot; id=&quot;explicitlyTrustedHtml&quot;&gt;&lt;/i&gt;&lt;br&gt;&lt;br&gt;&#10;&lt;b&gt;User comments&lt;/b&gt;&lt;br&gt;&#10;By default, HTML that isn&#39;t explicitly trusted (e.g. Alice&#39;s comment) is sanitized when&#10;$sanitize is available.  If $sanitize isn&#39;t available, this results in an error instead of an&#10;exploit.&#10;&lt;div class=&quot;well&quot;&gt;&#10;  &lt;div ng-repeat=&quot;userComment in myCtrl.userComments&quot;&gt;&#10;    &lt;b&gt;{{userComment.name}}&lt;/b&gt;:&#10;    &lt;span ng-bind-html=&quot;userComment.htmlComment&quot; class=&quot;htmlComment&quot;&gt;&lt;/span&gt;&#10;    &lt;br&gt;&#10;  &lt;/div&gt;&#10;&lt;/div&gt;&#10;&lt;/div&gt;</code></pre>
+      <pre><code>&lt;div ng-controller=&quot;AppController as myCtrl&quot;&gt;&#10;&lt;i ng-bind-html=&quot;myCtrl.explicitlyTrustedHtml&quot; id=&quot;explicitlyTrustedHtml&quot;&gt;&lt;/i&gt;&lt;br&gt;&lt;br&gt;&#10;&lt;b&gt;User comments&lt;/b&gt;&lt;br&gt;&#10;By default, HTML that isn&#39;t explicitly trusted (e.g. Alice&#39;s comment) is sanitized when&#10;$sanitize is available.  If $sanitize isn&#39;t available, this results in an error instead of an&#10;exploit.&#10;&lt;div class=&quot;well&quot;&gt;&#10;  &lt;div ng-repeat=&quot;userComment in myCtrl.userComments&quot;&gt;&#10;    &lt;b&gt;{{userComment.name}}&lt;/b&gt;:&#10;    &lt;span ng-bind-html=&quot;userComment.htmlComment&quot; class=&quot;htmlComment&quot;&gt;&lt;/span&gt;&#10;    &lt;br&gt;&#10;  &lt;/div&gt;&#10;&lt;/div&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="script.js"
       language="js"
       type="js">
-      <pre><code>var mySceApp = angular.module(&#39;mySceApp&#39;, [&#39;ngSanitize&#39;]);&#10;&#10;mySceApp.controller(&quot;myAppController&quot;, function myAppController($http, $templateCache, $sce) {&#10;  var self = this;&#10;  $http.get(&quot;test_data.json&quot;, {cache: $templateCache}).success(function(userComments) {&#10;    self.userComments = userComments;&#10;  });&#10;  self.explicitlyTrustedHtml = $sce.trustAsHtml(&#10;      &#39;&lt;span onmouseover=&quot;this.textContent=&amp;quot;Explicitly trusted HTML bypasses &#39; +&#10;      &#39;sanitization.&amp;quot;&quot;&gt;Hover over this text.&lt;/span&gt;&#39;);&#10;});</code></pre>
+      <pre><code>angular.module(&#39;mySceApp&#39;, [&#39;ngSanitize&#39;])&#10;.controller(&#39;AppController&#39;, [&#39;$http&#39;, &#39;$templateCache&#39;, &#39;$sce&#39;,&#10;  function($http, $templateCache, $sce) {&#10;    var self = this;&#10;    $http.get(&quot;test_data.json&quot;, {cache: $templateCache}).success(function(userComments) {&#10;      self.userComments = userComments;&#10;    });&#10;    self.explicitlyTrustedHtml = $sce.trustAsHtml(&#10;        &#39;&lt;span onmouseover=&quot;this.textContent=&amp;quot;Explicitly trusted HTML bypasses &#39; +&#10;        &#39;sanitization.&amp;quot;&quot;&gt;Hover over this text.&lt;/span&gt;&#39;);&#10;  }]);</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -227,7 +230,7 @@ Closure library&#39;s <a href="http://docs.closure-library.googlecode.com/git/cl
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example62/index.html" name="example-example62"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example108/index.html" name="example-example108"></iframe>
   </div>
 </div>
 
@@ -241,10 +244,11 @@ for cases where you have a lot of existing code that was written before SCE was 
 you&#39;re migrating them a module at a time.</p>
 <p>That said, here&#39;s how you can completely disable SCE:</p>
 <pre><code>angular.module(&#39;myAppWithSceDisabledmyApp&#39;, []).config(function($sceProvider) {
-  // Completely disable SCE.  For demonstration purposes only!
-  // Do not use in new projects.
-  $sceProvider.enabled(false);
-});</code></pre>
+// Completely disable SCE.  For demonstration purposes only!
+// Do not use in new projects.
+$sceProvider.enabled(false);
+});
+</code></pre>
 
 </div>
 
@@ -1058,7 +1062,7 @@ If this condition isn&#39;t satisfied, throws an exception.</p>
 
 </h3>
     <div><p>Shorthand method.  <code>$sce.parseAsHtml(expression string)</code> →
-    <a href="api/ng/service/$sce#parse"><code>$sce.parseAs($sce.HTML, value)</code></a></p>
+    <a href="api/ng/service/$sce#parseAs"><code>$sce.parseAs($sce.HTML, value)</code></a></p>
 </div>
 
     
@@ -1121,7 +1125,7 @@ are evaluated against (typically a scope object).</li>
 
 </h3>
     <div><p>Shorthand method.  <code>$sce.parseAsCss(value)</code> →
-    <a href="api/ng/service/$sce#parse"><code>$sce.parseAs($sce.CSS, value)</code></a></p>
+    <a href="api/ng/service/$sce#parseAs"><code>$sce.parseAs($sce.CSS, value)</code></a></p>
 </div>
 
     
@@ -1184,7 +1188,7 @@ are evaluated against (typically a scope object).</li>
 
 </h3>
     <div><p>Shorthand method.  <code>$sce.parseAsUrl(value)</code> →
-    <a href="api/ng/service/$sce#parse"><code>$sce.parseAs($sce.URL, value)</code></a></p>
+    <a href="api/ng/service/$sce#parseAs"><code>$sce.parseAs($sce.URL, value)</code></a></p>
 </div>
 
     
@@ -1247,7 +1251,7 @@ are evaluated against (typically a scope object).</li>
 
 </h3>
     <div><p>Shorthand method.  <code>$sce.parseAsResourceUrl(value)</code> →
-    <a href="api/ng/service/$sce#parse"><code>$sce.parseAs($sce.RESOURCE_URL, value)</code></a></p>
+    <a href="api/ng/service/$sce#parseAs"><code>$sce.parseAs($sce.RESOURCE_URL, value)</code></a></p>
 </div>
 
     
@@ -1310,7 +1314,7 @@ are evaluated against (typically a scope object).</li>
 
 </h3>
     <div><p>Shorthand method.  <code>$sce.parseAsJs(value)</code> →
-    <a href="api/ng/service/$sce#parse"><code>$sce.parseAs($sce.JS, value)</code></a></p>
+    <a href="api/ng/service/$sce#parseAs"><code>$sce.parseAs($sce.JS, value)</code></a></p>
 </div>
 
     

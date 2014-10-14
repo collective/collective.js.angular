@@ -6,14 +6,14 @@
   
 
   <script src="../../../angular.js"></script>
-  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="locationExample">
-  <div ng-controller="LocationController">
-  <input type="text" ng-model="locationPath" />
-</div>
+<body ng-app="">
+   <button ng-mouseup="count = count + 1" ng-init="count=0">
+   Increment (on mouse up)
+ </button>
+ count: {{count}}
 </body>
 </html>

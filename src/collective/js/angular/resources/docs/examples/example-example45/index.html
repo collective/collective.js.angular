@@ -3,28 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <title>Example - example-example45</title>
-  <link href="animations.css" rel="stylesheet" type="text/css">
+  <link href="style.css" rel="stylesheet" type="text/css">
   
 
   <script src="../../../angular.min.js"></script>
-  <script src="../../../angular-animate.js"></script>
   <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="switchExample">
-    <div ng-controller="ExampleController">
-    <select ng-model="selection" ng-options="item for item in items">
-    </select>
-    <tt>selection={{selection}}</tt>
-    <hr/>
-    <div class="animate-switch-container"
-      ng-switch on="selection">
-        <div class="animate-switch" ng-switch-when="settings">Settings Div</div>
-        <div class="animate-switch" ng-switch-when="home">Home Span</div>
-        <div class="animate-switch" ng-switch-default>default</div>
+<body >
+  <div ng-app="ngAppStrictDemo" ng-strict-di>
+    <div ng-controller="GoodController1">
+        I can add: {{a}} + {{b}} =  {{ a+b }}
+
+        <p>This renders because the controller does not fail to
+           instantiate, by using explicit annotation style (see
+           script.js for details)
+        </p>
     </div>
-  </div>
+
+    <div ng-controller="GoodController2">
+        Name: <input ng-model="name"><br />
+        Hello, {{name}}!
+
+        <p>This renders because the controller does not fail to
+           instantiate, by using explicit annotation style
+           (see script.js for details)
+        </p>
+    </div>
+
+    <div ng-controller="BadController">
+        I can add: {{a}} + {{b}} =  {{ a+b }}
+
+        <p>The controller could not be instantiated, due to relying
+           on automatic function annotations (which are disabled in
+           strict mode). As such, the content of this section is not
+           interpolated, and there should be an error in your web console.
+        </p>
+    </div>
+</div>
 </body>
 </html>

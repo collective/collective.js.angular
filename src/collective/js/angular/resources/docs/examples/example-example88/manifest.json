@@ -2,8 +2,8 @@
   "name": "example-example88",
   "files": [
     "index-production.html",
-    "script.js",
-    "my-tabs.html",
-    "my-pane.html"
+    "glyphicons.css",
+    "animations.css",
+    "protractor.js"
   ]
 }

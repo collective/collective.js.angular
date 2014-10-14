@@ -1,3 +1,5 @@
-  it('should jsonify filtered objects', function() {
-    expect(element(by.binding("{'name':'value'}")).getText()).toMatch(/\{\n  "name": ?"value"\n}/);
+  it('should select Greetings!', function() {
+    expect(element(by.id('greet')).getAttribute('selected')).toBeFalsy();
+    element(by.model('selected')).click();
+    expect(element(by.id('greet')).getAttribute('selected')).toBeTruthy();
   });

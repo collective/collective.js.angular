@@ -11,12 +11,10 @@
 
   
 </head>
-<body ng-app="myReverseModule">
-    <div ng-controller="Controller">
-    <input ng-model="greeting" type="text"><br>
-    No filter: {{greeting}}<br>
-    Reverse: {{greeting|reverse}}<br>
-    Reverse + uppercase: {{greeting|reverse:true}}<br>
+<body ng-app="documentExample">
+    <div ng-controller="ExampleController">
+    <p>$document title: <b ng-bind="title"></b></p>
+    <p>window.document title: <b ng-bind="windowTitle"></b></p>
   </div>
 </body>
 </html>

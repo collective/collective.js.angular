@@ -1,4 +1,4 @@
-<a href='http://github.com/angular/angular.js/edit/master/docs/content/guide/services.ngdoc' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/docs/content/guide/services.ngdoc?message=docs(guide%2FServices)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 <h1 id="services">Services</h1>
@@ -26,14 +26,15 @@ subsystem takes care of the rest.</p>
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example105')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example41')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
-      path="examples/example-example105"
+      path="examples/example-example41"
       module="myServiceModule">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
@@ -56,7 +57,7 @@ subsystem takes care of the rest.</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example105/index.html" name="example-example105"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example41/index.html" name="example-example41"></iframe>
   </div>
 </div>
 
@@ -72,12 +73,14 @@ subsystem takes care of the rest.</p>
 annotation</a> methods:</p>
 <ol>
 <li><p>Inline array injection annotation (preferred):</p>
-<pre><code class="lang-js">myModule.controller(&#39;MyController&#39;, [&#39;$location&#39;, function($location) { ... }]);</code></pre>
+<pre><code class="lang-js">myModule.controller(&#39;MyController&#39;, [&#39;$location&#39;, function($location) { ... }]);
+</code></pre>
 </li>
 <li><p><code>$inject</code> property:</p>
 <pre><code class="lang-js">var MyController = function($location) { ... };
 MyController.$inject = [&#39;$location&#39;];
-myModule.controller(&#39;MyController&#39;, MyController);</code></pre>
+myModule.controller(&#39;MyController&#39;, MyController);
+</code></pre>
 </li>
 </ol>
 <div class="alert alert-success">
@@ -91,14 +94,15 @@ injection of <code>$window</code>, <code>$scope</code>, and our <code>notify</co
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example106')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example42')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
-      path="examples/example-example106"
+      path="examples/example-example42"
       module="myServiceModuleDI">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
@@ -114,7 +118,7 @@ injection of <code>$window</code>, <code>$scope</code>, and our <code>notify</co
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example106/index.html" name="example-example106"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example42/index.html" name="example-example42"></iframe>
   </div>
 </div>
 
@@ -126,8 +130,8 @@ code, your variable names will get renamed unless you use one of the annotation 
 </div>
 
 <div class="alert alert-info">
-  If you use a tool like <a href="https://github.com/btford/ngmin#ngmin">ngmin</a> in your workflow you can
-  use implicit dependency notation within your codebase and let <strong>ngmin</strong> automatically convert such
+  If you use a tool like <a href="https://github.com/olov/ng-annotate">ng-annotate</a> in your workflow you can
+  use implicit dependency notation within your codebase and let <strong>ng-annotate</strong> automatically convert such
   injectable functions to the array notation prior to minifying.
 </div>
 
@@ -147,7 +151,8 @@ myModule.factory(&#39;serviceId&#39;, function() {
   var shinyNewServiceInstance;
   //factory function body that constructs shinyNewServiceInstance
   return shinyNewServiceInstance;
-});</code></pre>
+});
+</code></pre>
 <p>Note that you are not registering a <strong>service instance</strong>, but rather a <strong>factory function</strong> that
 will create this instance when called.</p>
 <h3 id="dependencies">Dependencies</h3>
@@ -189,7 +194,8 @@ batchModule.factory(&#39;routeTemplateMonitor&#39;, [&#39;$route&#39;, &#39;batc
     $rootScope.$on(&#39;$routeChangeSuccess&#39;, function() {
       batchLog($route.current ? $route.current.template : null);
     });
-  }]);</code></pre>
+  }]);
+</code></pre>
 <p>In the example, note that:</p>
 <ul>
 <li>The <code>batchLog</code> service depends on the built-in <a href="api/ng/service/$interval"><code>$interval</code></a> and
@@ -204,12 +210,13 @@ names in the factory function.</li>
 <p>You can also register services via the <a href="api/auto/service/$provide"><code>$provide</code></a> service inside of a
 module&#39;s <code>config</code> function:</p>
 <pre><code class="lang-javascript">angular.module(&#39;myModule&#39;, []).config(function($provide) {
-  $provide.factory(&#39;serviceId&#39;, function() {
-    var shinyNewServiceInstance;
-    //factory function body that constructs shinyNewServiceInstance
-    return shinyNewServiceInstance;
-  });
-});</code></pre>
+$provide.factory(&#39;serviceId&#39;, function() {
+  var shinyNewServiceInstance;
+  //factory function body that constructs shinyNewServiceInstance
+  return shinyNewServiceInstance;
+});
+});
+</code></pre>
 <p>This technique is often used in unit tests to mock out a service&#39;s dependencies.</p>
 <h2 id="unit-testing">Unit Testing</h2>
 <p>The following is a unit test for the <code>notify</code> service from the <a href="guide/services#creating-services">Creating Angular Services</a> example above. The unit test example uses a Jasmine spy (mock) instead
@@ -253,7 +260,8 @@ it(&#39;should clear messages after alert&#39;, function() {
 
   expect(mock.alert.callCount).toEqual(2);
   expect(mock.alert.mostRecentCall.args).toEqual([&quot;more\ntwo\nthird&quot;]);
-});</code></pre>
+});
+</code></pre>
 <h2 id="related-topics">Related Topics</h2>
 <ul>
 <li><a href="guide/di">Dependency Injection in AngularJS</a></li>

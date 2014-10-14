@@ -6,18 +6,13 @@
   
 
   <script src="../../../angular.js"></script>
+  <script src="app.js"></script>
   
 
   
 </head>
 <body ng-app="listExample">
-   <script>
-   angular.module('listExample', [])
-     .controller('ExampleController', ['$scope', function($scope) {
-       $scope.names = ['igor', 'misko', 'vojta'];
-     }]);
- </script>
- <form name="myForm" ng-controller="ExampleController">
+   <form name="myForm" ng-controller="ExampleController">
    List: <input name="namesInput" ng-model="names" ng-list required>
    <span class="error" ng-show="myForm.namesInput.$error.required">
      Required!</span>

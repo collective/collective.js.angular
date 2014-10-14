@@ -1,8 +1,8 @@
-describe("module:ng.input:input[checkbox]", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-checkbox-input-directive/index-jquery.html");
+    browser.get("examples/example-checkbox-input-directive/index-jquery.html");
   });
   
   it('should change state', function() {

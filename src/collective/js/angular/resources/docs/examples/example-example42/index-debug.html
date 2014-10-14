@@ -3,29 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <title>Example - example-example42-debug</title>
-  <link href="glyphicons.css" rel="stylesheet" type="text/css">
-  <link href="animations.css" rel="stylesheet" type="text/css">
   
 
   <script src="../../../angular.js"></script>
-  <script src="../../../angular-animate.js"></script>
+  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="ngAnimate">
-    Click me: <input type="checkbox" ng-model="checked"><br/>
-  <div>
-    Show:
-    <div class="check-element animate-show" ng-show="checked">
-      <span class="glyphicon glyphicon-thumbs-up"></span> I show up when your checkbox is checked.
-    </div>
-  </div>
-  <div>
-    Hide:
-    <div class="check-element animate-show" ng-hide="checked">
-      <span class="glyphicon glyphicon-thumbs-down"></span> I hide when your checkbox is checked.
-    </div>
+<body ng-app="myServiceModuleDI">
+    <div id="implicit" ng-controller="MyController">
+    <p>Let's try the notify service, that is implicitly injected into the controller...</p>
+    <input ng-init="message='test'" ng-model="message">
+    <button ng-click="callNotify(message);">NOTIFY</button>
+    <p>(you have to click 3 times to see an alert)</p>
   </div>
 </body>
 </html>

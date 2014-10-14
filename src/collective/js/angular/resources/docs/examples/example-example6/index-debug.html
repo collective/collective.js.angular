@@ -3,15 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <title>Example - example-example6-debug</title>
+  <link href="app.css" rel="stylesheet" type="text/css">
   
 
   <script src="../../../angular.js"></script>
+  <script src="app.js"></script>
   
 
   
 </head>
-<body ng-app="">
-    Click me to toggle: <input type="checkbox" ng-model="checked"><br/>
-  <button ng-model="button" ng-disabled="checked">Button</button>
+<body ng-app="scopeInheritance">
+    <div class="spicy">
+    <div ng-controller="MainController">
+      <p>Good {{timeOfDay}}, {{name}}!</p>
+
+      <div ng-controller="ChildController">
+        <p>Good {{timeOfDay}}, {{name}}!</p>
+
+        <div ng-controller="GrandChildController">
+          <p>Good {{timeOfDay}}, {{name}}!</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

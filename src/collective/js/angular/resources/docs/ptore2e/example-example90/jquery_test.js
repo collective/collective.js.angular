@@ -1,14 +1,22 @@
-describe("expression", function() {
+describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("./examples/example-example90/index-jquery.html");
+    browser.get("examples/example-example90/index-jquery.html");
   });
   
-  it('should allow user expression testing', function() {
-    element(by.css('.expressions button')).click();
-    var lis = element(by.css('.expressions ul')).all(by.repeater('expr in exprs'));
-    expect(lis.count()).toBe(1);
-    expect(lis.get(0).getText()).toEqual('[ X ] 3*10|currency => $30.00');
+  var switchElem = element(by.css('[ng-switch]'));
+  var select = element(by.model('selection'));
+
+  it('should start in settings', function() {
+    expect(switchElem.getText()).toMatch(/Settings Div/);
+  });
+  it('should change to home', function() {
+    select.all(by.css('option')).get(1).click();
+    expect(switchElem.getText()).toMatch(/Home Span/);
+  });
+  it('should select default', function() {
+    select.all(by.css('option')).get(2).click();
+    expect(switchElem.getText()).toMatch(/default/);
   });
 });

@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ngRoute/route.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ngRoute/route.js?message=docs($route)%3A%20describe%20your%20change...#L236' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ngRoute/route.js#L233' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ngRoute/route.js#L236' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -69,6 +69,57 @@ creates new scope, reinstantiates the controller.</p>
     
 
   </li>
+  
+  <li id="updateParams">
+    <h3><p><code>updateParams(newParams);</code></p>
+
+</h3>
+    <div><p>Causes <code>$route</code> service to update the current URL, replacing
+current route parameters with those specified in <code>newParams</code>.
+Provided property names that match the route&#39;s path segment
+definitions will be interpolated into the location&#39;s path, while
+remaining properties will be treated as query params.</p>
+</div>
+
+    
+    <h4>Parameters</h4>
+    
+<table class="variables-matrix input-arguments">
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        newParams
+        
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-object">Object</a>
+      </td>
+      <td>
+        <p>mapping of URL parameter names to values</p>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+    
+
+    
+    
+    
+
+  </li>
   </ul>
   
 <h2>Events</h2>
@@ -80,6 +131,9 @@ resolving all of the dependencies needed for the route change to occur.
 Typically this involves fetching the view template as well as any dependencies
 defined in <code>resolve</code> route property. Once  all of the dependencies are resolved
 <code>$routeChangeSuccess</code> is fired.</p>
+<p>The route change (and the <code>$location</code> change that triggered it) can be prevented
+by calling <code>preventDefault</code> method of the event. See <a href="api/ng/type/$rootScope.Scope#$on"><code>$rootScope.Scope</code></a>
+for more details about event object.</p>
 </div>
     <div class="inline">
       <h4>Type:</h4>
@@ -180,14 +234,13 @@ the resolved values of the <code>resolve</code> map. Additionally the <code>loca
   
   <h2 id="example">Example</h2><p>This example shows how changing the URL hash causes the <code>$route</code> to match a route against the
 URL, and the <code>ngView</code> pulls in the partial.</p>
-<p>Note that this example is using <a href="api/ng/directive/script">inlined templates</a>
-to get it working on jsfiddle as well.</p>
 <p>
 
 <div>
   <a ng-click="openPlunkr('examples/example-$route-service')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
       path="examples/example-$route-service"
       name="$route-service"
@@ -195,7 +248,7 @@ to get it working on jsfiddle as well.</p>
       deps="angular-route.js"
       fixBase="true">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"

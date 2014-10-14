@@ -6,12 +6,14 @@
   
 
   <script src="../../../angular.js"></script>
+  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="">
-    Check me to make text readonly: <input type="checkbox" ng-model="checked"><br/>
-  <input type="text" ng-readonly="checked" value="I'm Angular"/>
+<body ng-app="docsSimpleDirective">
+    <div ng-controller="Controller">
+    <div my-customer></div>
+  </div>
 </body>
 </html>

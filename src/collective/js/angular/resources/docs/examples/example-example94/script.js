@@ -1,18 +1,5 @@
-  angular.module('myReverseModule', [])
-    .filter('reverse', function() {
-      return function(input, uppercase) {
-        input = input || '';
-        var out = "";
-        for (var i = 0; i < input.length; i++) {
-          out = input.charAt(i) + out;
-        }
-        // conditional based on optional argument
-        if (uppercase) {
-          out = out.toUpperCase();
-        }
-        return out;
-      };
-    })
-    .controller('Controller', ['$scope', function($scope) {
-      $scope.greeting = 'hello';
+  angular.module('documentExample', [])
+    .controller('ExampleController', ['$scope', '$document', function($scope, $document) {
+      $scope.title = $document[0].title;
+      $scope.windowTitle = angular.element(window.document)[0].title;
     }]);

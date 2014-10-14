@@ -1,8 +1,8 @@
-<a href='http://github.com/angular/angular.js/edit/master/src/ng/directive/ngBind.js' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/ngBind.js?message=docs(ngBindHtml)%3A%20describe%20your%20change...#L139' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='http://github.com/angular/angular.js/tree/master/src/ng/directive/ngBind.js#L133' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/directive/ngBind.js#L139' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -23,9 +23,11 @@
   <p>Creates a binding that will innerHTML the result of evaluating the <code>expression</code> into the current
 element in a secure way.  By default, the innerHTML-ed content will be sanitized using the <a href="api/ngSanitize/service/$sanitize">$sanitize</a> service.  To utilize this functionality, ensure that <code>$sanitize</code>
 is available, for example, by including <a href="api/ngSanitize"><code>ngSanitize</code></a> in your module&#39;s dependencies (not in
-core Angular.)  You may also bypass sanitization for values you know are safe. To do so, bind to
+core Angular). In order to use <a href="api/ngSanitize"><code>ngSanitize</code></a> in your module&#39;s dependencies, you need to
+include &quot;angular-sanitize.js&quot; in your application.</p>
+<p>You may also bypass sanitization for values you know are safe. To do so, bind to
 an explicitly trusted value via <a href="api/ng/service/$sce#trustAsHtml">$sce.trustAsHtml</a>.  See the example
-under <a href="api/ng/service/$sce#Example">Strict Contextual Escaping (SCE)</a>.</p>
+under <a href="api/ng/service/$sce#show-me-an-example-using-sce-">Strict Contextual Escaping (SCE)</a>.</p>
 <p>Note: If a <code>$sanitize</code> service is unavailable and the bound value isn&#39;t explicitly trusted, you
 will have an exception (instead of an exploit.)</p>
 
@@ -95,15 +97,16 @@ will have an exception (instead of an exploit.)</p>
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example15')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example60')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
+
   <div class="runnable-example"
-      path="examples/example-example15"
+      path="examples/example-example60"
       module="bindHtmlExample"
       deps="angular-sanitize.js">
 
-   
+  
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
@@ -126,7 +129,7 @@ will have an exception (instead of an exploit.)</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example15/index.html" name="example-example15"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example60/index.html" name="example-example60"></iframe>
   </div>
 </div>
 

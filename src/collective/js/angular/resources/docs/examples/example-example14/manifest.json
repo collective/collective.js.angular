@@ -2,6 +2,7 @@
   "name": "example-example14",
   "files": [
     "index-production.html",
-    "protractor.js"
+    "script.js",
+    "my-customer-plus-vojta.html"
   ]
 }
