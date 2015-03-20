@@ -73,28 +73,28 @@ end-to-end test, to verify that the feature works.</p>
 <p><strong><code>test/e2e/scenarios.js</code>:</strong></p>
 <pre><code class="lang-js">describe(&#39;PhoneCat App&#39;, function() {
 
-describe(&#39;Phone list view&#39;, function() {
+  describe(&#39;Phone list view&#39;, function() {
 
-  beforeEach(function() {
-    browser.get(&#39;app/index.html&#39;);
+    beforeEach(function() {
+      browser.get(&#39;app/index.html&#39;);
+    });
+
+
+    it(&#39;should filter the phone list as a user types into the search box&#39;, function() {
+
+      var phoneList = element.all(by.repeater(&#39;phone in phones&#39;));
+      var query = element(by.model(&#39;query&#39;));
+
+      expect(phoneList.count()).toBe(3);
+
+      query.sendKeys(&#39;nexus&#39;);
+      expect(phoneList.count()).toBe(1);
+
+      query.clear();
+      query.sendKeys(&#39;motorola&#39;);
+      expect(phoneList.count()).toBe(2);
+    });
   });
-
-
-  it(&#39;should filter the phone list as a user types into the search box&#39;, function() {
-
-    var phoneList = element.all(by.repeater(&#39;phone in phones&#39;));
-    var query = element(by.model(&#39;query&#39;));
-
-    expect(phoneList.count()).toBe(3);
-
-    query.sendKeys(&#39;nexus&#39;);
-    expect(phoneList.count()).toBe(1);
-
-    query.clear();
-    query.sendKeys(&#39;motorola&#39;);
-    expect(phoneList.count()).toBe(2);
-  });
-});
 });
 </code></pre>
 <p>This test verifies that the search box and the repeater are correctly wired together. Notice how
@@ -103,7 +103,7 @@ really is that easy to set up any functional, readable, end-to-end test.</p>
 <h3 id="running-end-to-end-tests-with-protractor">Running End to End Tests with Protractor</h3>
 <p>Even though the syntax of this test looks very much like our controller unit test written with
 Jasmine, the end-to-end test uses APIs of <a href="https://github.com/angular/protractor">Protractor</a>. Read
-about the Protractor APIs at <a href="https://github.com/angular/protractor/blob/master/docs/api.md">https://github.com/angular/protractor/blob/master/docs/api.md</a>.</p>
+about the Protractor APIs at <a href="http://angular.github.io/protractor/#/api">http://angular.github.io/protractor/#/api</a>.</p>
 <p>Much like Karma is the test runner for unit tests, we use Protractor to run end-to-end tests.
 Try it with <code>npm run protractor</code>. End-to-end tests are slow, so unlike with unit tests, Protractor
 will exit after the test run and will not automatically rerun the test suite on every file change.

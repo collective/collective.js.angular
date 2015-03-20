@@ -2,12 +2,12 @@ describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("examples/example-example54/index-jquery.html");
+    browser.get("build/docs/examples/example-example54/index-jquery.html");
   });
   
-  it('should select Greetings!', function() {
-    expect(element(by.id('greet')).getAttribute('selected')).toBeFalsy();
-    element(by.model('selected')).click();
-    expect(element(by.id('greet')).getAttribute('selected')).toBeTruthy();
-  });
+it('should check both checkBoxes', function() {
+  expect(element(by.id('checkSlave')).getAttribute('checked')).toBeFalsy();
+  element(by.model('master')).click();
+  expect(element(by.id('checkSlave')).getAttribute('checked')).toBeTruthy();
+});
 });

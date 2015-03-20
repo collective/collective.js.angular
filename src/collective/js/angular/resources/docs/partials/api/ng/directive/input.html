@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/input.js?message=docs(input)%3A%20describe%20your%20change...#L1348' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/input.js?message=docs(input)%3A%20describe%20your%20change...#L1408' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/directive/input.js#L1348' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ng/directive/input.js#L1408' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -20,10 +20,13 @@
 
 
 <div class="api-profile-description">
-  <p>HTML input element control with angular data-binding. Input control follows HTML5 input types
-and polyfills the HTML5 validation behavior for older browsers.</p>
-<p><em>NOTE</em> Not every feature offered is available for all input types.</p>
-
+  <p>HTML input element control. When used together with <a href="api/ng/directive/ngModel"><code>ngModel</code></a>, it provides data-binding,
+input state control, and validation.
+Input control follows HTML5 input types and polyfills the HTML5 validation behavior for older browsers.</p>
+<div class="alert alert-warning">
+<strong>Note:</strong> Not every feature offered is available for all input types.
+Specifically, data binding and event handling via <code>ng-model</code> is unsupported for <code>input[file]</code>.
+</div>
 </div>
 
 
@@ -157,7 +160,8 @@ and polyfills the HTML5 validation behavior for older browsers.</p>
       </td>
       <td>
         <p>Sets <code>maxlength</code> validation error key if the value is longer than
-   maxlength.</p>
+   maxlength. Setting the attribute to a negative or non-numeric value, allows view values of any
+   length.</p>
 
         
       </td>
@@ -227,7 +231,7 @@ and polyfills the HTML5 validation behavior for older browsers.</p>
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-input-directive')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-input-directive', $event)" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 

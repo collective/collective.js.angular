@@ -2,16 +2,17 @@ describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("examples/example-example93/index.html");
+    browser.get("build/docs/examples/example-example93/index.html");
   });
   
-   it('should check ng-options', function() {
-     expect(element(by.binding('{selected_color:myColor}')).getText()).toMatch('red');
-     element.all(by.model('myColor')).first().click();
-     element.all(by.css('select[ng-model="myColor"] option')).first().click();
-     expect(element(by.binding('{selected_color:myColor}')).getText()).toMatch('black');
-     element(by.css('.nullable select[ng-model="myColor"]')).click();
-     element.all(by.css('.nullable select[ng-model="myColor"] option')).first().click();
-     expect(element(by.binding('{selected_color:myColor}')).getText()).toMatch('null');
-   });
+it('should have transcluded', function() {
+  var titleElement = element(by.model('title'));
+  titleElement.clear();
+  titleElement.sendKeys('TITLE');
+  var textElement = element(by.model('text'));
+  textElement.clear();
+  textElement.sendKeys('TEXT');
+  expect(element(by.binding('title')).getText()).toEqual('TITLE');
+  expect(element(by.binding('text')).getText()).toEqual('TEXT');
+});
 });

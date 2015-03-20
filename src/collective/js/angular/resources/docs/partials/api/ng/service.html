@@ -138,16 +138,17 @@ into the browser&#39;s console (if present).</p>
       
       <tr>
         <td><a href="api/ng/service/$q">$q</a></td>
-        <td><p>A promise/deferred implementation inspired by <a href="https://github.com/kriskowal/q">Kris Kowal&#39;s Q</a>.</p>
+        <td><p>A service that helps you run functions asynchronously, and use their return values (or exceptions)
+when they are done processing.</p>
 </td>
       </tr>
       
       <tr>
         <td><a href="api/ng/service/$rootElement">$rootElement</a></td>
         <td><p>The root element of Angular application. This is either the element where <a href="api/ng/directive/ngApp">ngApp</a> was declared or the element passed into
-<a href="api/ng/function/angular.bootstrap"><code>angular.bootstrap</code></a>. The element represent the root element of application. It is also the
-location where the applications <a href="api/auto/service/$injector">$injector</a> service gets
-published, it can be retrieved using <code>$rootElement.injector()</code>.</p>
+<a href="api/ng/function/angular.bootstrap"><code>angular.bootstrap</code></a>. The element represents the root element of application. It is also the
+location where the application&#39;s <a href="api/auto/service/$injector">$injector</a> service gets
+published, and can be retrieved using <code>$rootElement.injector()</code>.</p>
 </td>
       </tr>
       
@@ -178,7 +179,7 @@ Contextual Escaping (SCE)</a> services to AngularJS.</p>
         <td><a href="api/ng/service/$templateRequest">$templateRequest</a></td>
         <td><p>The <code>$templateRequest</code> service downloads the provided template using <code>$http</code> and, upon success,
 stores the contents inside of <code>$templateCache</code>. If the HTTP request fails or the response data
-of the HTTP request is empty then a <code>$compile</code> error will be thrown (the exception can be thwarted
+of the HTTP request is empty, a <code>$compile</code> error will be thrown (the exception can be thwarted
 by setting the 2nd parameter of the function to true).</p>
 </td>
       </tr>

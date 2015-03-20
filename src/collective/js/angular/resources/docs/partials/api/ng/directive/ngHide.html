@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/ngShowHide.js?message=docs(ngHide)%3A%20describe%20your%20change...#L179' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/ngShowHide.js?message=docs(ngHide)%3A%20describe%20your%20change...#L180' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/directive/ngShowHide.js#L179' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ng/directive/ngShowHide.js#L180' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -43,15 +43,15 @@ This also becomes a bigger issue when dealing with CSS frameworks.</p>
 specificity (when !important isn&#39;t used with any conflicting styles). If a developer chooses to override the
 styling to change how to hide an element then it is just a matter of using !important in their own CSS code.</p>
 <h3 id="overriding-ng-hide-">Overriding <code>.ng-hide</code></h3>
-<p>By default, the <code>.ng-hide</code> class will style the element with <code>display:none!important</code>. If you wish to change
+<p>By default, the <code>.ng-hide</code> class will style the element with <code>display: none!important</code>. If you wish to change
 the hide behavior with ngShow/ngHide then this can be achieved by restating the styles for the <code>.ng-hide</code>
 class in CSS:</p>
 <pre><code class="lang-css">.ng-hide {
-/* this is just another form of hiding an element */
-display:block!important;
-position:absolute;
-top:-9999px;
-left:-9999px;
+  /* this is just another form of hiding an element */
+  display: block!important;
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
 }
 </code></pre>
 <p>By default you don&#39;t need to override in CSS anything and the animations will work around the display style.</p>
@@ -63,7 +63,7 @@ CSS class is added and removed for you instead of your own CSS class.</p>
 //a working example can be found at the bottom of this page
 //
 .my-element.ng-hide-add, .my-element.ng-hide-remove {
-  transition:0.5s linear all;
+  transition: 0.5s linear all;
 }
 
 .my-element.ng-hide-add { ... }
@@ -146,12 +146,12 @@ addClass: <code>.ng-hide</code> - happens after the <code>ngHide</code> expressi
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example88')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example90', $event)" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example88"
+      path="examples/example-example90"
       module="ngAnimate"
       deps="angular-animate.js"
       animations="true">
@@ -168,14 +168,14 @@ addClass: <code>.ng-hide</code> - happens after the <code>ngHide</code> expressi
       name="glyphicons.css"
       language="css"
       type="css">
-      <pre><code>@import url(//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css);</code></pre>
+      <pre><code>@import url(../../components/bootstrap-3.1.1/css/bootstrap.css);</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="animations.css"
       language="css"
       type="css">
-      <pre><code>.animate-hide {&#10;  -webkit-transition:all linear 0.5s;&#10;  transition:all linear 0.5s;&#10;  line-height:20px;&#10;  opacity:1;&#10;  padding:10px;&#10;  border:1px solid black;&#10;  background:white;&#10;}&#10;&#10;.animate-hide.ng-hide {&#10;  line-height:0;&#10;  opacity:0;&#10;  padding:0 10px;&#10;}&#10;&#10;.check-element {&#10;  padding:10px;&#10;  border:1px solid black;&#10;  background:white;&#10;}</code></pre>
+      <pre><code>.animate-hide {&#10;  -webkit-transition: all linear 0.5s;&#10;  transition: all linear 0.5s;&#10;  line-height: 20px;&#10;  opacity: 1;&#10;  padding: 10px;&#10;  border: 1px solid black;&#10;  background: white;&#10;}&#10;&#10;.animate-hide.ng-hide {&#10;  line-height: 0;&#10;  opacity: 0;&#10;  padding: 0 10px;&#10;}&#10;&#10;.check-element {&#10;  padding: 10px;&#10;  border: 1px solid black;&#10;  background: white;&#10;}</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -186,7 +186,7 @@ addClass: <code>.ng-hide</code> - happens after the <code>ngHide</code> expressi
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example88/index.html" name="example-example88"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example90/index.html" name="example-example90"></iframe>
   </div>
 </div>
 

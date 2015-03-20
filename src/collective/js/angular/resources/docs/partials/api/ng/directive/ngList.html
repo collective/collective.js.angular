@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/input.js?message=docs(ngList)%3A%20describe%20your%20change...#L2612' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/ngList.js?message=docs(ngList)%3A%20describe%20your%20change...#L4' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/directive/input.js#L2612' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ng/directive/ngList.js#L4' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -37,7 +37,7 @@ before it is added to the model.</li>
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-ngList-directive')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-ngList-directive', $event)" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
@@ -51,14 +51,14 @@ before it is added to the model.</li>
       name="app.js"
       language="js"
       type="js">
-      <pre><code>angular.module(&#39;listExample&#39;, [])&#10;  .controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;    $scope.names = [&#39;morpheus&#39;, &#39;neo&#39;, &#39;trinity&#39;];&#10;  }]);</code></pre>
+      <pre><code>angular.module(&#39;listExample&#39;, [])&#10;.controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;  $scope.names = [&#39;morpheus&#39;, &#39;neo&#39;, &#39;trinity&#39;];&#10;}]);</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;form name=&quot;myForm&quot; ng-controller=&quot;ExampleController&quot;&gt;&#10;  List: &lt;input name=&quot;namesInput&quot; ng-model=&quot;names&quot; ng-list required&gt;&#10;  &lt;span class=&quot;error&quot; ng-show=&quot;myForm.namesInput.$error.required&quot;&gt;&#10;    Required!&lt;/span&gt;&#10;  &lt;br&gt;&#10;  &lt;tt&gt;names = {{names}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.namesInput.$valid = {{myForm.namesInput.$valid}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.namesInput.$error = {{myForm.namesInput.$error}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.$valid = {{myForm.$valid}}&lt;/tt&gt;&lt;br/&gt;&#10;  &lt;tt&gt;myForm.$error.required = {{!!myForm.$error.required}}&lt;/tt&gt;&lt;br/&gt;&#10; &lt;/form&gt;</code></pre>
+      <pre><code>&lt;form name=&quot;myForm&quot; ng-controller=&quot;ExampleController&quot;&gt;&#10; List: &lt;input name=&quot;namesInput&quot; ng-model=&quot;names&quot; ng-list required&gt;&#10; &lt;span class=&quot;error&quot; ng-show=&quot;myForm.namesInput.$error.required&quot;&gt;&#10;   Required!&lt;/span&gt;&#10; &lt;br&gt;&#10; &lt;tt&gt;names = {{names}}&lt;/tt&gt;&lt;br/&gt;&#10; &lt;tt&gt;myForm.namesInput.$valid = {{myForm.namesInput.$valid}}&lt;/tt&gt;&lt;br/&gt;&#10; &lt;tt&gt;myForm.namesInput.$error = {{myForm.namesInput.$error}}&lt;/tt&gt;&lt;br/&gt;&#10; &lt;tt&gt;myForm.$valid = {{myForm.$valid}}&lt;/tt&gt;&lt;br/&gt;&#10; &lt;tt&gt;myForm.$error.required = {{!!myForm.$error.required}}&lt;/tt&gt;&lt;br/&gt;&#10;&lt;/form&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -79,7 +79,7 @@ before it is added to the model.</li>
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-ngList-directive-newlines')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-ngList-directive-newlines', $event)" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 

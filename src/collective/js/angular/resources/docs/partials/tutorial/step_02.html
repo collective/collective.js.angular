@@ -32,7 +32,7 @@ view.</p>
 
   &lt;ul&gt;
     &lt;li ng-repeat=&quot;phone in phones&quot;&gt;
-      {{phone.name}}
+      &lt;span&gt;{{phone.name}}&lt;/span&gt;
       &lt;p&gt;{{phone.snippet}}&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ul&gt;
@@ -111,12 +111,12 @@ developed. If our controller is available on the global namespace then we could 
 with a mock <code>scope</code> object:</p>
 <pre><code class="lang-js">describe(&#39;PhoneListCtrl&#39;, function(){
 
-it(&#39;should create &quot;phones&quot; model with 3 phones&#39;, function() {
-  var scope = {},
-      ctrl = new PhoneListCtrl(scope);
+  it(&#39;should create &quot;phones&quot; model with 3 phones&#39;, function() {
+    var scope = {},
+        ctrl = new PhoneListCtrl(scope);
 
-  expect(scope.phones.length).toBe(3);
-});
+    expect(scope.phones.length).toBe(3);
+  });
 
 });
 </code></pre>
@@ -133,14 +133,14 @@ Here is the same test using <code>$controller</code>:</p>
 <p><strong><code>test/unit/controllersSpec.js</code>:</strong></p>
 <pre><code class="lang-js">describe(&#39;PhoneListCtrl&#39;, function(){
 
-beforeEach(module(&#39;phonecatApp&#39;));
+  beforeEach(module(&#39;phonecatApp&#39;));
 
-it(&#39;should create &quot;phones&quot; model with 3 phones&#39;, inject(function($controller) {
-  var scope = {},
-      ctrl = $controller(&#39;PhoneListCtrl&#39;, {$scope:scope});
+  it(&#39;should create &quot;phones&quot; model with 3 phones&#39;, inject(function($controller) {
+    var scope = {},
+        ctrl = $controller(&#39;PhoneListCtrl&#39;, {$scope:scope});
 
-  expect(scope.phones.length).toBe(3);
-}));
+    expect(scope.phones.length).toBe(3);
+  }));
 
 });
 </code></pre>

@@ -20,8 +20,16 @@ In Angular, expressions are evaluated against a <a href="api/ng/type/$rootScope.
 <li><p><strong>Forgiving:</strong> In JavaScript, trying to evaluate undefined properties generates <code>ReferenceError</code>
 or <code>TypeError</code>. In Angular, expression evaluation is forgiving to <code>undefined</code> and <code>null</code>.</p>
 </li>
-<li><p><strong>No Control Flow Statements:</strong> you cannot use the following in an Angular expression:
+<li><p><strong>No Control Flow Statements:</strong> You cannot use the following in an Angular expression:
 conditionals, loops, or exceptions.</p>
+</li>
+<li><p><strong>No Function Declarations:</strong> You cannot declare functions in an Angular expression,
+even inside <code>ng-init</code> directive.</p>
+</li>
+<li><p><strong>No RegExp Creation With Literal Notation:</strong> You cannot create regular expressions 
+in an Angular expression.</p>
+</li>
+<li><p><strong>No Comma And Void Operators:</strong> You cannot use <code>,</code> or <code>void</code> in an Angular expression.</p>
 </li>
 <li><p><strong>Filters:</strong> You can use <a href="guide/filter">filters</a> within expressions to format data before
 displaying it.</p>
@@ -34,12 +42,12 @@ the method from your view. If you want to <code>eval()</code> an Angular express
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example21')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example23', $event)" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example21">
+      path="examples/example-example23">
 
   
     <div class="runnable-example-file" 
@@ -57,7 +65,7 @@ the method from your view. If you want to <code>eval()</code> an Angular express
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example21/index.html" name="example-example21"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example23/index.html" name="example-example23"></iframe>
   </div>
 </div>
 
@@ -67,12 +75,12 @@ the method from your view. If you want to <code>eval()</code> an Angular express
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example22')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example24', $event)" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example22"
+      path="examples/example-example24"
       module="expressionExample">
 
   
@@ -87,7 +95,7 @@ the method from your view. If you want to <code>eval()</code> an Angular express
       name="script.js"
       language="js"
       type="js">
-      <pre><code>angular.module(&#39;expressionExample&#39;, [])&#10;  .controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;    var exprs = $scope.exprs = [];&#10;    $scope.expr = &#39;3*10|currency&#39;;&#10;    $scope.addExp = function(expr) {&#10;      exprs.push(expr);&#10;    };&#10;&#10;    $scope.removeExp = function(index) {&#10;      exprs.splice(index, 1);&#10;    };&#10;  }]);</code></pre>
+      <pre><code>angular.module(&#39;expressionExample&#39;, [])&#10;.controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;  var exprs = $scope.exprs = [];&#10;  $scope.expr = &#39;3*10|currency&#39;;&#10;  $scope.addExp = function(expr) {&#10;    exprs.push(expr);&#10;  };&#10;&#10;  $scope.removeExp = function(index) {&#10;    exprs.splice(index, 1);&#10;  };&#10;}]);</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -98,7 +106,7 @@ the method from your view. If you want to <code>eval()</code> an Angular express
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example22/index.html" name="example-example22"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example24/index.html" name="example-example24"></iframe>
   </div>
 </div>
 
@@ -114,12 +122,12 @@ provide mockable access to globals.</p>
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example23')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example25', $event)" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example23"
+      path="examples/example-example25"
       module="expressionExample">
 
   
@@ -134,7 +142,7 @@ provide mockable access to globals.</p>
       name="script.js"
       language="js"
       type="js">
-      <pre><code>angular.module(&#39;expressionExample&#39;, [])&#10;  .controller(&#39;ExampleController&#39;, [&#39;$window&#39;, &#39;$scope&#39;, function($window, $scope) {&#10;    $scope.name = &#39;World&#39;;&#10;&#10;    $scope.greet = function() {&#10;      $window.alert(&#39;Hello &#39; + $scope.name);&#10;    };&#10;  }]);</code></pre>
+      <pre><code>angular.module(&#39;expressionExample&#39;, [])&#10;.controller(&#39;ExampleController&#39;, [&#39;$window&#39;, &#39;$scope&#39;, function($window, $scope) {&#10;  $scope.name = &#39;World&#39;;&#10;&#10;  $scope.greet = function() {&#10;    $window.alert(&#39;Hello &#39; + $scope.name);&#10;  };&#10;}]);</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -145,7 +153,7 @@ provide mockable access to globals.</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example23/index.html" name="example-example23"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example25/index.html" name="example-example25"></iframe>
   </div>
 </div>
 
@@ -166,6 +174,10 @@ forgiving we&#39;d have to write bindings that clutter the code, for example: <c
 expression. The reason behind this is core to the Angular philosophy that application logic should
 be in controllers, not the views. If you need a real conditional, loop, or to throw from a view
 expression, delegate to a JavaScript method instead.</p>
+<h2 id="no-function-declarations-or-regexp-creation-with-literal-notation">No function declarations or RegExp creation with literal notation</h2>
+<p>You can&#39;t declare functions or create regular expressions from within AngularJS expressions. This is
+to avoid complex model transformation logic inside templates. Such logic is better placed in a 
+controller or in a dedicated filter where it can be tested properly.</p>
 <h2 id="-event-"><code>$event</code></h2>
 <p>Directives like <a href="api/ng/directive/ngClick"><code>ngClick</code></a> and <a href="api/ng/directive/ngFocus"><code>ngFocus</code></a>
 expose a <code>$event</code> object within the scope of that expression. The object is an instance of a <a href="http://api.jquery.com/category/events/event-object/">jQuery
@@ -174,12 +186,12 @@ similar jqLite object.</p>
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example24')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example26', $event)" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example24"
+      path="examples/example-example26"
       module="eventExampleApp">
 
   
@@ -194,11 +206,11 @@ similar jqLite object.</p>
       name="script.js"
       language="js"
       type="js">
-      <pre><code>angular.module(&#39;eventExampleApp&#39;, []).&#10;  controller(&#39;EventController&#39;, [&#39;$scope&#39;, function($scope) {&#10;    /*&#10;     * expose the event object to the scope&#10;     */&#10;    $scope.clickMe = function(clickEvent) {&#10;      $scope.clickEvent = simpleKeys(clickEvent);&#10;      console.log(clickEvent);&#10;    };&#10;&#10;    /*&#10;     * return a copy of an object with only non-object keys&#10;     * we need this to avoid circular references&#10;     */&#10;    function simpleKeys (original) {&#10;      return Object.keys(original).reduce(function (obj, key) {&#10;        obj[key] = typeof original[key] === &#39;object&#39; ? &#39;{ ... }&#39; : original[key];&#10;        return obj;&#10;      }, {});&#10;    }&#10;  }]);</code></pre>
+      <pre><code>angular.module(&#39;eventExampleApp&#39;, []).&#10;controller(&#39;EventController&#39;, [&#39;$scope&#39;, function($scope) {&#10;  /*&#10;   * expose the event object to the scope&#10;   */&#10;  $scope.clickMe = function(clickEvent) {&#10;    $scope.clickEvent = simpleKeys(clickEvent);&#10;    console.log(clickEvent);&#10;  };&#10;&#10;  /*&#10;   * return a copy of an object with only non-object keys&#10;   * we need this to avoid circular references&#10;   */&#10;  function simpleKeys (original) {&#10;    return Object.keys(original).reduce(function (obj, key) {&#10;      obj[key] = typeof original[key] === &#39;object&#39; ? &#39;{ ... }&#39; : original[key];&#10;      return obj;&#10;    }, {});&#10;  }&#10;}]);</code></pre>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example24/index.html" name="example-example24"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example26/index.html" name="example-example26"></iframe>
   </div>
 </div>
 
@@ -213,12 +225,12 @@ result is a non-undefined value (see value stabilization algorithm below).</p>
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example25')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example27', $event)" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example25"
+      path="examples/example-example27"
       module="oneTimeBidingExampleApp">
 
   
@@ -233,7 +245,7 @@ result is a non-undefined value (see value stabilization algorithm below).</p>
       name="script.js"
       language="js"
       type="js">
-      <pre><code>angular.module(&#39;oneTimeBidingExampleApp&#39;, []).&#10;  controller(&#39;EventController&#39;, [&#39;$scope&#39;, function($scope) {&#10;    var counter = 0;&#10;    var names = [&#39;Igor&#39;, &#39;Misko&#39;, &#39;Chirayu&#39;, &#39;Lucas&#39;];&#10;    /*&#10;     * expose the event object to the scope&#10;     */&#10;    $scope.clickMe = function(clickEvent) {&#10;      $scope.name = names[counter % names.length];&#10;      counter++;&#10;    };&#10;  }]);</code></pre>
+      <pre><code>angular.module(&#39;oneTimeBidingExampleApp&#39;, []).&#10;controller(&#39;EventController&#39;, [&#39;$scope&#39;, function($scope) {&#10;  var counter = 0;&#10;  var names = [&#39;Igor&#39;, &#39;Misko&#39;, &#39;Chirayu&#39;, &#39;Lucas&#39;];&#10;  /*&#10;   * expose the event object to the scope&#10;   */&#10;  $scope.clickMe = function(clickEvent) {&#10;    $scope.name = names[counter % names.length];&#10;    counter++;&#10;  };&#10;}]);</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -244,7 +256,7 @@ result is a non-undefined value (see value stabilization algorithm below).</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example25/index.html" name="example-example25"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example27/index.html" name="example-example27"></iframe>
   </div>
 </div>
 
@@ -261,9 +273,9 @@ digest cycle as long as that value is not undefined. If the value of the express
 within the digest loop and later, within the same digest loop, it is set to undefined,
 then the expression is not fulfilled and will remain watched.</p>
 <ol>
-<li>Given an expression that starts with <code>::</code> when a digest loop is entered and expression
-is dirty-checked store the value as V</li>
-<li>If V is not undefined mark the result of the expression as stable and schedule a task
+<li>Given an expression that starts with <code>::</code>, when a digest loop is entered and expression
+is dirty-checked, store the value as V</li>
+<li>If V is not undefined, mark the result of the expression as stable and schedule a task
 to deregister the watch for this expression when we exit the digest loop</li>
 <li>Process the digest loop as normal</li>
 <li>When digest loop is done and all the values have settled process the queue of watch
@@ -273,26 +285,27 @@ keep dirty-checking the watch in the future digest loops by following the same
 algorithm starting from step 1</li>
 </ol>
 <h3 id="how-to-benefit-from-one-time-binding">How to benefit from one-time binding</h3>
-<p>When interpolating text or attributes. If the expression, once set, will not change
-then it is a candidate for one-time expression.</p>
+<p>If the expression will not change once set, it is a candidate for one-time binding. 
+Here are three example cases.</p>
+<p>When interpolating text or attributes:</p>
 <pre><code class="lang-html">&lt;div name=&quot;attr: {{::color}}&quot;&gt;text: {{::name}}&lt;/div&gt;
 </code></pre>
-<p>When using a directive with bidirectional binding and the parameters will not change</p>
+<p>When using a directive with bidirectional binding and the parameters will not change:</p>
 <pre><code class="lang-js">someModule.directive(&#39;someDirective&#39;, function() {
-return {
-  scope: {
-    name: &#39;=&#39;,
-    color: &#39;@&#39;
-  },
-  template: &#39;{{name}}: {{color}}&#39;
-};
+  return {
+    scope: {
+      name: &#39;=&#39;,
+      color: &#39;@&#39;
+    },
+    template: &#39;{{name}}: {{color}}&#39;
+  };
 });
 </code></pre>
-<pre><code class="lang-html">&lt;div some-directive name=“::myName” color=“My color is {{::myColor}}”&gt;&lt;/div&gt;
+<pre><code class="lang-html">&lt;div some-directive name=&quot;::myName&quot; color=&quot;My color is {{::myColor}}&quot;&gt;&lt;/div&gt;
 </code></pre>
-<p>When using a directive that takes an expression</p>
+<p>When using a directive that takes an expression:</p>
 <pre><code class="lang-html">&lt;ul&gt;
-&lt;li ng-repeat=&quot;item in ::items&quot;&gt;{{item.name}};&lt;/li&gt;
+  &lt;li ng-repeat=&quot;item in ::items&quot;&gt;{{item.name}};&lt;/li&gt;
 &lt;/ul&gt;
 </code></pre>
 

@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/rootScope.js?message=docs($rootScope.Scope)%3A%20describe%20your%20change...#L86' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/rootScope.js?message=docs($rootScope.Scope)%3A%20describe%20your%20change...#L104' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/rootScope.js#L86' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ng/rootScope.js#L104' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -33,13 +33,15 @@ compiled HTML template is executed.)</p>
 var child = parent.$new();
 
 parent.salutation = &quot;Hello&quot;;
-child.name = &quot;World&quot;;
 expect(child.salutation).toEqual(&#39;Hello&#39;);
 
 child.salutation = &quot;Welcome&quot;;
 expect(child.salutation).toEqual(&#39;Welcome&#39;);
 expect(parent.salutation).toEqual(&#39;Hello&#39;);
 </code></pre>
+<p>When interacting with <code>Scope</code> in tests, additional helper methods are available on the
+instances of <code>Scope</code> type. See <a href="api/ngMock/type/$rootScope.Scope">ngMock Scope</a> for additional
+details.</p>
 
 </div>
 
@@ -754,7 +756,7 @@ expect(scope.$eval(function(scope){ return scope.a + scope.b; })).toEqual(3);
   </li>
   
   <li id="$evalAsync">
-    <h3><p><code>$evalAsync([expression]);</code></p>
+    <h3><p><code>$evalAsync([expression], [locals]);</code></p>
 
 </h3>
     <div><p>Executes the expression on the current scope at a later point in time.</p>
@@ -801,6 +803,22 @@ from within an <code>$apply</code> call. That includes code evaluated via <code>
 <li><code>string</code>: execute using the rules as defined in <a href="guide/expression">expression</a>.</li>
 <li><code>function(scope)</code>: execute the function with the current <code>scope</code> parameter.</li>
 </ul>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        locals
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-object">object</a>
+      </td>
+      <td>
+        <p>Local variables object, useful for overriding values in scope.</p>
 
         
       </td>
@@ -906,7 +924,7 @@ expression was executed using the <a href="api/ng/type/$rootScope.Scope#$digest"
     <h3><p><code>$applyAsync([exp]);</code></p>
 
 </h3>
-    <div><p>Schedule the invokation of $apply to occur at a later time. The actual time difference
+    <div><p>Schedule the invocation of $apply to occur at a later time. The actual time difference
 varies across browsers, but is typically around ~10 milliseconds.</p>
 <p>This can be used to queue up multiple expressions which need to be evaluated in the same
 digest.</p>

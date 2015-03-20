@@ -50,7 +50,8 @@ array element index and obj is the <code>obj</code> itself. Specifying a <code>c
         <td><a href="api/ng/function/angular.extend">angular.extend</a></td>
         <td><p>Extends the destination object <code>dst</code> by copying own enumerable properties from the <code>src</code> object(s)
 to <code>dst</code>. You can specify multiple <code>src</code> objects. If you want to preserve original objects, you can do so
-by passing an empty object as the target: <code>var object = angular.extend({}, object1, object2)</code>.</p>
+by passing an empty object as the target: <code>var object = angular.extend({}, object1, object2)</code>.
+Note: Keep in mind that <code>angular.extend</code> does not support recursive merge (deep copy).</p>
 </td>
       </tr>
       
@@ -230,7 +231,8 @@ the href attribute is empty.</p>
 make the link go to the wrong URL if the user clicks it before
 Angular has a chance to replace the <code>{{hash}}</code> markup with its
 value. Until Angular replaces the markup the link will be broken
-and will most likely return a 404 error.</p>
+and will most likely return a 404 error. The <code>ngHref</code> directive
+solves this problem.</p>
 </td>
       </tr>
       
@@ -254,11 +256,8 @@ text <code>{{hash}}</code> until Angular replaces the expression inside
       
       <tr>
         <td><a href="api/ng/directive/ngDisabled">ngDisabled</a></td>
-        <td><p>We shouldn&#39;t do this, because it will make the button enabled on Chrome/Firefox but not on IE8 and older IEs:</p>
-<pre><code class="lang-html">&lt;div ng-init=&quot;scope = { isDisabled: false }&quot;&gt;
-&lt;button disabled=&quot;{{scope.isDisabled}}&quot;&gt;Disabled&lt;/button&gt;
-&lt;/div&gt;
-</code></pre>
+        <td><p>This directive sets the <code>disabled</code> attribute on the element if the
+<a href="guide/expression">expression</a> inside <code>ngDisabled</code> evaluates to truthy.</p>
 </td>
       </tr>
       
@@ -335,49 +334,17 @@ properties of this element are exactly the same as those of the
       
       <tr>
         <td><a href="api/ng/directive/input">input</a></td>
-        <td><p>HTML input element control with angular data-binding. Input control follows HTML5 input types
-and polyfills the HTML5 validation behavior for older browsers.</p>
-</td>
-      </tr>
-      
-      <tr>
-        <td><a href="api/ng/directive/ngModel">ngModel</a></td>
-        <td><p>The <code>ngModel</code> directive binds an <code>input</code>,<code>select</code>, <code>textarea</code> (or custom form control) to a
-property on the scope using <a href="api/ng/type/ngModel.NgModelController">NgModelController</a>,
-which is created and exposed by this directive.</p>
-</td>
-      </tr>
-      
-      <tr>
-        <td><a href="api/ng/directive/ngChange">ngChange</a></td>
-        <td><p>Evaluate the given expression when the user changes the input.
-The expression is evaluated immediately, unlike the JavaScript onchange event
-which only triggers at the end of a change (usually, when the user leaves the
-form element or presses the return key).</p>
-</td>
-      </tr>
-      
-      <tr>
-        <td><a href="api/ng/directive/ngList">ngList</a></td>
-        <td><p>Text input that converts between a delimited string and an array of strings. The default
-delimiter is a comma followed by a space - equivalent to <code>ng-list=&quot;, &quot;</code>. You can specify a custom
-delimiter as the value of the <code>ngList</code> attribute - for example, <code>ng-list=&quot; | &quot;</code>.</p>
+        <td><p>HTML input element control. When used together with <a href="api/ng/directive/ngModel"><code>ngModel</code></a>, it provides data-binding,
+input state control, and validation.
+Input control follows HTML5 input types and polyfills the HTML5 validation behavior for older browsers.</p>
 </td>
       </tr>
       
       <tr>
         <td><a href="api/ng/directive/ngValue">ngValue</a></td>
-        <td><p>Binds the given expression to the value of <code>input[select]</code> or <code>input[radio]</code>, so
-that when the element is selected, the <code>ngModel</code> of that element is set to the
-bound value.</p>
-</td>
-      </tr>
-      
-      <tr>
-        <td><a href="api/ng/directive/ngModelOptions">ngModelOptions</a></td>
-        <td><p>Allows tuning how model updates are done. Using <code>ngModelOptions</code> you can specify a custom list of
-events that will trigger a model update and/or a debouncing delay so that the actual update only
-takes place when a timer expires; this timer will be reset after another change takes place.</p>
+        <td><p>Binds the given expression to the value of <code>&lt;option&gt;</code> or <a href="api/ng/input/input[radio]"><code>input[radio]</code></a>,
+so that when the element is selected, the <a href="api/ng/directive/ngModel"><code>ngModel</code></a> of that element is set to
+the bound value.</p>
 </td>
       </tr>
       
@@ -402,11 +369,19 @@ expressions. This directive is needed since some HTML elements
       
       <tr>
         <td><a href="api/ng/directive/ngBindHtml">ngBindHtml</a></td>
-        <td><p>Creates a binding that will innerHTML the result of evaluating the <code>expression</code> into the current
-element in a secure way.  By default, the innerHTML-ed content will be sanitized using the <a href="api/ngSanitize/service/$sanitize">$sanitize</a> service.  To utilize this functionality, ensure that <code>$sanitize</code>
-is available, for example, by including <a href="api/ngSanitize"><code>ngSanitize</code></a> in your module&#39;s dependencies (not in
-core Angular). In order to use <a href="api/ngSanitize"><code>ngSanitize</code></a> in your module&#39;s dependencies, you need to
-include &quot;angular-sanitize.js&quot; in your application.</p>
+        <td><p>Evaluates the expression and inserts the resulting HTML into the element in a secure way. By default,
+the resulting HTML content will be sanitized using the <a href="api/ngSanitize/service/$sanitize">$sanitize</a> service.
+To utilize this functionality, ensure that <code>$sanitize</code> is available, for example, by including <a href="api/ngSanitize"><code>ngSanitize</code></a> in your module&#39;s dependencies (not in core Angular). In order to use <a href="api/ngSanitize"><code>ngSanitize</code></a>
+in your module&#39;s dependencies, you need to include &quot;angular-sanitize.js&quot; in your application.</p>
+</td>
+      </tr>
+      
+      <tr>
+        <td><a href="api/ng/directive/ngChange">ngChange</a></td>
+        <td><p>Evaluate the given expression when the user changes the input.
+The expression is evaluated immediately, unlike the JavaScript onchange event
+which only triggers at the end of a change (usually, when the user leaves the
+form element or presses the return key).</p>
 </td>
       </tr>
       
@@ -580,6 +555,30 @@ current scope.</p>
       </tr>
       
       <tr>
+        <td><a href="api/ng/directive/ngList">ngList</a></td>
+        <td><p>Text input that converts between a delimited string and an array of strings. The default
+delimiter is a comma followed by a space - equivalent to <code>ng-list=&quot;, &quot;</code>. You can specify a custom
+delimiter as the value of the <code>ngList</code> attribute - for example, <code>ng-list=&quot; | &quot;</code>.</p>
+</td>
+      </tr>
+      
+      <tr>
+        <td><a href="api/ng/directive/ngModel">ngModel</a></td>
+        <td><p>The <code>ngModel</code> directive binds an <code>input</code>,<code>select</code>, <code>textarea</code> (or custom form control) to a
+property on the scope using <a href="api/ng/type/ngModel.NgModelController">NgModelController</a>,
+which is created and exposed by this directive.</p>
+</td>
+      </tr>
+      
+      <tr>
+        <td><a href="api/ng/directive/ngModelOptions">ngModelOptions</a></td>
+        <td><p>Allows tuning how model updates are done. Using <code>ngModelOptions</code> you can specify a custom list of
+events that will trigger a model update and/or a debouncing delay so that the actual update only
+takes place when a timer expires; this timer will be reset after another change takes place.</p>
+</td>
+      </tr>
+      
+      <tr>
         <td><a href="api/ng/directive/ngNonBindable">ngNonBindable</a></td>
         <td><p>The <code>ngNonBindable</code> directive tells Angular not to compile or bind the contents of the current
 DOM element. This is useful if the element contains what appears to be Angular directives and
@@ -723,11 +722,14 @@ such as being valid/invalid or dirty/pristine.</p>
       
       <tr>
         <td><a href="api/ng/type/ngModel.NgModelController">ngModel.NgModelController</a></td>
-        <td><p><code>NgModelController</code> provides API for the <code>ng-model</code> directive. The controller contains
-services for data-binding, validation, CSS updates, and value formatting and parsing. It
-purposefully does not contain any logic which deals with DOM rendering or listening to
-DOM events. Such DOM related logic should be provided by other directives which make use of
-<code>NgModelController</code> for data-binding.</p>
+        <td><p><code>NgModelController</code> provides API for the <a href="api/ng/directive/ngModel"><code>ngModel</code></a> directive.
+The controller contains services for data-binding, validation, CSS updates, and value formatting
+and parsing. It purposefully does not contain any logic which deals with DOM rendering or
+listening to DOM events.
+Such DOM related logic should be provided by other directives which make use of
+<code>NgModelController</code> for data-binding to control elements.
+Angular provides this DOM logic for most <a href="api/ng/directive/input"><code>input</code></a> elements.
+At the end of this page you can find a <a href="api/ng/type/ngModel.NgModelController#custom-control-example">custom control example</a> that uses <code>ngModelController</code> to bind to <code>contenteditable</code> elements.</p>
 </td>
       </tr>
       
@@ -979,16 +981,17 @@ into the browser&#39;s console (if present).</p>
       
       <tr>
         <td><a href="api/ng/service/$q">$q</a></td>
-        <td><p>A promise/deferred implementation inspired by <a href="https://github.com/kriskowal/q">Kris Kowal&#39;s Q</a>.</p>
+        <td><p>A service that helps you run functions asynchronously, and use their return values (or exceptions)
+when they are done processing.</p>
 </td>
       </tr>
       
       <tr>
         <td><a href="api/ng/service/$rootElement">$rootElement</a></td>
         <td><p>The root element of Angular application. This is either the element where <a href="api/ng/directive/ngApp">ngApp</a> was declared or the element passed into
-<a href="api/ng/function/angular.bootstrap"><code>angular.bootstrap</code></a>. The element represent the root element of application. It is also the
-location where the applications <a href="api/auto/service/$injector">$injector</a> service gets
-published, it can be retrieved using <code>$rootElement.injector()</code>.</p>
+<a href="api/ng/function/angular.bootstrap"><code>angular.bootstrap</code></a>. The element represents the root element of application. It is also the
+location where the application&#39;s <a href="api/auto/service/$injector">$injector</a> service gets
+published, and can be retrieved using <code>$rootElement.injector()</code>.</p>
 </td>
       </tr>
       
@@ -1019,7 +1022,7 @@ Contextual Escaping (SCE)</a> services to AngularJS.</p>
         <td><a href="api/ng/service/$templateRequest">$templateRequest</a></td>
         <td><p>The <code>$templateRequest</code> service downloads the provided template using <code>$http</code> and, upon success,
 stores the contents inside of <code>$templateCache</code>. If the HTTP request fails or the response data
-of the HTTP request is empty then a <code>$compile</code> error will be thrown (the exception can be thwarted
+of the HTTP request is empty, a <code>$compile</code> error will be thrown (the exception can be thwarted
 by setting the 2nd parameter of the function to true).</p>
 </td>
       </tr>
@@ -1064,15 +1067,15 @@ it is a global variable. In angular we always refer to it through the
 the HTML5 date input, a text element will be used. In that case, text must be entered in a valid ISO-8601
 date format (yyyy-MM-dd), for example: <code>2009-01-06</code>. Since many
 modern browsers do not yet support this input type, it is important to provide cues to users on the
-expected input format via a placeholder or label. The model must always be a Date object.</p>
+expected input format via a placeholder or label.</p>
 </td>
       </tr>
       
       <tr>
-        <td><a href="api/ng/input/input[dateTimeLocal]">input[dateTimeLocal]</a></td>
+        <td><a href="api/ng/input/input[datetime-local]">input[datetime-local]</a></td>
         <td><p>Input with datetime validation and transformation. In browsers that do not yet support
 the HTML5 date input, a text element will be used. In that case, the text must be entered in a valid ISO-8601
-local datetime format (yyyy-MM-ddTHH:mm:ss), for example: <code>2010-12-28T14:57:00</code>. The model must be a Date object.</p>
+local datetime format (yyyy-MM-ddTHH:mm:ss), for example: <code>2010-12-28T14:57:00</code>.</p>
 </td>
       </tr>
       
@@ -1089,7 +1092,7 @@ Date object to the model of January 1, 1970, or local date <code>new Date(1970, 
         <td><a href="api/ng/input/input[week]">input[week]</a></td>
         <td><p>Input with week-of-the-year validation and transformation to Date. In browsers that do not yet support
 the HTML5 week input, a text element will be used. In that case, the text must be entered in a valid ISO-8601
-week format (yyyy-W##), for example: <code>2013-W02</code>. The model must always be a Date object.</p>
+week format (yyyy-W##), for example: <code>2013-W02</code>.</p>
 </td>
       </tr>
       
@@ -1097,8 +1100,7 @@ week format (yyyy-W##), for example: <code>2013-W02</code>. The model must alway
         <td><a href="api/ng/input/input[month]">input[month]</a></td>
         <td><p>Input with month validation and transformation. In browsers that do not yet support
 the HTML5 month input, a text element will be used. In that case, the text must be entered in a valid ISO-8601
-month format (yyyy-MM), for example: <code>2009-01</code>. The model must always be a Date object. In the event the model is
-not set to the first of the month, the first of that model&#39;s month is assumed.</p>
+month format (yyyy-MM), for example: <code>2009-01</code>.</p>
 </td>
       </tr>
       

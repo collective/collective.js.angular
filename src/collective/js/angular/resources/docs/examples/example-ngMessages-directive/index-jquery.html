@@ -16,22 +16,22 @@
   </script>
 </head>
 <body ng-app="ngMessagesExample">
-    <form name="myForm">
-    <label>Enter your name:</label>
-    <input type="text"
-           name="myName"
-           ng-model="name"
-           ng-minlength="5"
-           ng-maxlength="20"
-           required />
+  <form name="myForm">
+  <label>Enter your name:</label>
+  <input type="text"
+         name="myName"
+         ng-model="name"
+         ng-minlength="5"
+         ng-maxlength="20"
+         required />
 
-    <pre>myForm.myName.$error = {{ myForm.myName.$error | json }}</pre>
+  <pre>myForm.myName.$error = {{ myForm.myName.$error | json }}</pre>
 
-    <div ng-messages="myForm.myName.$error" style="color:maroon">
-      <div ng-message="required">You did not enter a field</div>
-      <div ng-message="minlength">Your field is too short</div>
-      <div ng-message="maxlength">Your field is too long</div>
-    </div>
-  </form>
+  <div ng-messages="myForm.myName.$error" style="color:maroon">
+    <div ng-message="required">You did not enter a field</div>
+    <div ng-message="minlength">Your field is too short</div>
+    <div ng-message="maxlength">Your field is too long</div>
+  </div>
+</form>
 </body>
 </html>

@@ -1,16 +1,11 @@
-  angular.module('myServiceModuleDI', []).
-    factory('notify', function($window) {
-      var msgs = [];
-      return function(msg) {
-        msgs.push(msg);
-        if (msgs.length == 3) {
-          $window.alert(msgs.join("\n"));
-          msgs = [];
-        }
-      };
-    }).
-    controller('MyController', function($scope, notify) {
-      $scope.callNotify = function(msg) {
-        notify(msg);
-      };
-    });
+(function(angular) {
+  'use strict';
+angular.module('scopeExample', [])
+  .controller('GreetController', ['$scope', '$rootScope', function($scope, $rootScope) {
+    $scope.name = 'World';
+    $rootScope.department = 'Angular';
+  }])
+  .controller('ListController', ['$scope', function($scope) {
+    $scope.names = ['Igor', 'Misko', 'Vojta'];
+  }]);
+})(window.angular);

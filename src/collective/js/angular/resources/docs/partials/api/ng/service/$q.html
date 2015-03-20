@@ -2,7 +2,7 @@
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/q.js#L3' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ng/q.js#L3' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -22,7 +22,10 @@
 
 
 <div class="api-profile-description">
-  <p>A promise/deferred implementation inspired by <a href="https://github.com/kriskowal/q">Kris Kowal&#39;s Q</a>.</p>
+  <p>A service that helps you run functions asynchronously, and use their return values (or exceptions)
+when they are done processing.</p>
+<p>This is an implementation of promises/deferred objects inspired by
+<a href="https://github.com/kriskowal/q">Kris Kowal&#39;s Q</a>.</p>
 <p>$q can be used in two fashions --- one which is more similar to Kris Kowal&#39;s Q or jQuery&#39;s Deferred
 implementations, and the other which resembles ES6 promises to some degree.</p>
 <h1 id="-q-constructor">$q constructor</h1>
@@ -134,14 +137,11 @@ method.</p>
 </li>
 <li><p><code>catch(errorCallback)</code> – shorthand for <code>promise.then(null, errorCallback)</code></p>
 </li>
-<li><p><code>finally(callback)</code> – allows you to observe either the fulfillment or rejection of a promise,
+<li><p><code>finally(callback, notifyCallback)</code> – allows you to observe either the fulfillment or rejection of a promise,
 but to do so without modifying the final value. This is useful to release resources or do some
 clean-up that needs to be done whether the promise was rejected or resolved. See the <a href="https://github.com/kriskowal/q/wiki/API-Reference#promisefinallycallback">full
 specification</a> for
 more information.</p>
-<p>Because <code>finally</code> is a reserved word in JavaScript and reserved keywords are not supported as
-property names by ES3, you&#39;ll need to invoke the method like <code>promise[&#39;finally&#39;](callback)</code> to
-make your code IE8 and Android 2.x compatible.</p>
 </li>
 </ul>
 <h1 id="chaining-promises">Chaining promises</h1>

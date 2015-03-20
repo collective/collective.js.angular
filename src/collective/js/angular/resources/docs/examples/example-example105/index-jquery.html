@@ -7,20 +7,26 @@
 
   <script src="../../components/jquery-2.1.1/jquery.js"></script>
   <script src="../../../angular.js"></script>
+  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="">
-    <div ng-init="username='A user'">
-    <p ng-init="apptitle='Escaping demo'">{{apptitle}}: \{\{ username = "defaced value"; \}\}
-      </p>
-    <p><strong>{{username}}</strong> attempts to inject code which will deface the
-      application, but fails to accomplish their task, because the server has correctly
-      escaped the interpolation start/end markers with REVERSE SOLIDUS U+005C (backslash)
-      characters.</p>
-    <p>Instead, the result of the attempted script injection is visible, and can be removed
-      from the database by an administrator.</p>
-  </div>
+<body ng-app="orderByExample">
+  <div ng-controller="ExampleController">
+  <table class="friend">
+    <tr>
+      <th><a href="" ng-click="reverse=false;order('name', false)">Name</a>
+        (<a href="" ng-click="order('-name',false)">^</a>)</th>
+      <th><a href="" ng-click="reverse=!reverse;order('phone', reverse)">Phone Number</a></th>
+      <th><a href="" ng-click="reverse=!reverse;order('age',reverse)">Age</a></th>
+    </tr>
+    <tr ng-repeat="friend in friends">
+      <td>{{friend.name}}</td>
+      <td>{{friend.phone}}</td>
+      <td>{{friend.age}}</td>
+    </tr>
+  </table>
+</div>
 </body>
 </html>

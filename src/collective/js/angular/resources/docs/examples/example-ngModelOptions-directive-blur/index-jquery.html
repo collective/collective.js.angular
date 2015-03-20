@@ -13,18 +13,18 @@
   
 </head>
 <body ng-app="optionsExample">
-    <div ng-controller="ExampleController">
-    <form name="userForm">
-      Name:
-      <input type="text" name="userName"
-             ng-model="user.name"
-             ng-model-options="{ updateOn: 'blur' }"
-             ng-keyup="cancel($event)" /><br />
+  <div ng-controller="ExampleController">
+  <form name="userForm">
+    Name:
+    <input type="text" name="userName"
+           ng-model="user.name"
+           ng-model-options="{ updateOn: 'blur' }"
+           ng-keyup="cancel($event)" /><br />
 
-      Other data:
-      <input type="text" ng-model="user.data" /><br />
-    </form>
-    <pre>user.name = <span ng-bind="user.name"></span></pre>
-  </div>
+    Other data:
+    <input type="text" ng-model="user.data" /><br />
+  </form>
+  <pre>user.name = <span ng-bind="user.name"></span></pre>
+</div>
 </body>
 </html>

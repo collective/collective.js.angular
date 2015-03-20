@@ -2,13 +2,21 @@ describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("examples/example-example63/index-jquery.html");
+    browser.get("build/docs/examples/example-example63/index-jquery.html");
   });
   
-  it('should check ng-class-odd and ng-class-even', function() {
-    expect(element(by.repeater('name in names').row(0).column('name')).getAttribute('class')).
-      toMatch(/odd/);
-    expect(element(by.repeater('name in names').row(1).column('name')).getAttribute('class')).
-      toMatch(/even/);
-  });
+it('should check ng-class', function() {
+  expect(element(by.css('.base-class')).getAttribute('class')).not.
+    toMatch(/my-class/);
+
+  element(by.id('setbtn')).click();
+
+  expect(element(by.css('.base-class')).getAttribute('class')).
+    toMatch(/my-class/);
+
+  element(by.id('clearbtn')).click();
+
+  expect(element(by.css('.base-class')).getAttribute('class')).not.
+    toMatch(/my-class/);
+});
 });

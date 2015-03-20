@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ngRoute/route.js?message=docs($route)%3A%20describe%20your%20change...#L236' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ngRoute/route.js?message=docs($route)%3A%20describe%20your%20change...#L254' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ngRoute/route.js#L236' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ngRoute/route.js#L254' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -59,7 +59,7 @@ It watches <code>$location.url()</code> and tries to map the path to an existing
     <div><p>Causes <code>$route</code> service to reload the current route even if
 <a href="api/ng/service/$location">$location</a> hasn&#39;t changed.</p>
 <p>As a result of that, <a href="api/ngRoute/directive/ngView">ngView</a>
-creates new scope, reinstantiates the controller.</p>
+creates new scope and reinstantiates the controller.</p>
 </div>
 
     
@@ -101,7 +101,7 @@ remaining properties will be treated as query params.</p>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-object">Object</a>
+        <a href="" class="label type-hint type-hint-object">!Object&lt;string, string&gt;</a>
       </td>
       <td>
         <p>mapping of URL parameter names to values</p>
@@ -237,7 +237,7 @@ URL, and the <code>ngView</code> pulls in the partial.</p>
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-$route-service')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-$route-service', $event)" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 

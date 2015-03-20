@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/Angular.js?message=docs(angular.bootstrap)%3A%20describe%20your%20change...#L1322' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/Angular.js?message=docs(angular.bootstrap)%3A%20describe%20your%20change...#L1307' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/Angular.js#L1322' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/Angular.js#L1307' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -106,7 +106,7 @@ multiple instances of Angular try to work on the DOM.</p>
       <td>
         <p>an array of modules to load into the application.
     Each item in the array should be the name of a predefined module or a (DI annotated)
-    function that will be invoked by the injector as a run block.
+    function that will be invoked by the injector as a <code>config</code> block.
     See: <a href="api/ng/function/angular.module">modules</a></p>
 
         
@@ -125,9 +125,10 @@ multiple instances of Angular try to work on the DOM.</p>
       <td>
         <p>an object for defining configuration options for the application. The
     following keys are supported:</p>
-<pre><code>- `strictDi`: disable automatic function annotation for the application. This is meant to
-assist in finding bugs which break minified code.
-</code></pre>
+<ul>
+<li><code>strictDi</code> - disable automatic function annotation for the application. This is meant to
+assist in finding bugs which break minified code. Defaults to <code>false</code>.</li>
+</ul>
 
         
       </td>

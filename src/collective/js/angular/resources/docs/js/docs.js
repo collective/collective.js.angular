@@ -74,6 +74,7 @@ angular.module('DocsController', [])
   $scope.navClass = function(navItem) {
     return {
       active: navItem.href && this.currentPage && this.currentPage.path,
+      current: this.currentPage && this.currentPage.path === navItem.href,
       'nav-index-section': navItem.type === 'section'
     };
   };
@@ -191,13 +192,16 @@ angular.module('errors', ['ngSanitize'])
 angular.module('examples', [])
 
 .factory('formPostData', ['$document', function($document) {
-  return function(url, fields) {
+  return function(url, newWindow, fields) {
     /**
-     * Form previously posted to target="_blank", but pop-up blockers were causing this to not work.
-     * If a user chose to bypass pop-up blocker one time and click the link, they would arrive at
-     * a new default plnkr, not a plnkr with the desired template.
+     * If the form posts to target="_blank", pop-up blockers can cause it not to work.
+     * If a user choses to bypass pop-up blocker one time and click the link, they will arrive at
+     * a new default plnkr, not a plnkr with the desired template.  Given this undesired behavior,
+     * some may still want to open the plnk in a new window by opting-in via ctrl+click.  The
+     * newWindow param allows for this possibility.
      */
-    var form = angular.element('<form style="display: none;" method="post" action="' + url + '"></form>');
+    var target = newWindow ? '_blank' : '_self';
+    var form = angular.element('<form style="display: none;" method="post" action="' + url + '" target="' + target + '"></form>');
     angular.forEach(fields, function(value, name) {
       var input = angular.element('<input type="hidden" name="' +  name + '">');
       input.attr('value', value);
@@ -211,9 +215,10 @@ angular.module('examples', [])
 
 
 .factory('openPlunkr', ['formPostData', '$http', '$q', function(formPostData, $http, $q) {
-  return function(exampleFolder) {
+  return function(exampleFolder, clickEvent) {
 
     var exampleName = 'AngularJS Example';
+    var newWindow = clickEvent.ctrlKey || clickEvent.metaKey;
 
     // Load the manifest for the example
     $http.get(exampleFolder + '/manifest.json')
@@ -261,7 +266,7 @@ angular.module('examples', [])
         postData.private = true;
         postData.description = exampleName;
 
-        formPostData('http://plnkr.co/edit/?p=preview', postData);
+        formPostData('http://plnkr.co/edit/?p=preview', newWindow, postData);
       });
   };
 }]);
@@ -309,10 +314,14 @@ angular.module('search', [])
 
   $scope.submit = function() {
     var result;
-    for(var i in $scope.results) {
-      result = $scope.results[i][0];
-      if(result) {
-        break;
+    if ($scope.results.api) {
+      result = $scope.results.api[0];
+    } else {
+      for(var i in $scope.results) {
+        result = $scope.results[i][0];
+        if(result) {
+          break;
+        }
       }
     }
     if(result) {
@@ -530,10 +539,13 @@ angular.module('tutorials', [])
       '</p>'
   };
 });
+"use strict";
+
 angular.module('versions', [])
 
 .controller('DocsVersionsCtrl', ['$scope', '$location', '$window', 'NG_VERSIONS', function($scope, $location, $window, NG_VERSIONS) {
   $scope.docs_version  = NG_VERSIONS[0];
+  $scope.docs_versions = NG_VERSIONS;
 
   for(var i=0, minor = NaN; i < NG_VERSIONS.length; i++) {
     var version = NG_VERSIONS[i];
@@ -545,9 +557,8 @@ angular.module('versions', [])
     minor = version.minor;
   }
 
-  $scope.docs_versions = NG_VERSIONS;
   $scope.getGroupName = function(v) {
-    return v.isLatest ? 'Latest' : (v.isStable ? 'Stable' : 'Unstable');
+    return v.isLatest ? 'Latest' : ('v' + v.major + '.' + v.minor + '.x');
   };
 
   $scope.jumpToDocsVersion = function(version) {

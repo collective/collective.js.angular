@@ -2,7 +2,7 @@
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/directive/select.js#L4' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ng/directive/select.js#L4' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -24,48 +24,61 @@
 <h1 id="-ngoptions-"><code>ngOptions</code></h1>
 <p>The <code>ngOptions</code> attribute can be used to dynamically generate a list of <code>&lt;option&gt;</code>
 elements for the <code>&lt;select&gt;</code> element using the array or object obtained by evaluating the
-<code>ngOptions</code> comprehension_expression.</p>
+<code>ngOptions</code> comprehension expression.</p>
+<p>In many cases, <code>ngRepeat</code> can be used on <code>&lt;option&gt;</code> elements instead of <code>ngOptions</code> to achieve a
+similar result. However, <code>ngOptions</code> provides some benefits such as reducing memory and
+increasing speed by not creating a new scope for each repeated instance, as well as providing
+more flexibility in how the <code>&lt;select&gt;</code>&#39;s model is assigned via the <code>select</code> <strong><code>as</code></strong> part of the
+comprehension expression. <code>ngOptions</code> should be used when the <code>&lt;select&gt;</code> model needs to be bound
+ to a non-string value. This is because an option element can only be bound to string values at
+present.</p>
 <p>When an item in the <code>&lt;select&gt;</code> menu is selected, the array element or object property
 represented by the selected option will be bound to the model identified by the <code>ngModel</code>
 directive.</p>
+<p>Optionally, a single hard-coded <code>&lt;option&gt;</code> element, with the value set to an empty string, can
+be nested into the <code>&lt;select&gt;</code> element. This element will then represent the <code>null</code> or &quot;not selected&quot;
+option. See example below for demonstration.</p>
 <div class="alert alert-warning">
 <strong>Note:</strong> <code>ngModel</code> compares by reference, not value. This is important when binding to an
 array of objects. See an example <a href="http://jsfiddle.net/qWzTb/">in this jsfiddle</a>.
 </div>
 
-<p>Optionally, a single hard-coded <code>&lt;option&gt;</code> element, with the value set to an empty string, can
-be nested into the <code>&lt;select&gt;</code> element. This element will then represent the <code>null</code> or &quot;not selected&quot;
-option. See example below for demonstration.</p>
-<div class="alert alert-warning">
-<strong>Note:</strong> <code>ngOptions</code> provides an iterator facility for the <code>&lt;option&gt;</code> element which should be used instead
-of <a href="api/ng/directive/ngRepeat">ngRepeat</a> when you want the
-<code>select</code> model to be bound to a non-string value. This is because an option element can only
-be bound to string values at present.
-</div>
-
-<div class="alert alert-info">
-<strong>Note:</strong> Using <code>select as</code> will bind the result of the <code>select as</code> expression to the model, but
+<h2 id="-select-as-"><code>select</code> <strong><code>as</code></strong></h2>
+<p>Using <code>select</code> <strong><code>as</code></strong> will bind the result of the <code>select</code> expression to the model, but
 the value of the <code>&lt;select&gt;</code> and <code>&lt;option&gt;</code> html elements will be either the index (for array data sources)
-or property name (for object data sources) of the value within the collection.
+or property name (for object data sources) of the value within the collection. If a <strong><code>track by</code></strong> expression
+is used, the result of that expression will be set as the value of the <code>option</code> and <code>select</code> elements.</p>
+<h3 id="-select-as-and-track-by-"><code>select</code> <strong><code>as</code></strong> and <strong><code>track by</code></strong></h3>
+<div class="alert alert-warning">
+Do not use <code>select</code> <strong><code>as</code></strong> and <strong><code>track by</code></strong> in the same expression. They are not designed to work together.
 </div>
 
-<p><strong>Note:</strong> Using <code>select as</code> together with <code>trackexpr</code> is not recommended.
-Reasoning:</p>
-<ul>
-<li>Example: &lt;select ng-options=&quot;item.subItem as item.label for item in values track by item.id&quot; ng-model=&quot;selected&quot;&gt;
-values: [{id: 1, label: &#39;aLabel&#39;, subItem: {name: &#39;aSubItem&#39;}}, {id: 2, label: &#39;bLabel&#39;, subItem: {name: &#39;bSubItem&#39;}}],
-$scope.selected = {name: &#39;aSubItem&#39;};</li>
-<li>track by is always applied to <code>value</code>, with the purpose of preserving the selection,
-(to <code>item</code> in this case)</li>
-<li>to calculate whether an item is selected we do the following:<ol>
-<li>apply <code>track by</code> to the values in the array, e.g.
-In the example: [1,2]</li>
-<li>apply <code>track by</code> to the already selected value in <code>ngModel</code>:
-In the example: this is not possible, as <code>track by</code> refers to <code>item.id</code>, but the selected
-value from <code>ngModel</code> is <code>{name: aSubItem}</code>.</li>
+<p>Consider the following example:</p>
+<pre><code class="lang-html">&lt;select ng-options=&quot;item.subItem as item.label for item in values track by item.id&quot; ng-model=&quot;selected&quot;&gt;
+</code></pre>
+<pre><code class="lang-js">$scope.values = [{
+  id: 1,
+  label: &#39;aLabel&#39;,
+  subItem: { name: &#39;aSubItem&#39; }
+}, {
+  id: 2,
+  label: &#39;bLabel&#39;,
+  subItem: { name: &#39;bSubItem&#39; }
+}];
+
+$scope.selected = { name: &#39;aSubItem&#39; };
+</code></pre>
+<p>With the purpose of preserving the selection, the <strong><code>track by</code></strong> expression is always applied to the element
+of the data source (to <code>item</code> in this example). To calculate whether an element is selected, we do the
+following:</p>
+<ol>
+<li>Apply <strong><code>track by</code></strong> to the elements in the array. In the example: <code>[1, 2]</code></li>
+<li>Apply <strong><code>track by</code></strong> to the already selected value in <code>ngModel</code>.
+In the example: this is not possible as <strong><code>track by</code></strong> refers to <code>item.id</code>, but the selected
+value from <code>ngModel</code> is <code>{name: &#39;aSubItem&#39;}</code>, so the <strong><code>track by</code></strong> expression is applied to
+a wrong object, the selected element can&#39;t be found, <code>&lt;select&gt;</code> is always reset to the &quot;not
+selected&quot; option.</li>
 </ol>
-</li>
-</ul>
 
 </div>
 
@@ -189,8 +202,10 @@ value from <code>ngModel</code> is <code>{name: aSubItem}</code>.</li>
 <li>for array data sources:<ul>
 <li><code>label</code> <strong><code>for</code></strong> <code>value</code> <strong><code>in</code></strong> <code>array</code></li>
 <li><code>select</code> <strong><code>as</code></strong> <code>label</code> <strong><code>for</code></strong> <code>value</code> <strong><code>in</code></strong> <code>array</code></li>
-<li><code>label</code>  <strong><code>group by</code></strong> <code>group</code> <strong><code>for</code></strong> <code>value</code> <strong><code>in</code></strong> <code>array</code></li>
-<li><code>select</code> <strong><code>as</code></strong> <code>label</code> <strong><code>group by</code></strong> <code>group</code> <strong><code>for</code></strong> <code>value</code> <strong><code>in</code></strong> <code>array</code> <strong><code>track by</code></strong> <code>trackexpr</code></li>
+<li><code>label</code> <strong><code>group by</code></strong> <code>group</code> <strong><code>for</code></strong> <code>value</code> <strong><code>in</code></strong> <code>array</code></li>
+<li><code>label</code> <strong><code>group by</code></strong> <code>group</code> <strong><code>for</code></strong> <code>value</code> <strong><code>in</code></strong> <code>array</code> <strong><code>track by</code></strong> <code>trackexpr</code></li>
+<li><code>label</code> <strong><code>for</code></strong> <code>value</code> <strong><code>in</code></strong> <code>array</code> | orderBy:<code>orderexpr</code> <strong><code>track by</code></strong> <code>trackexpr</code>
+ (for including a filter with <code>track by</code>)</li>
 </ul>
 </li>
 <li>for object data sources:<ul>
@@ -235,12 +250,12 @@ value from <code>ngModel</code> is <code>{name: aSubItem}</code>.</li>
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example93')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example95', $event)" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example93"
+      path="examples/example-example95"
       module="selectExample">
 
   
@@ -259,7 +274,7 @@ value from <code>ngModel</code> is <code>{name: aSubItem}</code>.</li>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example93/index.html" name="example-example93"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example95/index.html" name="example-example95"></iframe>
   </div>
 </div>
 

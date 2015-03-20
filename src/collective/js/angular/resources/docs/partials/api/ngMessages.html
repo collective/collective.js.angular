@@ -19,11 +19,11 @@ Since the <a href="api/ng/directive/ngModel">ngModel</a> directive exposes an <c
 used with <code>ngMessages</code> to display control error messages in an easier way than with just regular angular
 template directives.</p>
 <pre><code class="lang-html">&lt;form name=&quot;myForm&quot;&gt;
-&lt;input type=&quot;text&quot; ng-model=&quot;field&quot; name=&quot;myField&quot; required minlength=&quot;5&quot; /&gt;
-&lt;div ng-messages=&quot;myForm.myField.$error&quot;&gt;
-  &lt;div ng-message=&quot;required&quot;&gt;You did not enter a field&lt;/div&gt;
-  &lt;div ng-message=&quot;minlength&quot;&gt;The value entered is too short&lt;/div&gt;
-&lt;/div&gt;
+  &lt;input type=&quot;text&quot; ng-model=&quot;field&quot; name=&quot;myField&quot; required minlength=&quot;5&quot; /&gt;
+  &lt;div ng-messages=&quot;myForm.myField.$error&quot;&gt;
+    &lt;div ng-message=&quot;required&quot;&gt;You did not enter a field&lt;/div&gt;
+    &lt;div ng-message=&quot;minlength&quot;&gt;The value entered is too short&lt;/div&gt;
+  &lt;/div&gt;
 &lt;/form&gt;
 </code></pre>
 <p>Now whatever key/value entries are present within the provided object (in this case <code>$error</code>) then
@@ -48,8 +48,8 @@ ngMessages directive to make this happen.</p>
 template. This allows for generic collection of messages to be reused across multiple parts of an
 application.</p>
 <pre><code class="lang-html">&lt;script type=&quot;text/ng-template&quot; id=&quot;error-messages&quot;&gt;
-&lt;div ng-message=&quot;required&quot;&gt;This field is required&lt;/div&gt;
-&lt;div ng-message=&quot;minlength&quot;&gt;This field is too short&lt;/div&gt;
+  &lt;div ng-message=&quot;required&quot;&gt;This field is required&lt;/div&gt;
+  &lt;div ng-message=&quot;minlength&quot;&gt;This field is too short&lt;/div&gt;
 &lt;/script&gt;
 &lt;div ng-messages=&quot;myForm.myField.$error&quot; ng-messages-include=&quot;error-messages&quot;&gt;&lt;/div&gt;
 </code></pre>
@@ -93,26 +93,26 @@ animations present. Therefore, CSS transitions and keyframes as well as JavaScri
 hook into the animations whenever these classes are added/removed.</p>
 <p>Let&#39;s say that our HTML code for our messages container looks like so:</p>
 <pre><code class="lang-html">&lt;div ng-messages=&quot;myMessages&quot; class=&quot;my-messages&quot;&gt;
-&lt;div ng-message=&quot;alert&quot; class=&quot;some-message&quot;&gt;...&lt;/div&gt;
-&lt;div ng-message=&quot;fail&quot; class=&quot;some-message&quot;&gt;...&lt;/div&gt;
+  &lt;div ng-message=&quot;alert&quot; class=&quot;some-message&quot;&gt;...&lt;/div&gt;
+  &lt;div ng-message=&quot;fail&quot; class=&quot;some-message&quot;&gt;...&lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
 <p>Then the CSS animation code for the message container looks like so:</p>
 <pre><code class="lang-css">.my-messages {
-transition:1s linear all;
+  transition:1s linear all;
 }
 .my-messages.ng-active {
-// messages are visible
+  // messages are visible
 }
 .my-messages.ng-inactive {
-// messages are hidden
+  // messages are hidden
 }
 </code></pre>
 <p>Whenever an inner message is attached (becomes visible) or removed (becomes hidden) then the enter
 and leave animation is triggered for each particular element bound to the <code>ngMessage</code> directive.</p>
 <p>Therefore, the CSS code for the inner messages looks like so:</p>
 <pre><code class="lang-css">.some-message {
-transition:1s linear all;
+  transition:1s linear all;
 }
 
 .some-message.ng-enter {}
@@ -129,7 +129,7 @@ transition:1s linear all;
 
   <p>First include <code>angular-messages.js</code> in your HTML:</p>
 
-  <pre><code>    &lt;script src=&quot;angular.js&quot;&gt;&#10;    &lt;script src=&quot;angular-messages.js&quot;&gt;</code></pre>
+  <pre><code>&lt;script src=&quot;angular.js&quot;&gt;&#10;&lt;script src=&quot;angular-messages.js&quot;&gt;</code></pre>
 
   <p>You can download this file from the following places:</p>
   <ul>
@@ -148,7 +148,7 @@ transition:1s linear all;
   </ul>
   <p>where X.Y.Z is the AngularJS version you are running.</p>
   <p>Then load the module in your application by adding it as a dependent module:</p>
-  <pre><code>  angular.module(&#39;app&#39;, [&#39;ngMessages&#39;]);</code></pre>
+  <pre><code>angular.module(&#39;app&#39;, [&#39;ngMessages&#39;]);</code></pre>
 
   <p>With that you&apos;re ready to get started!</p>
 

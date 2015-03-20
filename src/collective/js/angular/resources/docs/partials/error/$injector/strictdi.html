@@ -26,29 +26,29 @@ strict-di mode enabled.</p>
 <p>To fix the error, explicitly annotate the function using either the inline
 bracket notation, or with the $inject property:</p>
 <pre><code>function GoodController1($scope, $http, $filter) {
-// ...
+  // ...
 }
 GoodController1.$inject = [&quot;$scope&quot;, &quot;$http&quot;, &quot;$filter&quot;];
 
 angular.module(&quot;myApp&quot;, [])
-// GoodController1 can be invoked because it
-// had an $inject property, which is an array
-// containing the dependency names to be
-// injected.
-.controller(&quot;GoodController1&quot;, GoodController1)
+  // GoodController1 can be invoked because it
+  // had an $inject property, which is an array
+  // containing the dependency names to be
+  // injected.
+  .controller(&quot;GoodController1&quot;, GoodController1)
 
-// GoodController2 can also be invoked, because
-// the dependencies to inject are listed, in
-// order, in the array, with the function to be
-// invoked trailing on the end.
-.controller(&quot;GoodController2&quot;, [
-  &quot;$scope&quot;,
-  &quot;$http&quot;,
-  &quot;$filter&quot;,
-  function($scope, $http, $filter) {
-    // ...
-  }
-]);
+  // GoodController2 can also be invoked, because
+  // the dependencies to inject are listed, in
+  // order, in the array, with the function to be
+  // invoked trailing on the end.
+  .controller(&quot;GoodController2&quot;, [
+    &quot;$scope&quot;,
+    &quot;$http&quot;,
+    &quot;$filter&quot;,
+    function($scope, $http, $filter) {
+      // ...
+    }
+  ]);
 </code></pre>
 <p>For more information about strict-di mode, see <a href="api/ng/directive/ngApp">ngApp</a>
 and <a href="api/ng/function/angular.bootstrap">angular.bootstrap</a>.</p>

@@ -30,30 +30,30 @@ correctly. For example:</p>
 <p>An unknown provider error can also be caused by accidentally redefining a
 module using the <code>angular.module</code> API, as shown in the following example.</p>
 <pre><code>angular.module(&#39;myModule&#39;, [])
-.service(&#39;myCoolService&#39;, function () { /* ... */ });
+  .service(&#39;myCoolService&#39;, function () { /* ... */ });
 
 angular.module(&#39;myModule&#39;, [])
-// myModule has already been created! This is not what you want!
-.directive(&#39;myDirective&#39;, [&#39;myCoolService&#39;, function (myCoolService) {
-  // This directive definition throws unknown provider, because myCoolService
-  // has been destroyed.
-}]);
+  // myModule has already been created! This is not what you want!
+  .directive(&#39;myDirective&#39;, [&#39;myCoolService&#39;, function (myCoolService) {
+    // This directive definition throws unknown provider, because myCoolService
+    // has been destroyed.
+  }]);
 </code></pre>
 <p>To fix this problem, make sure you only define each module with the
 <code>angular.module(name, [requires])</code> syntax once across your entire project.
 Retrieve it for subsequent use with <code>angular.module(name)</code>. The fixed example
 is shown below.</p>
 <pre><code>angular.module(&#39;myModule&#39;, [])
-.service(&#39;myCoolService&#39;, function () { /* ... */ });
+  .service(&#39;myCoolService&#39;, function () { /* ... */ });
 
 angular.module(&#39;myModule&#39;)
-.directive(&#39;myDirective&#39;, [&#39;myCoolService&#39;, function (myCoolService) {
-  // This directive definition does not throw unknown provider.
-}]);
+  .directive(&#39;myDirective&#39;, [&#39;myCoolService&#39;, function (myCoolService) {
+    // This directive definition does not throw unknown provider.
+  }]);
 </code></pre>
 <p>Attempting to inject one controller into another will also throw an <code>Unknown provider</code> error:</p>
 <pre><code>angular.module(&#39;myModule&#39;, [])
-.controller(&#39;MyFirstController&#39;, function() { /* ... */ });
+.controller(&#39;MyFirstController&#39;, function() { /* ... */ })
 .controller(&#39;MySecondController&#39;, [&#39;MyFirstController&#39;, function(MyFirstController) {
   // This controller throws an unknown provider error because
   // MyFirstController cannot be injected.

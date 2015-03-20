@@ -119,7 +119,7 @@ Please do not use the <code>$</code> or <code>$$</code> prefix in your code.
 
 
 <h2 id="-link-nganimate-nganimate-"><a href="api/ngAnimate">ngAnimate</a></h2>
-<p>Use ngAnimate to enable animation features into your application. Various core ng directives will provide
+<p>Use ngAnimate to enable animation features within your application. Various core ng directives will provide
 animation hooks into your application when ngAnimate is included. Animations are defined by using CSS transitions/animations
 or JavaScript callbacks.</p>
 <div class="alert alert-info">Include the <strong>angular-animate.js</strong> file and set <strong>ngAnimate</strong> as a dependency for this to work in your application.</div>
@@ -138,7 +138,7 @@ or JavaScript callbacks.</p>
       <a href="api/ngAnimate">CSS-based animations</a>
     </td>
     <td>
-      Follow ngAnimate’s CSS naming structure to reference CSS transitions / keyframe animations in AngularJS. Once defined the animation can be triggered by referencing the CSS class within the HTML template code.
+      Follow ngAnimate’s CSS naming structure to reference CSS transitions / keyframe animations in AngularJS. Once defined, the animation can be triggered by referencing the CSS class within the HTML template code.
     </td>
   </tr>
   <tr>
@@ -146,11 +146,30 @@ or JavaScript callbacks.</p>
       <a href="api/ngAnimate">JS-based animations</a>
     </td>
     <td>
-      Use <a href="api/ng/type/angular.Module#animation">module.animation()</a> to register a JavaScript animation. Once registered the animation can be triggered by referencing the CSS class within the HTML template code.
+      Use <a href="api/ng/type/angular.Module#animation">module.animation()</a> to register a JavaScript animation. Once registered, the animation can be triggered by referencing the CSS class within the HTML template code.
     </td>
   </tr>
 </table>
 
+<h2 id="-link-ngaria-ngaria-"><a href="api/ngAria">ngAria</a></h2>
+<p>Use ngAria to inject common accessibility attributes into directives and improve the experience for users with disabilities.</p>
+<div class="alert alert-info">Include the <strong>angular-aria.js</strong> file and set ngAria as a dependency for this to work in your application.</div>
+
+<table class="definition-table spaced">
+  <tr>
+    <td>
+      <a href="api/ngAria#service">Services</a>
+    </td>
+    <td>
+      <p>
+          The <a href="api/ngAria/service/$aria">$aria</a> service contains helper methods for applying ARIA attributes to HTML.
+      <p>
+      <p>
+          <a href="api/ngAria/provider/$ariaProvider">$ariaProvider</a> is used for configuring ARIA attributes.
+      </p>
+    </td>
+  </tr>
+</table>
 
 <h2 id="-link-ngresource-ngresource-"><a href="api/ngResource">ngResource</a></h2>
 <p>Use the ngResource module when querying and posting data to a REST API.</p>
@@ -233,7 +252,7 @@ or JavaScript callbacks.</p>
 </table>
 
 <h2 id="-link-ngmock-ngmock-"><a href="api/ngMock">ngMock</a></h2>
-<p>Use ngMock to inject and mock modules, factories, services and providers within your unit tests</p>
+<p>Use ngMock to inject and mock modules, factories, services and providers within your unit tests.</p>
 <div class="alert alert-info">Include the <strong>angular-mocks.js</strong> file into your test runner for this to work.</div>
 
 <table class="definition-table spaced">

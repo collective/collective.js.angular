@@ -11,13 +11,15 @@
 
   
 </head>
-<body ng-app="scopeExample">
-    <div ng-controller="MyController">
-    Your name:
-      <input type="text" ng-model="username">
-      <button ng-click='sayHello()'>greet</button>
-    <hr>
-    {{greeting}}
-  </div>
+<body ng-app="form-example2">
+  <div contentEditable="true" ng-model="content" title="Click to edit">Some</div>
+<pre>model = {{content}}</pre>
+
+<style type="text/css">
+  div[contentEditable] {
+    cursor: pointer;
+    background-color: #D0D0D0;
+  }
+</style>
 </body>
 </html>

@@ -2,7 +2,7 @@
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/exceptionHandler.js#L3' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ng/exceptionHandler.js#L3' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -28,8 +28,8 @@ the browser console.</p>
 <p>In unit tests, if <code>angular-mocks.js</code> is loaded, this service is overridden by
 <a href="api/ngMock/service/$exceptionHandler">mock $exceptionHandler</a> which aids in testing.</p>
 <h2 id="example-">Example:</h2>
-<pre><code class="lang-js">angular.module(&#39;exceptionOverride&#39;, []).factory(&#39;$exceptionHandler&#39;, function () {
-  return function (exception, cause) {
+<pre><code class="lang-js">angular.module(&#39;exceptionOverride&#39;, []).factory(&#39;$exceptionHandler&#39;, function() {
+  return function(exception, cause) {
     exception.message += &#39; (caused by &quot;&#39; + cause + &#39;&quot;)&#39;;
     throw exception;
   };

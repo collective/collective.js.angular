@@ -2,7 +2,7 @@
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/filter/filter.js#L3' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ng/filter/filter.js#L3' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -84,18 +84,24 @@
   <code>array</code>.</p>
 <p>  Can be one of:</p>
 <ul>
-<li><p><code>string</code>: The string is evaluated as an expression and the resulting value is used for substring match against
-the contents of the <code>array</code>. All strings or objects with string properties in <code>array</code> that contain this string
-will be returned. The predicate can be negated by prefixing the string with <code>!</code>.</p>
+<li><p><code>string</code>: The string is used for matching against the contents of the <code>array</code>. All strings or
+objects with string properties in <code>array</code> that match this string will be returned. This also
+applies to nested object properties.
+The predicate can be negated by prefixing the string with <code>!</code>.</p>
 </li>
 <li><p><code>Object</code>: A pattern object can be used to filter specific properties on objects contained
 by <code>array</code>. For example <code>{name:&quot;M&quot;, phone:&quot;1&quot;}</code> predicate will return an array of items
 which have property <code>name</code> containing &quot;M&quot; and property <code>phone</code> containing &quot;1&quot;. A special
 property name <code>$</code> can be used (as in <code>{$:&quot;text&quot;}</code>) to accept a match against any
-property of the object. That&#39;s equivalent to the simple substring match with a <code>string</code>
-as described above. The predicate can be negated by prefixing the string with <code>!</code>.
-For Example <code>{name: &quot;!M&quot;}</code> predicate will return an array of items which have property <code>name</code>
+property of the object or its nested object properties. That&#39;s equivalent to the simple
+substring match with a <code>string</code> as described above. The predicate can be negated by prefixing
+the string with <code>!</code>.
+For example <code>{name: &quot;!M&quot;}</code> predicate will return an array of items which have property <code>name</code>
 not containing &quot;M&quot;.</p>
+<p>Note that a named property will match properties on the same level only, while the special
+<code>$</code> property will match properties on the same level or deeper. E.g. an array item like
+<code>{name: {first: &#39;John&#39;, last: &#39;Doe&#39;}}</code> will <strong>not</strong> be matched by <code>{name: &#39;John&#39;}</code>, but
+<strong>will</strong> be matched by <code>{$: &#39;John&#39;}</code>.</p>
 </li>
 <li><p><code>function(value, index)</code>: A predicate function can be used to write arbitrary filters. The
 function is called for each element of <code>array</code>. The final result is an array of those
@@ -124,10 +130,10 @@ elements that the predicate returned true for.</p>
 <ul>
 <li><p><code>function(actual, expected)</code>:
 The function will be given the object value and the predicate value to compare and
-should return true if the item should be included in filtered result.</p>
+should return true if both values should be considered equal.</p>
 </li>
-<li><p><code>true</code>: A shorthand for <code>function(actual, expected) { return angular.equals(expected, actual)}</code>.
-this is essentially strict comparison of expected and actual.</p>
+<li><p><code>true</code>: A shorthand for <code>function(actual, expected) { return angular.equals(actual, expected)}</code>.
+This is essentially strict comparison of expected and actual.</p>
 </li>
 <li><p><code>false|undefined</code>: A short hand for a function which will look for a substring match in case
 insensitive way.</p>
@@ -150,12 +156,12 @@ insensitive way.</p>
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example95')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example97', $event)" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example95">
+      path="examples/example-example97">
 
   
     <div class="runnable-example-file" 
@@ -173,7 +179,7 @@ insensitive way.</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example95/index.html" name="example-example95"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example97/index.html" name="example-example97"></iframe>
   </div>
 </div>
 

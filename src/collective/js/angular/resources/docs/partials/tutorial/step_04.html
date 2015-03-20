@@ -89,25 +89,25 @@ the unit test first.</p>
 <p><strong><code>test/unit/controllersSpec.js</code>:</strong></p>
 <pre><code class="lang-js">describe(&#39;PhoneCat controllers&#39;, function() {
 
-describe(&#39;PhoneListCtrl&#39;, function(){
-  var scope, ctrl;
+  describe(&#39;PhoneListCtrl&#39;, function(){
+    var scope, ctrl;
 
-  beforeEach(module(&#39;phonecatApp&#39;));
+    beforeEach(module(&#39;phonecatApp&#39;));
 
-  beforeEach(inject(function($controller) {
-    scope = {};
-    ctrl = $controller(&#39;PhoneListCtrl&#39;, {$scope:scope});
-  }));
+    beforeEach(inject(function($controller) {
+      scope = {};
+      ctrl = $controller(&#39;PhoneListCtrl&#39;, {$scope:scope});
+    }));
 
-  it(&#39;should create &quot;phones&quot; model with 3 phones&#39;, function() {
-    expect(scope.phones.length).toBe(3);
+    it(&#39;should create &quot;phones&quot; model with 3 phones&#39;, function() {
+      expect(scope.phones.length).toBe(3);
+    });
+
+
+    it(&#39;should set the default value of orderProp model&#39;, function() {
+      expect(scope.orderProp).toBe(&#39;age&#39;);
+    });
   });
-
-
-  it(&#39;should set the default value of orderProp model&#39;, function() {
-    expect(scope.orderProp).toBe(&#39;age&#39;);
-  });
-});
 });
 </code></pre>
 <p>The unit test now verifies that the default ordering property is set.</p>
@@ -122,7 +122,7 @@ shared by all tests in the parent <code>describe</code> block.</p>
 <pre><code class="lang-js">...
 it(&#39;should be possible to control phone order via the drop down select box&#39;, function() {
 
-  var phoneNameColumn = element.all(by.repeater(&#39;phone in phones&#39;).column(&#39;{{phone.name}}&#39;));
+  var phoneNameColumn = element.all(by.repeater(&#39;phone in phones&#39;).column(&#39;phone.name&#39;));
   var query = element(by.model(&#39;query&#39;));
 
   function getNames() {
@@ -151,7 +151,7 @@ it(&#39;should be possible to control phone order via the drop down select box&#
 <h1 id="experiments">Experiments</h1>
 <ul>
 <li><p>In the <code>PhoneListCtrl</code> controller, remove the statement that sets the <code>orderProp</code> value and
-you&#39;ll see that Angular will temporarily add a new &quot;unknown&quot; option to the drop-down list and the
+you&#39;ll see that Angular will temporarily add a new blank (&quot;unknown&quot;) option to the drop-down list and the
 ordering will default to unordered/natural order.</p>
 </li>
 <li><p>Add an <code>{{orderProp}}</code> binding into the <code>index.html</code> template to display its current value as

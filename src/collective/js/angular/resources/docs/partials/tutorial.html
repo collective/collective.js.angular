@@ -78,10 +78,11 @@ download much smaller and faster.
 <p>In Debian based distributions, there is a name clash with another utility called <code>node</code>. The
 suggested solution is to also install the <code>nodejs-legacy</code> apt package, which renames <code>node</code> to
 <code>nodejs</code>.</p>
-<pre><code>apt-get install nodejs-legacy
+<pre><code>apt-get install nodejs-legacy npm
 nodejs --version
+npm --version
 </code></pre>
-<div class="alert alert-info">If you need to run a different versions of node.js
+<div class="alert alert-info">If you need to run different versions of node.js
   in your local environment, consider installing
   <a href="https://github.com/creationix/nvm" title="Node Version Manager Github Repo link">
     Node Version Manager (nvm)
@@ -119,7 +120,7 @@ tasks that you will need while developing:</p>
 globally and run directly from a terminal/command prompt. You don&#39;t need to do this to follow the
 tutorial, but if you decide you do want to run them directly, you can install these modules globally
 using, <code>sudo npm install -g ...</code>.</p>
-<p>For instance to install the Bower command line executable you would do:</p>
+<p>For instance, to install the Bower command line executable you would do:</p>
 <pre><code>sudo npm install -g bower
 </code></pre>
 <p><em>(Omit the sudo if running on Windows)</em></p>

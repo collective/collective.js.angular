@@ -2,7 +2,7 @@
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ngResource/resource.js#L62' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ngResource/resource.js#L62' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -31,7 +31,7 @@ the need to interact with the low level <a href="api/ng/service/$http">$http</a>
 which can pose problems with server backends that do not expect that
 behavior.  This can be disabled by configuring the <code>$resourceProvider</code> like
 this:</p>
-<pre><code class="lang-js">app.config([&#39;$resourceProvider&#39;, function ($resourceProvider) {
+<pre><code class="lang-js">app.config([&#39;$resourceProvider&#39;, function($resourceProvider) {
   // Don&#39;t strip trailing slashes from calculated URLs
   $resourceProvider.defaults.stripTrailingSlashes = false;
 }]);
@@ -133,7 +133,7 @@ this:</p>
         <a href="" class="label type-hint type-hint-object">Object.&lt;Object&gt;=</a>
       </td>
       <td>
-        <p>Hash with declaration of custom action that should extend
+        <p>Hash with declaration of custom actions that should extend
   the default set of resource actions. The declaration should be created in the format of <a href="api/ng/service/$http#usage">$http.config</a>:</p>
 <pre><code>{action1: {method:?, params:?, isArray:?, headers:?, ...},
  action2: {method:?, params:?, isArray:?, headers:?, ...},
@@ -249,13 +249,14 @@ var user = User.get({userId:123}, function() {
 <ul>
 <li>HTTP GET &quot;class&quot; actions: <code>Resource.action([parameters], [success], [error])</code></li>
 <li>non-GET &quot;class&quot; actions: <code>Resource.action([parameters], postData, [success], [error])</code></li>
-<li><p>non-GET instance actions:  <code>instance.$action([parameters], [success], [error])</code></p>
-<p>Success callback is called with (value, responseHeaders) arguments. Error callback is called
-with (httpResponse) argument.</p>
-<p>Class actions return empty instance (with additional properties below).
-Instance actions return promise of the action.</p>
-<p>The Resource instances and collection have these additional properties:</p>
-</li>
+<li>non-GET instance actions:  <code>instance.$action([parameters], [success], [error])</code></li>
+</ul>
+<p>  Success callback is called with (value, responseHeaders) arguments. Error callback is called
+  with (httpResponse) argument.</p>
+<p>  Class actions return empty instance (with additional properties below).
+  Instance actions return promise of the action.</p>
+<p>  The Resource instances and collection have these additional properties:</p>
+<ul>
 <li><p><code>$promise</code>: the <a href="api/ng/service/$q">promise</a> of the original server interaction that created this
 instance or collection.</p>
 <p>On success, the promise is resolved with the same resource instance or collection object,

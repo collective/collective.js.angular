@@ -2,7 +2,7 @@
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/auto/injector.js#L3' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/auto/injector.js#L3' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -35,7 +35,7 @@ dependency injection (see <a href="guide/di">dependency injection</a>).</p>
 
   <h2 id="usage">Usage</h2>
     
-      <p><code>angular.injector(modules);</code></p>
+      <p><code>angular.injector(modules, [strictDi]);</code></p>
 
 
     
@@ -65,9 +65,26 @@ dependency injection (see <a href="guide/di">dependency injection</a>).</p>
       </td>
       <td>
         <p>A list of module functions or their aliases. See
-       <a href="api/ng/function/angular.module"><code>angular.module</code></a>. The <code>ng</code> module must be explicitly added.</p>
+    <a href="api/ng/function/angular.module"><code>angular.module</code></a>. The <code>ng</code> module must be explicitly added.</p>
 
         
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        strictDi
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-boolean">boolean</a>
+      </td>
+      <td>
+        <p>Whether the injector should be in strict mode, which
+    disallows argument name annotation inference.</p>
+
+        <p><em>(default: false)</em></p>
       </td>
     </tr>
     

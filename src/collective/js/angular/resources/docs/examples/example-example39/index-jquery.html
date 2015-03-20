@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Example - example-example39-jquery</title>
-  <link href="style.css" rel="stylesheet" type="text/css">
   
 
   <script src="../../components/jquery-2.1.1/jquery.js"></script>
@@ -13,15 +12,10 @@
 
   
 </head>
-<body ng-app="scopeExample">
-  <div class="show-scope-demo">
-  <div ng-controller="GreetController">
-    Hello {{name}}!
-  </div>
-  <div ng-controller="ListController">
-    <ol>
-      <li ng-repeat="name in names">{{name}} from {{department}}</li>
-    </ol>
+<body >
+  <div ng-app="myApp">
+  <div>
+    {{ 'World' | greet }}
   </div>
 </div>
 </body>

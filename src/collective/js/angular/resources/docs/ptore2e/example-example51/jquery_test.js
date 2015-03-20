@@ -2,12 +2,16 @@ describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("examples/example-example51/index-jquery.html");
+    browser.get("build/docs/examples/example-example51/index-jquery.html");
   });
   
-  it('should toggle button', function() {
-    expect(element(by.css('button')).getAttribute('disabled')).toBeFalsy();
-    element(by.model('checked')).click();
-    expect(element(by.css('button')).getAttribute('disabled')).toBeTruthy();
-  });
+it('should auto compile', function() {
+  var textarea = $('textarea');
+  var output = $('div[compile]');
+  // The initial state reads 'Hello Angular'.
+  expect(output.getText()).toBe('Hello Angular');
+  textarea.clear();
+  textarea.sendKeys('{{name}}!');
+  expect(output.getText()).toBe('Angular!');
+});
 });

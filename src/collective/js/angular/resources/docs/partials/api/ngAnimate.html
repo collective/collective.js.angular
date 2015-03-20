@@ -10,7 +10,7 @@
 
 <h1 id="usage">Usage</h1>
 <p>To see animations in action, all that is required is to define the appropriate CSS classes
-or to register a JavaScript animation via the myModule.animation() function. The directives that support animation automatically are:
+or to register a JavaScript animation via the <code>myModule.animation()</code> function. The directives that support animation automatically are:
 <code>ngRepeat</code>, <code>ngInclude</code>, <code>ngIf</code>, <code>ngSwitch</code>, <code>ngShow</code>, <code>ngHide</code>, <code>ngView</code> and <code>ngClass</code>. Custom directives can take advantage of animation
 by using the <code>$animate</code> service.</p>
 <p>Below is a more detailed breakdown of the supported animation events provided by pre-existing ng directives:</p>
@@ -88,11 +88,11 @@ to trigger the CSS transition/animations
 until the parent element&#39;s animation has completed. This blocking feature can be overridden by
 placing the <code>ng-animate-children</code> attribute on a parent container tag.</p>
 <pre><code class="lang-html">&lt;div class=&quot;slide-animation&quot; ng-if=&quot;on&quot; ng-animate-children&gt;
-&lt;div class=&quot;fade-animation&quot; ng-if=&quot;on&quot;&gt;
-  &lt;div class=&quot;explode-animation&quot; ng-if=&quot;on&quot;&gt;
-     ...
+  &lt;div class=&quot;fade-animation&quot; ng-if=&quot;on&quot;&gt;
+    &lt;div class=&quot;explode-animation&quot; ng-if=&quot;on&quot;&gt;
+       ...
+    &lt;/div&gt;
   &lt;/div&gt;
-&lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
 <p>When the <code>on</code> expression value changes and an animation is triggered then each of the elements within
@@ -167,8 +167,8 @@ immediately resulting in a DOM element that is at its final state. This final st
 has no CSS transition/animation classes applied to it.</p>
 <h3 id="structural-transition-animations">Structural transition animations</h3>
 <p>Structural transitions (such as enter, leave and move) will always apply a <code>0s none</code> transition
-value to force the browser into rendering the styles defined in the setup (.ng-enter, .ng-leave
-or .ng-move) class. This means that any active transition animations operating on the element
+value to force the browser into rendering the styles defined in the setup (<code>.ng-enter</code>, <code>.ng-leave</code>
+or <code>.ng-move</code>) class. This means that any active transition animations operating on the element
 will be cut off to make way for the enter, leave or move animation.</p>
 <h3 id="class-based-transition-animations">Class-based transition animations</h3>
 <p>Class-based transitions refer to transition animations that are triggered when a CSS class is
@@ -190,18 +190,18 @@ When rendering class-based transitions that make use of the setup and active CSS
 (e.g. <code>.fade-add</code> and <code>.fade-add-active</code> for when <code>.fade</code> is added) be sure to define
 the transition value <strong>on the active CSS class</strong> and not the setup class.</p>
 <pre><code class="lang-css">.fade-add {
-/* remember to place a 0s transition here
-   to ensure that the styles are applied instantly
-   even if the element already has a transition style */
-transition:0s linear all;
+  /* remember to place a 0s transition here
+     to ensure that the styles are applied instantly
+     even if the element already has a transition style */
+  transition:0s linear all;
 
-/* starting CSS styles */
-opacity:1;
+  /* starting CSS styles */
+  opacity:1;
 }
 .fade-add.fade-add-active {
-/* this will be the length of the animation */
-transition:1s linear all;
-opacity:0;
+  /* this will be the length of the animation */
+  transition:1s linear all;
+  opacity:0;
 }
 </code></pre>
 <p>The setup CSS class (in this case <code>.fade-add</code>) also has a transition style property, however, it
@@ -210,15 +210,30 @@ the styling present in this CSS class instantly then it could be that the browse
 to perform an unnecessary transition.</p>
 <p>This workaround, however, does not apply to  standard class-based transitions that are rendered
 when a CSS class containing a transition is applied to an element:</p>
-<pre><code class="lang-css">.fade {
-/* this works as expected */
-transition:1s linear all;
-opacity:0;
+<pre><code class="lang-css">/* this works as expected */
+.fade {
+  transition:1s linear all;
+  opacity:0;
 }
 </code></pre>
 <p>Please keep this in mind when coding the CSS markup that will be used within class-based transitions.
 Also, try not to mix the two class-based animation flavors together since the CSS code may become
 overly complex.</p>
+<h3 id="preventing-collisions-with-third-party-libraries">Preventing Collisions With Third Party Libraries</h3>
+<p>Some third-party frameworks place animation duration defaults across many element or className
+selectors in order to make their code small and reuseable. This can lead to issues with ngAnimate, which
+is expecting actual animations on these elements and has to wait for their completion.</p>
+<p>You can prevent this unwanted behavior by using a prefix on all your animation classes:</p>
+<pre><code class="lang-css">/* prefixed with animate- */
+.animate-fade-add.animate-fade-add-active {
+  transition:1s linear all;
+  opacity:0;
+}
+</code></pre>
+<p>You then configure <code>$animate</code> to enforce this prefix:</p>
+<pre><code class="lang-js">$animateProvider.classNameFilter(/animate-/);
+</code></pre>
+<p></div></p>
 <h3 id="css-staggering-animations">CSS Staggering Animations</h3>
 <p>A Staggering animation is a collection of animations that are issued with a slight delay in between each successive operation resulting in a
 curtain-like effect. The ngAnimate module (versions &gt;=1.2) supports staggering animations and the stagger effect can be
@@ -226,24 +241,24 @@ performed by creating a <strong>ng-EVENT-stagger</strong> CSS class and attachin
 the animation. The style property expected within the stagger class can either be a <strong>transition-delay</strong> or an
 <strong>animation-delay</strong> property (or both if your animation contains both transitions and keyframe animations).</p>
 <pre><code class="lang-css">.my-animation.ng-enter {
-/* standard transition code */
--webkit-transition: 1s linear all;
-transition: 1s linear all;
-opacity:0;
+  /* standard transition code */
+  -webkit-transition: 1s linear all;
+  transition: 1s linear all;
+  opacity:0;
 }
 .my-animation.ng-enter-stagger {
-/* this will have a 100ms delay between each successive leave animation */
--webkit-transition-delay: 0.1s;
-transition-delay: 0.1s;
+  /* this will have a 100ms delay between each successive leave animation */
+  -webkit-transition-delay: 0.1s;
+  transition-delay: 0.1s;
 
-/* in case the stagger doesn&#39;t work then these two values
- must be set to 0 to avoid an accidental CSS inheritance */
--webkit-transition-duration: 0s;
-transition-duration: 0s;
+  /* in case the stagger doesn&#39;t work then these two values
+   must be set to 0 to avoid an accidental CSS inheritance */
+  -webkit-transition-duration: 0s;
+  transition-duration: 0s;
 }
 .my-animation.ng-enter.ng-enter-active {
-/* standard transition styles */
-opacity:1;
+  /* standard transition styles */
+  opacity:1;
 }
 </code></pre>
 <p>Staggering animations work by default in ngRepeat (so long as the CSS class is defined). Outside of ngRepeat, to use staggering animations
@@ -314,12 +329,12 @@ towards the mouse coordinates as to where the user clicked last. By collecting t
 (via the event parameter) we can set the <code>top</code> and <code>left</code> styles into an object and pass that into our function
 call to <code>$animate.addClass</code>.</p>
 <pre><code class="lang-js">canvas.on(&#39;click&#39;, function(e) {
-$animate.addClass(element, &#39;on&#39;, {
-  to: {
-    left : e.client.x + &#39;px&#39;,
-    top : e.client.y + &#39;px&#39;
-  }
-}):
+  $animate.addClass(element, &#39;on&#39;, {
+    to: {
+      left : e.client.x + &#39;px&#39;,
+      top : e.client.y + &#39;px&#39;
+    }
+  }):
 });
 </code></pre>
 <p>Now when the animation runs, and a transition or keyframe animation is picked up, then the animation itself will
@@ -327,17 +342,17 @@ also include and transition the styling of the <code>left</code> and <code>top</
 to provide some starting animation values then we can do so by placing the starting animations styles into an object
 called <code>from</code> in the same object as the <code>to</code> animations.</p>
 <pre><code class="lang-js">canvas.on(&#39;click&#39;, function(e) {
-$animate.addClass(element, &#39;on&#39;, {
-  from: {
-     position: &#39;absolute&#39;,
-     left: &#39;0px&#39;,
-     top: &#39;0px&#39;
-  },
-  to: {
-    left : e.client.x + &#39;px&#39;,
-    top : e.client.y + &#39;px&#39;
-  }
-}):
+  $animate.addClass(element, &#39;on&#39;, {
+    from: {
+       position: &#39;absolute&#39;,
+       left: &#39;0px&#39;,
+       top: &#39;0px&#39;
+    },
+    to: {
+      left : e.client.x + &#39;px&#39;,
+      top : e.client.y + &#39;px&#39;
+    }
+  }):
 });
 </code></pre>
 <p>Once the animation is complete or cancelled then the union of both the before and after styles are applied to the
@@ -349,7 +364,7 @@ element. If <code>ngAnimate</code> is not present then the styles will be applie
 
   <p>First include <code>angular-animate.js</code> in your HTML:</p>
 
-  <pre><code>    &lt;script src=&quot;angular.js&quot;&gt;&#10;    &lt;script src=&quot;angular-animate.js&quot;&gt;</code></pre>
+  <pre><code>&lt;script src=&quot;angular.js&quot;&gt;&#10;&lt;script src=&quot;angular-animate.js&quot;&gt;</code></pre>
 
   <p>You can download this file from the following places:</p>
   <ul>
@@ -368,7 +383,7 @@ element. If <code>ngAnimate</code> is not present then the styles will be applie
   </ul>
   <p>where X.Y.Z is the AngularJS version you are running.</p>
   <p>Then load the module in your application by adding it as a dependent module:</p>
-  <pre><code>  angular.module(&#39;app&#39;, [&#39;ngAnimate&#39;]);</code></pre>
+  <pre><code>angular.module(&#39;app&#39;, [&#39;ngAnimate&#39;]);</code></pre>
 
   <p>With that you&apos;re ready to get started!</p>
 

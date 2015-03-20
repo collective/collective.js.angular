@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ngAria/aria.js?message=docs($ariaProvider)%3A%20describe%20your%20change...#L39' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ngAria/aria.js?message=docs($ariaProvider)%3A%20describe%20your%20change...#L55' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ngAria/aria.js#L39' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ngAria/aria.js#L55' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -24,7 +24,14 @@
 
 
 <div class="api-profile-description">
-  <p>Used for configuring ARIA attributes.</p>
+  <p>Used for configuring the ARIA attributes injected and managed by ngAria.</p>
+<pre><code class="lang-js">angular.module(&#39;myApp&#39;, [&#39;ngAria&#39;], function config($ariaProvider) {
+  $ariaProvider.config({
+    ariaValue: true,
+    tabindex: false
+  });
+});
+</code></pre>
 <h2 id="dependencies">Dependencies</h2>
 <p>Requires the <a href="api/ngAria"><code>ngAria</code></a> module to be installed.</p>
 
@@ -83,6 +90,8 @@
 <li><strong>ariaMultiline</strong> – <code>{boolean}</code> – Enables/disables aria-multiline tags</li>
 <li><strong>ariaValue</strong> – <code>{boolean}</code> – Enables/disables aria-valuemin, aria-valuemax and aria-valuenow tags</li>
 <li><strong>tabindex</strong> – <code>{boolean}</code> – Enables/disables tabindex tags</li>
+<li><strong>bindKeypress</strong> – <code>{boolean}</code> – Enables/disables keypress event binding on <code>&amp;lt;div&amp;gt;</code> and
+<code>&amp;lt;li&amp;gt;</code> elements with ng-click</li>
 </ul>
 
         

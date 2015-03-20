@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/input.js?message=docs(ngModel.NgModelController)%3A%20describe%20your%20change...#L1488' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/ngModel.js?message=docs(ngModel.NgModelController)%3A%20describe%20your%20change...#L22' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/directive/input.js#L1488' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ng/directive/ngModel.js#L22' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -20,70 +20,14 @@
 
 
 <div class="api-profile-description">
-  <p><code>NgModelController</code> provides API for the <code>ng-model</code> directive. The controller contains
-services for data-binding, validation, CSS updates, and value formatting and parsing. It
-purposefully does not contain any logic which deals with DOM rendering or listening to
-DOM events. Such DOM related logic should be provided by other directives which make use of
-<code>NgModelController</code> for data-binding.</p>
-<h2 id="custom-control-example">Custom Control Example</h2>
-<p>This example shows how to use <code>NgModelController</code> with a custom control to achieve
-data-binding. Notice how different directives (<code>contenteditable</code>, <code>ng-model</code>, and <code>required</code>)
-collaborate together to achieve the desired result.</p>
-<p>Note that <code>contenteditable</code> is an HTML5 attribute, which tells the browser to let the element
-contents be edited in place by the user.  This will not work on older browsers.</p>
-<p>We are using the <a href="api/ng/service/$sce">$sce</a> service here and include the <a href="api/ngSanitize">$sanitize</a>
-module to automatically remove &quot;bad&quot; content like inline event listener (e.g. <code>&lt;span onclick=&quot;...&quot;&gt;</code>).
-However, as we are using <code>$sce</code> the model can still decide to to provide unsafe content if it marks
-that content using the <code>$sce</code> service.</p>
-<p>
-
-<div>
-  <a ng-click="openPlunkr('examples/example-NgModelController')" class="btn pull-right">
-    <i class="glyphicon glyphicon-edit">&nbsp;</i>
-    Edit in Plunker</a>
-
-  <div class="runnable-example"
-      path="examples/example-NgModelController"
-      name="NgModelController"
-      module="customControl"
-      deps="angular-sanitize.js">
-
-  
-    <div class="runnable-example-file" 
-      name="style.css"
-      language="css"
-      type="css">
-      <pre><code>[contenteditable] {&#10;  border: 1px solid black;&#10;  background-color: white;&#10;  min-height: 20px;&#10;}&#10;&#10;.ng-invalid {&#10;  border: 1px solid red;&#10;}</code></pre>
-    </div>
-  
-    <div class="runnable-example-file" 
-      name="script.js"
-      language="js"
-      type="js">
-      <pre><code>angular.module(&#39;customControl&#39;, [&#39;ngSanitize&#39;]).&#10;  directive(&#39;contenteditable&#39;, [&#39;$sce&#39;, function($sce) {&#10;    return {&#10;      restrict: &#39;A&#39;, // only activate on element attribute&#10;      require: &#39;?ngModel&#39;, // get a hold of NgModelController&#10;      link: function(scope, element, attrs, ngModel) {&#10;        if (!ngModel) return; // do nothing if no ng-model&#10;&#10;        // Specify how UI should be updated&#10;        ngModel.$render = function() {&#10;          element.html($sce.getTrustedHtml(ngModel.$viewValue || &#39;&#39;));&#10;        };&#10;&#10;        // Listen for change events to enable binding&#10;        element.on(&#39;blur keyup change&#39;, function() {&#10;          scope.$apply(read);&#10;        });&#10;        read(); // initialize&#10;&#10;        // Write data to the model&#10;        function read() {&#10;          var html = element.html();&#10;          // When we clear the content editable the browser leaves a &lt;br&gt; behind&#10;          // If strip-br attribute is provided then we strip this out&#10;          if ( attrs.stripBr &amp;&amp; html == &#39;&lt;br&gt;&#39; ) {&#10;            html = &#39;&#39;;&#10;          }&#10;          ngModel.$setViewValue(html);&#10;        }&#10;      }&#10;    };&#10;  }]);</code></pre>
-    </div>
-  
-    <div class="runnable-example-file" 
-      name="index.html"
-      language="html"
-      type="html">
-      <pre><code>&lt;form name=&quot;myForm&quot;&gt;&#10; &lt;div contenteditable&#10;      name=&quot;myWidget&quot; ng-model=&quot;userContent&quot;&#10;      strip-br=&quot;true&quot;&#10;      required&gt;Change me!&lt;/div&gt;&#10;  &lt;span ng-show=&quot;myForm.myWidget.$error.required&quot;&gt;Required!&lt;/span&gt;&#10; &lt;hr&gt;&#10; &lt;textarea ng-model=&quot;userContent&quot;&gt;&lt;/textarea&gt;&#10;&lt;/form&gt;</code></pre>
-    </div>
-  
-    <div class="runnable-example-file" 
-      name="protractor.js"
-      type="protractor"
-      language="js">
-      <pre><code>it(&#39;should data-bind and become invalid&#39;, function() {&#10;if (browser.params.browser == &#39;safari&#39; || browser.params.browser == &#39;firefox&#39;) {&#10;  // SafariDriver can&#39;t handle contenteditable&#10;  // and Firefox driver can&#39;t clear contenteditables very well&#10;  return;&#10;}&#10;var contentEditable = element(by.css(&#39;[contenteditable]&#39;));&#10;var content = &#39;Change me!&#39;;&#10;&#10;expect(contentEditable.getText()).toEqual(content);&#10;&#10;contentEditable.clear();&#10;contentEditable.sendKeys(protractor.Key.BACK_SPACE);&#10;expect(contentEditable.getText()).toEqual(&#39;&#39;);&#10;expect(contentEditable.getAttribute(&#39;class&#39;)).toMatch(/ng-invalid-required/);&#10;});</code></pre>
-    </div>
-  
-
-    <iframe class="runnable-example-frame" src="examples/example-NgModelController/index.html" name="example-NgModelController"></iframe>
-  </div>
-</div>
-
-
-</p>
+  <p><code>NgModelController</code> provides API for the <a href="api/ng/directive/ngModel"><code>ngModel</code></a> directive.
+The controller contains services for data-binding, validation, CSS updates, and value formatting
+and parsing. It purposefully does not contain any logic which deals with DOM rendering or
+listening to DOM events.
+Such DOM related logic should be provided by other directives which make use of
+<code>NgModelController</code> for data-binding to control elements.
+Angular provides this DOM logic for most <a href="api/ng/directive/input"><code>input</code></a> elements.
+At the end of this page you can find a <a href="api/ng/type/ngModel.NgModelController#custom-control-example">custom control example</a> that uses <code>ngModelController</code> to bind to <code>contenteditable</code> elements.</p>
 
 </div>
 
@@ -95,65 +39,7 @@ that content using the <code>$sce</code> service.</p>
 
     
 
-  <h2 id="usage">Usage</h2>
-    
-      <p><code>ngModel.NgModelController(name, validationFn);</code></p>
-
-
-    
-
-    
-<section class="api-section">
-  <h3>Arguments</h3>
-
-<table class="variables-matrix input-arguments">
-  <thead>
-    <tr>
-      <th>Param</th>
-      <th>Type</th>
-      <th>Details</th>
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr>
-      <td>
-        name
-        
-        
-      </td>
-      <td>
-        <a href="" class="label type-hint type-hint-string">string</a>
-      </td>
-      <td>
-        <p>The name of the validator.</p>
-
-        
-      </td>
-    </tr>
-    
-    <tr>
-      <td>
-        validationFn
-        
-        
-      </td>
-      <td>
-        <a href="" class="label type-hint type-hint-function">Function</a>
-      </td>
-      <td>
-        <p>The validation function that will be run.</p>
-
-        
-      </td>
-    </tr>
-    
-  </tbody>
-</table>
-
-</section>
-    
-    
+  
 
   
 <h2>Methods</h2>
@@ -189,9 +75,9 @@ invoked if you only change a property on the objects.</p>
     <h3><p><code>$isEmpty(value);</code></p>
 
 </h3>
-    <div><p>This is called when we need to determine if the value of the input is empty.</p>
-<p>For instance, the required directive does this to work out if the input has data or not.
-The default <code>$isEmpty</code> function checks whether the value is <code>undefined</code>, <code>&#39;&#39;</code>, <code>null</code> or <code>NaN</code>.</p>
+    <div><p>This is called when we need to determine if the value of an input is empty.</p>
+<p>For instance, the required directive does this to work out if the input has data or not.</p>
+<p>The default <code>$isEmpty</code> function checks whether the value is <code>undefined</code>, <code>&#39;&#39;</code>, <code>null</code> or <code>NaN</code>.</p>
 <p>You can override this for input directives whose concept of being empty is different to the
 default. The <code>checkboxInputType</code> directive does this because in its case a value of <code>false</code>
 implies empty.</p>
@@ -220,7 +106,7 @@ implies empty.</p>
         <a href="" class="label type-hint type-hint-object">*</a>
       </td>
       <td>
-        <p>Model value to check.</p>
+        <p>The value of the input to check for emptiness.</p>
 
         
       </td>
@@ -238,7 +124,7 @@ implies empty.</p>
     <table class="variables-matrix return-arguments">
   <tr>
     <td><a href="" class="label type-hint type-hint-boolean">boolean</a></td>
-    <td><p>True if <code>value</code> is empty.</p>
+    <td><p>True if <code>value</code> is &quot;empty&quot;.</p>
 </td>
   </tr>
 </table>
@@ -250,9 +136,10 @@ implies empty.</p>
     <h3><p><code>$setValidity(validationErrorKey, isValid);</code></p>
 
 </h3>
-    <div><p>Change the validity state, and notifies the form.</p>
-<p>This method can be called within $parsers/$formatters. However, if possible, please use the
-       <code>ngModel.$validators</code> pipeline which is designed to call this method automatically.</p>
+    <div><p>Change the validity state, and notify the form.</p>
+<p>This method can be called within $parsers/$formatters or a custom validation implementation.
+However, in most cases it should be sufficient to use the <code>ngModel.$validators</code> and
+<code>ngModel.$asyncValidators</code> collections which will call <code>$setValidity</code> automatically.</p>
 </div>
 
     
@@ -278,9 +165,9 @@ implies empty.</p>
         <a href="" class="label type-hint type-hint-string">string</a>
       </td>
       <td>
-        <p>Name of the validator. the <code>validationErrorKey</code> will assign
-       to <code>$error[validationErrorKey]</code> and <code>$pending[validationErrorKey]</code>
-       so that it is available for data-binding.
+        <p>Name of the validator. The <code>validationErrorKey</code> will be assigned
+       to either <code>$error[validationErrorKey]</code> or <code>$pending[validationErrorKey]</code>
+       (for unfulfilled <code>$asyncValidators</code>), so that it is available for data-binding.
        The <code>validationErrorKey</code> should be in camelCase and will get converted into dash-case
        for class name. Example: <code>myError</code> will result in <code>ng-valid-my-error</code> and <code>ng-invalid-my-error</code>
        class and can be bound to as  <code>{{someForm.someControl.$error.myError}}</code> .</p>
@@ -300,7 +187,9 @@ implies empty.</p>
       </td>
       <td>
         <p>Whether the current state is valid (true), invalid (false), pending (undefined),
-                         or skipped (null).</p>
+                         or skipped (null). Pending is used for unfulfilled <code>$asyncValidators</code>.
+                         Skipped is used by Angular when validators do not run because of parse errors and
+                         when <code>$asyncValidators</code> do not run because any of the <code>$validators</code> failed.</p>
 
         
       </td>
@@ -322,9 +211,27 @@ implies empty.</p>
 
 </h3>
     <div><p>Sets the control to its pristine state.</p>
-<p>This method can be called to remove the &#39;ng-dirty&#39; class and set the control to its pristine
-state (ng-pristine class). A model is considered to be pristine when the model has not been changed
-from when first compiled within then form.</p>
+<p>This method can be called to remove the <code>ng-dirty</code> class and set the control to its pristine
+state (<code>ng-pristine</code> class). A model is considered to be pristine when the control
+has not been changed from when first compiled.</p>
+</div>
+
+    
+
+    
+    
+    
+
+  </li>
+  
+  <li id="$setDirty">
+    <h3><p><code>$setDirty();</code></p>
+
+</h3>
+    <div><p>Sets the control to its dirty state.</p>
+<p>This method can be called to remove the <code>ng-pristine</code> class and set the control to its dirty
+state (<code>ng-dirty</code> class). A model is considered to be dirty when the control has been changed
+from when first compiled.</p>
 </div>
 
     
@@ -340,8 +247,8 @@ from when first compiled within then form.</p>
 
 </h3>
     <div><p>Sets the control to its untouched state.</p>
-<p>This method can be called to remove the &#39;ng-touched&#39; class and set the control to its
-untouched state (ng-untouched class). Upon compilation, a model is set as untouched
+<p>This method can be called to remove the <code>ng-touched</code> class and set the control to its
+untouched state (<code>ng-untouched</code> class). Upon compilation, a model is set as untouched
 by default, however this function can be used to restore that state if the model has
 already been touched by the user.</p>
 </div>
@@ -359,10 +266,9 @@ already been touched by the user.</p>
 
 </h3>
     <div><p>Sets the control to its touched state.</p>
-<p>This method can be called to remove the &#39;ng-untouched&#39; class and set the control to its
-touched state (ng-touched class). A model is considered to be touched when the user has
-first interacted (focussed) on the model input element and then shifted focus away (blurred)
-from the input element.</p>
+<p>This method can be called to remove the <code>ng-untouched</code> class and set the control to its
+touched state (<code>ng-touched</code> class). A model is considered to be touched when the user has
+first focused the control element and then shifted focus away from the control (blur event).</p>
 </div>
 
     
@@ -392,7 +298,7 @@ input field will be updated with the new model value and any pending operations 
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-ng-model-cancel-update')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-ng-model-cancel-update', $event)" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
@@ -406,7 +312,7 @@ input field will be updated with the new model value and any pending operations 
       name="app.js"
       language="js"
       type="js">
-      <pre><code>angular.module(&#39;cancel-update-example&#39;, [])&#10;&#10;.controller(&#39;CancelUpdateController&#39;, [&#39;$scope&#39;, function($scope) {&#10;  $scope.resetWithCancel = function (e) {&#10;    if (e.keyCode == 27) {&#10;      $scope.myForm.myInput1.$rollbackViewValue();&#10;      $scope.myValue = &#39;&#39;;&#10;    }&#10;  };&#10;  $scope.resetWithoutCancel = function (e) {&#10;    if (e.keyCode == 27) {&#10;      $scope.myValue = &#39;&#39;;&#10;    }&#10;  };&#10;}]);</code></pre>
+      <pre><code>angular.module(&#39;cancel-update-example&#39;, [])&#10;&#10;.controller(&#39;CancelUpdateController&#39;, [&#39;$scope&#39;, function($scope) {&#10;  $scope.resetWithCancel = function(e) {&#10;    if (e.keyCode == 27) {&#10;      $scope.myForm.myInput1.$rollbackViewValue();&#10;      $scope.myValue = &#39;&#39;;&#10;    }&#10;  };&#10;  $scope.resetWithoutCancel = function(e) {&#10;    if (e.keyCode == 27) {&#10;      $scope.myValue = &#39;&#39;;&#10;    }&#10;  };&#10;}]);</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -437,7 +343,12 @@ input field will be updated with the new model value and any pending operations 
     <h3><p><code>$validate();</code></p>
 
 </h3>
-    <div><p>Runs each of the registered validators (first synchronous validators and then asynchronous validators).</p>
+    <div><p>Runs each of the registered validators (first synchronous validators and then
+asynchronous validators).
+If the validity changes to invalid, the model will be set to <code>undefined</code>,
+unless <a href="api/ng/directive/ngModelOptions"><code>ngModelOptions.allowInvalid</code></a> is <code>true</code>.
+If the validity changes to valid, it will set the model to the last available valid
+modelValue, i.e. either the last parsed value or the last value set from the scope.</p>
 </div>
 
     
@@ -571,7 +482,7 @@ directive is used with a custom debounce for this particular event.</p>
     <table class="variables-matrix return-arguments">
   <tr>
     <td><a href="" class="label type-hint type-hint-object">*</a></td>
-    <td><p>The value in the model, that the control is bound to.</p>
+    <td><p>The value in the model that the control is bound to.</p>
 </td>
   </tr>
 </table>
@@ -583,12 +494,14 @@ directive is used with a custom debounce for this particular event.</p>
   <tr>
     <td><a href="" class="label type-hint type-hint-array">Array.&lt;Function&gt;</a></td>
     <td><p>Array of functions to execute, as a pipeline, whenever
-       the control reads value from the DOM.  Each function is called, in turn, passing the value
-       through to the next. The last return value is used to populate the model.
-       Used to sanitize / convert the value as well as validation. For validation,
-       the parsers should update the validity state using
-       <a href="api/ng/type/ngModel.NgModelController#$setValidity">$setValidity()</a>,
-       and return <code>undefined</code> for invalid values.</p>
+       the control reads value from the DOM. The functions are called in array order, each passing
+       its return value through to the next. The last return value is forwarded to the
+       <a href="api/ng/type/ngModel.NgModelController#$validators"><code>$validators</code></a> collection.</p>
+<p>Parsers are used to sanitize / convert the <a href="api/ng/type/ngModel.NgModelController#$viewValue"><code>$viewValue</code></a>.</p>
+<p>Returning <code>undefined</code> from a parser means a parse error occurred. In that case,
+no <a href="api/ng/type/ngModel.NgModelController#$validators"><code>$validators</code></a> will run and the <code>ngModel</code>
+will be set to <code>undefined</code> unless <a href="api/ng/directive/ngModelOptions"><code>ngModelOptions.allowInvalid</code></a>
+is set to <code>true</code>. The parse error is stored in <code>ngModel.$error.parse</code>.</p>
 </td>
   </tr>
 </table>
@@ -600,12 +513,13 @@ directive is used with a custom debounce for this particular event.</p>
   <tr>
     <td><a href="" class="label type-hint type-hint-array">Array.&lt;Function&gt;</a></td>
     <td><p>Array of functions to execute, as a pipeline, whenever
-       the model value changes. Each function is called, in turn, passing the value through to the
-       next. Used to format / convert values for display in the control and validation.</p>
+       the model value changes. The functions are called in reverse array order, each passing the value through to the
+       next. The last return value is used as the actual DOM value.
+       Used to format / convert values for display in the control.</p>
 <pre><code class="lang-js">function formatter(value) {
-if (value) {
-  return value.toUpperCase();
-}
+  if (value) {
+    return value.toUpperCase();
+  }
 }
 ngModel.$formatters.push(formatter);
 </code></pre>
@@ -625,11 +539,11 @@ ngModel.$formatters.push(formatter);
      provided with the model value as an argument and must return a true or false value depending
      on the response of that validation.</p>
 <pre><code class="lang-js">ngModel.$validators.validCharacters = function(modelValue, viewValue) {
-var value = modelValue || viewValue;
-return /[0-9]+/.test(value) &amp;&amp;
-       /[a-z]+/.test(value) &amp;&amp;
-       /[A-Z]+/.test(value) &amp;&amp;
-       /\W+/.test(value);
+  var value = modelValue || viewValue;
+  return /[0-9]+/.test(value) &amp;&amp;
+         /[a-z]+/.test(value) &amp;&amp;
+         /[A-Z]+/.test(value) &amp;&amp;
+         /\W+/.test(value);
 };
 </code></pre>
 </td>
@@ -647,22 +561,23 @@ return /[0-9]+/.test(value) &amp;&amp;
      is expected to return a promise when it is run during the model validation process. Once the promise
      is delivered then the validation status will be set to true when fulfilled and false when rejected.
      When the asynchronous validators are triggered, each of the validators will run in parallel and the model
-     value will only be updated once all validators have been fulfilled. Also, keep in mind that all
-     asynchronous validators will only run once all synchronous validators have passed.</p>
+     value will only be updated once all validators have been fulfilled. As long as an asynchronous validator
+     is unfulfilled, its key will be added to the controllers <code>$pending</code> property. Also, all asynchronous validators
+     will only run once all synchronous validators have passed.</p>
 <p>Please note that if $http is used then it is important that the server returns a success HTTP response code
 in order to fulfill the validation and a status level of <code>4xx</code> in order to reject the validation.</p>
 <pre><code class="lang-js">ngModel.$asyncValidators.uniqueUsername = function(modelValue, viewValue) {
-var value = modelValue || viewValue;
+  var value = modelValue || viewValue;
 
-// Lookup user by username
-return $http.get(&#39;/api/users/&#39; + value).
-   then(function resolved() {
-     //username exists, this means validation fails
-     return $q.reject(&#39;exists&#39;);
-   }, function rejected() {
-     //username does not exist, therefore this validation passes
-     return true;
-   });
+  // Lookup user by username
+  return $http.get(&#39;/api/users/&#39; + value).
+     then(function resolved() {
+       //username exists, this means validation fails
+       return $q.reject(&#39;exists&#39;);
+     }, function rejected() {
+       //username does not exist, therefore this validation passes
+       return true;
+     });
 };
 </code></pre>
 </td>
@@ -770,11 +685,82 @@ return $http.get(&#39;/api/users/&#39; + value).
   </tr>
 </table>
   </li>
+  
+  <li id="$name">
+    <h3><code>$name</code></h3>
+    <table class="variables-matrix return-arguments">
+  <tr>
+    <td><a href="" class="label type-hint type-hint-string">string</a></td>
+    <td><p>The name attribute of the control.</p>
+</td>
+  </tr>
+</table>
+  </li>
   </ul>
 
 
 
   
+  <h2 id="example">Example</h2><h3 id="custom-control-example">Custom Control Example</h3>
+<p>This example shows how to use <code>NgModelController</code> with a custom control to achieve
+data-binding. Notice how different directives (<code>contenteditable</code>, <code>ng-model</code>, and <code>required</code>)
+collaborate together to achieve the desired result.</p>
+<p><code>contenteditable</code> is an HTML5 attribute, which tells the browser to let the element
+contents be edited in place by the user.</p>
+<p>We are using the <a href="api/ng/service/$sce">$sce</a> service here and include the <a href="api/ngSanitize">$sanitize</a>
+module to automatically remove &quot;bad&quot; content like inline event listener (e.g. <code>&lt;span onclick=&quot;...&quot;&gt;</code>).
+However, as we are using <code>$sce</code> the model can still decide to provide unsafe content if it marks
+that content using the <code>$sce</code> service.</p>
+<p>
+
+<div>
+  <a ng-click="openPlunkr('examples/example-NgModelController', $event)" class="btn pull-right">
+    <i class="glyphicon glyphicon-edit">&nbsp;</i>
+    Edit in Plunker</a>
+
+  <div class="runnable-example"
+      path="examples/example-NgModelController"
+      name="NgModelController"
+      module="customControl"
+      deps="angular-sanitize.js">
+
+  
+    <div class="runnable-example-file" 
+      name="style.css"
+      language="css"
+      type="css">
+      <pre><code>[contenteditable] {&#10;  border: 1px solid black;&#10;  background-color: white;&#10;  min-height: 20px;&#10;}&#10;&#10;.ng-invalid {&#10;  border: 1px solid red;&#10;}</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="script.js"
+      language="js"
+      type="js">
+      <pre><code>angular.module(&#39;customControl&#39;, [&#39;ngSanitize&#39;]).&#10;directive(&#39;contenteditable&#39;, [&#39;$sce&#39;, function($sce) {&#10;  return {&#10;    restrict: &#39;A&#39;, // only activate on element attribute&#10;    require: &#39;?ngModel&#39;, // get a hold of NgModelController&#10;    link: function(scope, element, attrs, ngModel) {&#10;      if (!ngModel) return; // do nothing if no ng-model&#10;&#10;      // Specify how UI should be updated&#10;      ngModel.$render = function() {&#10;        element.html($sce.getTrustedHtml(ngModel.$viewValue || &#39;&#39;));&#10;      };&#10;&#10;      // Listen for change events to enable binding&#10;      element.on(&#39;blur keyup change&#39;, function() {&#10;        scope.$evalAsync(read);&#10;      });&#10;      read(); // initialize&#10;&#10;      // Write data to the model&#10;      function read() {&#10;        var html = element.html();&#10;        // When we clear the content editable the browser leaves a &lt;br&gt; behind&#10;        // If strip-br attribute is provided then we strip this out&#10;        if ( attrs.stripBr &amp;&amp; html == &#39;&lt;br&gt;&#39; ) {&#10;          html = &#39;&#39;;&#10;        }&#10;        ngModel.$setViewValue(html);&#10;      }&#10;    }&#10;  };&#10;}]);</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="index.html"
+      language="html"
+      type="html">
+      <pre><code>&lt;form name=&quot;myForm&quot;&gt;&#10; &lt;div contenteditable&#10;      name=&quot;myWidget&quot; ng-model=&quot;userContent&quot;&#10;      strip-br=&quot;true&quot;&#10;      required&gt;Change me!&lt;/div&gt;&#10;  &lt;span ng-show=&quot;myForm.myWidget.$error.required&quot;&gt;Required!&lt;/span&gt;&#10; &lt;hr&gt;&#10; &lt;textarea ng-model=&quot;userContent&quot;&gt;&lt;/textarea&gt;&#10;&lt;/form&gt;</code></pre>
+    </div>
+  
+    <div class="runnable-example-file" 
+      name="protractor.js"
+      type="protractor"
+      language="js">
+      <pre><code>it(&#39;should data-bind and become invalid&#39;, function() {&#10;  if (browser.params.browser == &#39;safari&#39; || browser.params.browser == &#39;firefox&#39;) {&#10;    // SafariDriver can&#39;t handle contenteditable&#10;    // and Firefox driver can&#39;t clear contenteditables very well&#10;    return;&#10;  }&#10;  var contentEditable = element(by.css(&#39;[contenteditable]&#39;));&#10;  var content = &#39;Change me!&#39;;&#10;&#10;  expect(contentEditable.getText()).toEqual(content);&#10;&#10;  contentEditable.clear();&#10;  contentEditable.sendKeys(protractor.Key.BACK_SPACE);&#10;  expect(contentEditable.getText()).toEqual(&#39;&#39;);&#10;  expect(contentEditable.getAttribute(&#39;class&#39;)).toMatch(/ng-invalid-required/);&#10;});</code></pre>
+    </div>
+  
+
+    <iframe class="runnable-example-frame" src="examples/example-NgModelController/index.html" name="example-NgModelController"></iframe>
+  </div>
+</div>
+
+
+</p>
+
 </div>
 
 

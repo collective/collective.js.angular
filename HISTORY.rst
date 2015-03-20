@@ -1,10 +1,11 @@
 History
 =======
 
-1.3.0.1 (unreleased)
---------------------
+1.3.15.0 (unreleased)
+---------------------
 
-- Nothing changed yet.
+- Upgrade to ``angular.js`` 1.3.15
+  [jensens]
 
 
 1.3.0.0 (2014-10-14)

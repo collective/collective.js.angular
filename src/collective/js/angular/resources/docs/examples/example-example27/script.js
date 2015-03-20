@@ -1,18 +1,15 @@
-  angular.module('myReverseFilterApp', [])
-    .filter('reverse', function() {
-      return function(input, uppercase) {
-        input = input || '';
-        var out = "";
-        for (var i = 0; i < input.length; i++) {
-          out = input.charAt(i) + out;
-        }
-        // conditional based on optional argument
-        if (uppercase) {
-          out = out.toUpperCase();
-        }
-        return out;
-      };
-    })
-    .controller('MyController', ['$scope', function($scope) {
-      $scope.greeting = 'hello';
-    }]);
+(function(angular) {
+  'use strict';
+angular.module('oneTimeBidingExampleApp', []).
+  controller('EventController', ['$scope', function($scope) {
+    var counter = 0;
+    var names = ['Igor', 'Misko', 'Chirayu', 'Lucas'];
+    /*
+     * expose the event object to the scope
+     */
+    $scope.clickMe = function(clickEvent) {
+      $scope.name = names[counter % names.length];
+      counter++;
+    };
+  }]);
+})(window.angular);

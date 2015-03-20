@@ -17,7 +17,7 @@
 <pre><code>&lt;div ng-repeat=&quot;value in [4, 4]&quot;&gt;&lt;/div&gt;
 </code></pre>
 <p>To resolve this error either ensure that the items in the collection have unique identity or use the <code>track by</code> syntax to specify how to track the association between models and DOM.</p>
-<p>To resolve the example above can be resolved by using <code>track by $index</code>, which will cause the items to be keyed by their position in the array instead of their value:</p>
+<p>The example above can be resolved by using <code>track by $index</code>, which will cause the items to be keyed by their position in the array instead of their value:</p>
 <pre><code>&lt;div ng-repeat=&quot;value in [4, 4] track by $index&quot;&gt;&lt;/div&gt;
 </code></pre>
 

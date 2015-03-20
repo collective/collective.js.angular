@@ -1,46 +1,51 @@
 <configure
+    i18n_domain="collective.js.angular"
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-    xmlns:browser="http://namespaces.zope.org/browser"
-    i18n_domain="collective.js.angular">
-
-    <includeDependencies package="." />
-
-    <genericsetup:registerProfile
-        name="default"
-        title="AngularJS Javascript Library"
-        directory="profiles/minified"
-        description="Provides Angular Javascript Library for use in Plone (minified)"
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        />
-
-    <genericsetup:registerProfile
-        name="uncompressed"
-        title="AngularJS Javascript Library (uncompressed)"
-        directory="profiles/uncompressed"
-        description="Provides Angular Javascript Library for use in Plone (uncompressed)"
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        />
-
-    <genericsetup:registerProfile
-        name="cdn"
-        title="AngularJS Javascript Library (CDN)"
-        directory="profiles/cdn"
-        description="Provides Angular Javascript Library for use in Plone (using Google CDN)"
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        />
-
-    <browser:resourceDirectory
-       name="collective.js.angular"
-        directory="resources"
-     />
-
-    <browser:page
-        name="angularjs-example"
-        for="*"
-        template="example.pt"
-        permission="zope2.ManageUsers"
-    />
-
+    xmlns:zcml="http://namespaces.zope.org/zcml">
+  <includeDependencies package="." />
+  <genericsetup:registerProfile
+      description="Provides Angular Javascript Library for use in Plone (minified)"
+      directory="profiles/p4/minified"
+      name="default"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      title="AngularJS Javascript Library"
+      zcml:condition="not-have plone-5"
+  />
+  <genericsetup:registerProfile
+      description="Provides Angular Javascript Library for use in Plone (uncompressed)"
+      directory="profiles/p4/uncompressed"
+      name="uncompressed"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      title="AngularJS Javascript Library (uncompressed)"
+      zcml:condition="not-have plone-5"
+  />
+  <genericsetup:registerProfile
+      description="Provides Angular Javascript Library for use in Plone (using Google CDN)"
+      directory="profiles/p4/cdn"
+      name="cdn"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      title="AngularJS Javascript Library (CDN)"
+      zcml:condition="not-have plone-5"
+  />
+  <genericsetup:registerProfile
+      description="Provides Angular Javascript Library for use in Plone"
+      directory="profiles/p5/default"
+      name="default"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      title="AngularJS Javascript Library"
+      zcml:condition="have plone-5"
+  />
+  <browser:resourceDirectory
+      directory="resources"
+      name="collective.js.angular"
+  />
+  <browser:page
+      for="*"
+      name="angularjs-example"
+      permission="zope2.ManageUsers"
+      template="example.pt"
+  />
 </configure>

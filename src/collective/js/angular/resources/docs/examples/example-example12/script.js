@@ -1,19 +1,17 @@
-  angular.module('docsScopeProblemExample', [])
-    .controller('NaomiController', ['$scope', function($scope) {
-      $scope.customer = {
-        name: 'Naomi',
-        address: '1600 Amphitheatre'
-      };
-    }])
-    .controller('IgorController', ['$scope', function($scope) {
-      $scope.customer = {
-        name: 'Igor',
-        address: '123 Somewhere'
-      };
-    }])
-    .directive('myCustomer', function() {
-      return {
-        restrict: 'E',
-        templateUrl: 'my-customer.html'
-      };
-    });
+(function(angular) {
+  'use strict';
+angular.module('docsTemplateUrlDirective', [])
+  .controller('Controller', ['$scope', function($scope) {
+    $scope.customer = {
+      name: 'Naomi',
+      address: '1600 Amphitheatre'
+    };
+  }])
+  .directive('myCustomer', function() {
+    return {
+      templateUrl: function(elem, attr){
+        return 'customer-'+attr.type+'.html';
+      }
+    };
+  });
+})(window.angular);

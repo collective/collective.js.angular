@@ -2,7 +2,7 @@
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/directive/ngInclude.js#L3' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ng/directive/ngInclude.js#L3' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -175,7 +175,7 @@ leave - animation is used to animate existing content away.</p>
   
   <li id="$includeContentError">
     <h3>$includeContentError</h3>
-    <div><p>Emitted when a template HTTP request yields an erronous response (status &lt; 200 || status &gt; 299)</p>
+    <div><p>Emitted when a template HTTP request yields an erroneous response (status &lt; 200 || status &gt; 299)</p>
 </div>
     <div class="inline">
       <h4>Type:</h4>
@@ -194,12 +194,12 @@ leave - animation is used to animate existing content away.</p>
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example82')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example83', $event)" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example82"
+      path="examples/example-example83"
       module="includeExample"
       deps="angular-animate.js"
       animations="true">
@@ -209,14 +209,14 @@ leave - animation is used to animate existing content away.</p>
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;div ng-controller=&quot;ExampleController&quot;&gt;&#10;  &lt;select ng-model=&quot;template&quot; ng-options=&quot;t.name for t in templates&quot;&gt;&#10;   &lt;option value=&quot;&quot;&gt;(blank)&lt;/option&gt;&#10;  &lt;/select&gt;&#10;  url of the template: &lt;tt&gt;{{template.url}}&lt;/tt&gt;&#10;  &lt;hr/&gt;&#10;  &lt;div class=&quot;slide-animate-container&quot;&gt;&#10;    &lt;div class=&quot;slide-animate&quot; ng-include=&quot;template.url&quot;&gt;&lt;/div&gt;&#10;  &lt;/div&gt;&#10;&lt;/div&gt;</code></pre>
+      <pre><code>&lt;div ng-controller=&quot;ExampleController&quot;&gt;&#10;  &lt;select ng-model=&quot;template&quot; ng-options=&quot;t.name for t in templates&quot;&gt;&#10;   &lt;option value=&quot;&quot;&gt;(blank)&lt;/option&gt;&#10;  &lt;/select&gt;&#10;  url of the template: &lt;code&gt;{{template.url}}&lt;/code&gt;&#10;  &lt;hr/&gt;&#10;  &lt;div class=&quot;slide-animate-container&quot;&gt;&#10;    &lt;div class=&quot;slide-animate&quot; ng-include=&quot;template.url&quot;&gt;&lt;/div&gt;&#10;  &lt;/div&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="script.js"
       language="js"
       type="js">
-      <pre><code>angular.module(&#39;includeExample&#39;, [&#39;ngAnimate&#39;])&#10;  .controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;    $scope.templates =&#10;      [ { name: &#39;template1.html&#39;, url: &#39;template1.html&#39;},&#10;        { name: &#39;template2.html&#39;, url: &#39;template2.html&#39;} ];&#10;    $scope.template = $scope.templates[0];&#10;  }]);</code></pre>
+      <pre><code>angular.module(&#39;includeExample&#39;, [&#39;ngAnimate&#39;])&#10;.controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;  $scope.templates =&#10;    [ { name: &#39;template1.html&#39;, url: &#39;template1.html&#39;},&#10;      { name: &#39;template2.html&#39;, url: &#39;template2.html&#39;} ];&#10;  $scope.template = $scope.templates[0];&#10;}]);</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -248,7 +248,7 @@ leave - animation is used to animate existing content away.</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example82/index.html" name="example-example82"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example83/index.html" name="example-example83"></iframe>
   </div>
 </div>
 

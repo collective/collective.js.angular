@@ -16,15 +16,15 @@ to elements is built-in Angular markup.</li>
 <p>The following code snippet shows a template with <a href="guide/directive">directives</a> and
 curly-brace <a href="guide/expression">expression</a> bindings:</p>
 <pre><code class="lang-html">&lt;html ng-app&gt;
-&lt;!-- Body tag augmented with ngController directive  --&gt;
-&lt;body ng-controller=&quot;MyController&quot;&gt;
-  &lt;input ng-model=&quot;foo&quot; value=&quot;bar&quot;&gt;
-  &lt;!-- Button tag with ng-click directive, and
-         string expression &#39;buttonText&#39;
-         wrapped in &quot;{{ }}&quot; markup --&gt;
-  &lt;button ng-click=&quot;changeFoo()&quot;&gt;{{buttonText}}&lt;/button&gt;
-  &lt;script src=&quot;angular.js&quot;&gt;
-&lt;/body&gt;
+ &lt;!-- Body tag augmented with ngController directive  --&gt;
+ &lt;body ng-controller=&quot;MyController&quot;&gt;
+   &lt;input ng-model=&quot;foo&quot; value=&quot;bar&quot;&gt;
+   &lt;!-- Button tag with ng-click directive, and
+          string expression &#39;buttonText&#39;
+          wrapped in &quot;{{ }}&quot; markup --&gt;
+   &lt;button ng-click=&quot;changeFoo()&quot;&gt;{{buttonText}}&lt;/button&gt;
+   &lt;script src=&quot;angular.js&quot;&gt;
+ &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
 <p>In a simple app, the template consists of HTML, CSS, and Angular directives contained

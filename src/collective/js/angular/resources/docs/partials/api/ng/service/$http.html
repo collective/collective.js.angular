@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/http.js?message=docs($http)%3A%20describe%20your%20change...#L201' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/http.js?message=docs($http)%3A%20describe%20your%20change...#L234' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/http.js#L201' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ng/http.js#L234' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -116,15 +116,28 @@ with the lowercased HTTP method name as the key, e.g.
 <p>The defaults can also be set at runtime via the <code>$http.defaults</code> object in the same
 fashion. For example:</p>
 <pre><code>module.run(function($http) {
-$http.defaults.headers.common.Authorization = &#39;Basic YmVlcDpib29w&#39;
+  $http.defaults.headers.common.Authorization = &#39;Basic YmVlcDpib29w&#39;
 });
 </code></pre>
 <p>In addition, you can supply a <code>headers</code> property in the config object passed when
 calling <code>$http(config)</code>, which overrides the defaults without changing them globally.</p>
+<p>To explicitly remove a header automatically added via $httpProvider.defaults.headers on a per request basis,
+Use the <code>headers</code> property, setting the desired header to <code>undefined</code>. For example:</p>
+<pre><code class="lang-js">var req = {
+ method: &#39;POST&#39;,
+ url: &#39;http://example.com&#39;,
+ headers: {
+   &#39;Content-Type&#39;: undefined
+ },
+ data: { test: &#39;test&#39; },
+}
+
+$http(req).success(function(){...}).error(function(){...});
+</code></pre>
 <h2 id="transforming-requests-and-responses">Transforming Requests and Responses</h2>
 <p>Both requests and responses can be transformed using transformation functions: <code>transformRequest</code>
 and <code>transformResponse</code>. These properties can be a single function that returns
-the transformed value (<code>{function(data, headersGetter)</code>) or an array of such transformation functions,
+the transformed value (<code>function(data, headersGetter, status)</code>) or an array of such transformation functions,
 which allows you to <code>push</code> or <code>unshift</code> a new transformation function into the transformation chain.</p>
 <h3 id="default-transformations">Default Transformations</h3>
 <p>The <code>$httpProvider</code> provider and <code>$http</code> service expose <code>defaults.transformRequest</code> and
@@ -154,19 +167,19 @@ local transformation array.</p>
 transformations have been run.</p>
 <pre><code class="lang-js">function appendTransform(defaults, transform) {
 
-// We can&#39;t guarantee that the default transformation is an array
-defaults = angular.isArray(defaults) ? defaults : [defaults];
+  // We can&#39;t guarantee that the default transformation is an array
+  defaults = angular.isArray(defaults) ? defaults : [defaults];
 
-// Append the new transformation to the defaults
-return defaults.concat(transform);
+  // Append the new transformation to the defaults
+  return defaults.concat(transform);
 }
 
 $http({
-url: &#39;...&#39;,
-method: &#39;GET&#39;,
-transformResponse: appendTransform($http.defaults.transformResponse, function(value) {
-  return doTransform(value);
-})
+  url: &#39;...&#39;,
+  method: &#39;GET&#39;,
+  transformResponse: appendTransform($http.defaults.transformResponse, function(value) {
+    return doTransform(value);
+  })
 });
 </code></pre>
 <h2 id="caching">Caching</h2>
@@ -370,12 +383,12 @@ header will not be sent.</li>
 <code>{function(data, headersGetter)|Array.&lt;function(data, headersGetter)&gt;}</code> –
 transform function or an array of such functions. The transform function takes the http
 request body and headers and returns its transformed (typically serialized) version.
-See <a href="#overriding-the-default-transformations-per-request">Overriding the Default Transformations</a></li>
+See <a href="api/ng/service/$http#overriding-the-default-transformations-per-request">Overriding the Default Transformations</a></li>
 <li><strong>transformResponse</strong> –
-<code>{function(data, headersGetter)|Array.&lt;function(data, headersGetter)&gt;}</code> –
+<code>{function(data, headersGetter, status)|Array.&lt;function(data, headersGetter, status)&gt;}</code> –
 transform function or an array of such functions. The transform function takes the http
-response body and headers and returns its transformed (typically deserialized) version.
-See <a href="#overriding-the-default-transformations-per-request">Overriding the Default Transformations</a></li>
+response body, headers and status and returns its transformed (typically deserialized) version.
+See <a href="api/ng/service/$http#overriding-the-default-transformations-per-request">Overriding the Default Transformations</a></li>
 <li><strong>cache</strong> – <code>{boolean|Cache}</code> – If true, a default $http cache will be used to cache the
 GET request, otherwise if a cache instance built with
 <a href="api/ng/service/$cacheFactory">$cacheFactory</a>, this cache will be used for
@@ -1013,12 +1026,12 @@ default headers, withCredentials as well as request and response transformations
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example103')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example106', $event)" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example103"
+      path="examples/example-example106"
       module="httpExample">
 
   
@@ -1026,7 +1039,7 @@ default headers, withCredentials as well as request and response transformations
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;div ng-controller=&quot;FetchController&quot;&gt;&#10;&lt;select ng-model=&quot;method&quot;&gt;&#10;  &lt;option&gt;GET&lt;/option&gt;&#10;  &lt;option&gt;JSONP&lt;/option&gt;&#10;&lt;/select&gt;&#10;&lt;input type=&quot;text&quot; ng-model=&quot;url&quot; size=&quot;80&quot;/&gt;&#10;&lt;button id=&quot;fetchbtn&quot; ng-click=&quot;fetch()&quot;&gt;fetch&lt;/button&gt;&lt;br&gt;&#10;&lt;button id=&quot;samplegetbtn&quot; ng-click=&quot;updateModel(&#39;GET&#39;, &#39;http-hello.html&#39;)&quot;&gt;Sample GET&lt;/button&gt;&#10;&lt;button id=&quot;samplejsonpbtn&quot;&#10;  ng-click=&quot;updateModel(&#39;JSONP&#39;,&#10;                &#39;https://angularjs.org/greet.php?callback=JSON_CALLBACK&amp;name=Super%20Hero&#39;)&quot;&gt;&#10;  Sample JSONP&#10;&lt;/button&gt;&#10;&lt;button id=&quot;invalidjsonpbtn&quot;&#10;  ng-click=&quot;updateModel(&#39;JSONP&#39;, &#39;https://angularjs.org/doesntexist&amp;callback=JSON_CALLBACK&#39;)&quot;&gt;&#10;    Invalid JSONP&#10;  &lt;/button&gt;&#10;&lt;pre&gt;http status code: {{status}}&lt;/pre&gt;&#10;&lt;pre&gt;http response data: {{data}}&lt;/pre&gt;&#10;&lt;/div&gt;</code></pre>
+      <pre><code>&lt;div ng-controller=&quot;FetchController&quot;&gt;&#10;  &lt;select ng-model=&quot;method&quot;&gt;&#10;    &lt;option&gt;GET&lt;/option&gt;&#10;    &lt;option&gt;JSONP&lt;/option&gt;&#10;  &lt;/select&gt;&#10;  &lt;input type=&quot;text&quot; ng-model=&quot;url&quot; size=&quot;80&quot;/&gt;&#10;  &lt;button id=&quot;fetchbtn&quot; ng-click=&quot;fetch()&quot;&gt;fetch&lt;/button&gt;&lt;br&gt;&#10;  &lt;button id=&quot;samplegetbtn&quot; ng-click=&quot;updateModel(&#39;GET&#39;, &#39;http-hello.html&#39;)&quot;&gt;Sample GET&lt;/button&gt;&#10;  &lt;button id=&quot;samplejsonpbtn&quot;&#10;    ng-click=&quot;updateModel(&#39;JSONP&#39;,&#10;                  &#39;https://angularjs.org/greet.php?callback=JSON_CALLBACK&amp;name=Super%20Hero&#39;)&quot;&gt;&#10;    Sample JSONP&#10;  &lt;/button&gt;&#10;  &lt;button id=&quot;invalidjsonpbtn&quot;&#10;    ng-click=&quot;updateModel(&#39;JSONP&#39;, &#39;https://angularjs.org/doesntexist&amp;callback=JSON_CALLBACK&#39;)&quot;&gt;&#10;      Invalid JSONP&#10;    &lt;/button&gt;&#10;  &lt;pre&gt;http status code: {{status}}&lt;/pre&gt;&#10;  &lt;pre&gt;http response data: {{data}}&lt;/pre&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -1047,11 +1060,11 @@ default headers, withCredentials as well as request and response transformations
       name="protractor.js"
       type="protractor"
       language="js">
-      <pre><code>var status = element(by.binding(&#39;status&#39;));&#10;var data = element(by.binding(&#39;data&#39;));&#10;var fetchBtn = element(by.id(&#39;fetchbtn&#39;));&#10;var sampleGetBtn = element(by.id(&#39;samplegetbtn&#39;));&#10;var sampleJsonpBtn = element(by.id(&#39;samplejsonpbtn&#39;));&#10;var invalidJsonpBtn = element(by.id(&#39;invalidjsonpbtn&#39;));&#10;&#10;it(&#39;should make an xhr GET request&#39;, function() {&#10;  sampleGetBtn.click();&#10;  fetchBtn.click();&#10;  expect(status.getText()).toMatch(&#39;200&#39;);&#10;  expect(data.getText()).toMatch(/Hello, \$http!/);&#10;});&#10;&#10;// Commented out due to flakes. See https://github.com/angular/angular.js/issues/9185&#10;// it(&#39;should make a JSONP request to angularjs.org&#39;, function() {&#10;//   sampleJsonpBtn.click();&#10;//   fetchBtn.click();&#10;//   expect(status.getText()).toMatch(&#39;200&#39;);&#10;//   expect(data.getText()).toMatch(/Super Hero!/);&#10;// });&#10;&#10;it(&#39;should make JSONP request to invalid URL and invoke the error handler&#39;,&#10;    function() {&#10;  invalidJsonpBtn.click();&#10;  fetchBtn.click();&#10;  expect(status.getText()).toMatch(&#39;0&#39;);&#10;  expect(data.getText()).toMatch(&#39;Request failed&#39;);&#10;});</code></pre>
+      <pre><code>  var status = element(by.binding(&#39;status&#39;));&#10;  var data = element(by.binding(&#39;data&#39;));&#10;  var fetchBtn = element(by.id(&#39;fetchbtn&#39;));&#10;  var sampleGetBtn = element(by.id(&#39;samplegetbtn&#39;));&#10;  var sampleJsonpBtn = element(by.id(&#39;samplejsonpbtn&#39;));&#10;  var invalidJsonpBtn = element(by.id(&#39;invalidjsonpbtn&#39;));&#10;&#10;  it(&#39;should make an xhr GET request&#39;, function() {&#10;    sampleGetBtn.click();&#10;    fetchBtn.click();&#10;    expect(status.getText()).toMatch(&#39;200&#39;);&#10;    expect(data.getText()).toMatch(/Hello, \$http!/);&#10;  });&#10;&#10;// Commented out due to flakes. See https://github.com/angular/angular.js/issues/9185&#10;// it(&#39;should make a JSONP request to angularjs.org&#39;, function() {&#10;//   sampleJsonpBtn.click();&#10;//   fetchBtn.click();&#10;//   expect(status.getText()).toMatch(&#39;200&#39;);&#10;//   expect(data.getText()).toMatch(/Super Hero!/);&#10;// });&#10;&#10;  it(&#39;should make JSONP request to invalid URL and invoke the error handler&#39;,&#10;      function() {&#10;    invalidJsonpBtn.click();&#10;    fetchBtn.click();&#10;    expect(status.getText()).toMatch(&#39;0&#39;);&#10;    expect(data.getText()).toMatch(&#39;Request failed&#39;);&#10;  });</code></pre>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example103/index.html" name="example-example103"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example106/index.html" name="example-example106"></iframe>
   </div>
 </div>
 

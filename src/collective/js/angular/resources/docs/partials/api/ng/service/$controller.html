@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/controller.js?message=docs($controller)%3A%20describe%20your%20change...#L48' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/controller.js?message=docs($controller)%3A%20describe%20your%20change...#L50' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/controller.js#L48' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ng/controller.js#L50' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -80,8 +80,12 @@ a service, so that one can override this service with <a href="https://gist.gith
 <ul>
 <li>check if a controller with given name is registered via <code>$controllerProvider</code></li>
 <li>check if evaluating the string on the current scope returns a constructor</li>
-<li>if $controllerProvider#allowGlobals, check <code>window[constructor]</code> on the global
-<code>window</code> object (not recommended)</li>
+<li><p>if $controllerProvider#allowGlobals, check <code>window[constructor]</code> on the global
+<code>window</code> object (not recommended)</p>
+<p>The string can use the <code>controller as property</code> syntax, where the controller instance is published
+as the specified property on the <code>scope</code>; the <code>scope</code> must be injected into <code>locals</code> param for this
+to work correctly.</p>
+</li>
 </ul>
 
         

@@ -19,12 +19,12 @@ Otherwise, the replacement operation would result in a single element (the direc
 with multiple elements or nodes, which is unsupported and not commonly needed in practice.</p>
 <p>For example a directive with definition:</p>
 <pre><code>myModule.directive(&#39;myDirective&#39;, function factory() {
-return {
-  ...
-  replace: true,
-  templateUrl: &#39;someUrl&#39;
-  ...
-}
+  return {
+    ...
+    replace: true,
+    templateUrl: &#39;someUrl&#39;
+    ...
+  }
 });
 </code></pre>
 <p>And a template provided at URL <code>someUrl</code>. The template must be an html fragment that has only a
@@ -38,9 +38,9 @@ elements. For example:</p>
 <p>Watch out for html comments at the beginning or end of templates, as these can cause this error as
 well.  Consider the following template:</p>
 <pre><code>&lt;div class=&#39;container&#39;&gt;
-&lt;div class=&#39;wrapper&gt;
-   ...
-&lt;/div&gt; &lt;!-- wrapper --&gt;
+  &lt;div class=&#39;wrapper&gt;
+     ...
+  &lt;/div&gt; &lt;!-- wrapper --&gt;
 &lt;/div&gt; &lt;!-- container --&gt;
 </code></pre>
 <p>The <code>&lt;!-- container --&gt;</code> comment is interpreted as a second root element and causes the template to

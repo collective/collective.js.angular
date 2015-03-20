@@ -17,9 +17,9 @@ strings into glyphs: ✓ for &quot;true&quot;, and ✘ for &quot;false&quot;. Le
 your custom filter with this module:</p>
 <p><strong><code>app/js/filters.js</code>:</strong></p>
 <pre><code class="lang-js">angular.module(&#39;phonecatFilters&#39;, []).filter(&#39;checkmark&#39;, function() {
-return function(input) {
-  return input ? &#39;\u2713&#39; : &#39;\u2718&#39;;
-};
+  return function(input) {
+    return input ? &#39;\u2713&#39; : &#39;\u2718&#39;;
+  };
 });
 </code></pre>
 <p>The name of our filter is &quot;checkmark&quot;. The <code>input</code> evaluates to either <code>true</code> or <code>false</code>, and we
@@ -36,8 +36,8 @@ angular.module(&#39;phonecatApp&#39;, [&#39;ngRoute&#39;,&#39;phonecatController
 layout template.</p>
 <p><strong><code>app/index.html</code>:</strong></p>
 <pre><code class="lang-html">...
-&lt;script src=&quot;js/controllers.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;js/filters.js&quot;&gt;&lt;/script&gt;
+ &lt;script src=&quot;js/controllers.js&quot;&gt;&lt;/script&gt;
+ &lt;script src=&quot;js/filters.js&quot;&gt;&lt;/script&gt;
 ...
 </code></pre>
 <p>The syntax for using filters in Angular templates is as follows:</p>
@@ -46,12 +46,12 @@ layout template.</p>
 <p>Let&#39;s employ the filter in the phone details template:</p>
 <p><strong><code>app/partials/phone-detail.html</code>:</strong></p>
 <pre><code class="lang-html">...
-&lt;dl&gt;
-  &lt;dt&gt;Infrared&lt;/dt&gt;
-  &lt;dd&gt;{{phone.connectivity.infrared | checkmark}}&lt;/dd&gt;
-  &lt;dt&gt;GPS&lt;/dt&gt;
-  &lt;dd&gt;{{phone.connectivity.gps | checkmark}}&lt;/dd&gt;
-&lt;/dl&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;Infrared&lt;/dt&gt;
+      &lt;dd&gt;{{phone.connectivity.infrared | checkmark}}&lt;/dd&gt;
+      &lt;dt&gt;GPS&lt;/dt&gt;
+      &lt;dd&gt;{{phone.connectivity.gps | checkmark}}&lt;/dd&gt;
+    &lt;/dl&gt;
 ...
 </code></pre>
 <h2 id="test">Test</h2>
@@ -59,16 +59,16 @@ layout template.</p>
 <p><strong><code>test/unit/filtersSpec.js</code>:</strong></p>
 <pre><code class="lang-js">describe(&#39;filter&#39;, function() {
 
-beforeEach(module(&#39;phonecatFilters&#39;));
+  beforeEach(module(&#39;phonecatFilters&#39;));
 
-describe(&#39;checkmark&#39;, function() {
+  describe(&#39;checkmark&#39;, function() {
 
-  it(&#39;should convert boolean values to unicode checkmark or cross&#39;,
-      inject(function(checkmarkFilter) {
-    expect(checkmarkFilter(true)).toBe(&#39;\u2713&#39;);
-    expect(checkmarkFilter(false)).toBe(&#39;\u2718&#39;);
-  }));
-});
+    it(&#39;should convert boolean values to unicode checkmark or cross&#39;,
+        inject(function(checkmarkFilter) {
+      expect(checkmarkFilter(true)).toBe(&#39;\u2713&#39;);
+      expect(checkmarkFilter(false)).toBe(&#39;\u2718&#39;);
+    }));
+  });
 });
 </code></pre>
 <p>We must call <code>beforeEach(module(&#39;phonecatFilters&#39;))</code> before any of

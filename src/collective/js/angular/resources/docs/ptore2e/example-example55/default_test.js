@@ -2,12 +2,12 @@ describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("examples/example-example55/index.html");
+    browser.get("build/docs/examples/example-example55/index.html");
   });
   
-  it('should toggle open', function() {
-    expect(element(by.id('details')).getAttribute('open')).toBeFalsy();
-    element(by.model('open')).click();
-    expect(element(by.id('details')).getAttribute('open')).toBeTruthy();
-  });
+it('should toggle readonly attr', function() {
+  expect(element(by.css('[type="text"]')).getAttribute('readonly')).toBeFalsy();
+  element(by.model('checked')).click();
+  expect(element(by.css('[type="text"]')).getAttribute('readonly')).toBeTruthy();
+});
 });

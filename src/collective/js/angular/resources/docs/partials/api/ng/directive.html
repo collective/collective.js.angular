@@ -32,7 +32,8 @@ the href attribute is empty.</p>
 make the link go to the wrong URL if the user clicks it before
 Angular has a chance to replace the <code>{{hash}}</code> markup with its
 value. Until Angular replaces the markup the link will be broken
-and will most likely return a 404 error.</p>
+and will most likely return a 404 error. The <code>ngHref</code> directive
+solves this problem.</p>
 </td>
       </tr>
       
@@ -56,11 +57,8 @@ text <code>{{hash}}</code> until Angular replaces the expression inside
       
       <tr>
         <td><a href="api/ng/directive/ngDisabled">ngDisabled</a></td>
-        <td><p>We shouldn&#39;t do this, because it will make the button enabled on Chrome/Firefox but not on IE8 and older IEs:</p>
-<pre><code class="lang-html">&lt;div ng-init=&quot;scope = { isDisabled: false }&quot;&gt;
-&lt;button disabled=&quot;{{scope.isDisabled}}&quot;&gt;Disabled&lt;/button&gt;
-&lt;/div&gt;
-</code></pre>
+        <td><p>This directive sets the <code>disabled</code> attribute on the element if the
+<a href="guide/expression">expression</a> inside <code>ngDisabled</code> evaluates to truthy.</p>
 </td>
       </tr>
       
@@ -137,49 +135,17 @@ properties of this element are exactly the same as those of the
       
       <tr>
         <td><a href="api/ng/directive/input">input</a></td>
-        <td><p>HTML input element control with angular data-binding. Input control follows HTML5 input types
-and polyfills the HTML5 validation behavior for older browsers.</p>
-</td>
-      </tr>
-      
-      <tr>
-        <td><a href="api/ng/directive/ngModel">ngModel</a></td>
-        <td><p>The <code>ngModel</code> directive binds an <code>input</code>,<code>select</code>, <code>textarea</code> (or custom form control) to a
-property on the scope using <a href="api/ng/type/ngModel.NgModelController">NgModelController</a>,
-which is created and exposed by this directive.</p>
-</td>
-      </tr>
-      
-      <tr>
-        <td><a href="api/ng/directive/ngChange">ngChange</a></td>
-        <td><p>Evaluate the given expression when the user changes the input.
-The expression is evaluated immediately, unlike the JavaScript onchange event
-which only triggers at the end of a change (usually, when the user leaves the
-form element or presses the return key).</p>
-</td>
-      </tr>
-      
-      <tr>
-        <td><a href="api/ng/directive/ngList">ngList</a></td>
-        <td><p>Text input that converts between a delimited string and an array of strings. The default
-delimiter is a comma followed by a space - equivalent to <code>ng-list=&quot;, &quot;</code>. You can specify a custom
-delimiter as the value of the <code>ngList</code> attribute - for example, <code>ng-list=&quot; | &quot;</code>.</p>
+        <td><p>HTML input element control. When used together with <a href="api/ng/directive/ngModel"><code>ngModel</code></a>, it provides data-binding,
+input state control, and validation.
+Input control follows HTML5 input types and polyfills the HTML5 validation behavior for older browsers.</p>
 </td>
       </tr>
       
       <tr>
         <td><a href="api/ng/directive/ngValue">ngValue</a></td>
-        <td><p>Binds the given expression to the value of <code>input[select]</code> or <code>input[radio]</code>, so
-that when the element is selected, the <code>ngModel</code> of that element is set to the
-bound value.</p>
-</td>
-      </tr>
-      
-      <tr>
-        <td><a href="api/ng/directive/ngModelOptions">ngModelOptions</a></td>
-        <td><p>Allows tuning how model updates are done. Using <code>ngModelOptions</code> you can specify a custom list of
-events that will trigger a model update and/or a debouncing delay so that the actual update only
-takes place when a timer expires; this timer will be reset after another change takes place.</p>
+        <td><p>Binds the given expression to the value of <code>&lt;option&gt;</code> or <a href="api/ng/input/input[radio]"><code>input[radio]</code></a>,
+so that when the element is selected, the <a href="api/ng/directive/ngModel"><code>ngModel</code></a> of that element is set to
+the bound value.</p>
 </td>
       </tr>
       
@@ -204,11 +170,19 @@ expressions. This directive is needed since some HTML elements
       
       <tr>
         <td><a href="api/ng/directive/ngBindHtml">ngBindHtml</a></td>
-        <td><p>Creates a binding that will innerHTML the result of evaluating the <code>expression</code> into the current
-element in a secure way.  By default, the innerHTML-ed content will be sanitized using the <a href="api/ngSanitize/service/$sanitize">$sanitize</a> service.  To utilize this functionality, ensure that <code>$sanitize</code>
-is available, for example, by including <a href="api/ngSanitize"><code>ngSanitize</code></a> in your module&#39;s dependencies (not in
-core Angular). In order to use <a href="api/ngSanitize"><code>ngSanitize</code></a> in your module&#39;s dependencies, you need to
-include &quot;angular-sanitize.js&quot; in your application.</p>
+        <td><p>Evaluates the expression and inserts the resulting HTML into the element in a secure way. By default,
+the resulting HTML content will be sanitized using the <a href="api/ngSanitize/service/$sanitize">$sanitize</a> service.
+To utilize this functionality, ensure that <code>$sanitize</code> is available, for example, by including <a href="api/ngSanitize"><code>ngSanitize</code></a> in your module&#39;s dependencies (not in core Angular). In order to use <a href="api/ngSanitize"><code>ngSanitize</code></a>
+in your module&#39;s dependencies, you need to include &quot;angular-sanitize.js&quot; in your application.</p>
+</td>
+      </tr>
+      
+      <tr>
+        <td><a href="api/ng/directive/ngChange">ngChange</a></td>
+        <td><p>Evaluate the given expression when the user changes the input.
+The expression is evaluated immediately, unlike the JavaScript onchange event
+which only triggers at the end of a change (usually, when the user leaves the
+form element or presses the return key).</p>
 </td>
       </tr>
       
@@ -378,6 +352,30 @@ element is reinserted into the DOM.</p>
         <td><a href="api/ng/directive/ngInit">ngInit</a></td>
         <td><p>The <code>ngInit</code> directive allows you to evaluate an expression in the
 current scope.</p>
+</td>
+      </tr>
+      
+      <tr>
+        <td><a href="api/ng/directive/ngList">ngList</a></td>
+        <td><p>Text input that converts between a delimited string and an array of strings. The default
+delimiter is a comma followed by a space - equivalent to <code>ng-list=&quot;, &quot;</code>. You can specify a custom
+delimiter as the value of the <code>ngList</code> attribute - for example, <code>ng-list=&quot; | &quot;</code>.</p>
+</td>
+      </tr>
+      
+      <tr>
+        <td><a href="api/ng/directive/ngModel">ngModel</a></td>
+        <td><p>The <code>ngModel</code> directive binds an <code>input</code>,<code>select</code>, <code>textarea</code> (or custom form control) to a
+property on the scope using <a href="api/ng/type/ngModel.NgModelController">NgModelController</a>,
+which is created and exposed by this directive.</p>
+</td>
+      </tr>
+      
+      <tr>
+        <td><a href="api/ng/directive/ngModelOptions">ngModelOptions</a></td>
+        <td><p>Allows tuning how model updates are done. Using <code>ngModelOptions</code> you can specify a custom list of
+events that will trigger a model update and/or a debouncing delay so that the actual update only
+takes place when a timer expires; this timer will be reset after another change takes place.</p>
 </td>
       </tr>
       

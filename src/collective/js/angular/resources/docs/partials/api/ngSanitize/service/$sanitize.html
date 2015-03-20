@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ngSanitize/sanitize.js?message=docs($sanitize)%3A%20describe%20your%20change...#L37' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ngSanitize/sanitize.js?message=docs($sanitize)%3A%20describe%20your%20change...#L48' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ngSanitize/sanitize.js#L37' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ngSanitize/sanitize.js#L48' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -22,11 +22,11 @@
 
 
 <div class="api-profile-description">
-  <p>The input is sanitized by parsing the html into tokens. All safe tokens (from a whitelist) are
+  <p>The input is sanitized by parsing the HTML into tokens. All safe tokens (from a whitelist) are
   then serialized back to properly escaped html string. This means that no unsafe input can make
   it into the returned string, however, since our parser is more strict than a typical browser
   parser, it&#39;s possible that some obscure input, which would be recognized as valid HTML by a
-  browser, won&#39;t make it through the sanitizer.
+  browser, won&#39;t make it through the sanitizer. The input may also contain SVG markup.
   The whitelist is configured using the functions <code>aHrefSanitizationWhitelist</code> and
   <code>imgSrcSanitizationWhitelist</code> of <a href="api/ng/provider/$compileProvider"><code>$compileProvider</code></a>.</p>
 
@@ -71,7 +71,7 @@
         <a href="" class="label type-hint type-hint-string">string</a>
       </td>
       <td>
-        <p>Html input.</p>
+        <p>HTML input.</p>
 
         
       </td>
@@ -86,7 +86,7 @@
 <table class="variables-matrix return-arguments">
   <tr>
     <td><a href="" class="label type-hint type-hint-string">string</a></td>
-    <td><p>Sanitized html.</p>
+    <td><p>Sanitized HTML.</p>
 </td>
   </tr>
 </table>
@@ -101,12 +101,12 @@
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example111')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example114', $event)" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example111"
+      path="examples/example-example114"
       module="sanitizeExample"
       deps="angular-sanitize.js">
 
@@ -115,7 +115,7 @@
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;script&gt;&#10;    angular.module(&#39;sanitizeExample&#39;, [&#39;ngSanitize&#39;])&#10;      .controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, &#39;$sce&#39;, function($scope, $sce) {&#10;        $scope.snippet =&#10;          &#39;&lt;p style=&quot;color:blue&quot;&gt;an html\n&#39; +&#10;          &#39;&lt;em onmouseover=&quot;this.textContent=\&#39;PWN3D!\&#39;&quot;&gt;click here&lt;/em&gt;\n&#39; +&#10;          &#39;snippet&lt;/p&gt;&#39;;&#10;        $scope.deliberatelyTrustDangerousSnippet = function() {&#10;          return $sce.trustAsHtml($scope.snippet);&#10;        };&#10;      }]);&#10;&lt;/script&gt;&#10;&lt;div ng-controller=&quot;ExampleController&quot;&gt;&#10;   Snippet: &lt;textarea ng-model=&quot;snippet&quot; cols=&quot;60&quot; rows=&quot;3&quot;&gt;&lt;/textarea&gt;&#10;  &lt;table&gt;&#10;    &lt;tr&gt;&#10;      &lt;td&gt;Directive&lt;/td&gt;&#10;      &lt;td&gt;How&lt;/td&gt;&#10;      &lt;td&gt;Source&lt;/td&gt;&#10;      &lt;td&gt;Rendered&lt;/td&gt;&#10;    &lt;/tr&gt;&#10;    &lt;tr id=&quot;bind-html-with-sanitize&quot;&gt;&#10;      &lt;td&gt;ng-bind-html&lt;/td&gt;&#10;      &lt;td&gt;Automatically uses $sanitize&lt;/td&gt;&#10;      &lt;td&gt;&lt;pre&gt;&amp;lt;div ng-bind-html=&quot;snippet&quot;&amp;gt;&lt;br/&gt;&amp;lt;/div&amp;gt;&lt;/pre&gt;&lt;/td&gt;&#10;      &lt;td&gt;&lt;div ng-bind-html=&quot;snippet&quot;&gt;&lt;/div&gt;&lt;/td&gt;&#10;    &lt;/tr&gt;&#10;    &lt;tr id=&quot;bind-html-with-trust&quot;&gt;&#10;      &lt;td&gt;ng-bind-html&lt;/td&gt;&#10;      &lt;td&gt;Bypass $sanitize by explicitly trusting the dangerous value&lt;/td&gt;&#10;      &lt;td&gt;&#10;      &lt;pre&gt;&amp;lt;div ng-bind-html=&quot;deliberatelyTrustDangerousSnippet()&quot;&amp;gt;&#10;&amp;lt;/div&amp;gt;&lt;/pre&gt;&#10;      &lt;/td&gt;&#10;      &lt;td&gt;&lt;div ng-bind-html=&quot;deliberatelyTrustDangerousSnippet()&quot;&gt;&lt;/div&gt;&lt;/td&gt;&#10;    &lt;/tr&gt;&#10;    &lt;tr id=&quot;bind-default&quot;&gt;&#10;      &lt;td&gt;ng-bind&lt;/td&gt;&#10;      &lt;td&gt;Automatically escapes&lt;/td&gt;&#10;      &lt;td&gt;&lt;pre&gt;&amp;lt;div ng-bind=&quot;snippet&quot;&amp;gt;&lt;br/&gt;&amp;lt;/div&amp;gt;&lt;/pre&gt;&lt;/td&gt;&#10;      &lt;td&gt;&lt;div ng-bind=&quot;snippet&quot;&gt;&lt;/div&gt;&lt;/td&gt;&#10;    &lt;/tr&gt;&#10;  &lt;/table&gt;&#10;  &lt;/div&gt;</code></pre>
+      <pre><code>     &lt;script&gt;&#10;         angular.module(&#39;sanitizeExample&#39;, [&#39;ngSanitize&#39;])&#10;           .controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, &#39;$sce&#39;, function($scope, $sce) {&#10;             $scope.snippet =&#10;               &#39;&lt;p style=&quot;color:blue&quot;&gt;an html\n&#39; +&#10;               &#39;&lt;em onmouseover=&quot;this.textContent=\&#39;PWN3D!\&#39;&quot;&gt;click here&lt;/em&gt;\n&#39; +&#10;               &#39;snippet&lt;/p&gt;&#39;;&#10;             $scope.deliberatelyTrustDangerousSnippet = function() {&#10;               return $sce.trustAsHtml($scope.snippet);&#10;             };&#10;           }]);&#10;     &lt;/script&gt;&#10;     &lt;div ng-controller=&quot;ExampleController&quot;&gt;&#10;        Snippet: &lt;textarea ng-model=&quot;snippet&quot; cols=&quot;60&quot; rows=&quot;3&quot;&gt;&lt;/textarea&gt;&#10;       &lt;table&gt;&#10;         &lt;tr&gt;&#10;           &lt;td&gt;Directive&lt;/td&gt;&#10;           &lt;td&gt;How&lt;/td&gt;&#10;           &lt;td&gt;Source&lt;/td&gt;&#10;           &lt;td&gt;Rendered&lt;/td&gt;&#10;         &lt;/tr&gt;&#10;         &lt;tr id=&quot;bind-html-with-sanitize&quot;&gt;&#10;           &lt;td&gt;ng-bind-html&lt;/td&gt;&#10;           &lt;td&gt;Automatically uses $sanitize&lt;/td&gt;&#10;           &lt;td&gt;&lt;pre&gt;&amp;lt;div ng-bind-html=&quot;snippet&quot;&amp;gt;&lt;br/&gt;&amp;lt;/div&amp;gt;&lt;/pre&gt;&lt;/td&gt;&#10;           &lt;td&gt;&lt;div ng-bind-html=&quot;snippet&quot;&gt;&lt;/div&gt;&lt;/td&gt;&#10;         &lt;/tr&gt;&#10;         &lt;tr id=&quot;bind-html-with-trust&quot;&gt;&#10;           &lt;td&gt;ng-bind-html&lt;/td&gt;&#10;           &lt;td&gt;Bypass $sanitize by explicitly trusting the dangerous value&lt;/td&gt;&#10;           &lt;td&gt;&#10;           &lt;pre&gt;&amp;lt;div ng-bind-html=&quot;deliberatelyTrustDangerousSnippet()&quot;&amp;gt;&#10;&amp;lt;/div&amp;gt;&lt;/pre&gt;&#10;           &lt;/td&gt;&#10;           &lt;td&gt;&lt;div ng-bind-html=&quot;deliberatelyTrustDangerousSnippet()&quot;&gt;&lt;/div&gt;&lt;/td&gt;&#10;         &lt;/tr&gt;&#10;         &lt;tr id=&quot;bind-default&quot;&gt;&#10;           &lt;td&gt;ng-bind&lt;/td&gt;&#10;           &lt;td&gt;Automatically escapes&lt;/td&gt;&#10;           &lt;td&gt;&lt;pre&gt;&amp;lt;div ng-bind=&quot;snippet&quot;&amp;gt;&lt;br/&gt;&amp;lt;/div&amp;gt;&lt;/pre&gt;&lt;/td&gt;&#10;           &lt;td&gt;&lt;div ng-bind=&quot;snippet&quot;&gt;&lt;/div&gt;&lt;/td&gt;&#10;         &lt;/tr&gt;&#10;       &lt;/table&gt;&#10;       &lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -126,7 +126,7 @@
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example111/index.html" name="example-example111"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example114/index.html" name="example-example114"></iframe>
   </div>
 </div>
 

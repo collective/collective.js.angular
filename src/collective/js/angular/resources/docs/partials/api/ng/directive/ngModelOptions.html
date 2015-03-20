@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/input.js?message=docs(ngModelOptions)%3A%20describe%20your%20change...#L2812' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/ngModel.js?message=docs(ngModelOptions)%3A%20describe%20your%20change...#L1062' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/directive/input.js#L2812' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ng/directive/ngModel.js#L1062' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -87,7 +87,7 @@ to have access to the updated model.</p>
       <td>
         <p>options to apply to the current model. Valid keys are:</p>
 <ul>
-<li><code>updateOn</code>: string specifying which event should be the input bound to. You can set several
+<li><code>updateOn</code>: string specifying which event should the input be bound to. You can set several
 events using an space delimited list. There is a special event called <code>default</code> that
 matches the default events belonging of the control.</li>
 <li><code>debounce</code>: integer value which contains the debounce model update value in milliseconds. A
@@ -121,7 +121,7 @@ otherwise the default timezone of the browser will be used.</li>
 <p>  
 
 <div>
-  <a ng-click="openPlunkr('examples/example-ngModelOptions-directive-blur')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-ngModelOptions-directive-blur', $event)" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
@@ -142,7 +142,7 @@ otherwise the default timezone of the browser will be used.</li>
       name="app.js"
       language="js"
       type="js">
-      <pre><code>angular.module(&#39;optionsExample&#39;, [])&#10;  .controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;    $scope.user = { name: &#39;say&#39;, data: &#39;&#39; };&#10;&#10;    $scope.cancel = function (e) {&#10;      if (e.keyCode == 27) {&#10;        $scope.userForm.userName.$rollbackViewValue();&#10;      }&#10;    };&#10;  }]);</code></pre>
+      <pre><code>angular.module(&#39;optionsExample&#39;, [])&#10;.controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;  $scope.user = { name: &#39;say&#39;, data: &#39;&#39; };&#10;&#10;  $scope.cancel = function(e) {&#10;    if (e.keyCode == 27) {&#10;      $scope.userForm.userName.$rollbackViewValue();&#10;    }&#10;  };&#10;}]);</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -164,7 +164,7 @@ otherwise the default timezone of the browser will be used.</li>
 <p>  
 
 <div>
-  <a ng-click="openPlunkr('examples/example-ngModelOptions-directive-debounce')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-ngModelOptions-directive-debounce', $event)" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
@@ -185,7 +185,7 @@ otherwise the default timezone of the browser will be used.</li>
       name="app.js"
       language="js"
       type="js">
-      <pre><code>angular.module(&#39;optionsExample&#39;, [])&#10;  .controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;    $scope.user = { name: &#39;say&#39; };&#10;  }]);</code></pre>
+      <pre><code>angular.module(&#39;optionsExample&#39;, [])&#10;.controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;  $scope.user = { name: &#39;say&#39; };&#10;}]);</code></pre>
     </div>
   
 
@@ -199,7 +199,7 @@ otherwise the default timezone of the browser will be used.</li>
 <p>  
 
 <div>
-  <a ng-click="openPlunkr('examples/example-ngModelOptions-directive-getter-setter')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-ngModelOptions-directive-getter-setter', $event)" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
@@ -220,7 +220,7 @@ otherwise the default timezone of the browser will be used.</li>
       name="app.js"
       language="js"
       type="js">
-      <pre><code>angular.module(&#39;getterSetterExample&#39;, [])&#10;  .controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;    var _name = &#39;Brian&#39;;&#10;    $scope.user = {&#10;      name: function (newName) {&#10;        return angular.isDefined(newName) ? (_name = newName) : _name;&#10;      }&#10;    };&#10;  }]);</code></pre>
+      <pre><code>angular.module(&#39;getterSetterExample&#39;, [])&#10;.controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;  var _name = &#39;Brian&#39;;&#10;  $scope.user = {&#10;    name: function(newName) {&#10;      return angular.isDefined(newName) ? (_name = newName) : _name;&#10;    }&#10;  };&#10;}]);</code></pre>
     </div>
   
 

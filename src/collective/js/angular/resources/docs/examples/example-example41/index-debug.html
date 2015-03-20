@@ -11,12 +11,13 @@
 
   
 </head>
-<body ng-app="myServiceModule">
-    <div id="simple" ng-controller="MyController">
-    <p>Let's try this simple notify service, injected into the controller...</p>
-    <input ng-init="message='test'" ng-model="message" >
-    <button ng-click="callNotify(message);">NOTIFY</button>
-    <p>(you have to click 3 times to see an alert)</p>
-  </div>
+<body ng-app="scopeExample">
+  <div ng-controller="MyController">
+  Your name:
+    <input type="text" ng-model="username">
+    <button ng-click='sayHello()'>greet</button>
+  <hr>
+  {{greeting}}
+</div>
 </body>
 </html>

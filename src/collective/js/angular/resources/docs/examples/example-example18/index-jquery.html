@@ -12,11 +12,9 @@
 
   
 </head>
-<body ng-app="docsIsoFnBindExample">
-    <div ng-controller="Controller">
-    <my-dialog ng-hide="dialogIsHidden" on-close="hideDialog()">
-      Check out the contents, {{name}}!
-    </my-dialog>
-  </div>
+<body ng-app="docsTransclusionDirective">
+  <div ng-controller="Controller">
+  <my-dialog>Check out the contents, {{name}}!</my-dialog>
+</div>
 </body>
 </html>

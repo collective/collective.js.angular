@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/auto/injector.js?message=docs($injector)%3A%20describe%20your%20change...#L120' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/auto/injector.js?message=docs($injector)%3A%20describe%20your%20change...#L121' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/auto/injector.js#L120' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/auto/injector.js#L121' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -48,8 +48,10 @@ $injector.invoke([&#39;serviceA&#39;, function(serviceA){}]);
 </code></pre>
 <h2 id="inference">Inference</h2>
 <p>In JavaScript calling <code>toString()</code> on a function returns the function definition. The definition
-can then be parsed and the function arguments can be extracted. <em>NOTE:</em> This does not work with
-minification, and obfuscation tools since these tools change the argument names.</p>
+can then be parsed and the function arguments can be extracted. This method of discovering
+annotations is disallowed when the injector is in strict mode.
+<em>NOTE:</em> This does not work with minification, and obfuscation tools since these tools change the
+argument names.</p>
 <h2 id="-inject-annotation"><code>$inject</code> Annotation</h2>
 <p>By adding an <code>$inject</code> property onto a function the injection parameters can be specified.</p>
 <h2 id="inline">Inline</h2>
@@ -71,7 +73,7 @@ minification, and obfuscation tools since these tools change the argument names.
 <h2>Methods</h2>
 <ul class="methods">
   <li id="get">
-    <h3><p><code>get(name);</code></p>
+    <h3><p><code>get(name, caller);</code></p>
 
 </h3>
     <div><p>Return an instance of the service.</p>
@@ -101,6 +103,22 @@ minification, and obfuscation tools since these tools change the argument names.
       </td>
       <td>
         <p>The name of the instance to retrieve.</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        caller
+        
+        
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>An optional string to provide the origin of the function call for error messages.</p>
 
         
       </td>
@@ -348,7 +366,7 @@ object first, before the <code>$injector</code> is consulted.</p>
   </li>
   
   <li id="annotate">
-    <h3><p><code>annotate(fn);</code></p>
+    <h3><p><code>annotate(fn, [strictDi]);</code></p>
 
 </h3>
     <div><p>Returns an array of service names which the function is requesting for injection. This API is
@@ -367,6 +385,7 @@ function MyController($scope, $route) {
 // Then
 expect(injector.annotate(MyController)).toEqual([&#39;$scope&#39;, &#39;$route&#39;]);
 </code></pre>
+<p>You can disallow this method by using strict injection mode.</p>
 <p>This method does not work with code minification / obfuscation. For this reason the following
 annotation strategies are supported.</p>
 <h1 id="the-inject-property">The <code>$inject</code> property</h1>
@@ -437,6 +456,22 @@ expect(injector.annotate(
 be retrieved as described above.</p>
 
         
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        strictDi
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-boolean">boolean</a>
+      </td>
+      <td>
+        <p>Disallow argument name annotation inference.</p>
+
+        <p><em>(default: false)</em></p>
       </td>
     </tr>
     

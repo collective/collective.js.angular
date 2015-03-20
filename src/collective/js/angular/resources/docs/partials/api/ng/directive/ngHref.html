@@ -2,7 +2,7 @@
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/directive/attrs.js#L3' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ng/directive/attrs.js#L3' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -24,8 +24,8 @@
 make the link go to the wrong URL if the user clicks it before
 Angular has a chance to replace the <code>{{hash}}</code> markup with its
 value. Until Angular replaces the markup the link will be broken
-and will most likely return a 404 error.</p>
-<p>The <code>ngHref</code> directive solves this problem.</p>
+and will most likely return a 404 error. The <code>ngHref</code> directive
+solves this problem.</p>
 <p>The wrong way to write it:</p>
 <pre><code class="lang-html">&lt;a href=&quot;http://www.gravatar.com/avatar/{{hash}}&quot;&gt;link1&lt;/a&gt;
 </code></pre>
@@ -101,12 +101,12 @@ in links and their different behaviors:
     
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example50')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example52', $event)" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example50">
+      path="examples/example-example52">
 
   
     <div class="runnable-example-file" 
@@ -124,7 +124,7 @@ in links and their different behaviors:
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example50/index.html" name="example-example50"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example52/index.html" name="example-example52"></iframe>
   </div>
 </div>
 

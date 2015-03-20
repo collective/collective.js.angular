@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/location.js?message=docs($location)%3A%20describe%20your%20change...#L592' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/location.js?message=docs($location)%3A%20describe%20your%20change...#L653' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/location.js#L592' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ng/location.js#L653' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -72,6 +72,10 @@ $location service and changes to $location are reflected into the browser addres
     <div><p>This method is getter only.</p>
 <p>Return full url representation with all segments encoded according to rules specified in
 <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>.</p>
+<pre><code class="lang-js">// given url http://example.com/#/some/path?foo=bar&amp;baz=xoxo
+var absUrl = $location.absUrl();
+// =&gt; &quot;http://example.com/#/some/path?foo=bar&amp;baz=xoxo&quot;
+</code></pre>
 </div>
 
     
@@ -98,6 +102,10 @@ $location service and changes to $location are reflected into the browser addres
     <div><p>This method is getter / setter.</p>
 <p>Return url (e.g. <code>/path?a=b#hash</code>) when called without any parameter.</p>
 <p>Change path, search and hash, when called with parameter and return <code>$location</code>.</p>
+<pre><code class="lang-js">// given url http://example.com/#/some/path?foo=bar&amp;baz=xoxo
+var url = $location.url();
+// =&gt; &quot;/some/path?foo=bar&amp;baz=xoxo&quot;
+</code></pre>
 </div>
 
     
@@ -155,6 +163,10 @@ $location service and changes to $location are reflected into the browser addres
 </h3>
     <div><p>This method is getter only.</p>
 <p>Return protocol of current url.</p>
+<pre><code class="lang-js">// given url http://example.com/#/some/path?foo=bar&amp;baz=xoxo
+var protocol = $location.protocol();
+// =&gt; &quot;http&quot;
+</code></pre>
 </div>
 
     
@@ -180,6 +192,10 @@ $location service and changes to $location are reflected into the browser addres
 </h3>
     <div><p>This method is getter only.</p>
 <p>Return host of current url.</p>
+<pre><code class="lang-js">// given url http://example.com/#/some/path?foo=bar&amp;baz=xoxo
+var host = $location.host();
+// =&gt; &quot;example.com&quot;
+</code></pre>
 </div>
 
     
@@ -205,6 +221,10 @@ $location service and changes to $location are reflected into the browser addres
 </h3>
     <div><p>This method is getter only.</p>
 <p>Return port of current url.</p>
+<pre><code class="lang-js">// given url http://example.com/#/some/path?foo=bar&amp;baz=xoxo
+var port = $location.port();
+// =&gt; 80
+</code></pre>
 </div>
 
     
@@ -233,6 +253,10 @@ $location service and changes to $location are reflected into the browser addres
 <p>Change path when called with parameter and return <code>$location</code>.</p>
 <p>Note: Path should always begin with forward slash (/), this method will add the forward slash
 if it is missing.</p>
+<pre><code class="lang-js">// given url http://example.com/#/some/path?foo=bar&amp;baz=xoxo
+var path = $location.path();
+// =&gt; &quot;/some/path&quot;
+</code></pre>
 </div>
 
     
@@ -295,10 +319,9 @@ if it is missing.</p>
 var searchObject = $location.search();
 // =&gt; {foo: &#39;bar&#39;, baz: &#39;xoxo&#39;}
 
-
 // set foo to &#39;yipee&#39;
 $location.search(&#39;foo&#39;, &#39;yipee&#39;);
-// =&gt; $location
+// $location.search() =&gt; {foo: &#39;yipee&#39;, baz: &#39;xoxo&#39;}
 </code></pre>
 </div>
 
@@ -386,6 +409,10 @@ one or more arguments returns <code>$location</code> object itself.</p>
     <div><p>This method is getter / setter.</p>
 <p>Return hash fragment when called without any parameter.</p>
 <p>Change hash fragment when called with parameter and return <code>$location</code>.</p>
+<pre><code class="lang-js">// given url http://example.com/#/some/path?foo=bar&amp;baz=xoxo#hashValue
+var hash = $location.hash();
+// =&gt; &quot;hashValue&quot;
+</code></pre>
 </div>
 
     

@@ -36,12 +36,12 @@ or the filter expression is changed).</p>
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example26')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example28', $event)" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example26"
+      path="examples/example-example28"
       module="FilterInControllerModule">
 
   
@@ -56,11 +56,11 @@ or the filter expression is changed).</p>
       name="script.js"
       language="js"
       type="js">
-      <pre><code>angular.module(&#39;FilterInControllerModule&#39;, []).&#10;  controller(&#39;FilterController&#39;, [&#39;filterFilter&#39;, function(filterFilter) {&#10;    this.array = [&#10;      {name: &#39;Tobias&#39;},&#10;      {name: &#39;Jeff&#39;},&#10;      {name: &#39;Brian&#39;},&#10;      {name: &#39;Igor&#39;},&#10;      {name: &#39;James&#39;},&#10;      {name: &#39;Brad&#39;}&#10;    ];&#10;    this.filteredArray = filterFilter(this.array, &#39;a&#39;);&#10;  }]);</code></pre>
+      <pre><code>angular.module(&#39;FilterInControllerModule&#39;, []).&#10;controller(&#39;FilterController&#39;, [&#39;filterFilter&#39;, function(filterFilter) {&#10;  this.array = [&#10;    {name: &#39;Tobias&#39;},&#10;    {name: &#39;Jeff&#39;},&#10;    {name: &#39;Brian&#39;},&#10;    {name: &#39;Igor&#39;},&#10;    {name: &#39;James&#39;},&#10;    {name: &#39;Brad&#39;}&#10;  ];&#10;  this.filteredArray = filterFilter(this.array, &#39;a&#39;);&#10;}]);</code></pre>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example26/index.html" name="example-example26"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example28/index.html" name="example-example28"></iframe>
   </div>
 </div>
 
@@ -75,17 +75,22 @@ function.</p>
 <p>The filter function should be a <a href="http://en.wikipedia.org/wiki/Pure_function">pure function</a>, which
 means that it should be stateless and idempotent. Angular relies on these properties and executes
 the filter only when the inputs to the function change.</p>
+<div class="alert alert-warning">
+<strong>Note:</strong> filter names must be valid angular expression identifiers, such as <code>uppercase</code> or <code>orderBy</code>.
+Names with special characters, such as hyphens and dots, are not allowed.
+</div>
+
 <p>The following sample filter reverses a text string. In addition, it conditionally makes the
 text upper-case.</p>
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example27')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example29', $event)" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example27"
+      path="examples/example-example29"
       module="myReverseFilterApp">
 
   
@@ -100,11 +105,11 @@ text upper-case.</p>
       name="script.js"
       language="js"
       type="js">
-      <pre><code>angular.module(&#39;myReverseFilterApp&#39;, [])&#10;  .filter(&#39;reverse&#39;, function() {&#10;    return function(input, uppercase) {&#10;      input = input || &#39;&#39;;&#10;      var out = &quot;&quot;;&#10;      for (var i = 0; i &lt; input.length; i++) {&#10;        out = input.charAt(i) + out;&#10;      }&#10;      // conditional based on optional argument&#10;      if (uppercase) {&#10;        out = out.toUpperCase();&#10;      }&#10;      return out;&#10;    };&#10;  })&#10;  .controller(&#39;MyController&#39;, [&#39;$scope&#39;, function($scope) {&#10;    $scope.greeting = &#39;hello&#39;;&#10;  }]);</code></pre>
+      <pre><code>angular.module(&#39;myReverseFilterApp&#39;, [])&#10;.filter(&#39;reverse&#39;, function() {&#10;  return function(input, uppercase) {&#10;    input = input || &#39;&#39;;&#10;    var out = &quot;&quot;;&#10;    for (var i = 0; i &lt; input.length; i++) {&#10;      out = input.charAt(i) + out;&#10;    }&#10;    // conditional based on optional argument&#10;    if (uppercase) {&#10;      out = out.toUpperCase();&#10;    }&#10;    return out;&#10;  };&#10;})&#10;.controller(&#39;MyController&#39;, [&#39;$scope&#39;, function($scope) {&#10;  $scope.greeting = &#39;hello&#39;;&#10;}]);</code></pre>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example27/index.html" name="example-example27"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example29/index.html" name="example-example29"></iframe>
   </div>
 </div>
 
@@ -120,12 +125,12 @@ means that it will be executed one or more times during the each <code>$digest</
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example28')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example30', $event)" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example28"
+      path="examples/example-example30"
       module="myStatefulFilterApp">
 
   
@@ -140,11 +145,11 @@ means that it will be executed one or more times during the each <code>$digest</
       name="script.js"
       language="js"
       type="js">
-      <pre><code>angular.module(&#39;myStatefulFilterApp&#39;, [])&#10;  .filter(&#39;decorate&#39;, [&#39;decoration&#39;, function(decoration) {&#10;&#10;    function decorateFilter(input) {&#10;      return decoration.symbol + input + decoration.symbol;&#10;    }&#10;    decorateFilter.$stateful = true;&#10;&#10;    return decorateFilter;&#10;  }])&#10;  .controller(&#39;MyController&#39;, [&#39;$scope&#39;, &#39;decoration&#39;, function($scope, decoration) {&#10;    $scope.greeting = &#39;hello&#39;;&#10;    $scope.decoration = decoration;&#10;  }])&#10;  .value(&#39;decoration&#39;, {symbol: &#39;*&#39;});</code></pre>
+      <pre><code>angular.module(&#39;myStatefulFilterApp&#39;, [])&#10;.filter(&#39;decorate&#39;, [&#39;decoration&#39;, function(decoration) {&#10;&#10;  function decorateFilter(input) {&#10;    return decoration.symbol + input + decoration.symbol;&#10;  }&#10;  decorateFilter.$stateful = true;&#10;&#10;  return decorateFilter;&#10;}])&#10;.controller(&#39;MyController&#39;, [&#39;$scope&#39;, &#39;decoration&#39;, function($scope, decoration) {&#10;  $scope.greeting = &#39;hello&#39;;&#10;  $scope.decoration = decoration;&#10;}])&#10;.value(&#39;decoration&#39;, {symbol: &#39;*&#39;});</code></pre>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example28/index.html" name="example-example28"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example30/index.html" name="example-example30"></iframe>
   </div>
 </div>
 

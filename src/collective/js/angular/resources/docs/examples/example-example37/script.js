@@ -1,35 +1,23 @@
-  angular.module('xmpl.service', [])
+(function(angular) {
+  'use strict';
+var app = angular.module('form-example-modify-validators', []);
 
-    .value('greeter', {
-      salutation: 'Hello',
-      localize: function(localization) {
-        this.salutation = localization.salutation;
-      },
-      greet: function(name) {
-        return this.salutation + ' ' + name + '!';
+app.directive('overwriteEmail', function() {
+  var EMAIL_REGEXP = /^[a-z0-9!#$%&'*+/=?^_`{|}~.-]+@example\.com$/i;
+
+  return {
+    require: 'ngModel',
+    restrict: '',
+    link: function(scope, elm, attrs, ctrl) {
+      // only apply the validator if ngModel is present and Angular has added the email validator
+      if (ctrl && ctrl.$validators.email) {
+
+        // this will overwrite the default Angular email validator
+        ctrl.$validators.email = function(modelValue) {
+          return ctrl.$isEmpty(modelValue) || EMAIL_REGEXP.test(modelValue);
+        };
       }
-    })
-
-    .value('user', {
-      load: function(name) {
-        this.name = name;
-      }
-    });
-
-  angular.module('xmpl.directive', []);
-
-  angular.module('xmpl.filter', []);
-
-  angular.module('xmpl', ['xmpl.service', 'xmpl.directive', 'xmpl.filter'])
-
-    .run(function(greeter, user) {
-      // This is effectively part of the main method initialization code
-      greeter.localize({
-        salutation: 'Bonjour'
-      });
-      user.load('World');
-    })
-
-    .controller('XmplController', function($scope, greeter, user){
-      $scope.greeting = greeter.greet(user.name);
-    });
+    }
+  };
+});
+})(window.angular);

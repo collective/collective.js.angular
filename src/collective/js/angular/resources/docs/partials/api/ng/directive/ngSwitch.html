@@ -2,7 +2,7 @@
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.0/src/ng/directive/ngSwitch.js#L3' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ng/directive/ngSwitch.js#L3' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -57,9 +57,9 @@ value of the expression <code>$scope.someVal</code>.
   <div class="usage">
   
     <pre><code>&lt;ANY ng-switch=&quot;expression&quot;&gt;
-&lt;ANY ng-switch-when=&quot;matchValue1&quot;&gt;...&lt;/ANY&gt;
-&lt;ANY ng-switch-when=&quot;matchValue2&quot;&gt;...&lt;/ANY&gt;
-&lt;ANY ng-switch-default&gt;...&lt;/ANY&gt;
+  &lt;ANY ng-switch-when=&quot;matchValue1&quot;&gt;...&lt;/ANY&gt;
+  &lt;ANY ng-switch-when=&quot;matchValue2&quot;&gt;...&lt;/ANY&gt;
+  &lt;ANY ng-switch-default&gt;...&lt;/ANY&gt;
 &lt;/ANY&gt;
 </code></pre>
 
@@ -120,12 +120,12 @@ case match.</li>
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example90')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example92', $event)" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example90"
+      path="examples/example-example92"
       module="switchExample"
       deps="angular-animate.js"
       animations="true">
@@ -142,7 +142,7 @@ case match.</li>
       name="script.js"
       language="js"
       type="js">
-      <pre><code>angular.module(&#39;switchExample&#39;, [&#39;ngAnimate&#39;])&#10;  .controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;    $scope.items = [&#39;settings&#39;, &#39;home&#39;, &#39;other&#39;];&#10;    $scope.selection = $scope.items[0];&#10;  }]);</code></pre>
+      <pre><code>angular.module(&#39;switchExample&#39;, [&#39;ngAnimate&#39;])&#10;.controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;  $scope.items = [&#39;settings&#39;, &#39;home&#39;, &#39;other&#39;];&#10;  $scope.selection = $scope.items[0];&#10;}]);</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -160,7 +160,7 @@ case match.</li>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example90/index.html" name="example-example90"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example92/index.html" name="example-example92"></iframe>
   </div>
 </div>
 
