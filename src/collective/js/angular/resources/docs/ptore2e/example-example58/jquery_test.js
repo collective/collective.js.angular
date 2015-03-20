@@ -2,36 +2,26 @@ describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("examples/example-example58/index-jquery.html");
+    browser.get("build/docs/examples/example-example58/index-jquery.html");
   });
   
-var status = element(by.binding('status'));
-var data = element(by.binding('data'));
-var fetchBtn = element(by.id('fetchbtn'));
-var sampleGetBtn = element(by.id('samplegetbtn'));
-var sampleJsonpBtn = element(by.id('samplejsonpbtn'));
-var invalidJsonpBtn = element(by.id('invalidjsonpbtn'));
+it('should initialize to model', function() {
+  var userType = element(by.binding('userType'));
+  var valid = element(by.binding('myForm.input.$valid'));
 
-it('should make an xhr GET request', function() {
-  sampleGetBtn.click();
-  fetchBtn.click();
-  expect(status.getText()).toMatch('200');
-  expect(data.getText()).toMatch(/Hello, \$http!/);
+  expect(userType.getText()).toContain('guest');
+  expect(valid.getText()).toContain('true');
 });
 
-// Commented out due to flakes. See https://github.com/angular/angular.js/issues/9185
-// it('should make a JSONP request to angularjs.org', function() {
-//   sampleJsonpBtn.click();
-//   fetchBtn.click();
-//   expect(status.getText()).toMatch('200');
-//   expect(data.getText()).toMatch(/Super Hero!/);
-// });
+it('should be invalid if empty', function() {
+  var userType = element(by.binding('userType'));
+  var valid = element(by.binding('myForm.input.$valid'));
+  var userInput = element(by.model('userType'));
 
-it('should make JSONP request to invalid URL and invoke the error handler',
-    function() {
-  invalidJsonpBtn.click();
-  fetchBtn.click();
-  expect(status.getText()).toMatch('0');
-  expect(data.getText()).toMatch('Request failed');
+  userInput.clear();
+  userInput.sendKeys('');
+
+  expect(userType.getText()).toEqual('userType =');
+  expect(valid.getText()).toContain('false');
 });
 });

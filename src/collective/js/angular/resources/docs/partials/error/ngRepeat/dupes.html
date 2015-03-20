@@ -1,4 +1,4 @@
-<a href='https://github.com/angular/angular.js/edit/v1.2.x/docs/content/error/ngRepeat/dupes.ngdoc?message=docs(error%2Fdupes)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/docs/content/error/ngRepeat/dupes.ngdoc?message=docs(error%2Fdupes)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 <h1>Error: error:dupes
@@ -17,7 +17,7 @@
 <pre><code>&lt;div ng-repeat=&quot;value in [4, 4]&quot;&gt;&lt;/div&gt;
 </code></pre>
 <p>To resolve this error either ensure that the items in the collection have unique identity or use the <code>track by</code> syntax to specify how to track the association between models and DOM.</p>
-<p>To resolve the example above can be resolved by using <code>track by $index</code>, which will cause the items to be keyed by their position in the array instead of their value:</p>
+<p>The example above can be resolved by using <code>track by $index</code>, which will cause the items to be keyed by their position in the array instead of their value:</p>
 <pre><code>&lt;div ng-repeat=&quot;value in [4, 4] track by $index&quot;&gt;&lt;/div&gt;
 </code></pre>
 

@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ngRoute/route.js?message=docs($routeProvider)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ngRoute/route.js?message=docs($routeProvider)%3A%20describe%20your%20change...#L23' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/ngRoute/route.js#L22' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ngRoute/route.js#L23' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -40,16 +40,7 @@
 
     
 
-  <h2 id="usage">Usage</h2>
-    
-      <p><code>$routeProvider();</code></p>
-
-
-    
-
-    
-    
-    
+  
 
   
 <h2>Methods</h2>
@@ -238,10 +229,11 @@ is matched.</p>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-object">Object</a>
+        <a href="" class="label type-hint type-hint-object">Object</a><a href="" class="label type-hint type-hint-string">string</a>
       </td>
       <td>
-        <p>Mapping information to be assigned to <code>$route.current</code>.</p>
+        <p>Mapping information to be assigned to <code>$route.current</code>.
+If called with a string, the value maps to <code>redirectTo</code>.</p>
 
         
       </td>
@@ -269,6 +261,21 @@ is matched.</p>
   </ul>
   
   
+<h2>Properties</h2>
+<ul class="properties">
+  <li id="caseInsensitiveMatch">
+    <h3><code>caseInsensitiveMatch</code></h3>
+    <table class="variables-matrix return-arguments">
+  <tr>
+    <td></td>
+    <td><p>A boolean property indicating if routes defined
+using this provider should be matched using a case insensitive
+algorithm. Defaults to <code>false</code>.</p>
+</td>
+  </tr>
+</table>
+  </li>
+  </ul>
 
 
 

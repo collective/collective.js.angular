@@ -6,12 +6,16 @@
   
 
   <script src="../../../angular.js"></script>
+  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="">
-    <div>Normal: {{1 + 2}}</div>
-  <div ng-non-bindable>Ignored: {{1 + 2}}</div>
+<body >
+  <div ng-app="myApp">
+  <div>
+    {{ 'World' | greet }}
+  </div>
+</div>
 </body>
 </html>

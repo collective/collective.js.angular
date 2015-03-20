@@ -1,4 +1,4 @@
-<a href='https://github.com/angular/angular.js/edit/v1.2.x/docs/content/guide/controller.ngdoc?message=docs(guide%2FControllers)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/docs/content/guide/controller.ngdoc?message=docs(guide%2FControllers)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 <h1 id="understanding-controllers">Understanding Controllers</h1>
@@ -51,7 +51,7 @@ of the Controller on the <code>$scope</code> service provided by Angular. See th
 <p>We attach our controller to the DOM using the <code>ng-controller</code> directive. The <code>greeting</code> property can
 now be data-bound to the template:</p>
 <pre><code class="lang-js">&lt;div ng-controller=&quot;GreetingController&quot;&gt;
-{{ greeting }}
+  {{ greeting }}
 &lt;/div&gt;
 </code></pre>
 <h1 id="adding-behavior-to-a-scope-object">Adding Behavior to a Scope Object</h1>
@@ -68,7 +68,7 @@ myApp.controller(&#39;DoubleController&#39;, [&#39;$scope&#39;, function($scope)
 <p>Once the Controller has been attached to the DOM, the <code>double</code> method can be invoked in an Angular
 expression in the template:</p>
 <pre><code class="lang-js">&lt;div ng-controller=&quot;DoubleController&quot;&gt;
-Two times &lt;input ng-model=&quot;num&quot;&gt; equals {{ double(num) }}
+  Two times &lt;input ng-model=&quot;num&quot;&gt; equals {{ double(num) }}
 &lt;/div&gt;
 </code></pre>
 <p>As discussed in the <a href="guide/concepts">Concepts</a> section of this guide, any
@@ -98,12 +98,12 @@ string &quot;very&quot;. Depending on which button is clicked, the <code>spice</
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example73')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example6', $event)" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example73"
+      path="examples/example-example6"
       module="spicyApp1">
 
   
@@ -122,7 +122,7 @@ string &quot;very&quot;. Depending on which button is clicked, the <code>spice</
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example73/index.html" name="example-example73"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example6/index.html" name="example-example6"></iframe>
   </div>
 </div>
 
@@ -133,7 +133,7 @@ string &quot;very&quot;. Depending on which button is clicked, the <code>spice</
 <li>The <code>ng-controller</code> directive is used to (implicitly) create a scope for our template, and the
 scope is augmented (managed) by the <code>SpicyController</code> Controller.</li>
 <li><code>SpicyController</code> is just a plain JavaScript function. As an (optional) naming convention the name
-starts with capital letter and ends with &quot;Controller&quot; or &quot;Controller&quot;.</li>
+starts with capital letter and ends with &quot;Controller&quot;.</li>
 <li>Assigning a property to <code>$scope</code> creates or updates the model.</li>
 <li>Controller methods can be created through direct assignment to scope (see the <code>chiliSpicy</code> method)</li>
 <li>The Controller methods and properties are available in the template (for the <code>&lt;div&gt;</code> element and
@@ -145,12 +145,12 @@ previous example.</p>
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example74')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example7', $event)" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example74"
+      path="examples/example-example7"
       module="spicyApp2">
 
   
@@ -158,7 +158,7 @@ previous example.</p>
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;div ng-controller=&quot;SpicyController&quot;&gt;&#10;&lt;input ng-model=&quot;customSpice&quot;&gt;&#10;&lt;button ng-click=&quot;spicy(&#39;chili&#39;)&quot;&gt;Chili&lt;/button&gt;&#10;&lt;button ng-click=&quot;spicy(customSpice)&quot;&gt;Custom spice&lt;/button&gt;&#10;&lt;p&gt;The food is {{spice}} spicy!&lt;/p&gt;&#10;&lt;/div&gt;</code></pre>
+      <pre><code>&lt;div ng-controller=&quot;SpicyController&quot;&gt;&#10; &lt;input ng-model=&quot;customSpice&quot;&gt;&#10; &lt;button ng-click=&quot;spicy(&#39;chili&#39;)&quot;&gt;Chili&lt;/button&gt;&#10; &lt;button ng-click=&quot;spicy(customSpice)&quot;&gt;Custom spice&lt;/button&gt;&#10; &lt;p&gt;The food is {{spice}} spicy!&lt;/p&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -169,7 +169,7 @@ previous example.</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example74/index.html" name="example-example74"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example7/index.html" name="example-example7"></iframe>
   </div>
 </div>
 
@@ -189,12 +189,12 @@ more information about scope inheritance.</p>
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example75')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example8', $event)" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example75"
+      path="examples/example-example8"
       module="scopeInheritance">
 
   
@@ -220,7 +220,7 @@ more information about scope inheritance.</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example75/index.html" name="example-example75"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example8/index.html" name="example-example8"></iframe>
   </div>
 </div>
 
@@ -254,50 +254,50 @@ myApp.controller(&#39;MyController&#39;, function($scope) {
 <p><strong>Controller Test:</strong></p>
 <pre><code class="lang-js">describe(&#39;myController function&#39;, function() {
 
-describe(&#39;myController&#39;, function() {
-  var $scope;
+  describe(&#39;myController&#39;, function() {
+    var $scope;
 
-  beforeEach(module(&#39;myApp&#39;));
+    beforeEach(module(&#39;myApp&#39;));
 
-  beforeEach(inject(function($rootScope, $controller) {
-    $scope = $rootScope.$new();
-    $controller(&#39;MyController&#39;, {$scope: $scope});
-  }));
+    beforeEach(inject(function($rootScope, $controller) {
+      $scope = $rootScope.$new();
+      $controller(&#39;MyController&#39;, {$scope: $scope});
+    }));
 
-  it(&#39;should create &quot;spices&quot; model with 3 spices&#39;, function() {
-    expect($scope.spices.length).toBe(3);
+    it(&#39;should create &quot;spices&quot; model with 3 spices&#39;, function() {
+      expect($scope.spices.length).toBe(3);
+    });
+
+    it(&#39;should set the default value of spice&#39;, function() {
+      expect($scope.spice).toBe(&#39;habanero&#39;);
+    });
   });
-
-  it(&#39;should set the default value of spice&#39;, function() {
-    expect($scope.spice).toBe(&#39;habanero&#39;);
-  });
-});
 });
 </code></pre>
 <p>If you need to test a nested Controller you need to create the same scope hierarchy
 in your test that exists in the DOM:</p>
 <pre><code class="lang-js">describe(&#39;state&#39;, function() {
-var mainScope, childScope, grandChildScope;
+    var mainScope, childScope, grandChildScope;
 
-beforeEach(module(&#39;myApp&#39;));
+    beforeEach(module(&#39;myApp&#39;));
 
-beforeEach(inject(function($rootScope, $controller) {
-    mainScope = $rootScope.$new();
-    $controller(&#39;MainController&#39;, {$scope: mainScope});
-    childScope = mainScope.$new();
-    $controller(&#39;ChildController&#39;, {$scope: childScope});
-    grandChildScope = childScope.$new();
-    $controller(&#39;GrandChildController&#39;, {$scope: grandChildScope});
-}));
+    beforeEach(inject(function($rootScope, $controller) {
+        mainScope = $rootScope.$new();
+        $controller(&#39;MainController&#39;, {$scope: mainScope});
+        childScope = mainScope.$new();
+        $controller(&#39;ChildController&#39;, {$scope: childScope});
+        grandChildScope = childScope.$new();
+        $controller(&#39;GrandChildController&#39;, {$scope: grandChildScope});
+    }));
 
-it(&#39;should have over and selected&#39;, function() {
-    expect(mainScope.timeOfDay).toBe(&#39;morning&#39;);
-    expect(mainScope.name).toBe(&#39;Nikki&#39;);
-    expect(childScope.timeOfDay).toBe(&#39;morning&#39;);
-    expect(childScope.name).toBe(&#39;Mattie&#39;);
-    expect(grandChildScope.timeOfDay).toBe(&#39;evening&#39;);
-    expect(grandChildScope.name).toBe(&#39;Gingerbreak Baby&#39;);
-});
+    it(&#39;should have over and selected&#39;, function() {
+        expect(mainScope.timeOfDay).toBe(&#39;morning&#39;);
+        expect(mainScope.name).toBe(&#39;Nikki&#39;);
+        expect(childScope.timeOfDay).toBe(&#39;morning&#39;);
+        expect(childScope.name).toBe(&#39;Mattie&#39;);
+        expect(grandChildScope.timeOfDay).toBe(&#39;evening&#39;);
+        expect(grandChildScope.name).toBe(&#39;Gingerbread Baby&#39;);
+    });
 });
 </code></pre>
 

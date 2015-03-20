@@ -3,40 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <title>Example - example-example50-debug</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
   
 
   <script src="../../../angular.js"></script>
+  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="">
-    <div ng-init="friends = [{name:'John', phone:'555-1276'},
-                           {name:'Mary', phone:'800-BIG-MARY'},
-                           {name:'Mike', phone:'555-4321'},
-                           {name:'Adam', phone:'555-5678'},
-                           {name:'Julie', phone:'555-8765'},
-                           {name:'Juliette', phone:'555-5678'}]"></div>
+<body ng-app="cacheExampleApp">
+  <div ng-controller="CacheController">
+  <input ng-model="newCacheKey" placeholder="Key">
+  <input ng-model="newCacheValue" placeholder="Value">
+  <button ng-click="put(newCacheKey, newCacheValue)">Cache</button>
 
-  Search: <input ng-model="searchText">
-  <table id="searchTextResults">
-    <tr><th>Name</th><th>Phone</th></tr>
-    <tr ng-repeat="friend in friends | filter:searchText">
-      <td>{{friend.name}}</td>
-      <td>{{friend.phone}}</td>
-    </tr>
-  </table>
-  <hr>
-  Any: <input ng-model="search.$"> <br>
-  Name only <input ng-model="search.name"><br>
-  Phone only <input ng-model="search.phone"><br>
-  Equality <input type="checkbox" ng-model="strict"><br>
-  <table id="searchObjResults">
-    <tr><th>Name</th><th>Phone</th></tr>
-    <tr ng-repeat="friendObj in friends | filter:search:strict">
-      <td>{{friendObj.name}}</td>
-      <td>{{friendObj.phone}}</td>
-    </tr>
-  </table>
+  <p ng-if="keys.length">Cached Values</p>
+  <div ng-repeat="key in keys">
+    <span ng-bind="key"></span>
+    <span>: </span>
+    <b ng-bind="cache.get(key)"></b>
+  </div>
+
+  <p>Cache Info</p>
+  <div ng-repeat="(key, value) in cache.info()">
+    <span ng-bind="key"></span>
+    <span>: </span>
+    <b ng-bind="value"></b>
+  </div>
+</div>
 </body>
 </html>

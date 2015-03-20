@@ -6,26 +6,14 @@
   
 
   <script src="../../../angular.min.js"></script>
-  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="orderByExample">
-    <div ng-controller="ExampleController">
-    <table class="friend">
-      <tr>
-        <th><a href="" ng-click="reverse=false;order('name', false)">Name</a>
-          (<a href="" ng-click="order('-name',false)">^</a>)</th>
-        <th><a href="" ng-click="reverse=!reverse;order('phone', reverse)">Phone Number</a></th>
-        <th><a href="" ng-click="reverse=!reverse;order('age',reverse)">Age</a></th>
-      </tr>
-      <tr ng-repeat="friend in friends">
-        <td>{{friend.name}}</td>
-        <td>{{friend.phone}}</td>
-        <td>{{friend.age}}</td>
-      </tr>
-    </table>
-  </div>
+<body ng-app="">
+  Check me check multiple: <input type="checkbox" ng-model="open"><br/>
+<details id="details" ng-open="open">
+   <summary>Show/Hide me</summary>
+</details>
 </body>
 </html>

@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/jqLite.js?message=docs(angular.element)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/jqLite.js?message=docs(angular.element)%3A%20describe%20your%20change...#L25' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/jqLite.js#L13' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/jqLite.js#L25' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -38,13 +38,14 @@ jqLite; they are never raw DOM references.</div>
 <li><a href="http://api.jquery.com/addClass/"><code>addClass()</code></a></li>
 <li><a href="http://api.jquery.com/after/"><code>after()</code></a></li>
 <li><a href="http://api.jquery.com/append/"><code>append()</code></a></li>
-<li><a href="http://api.jquery.com/attr/"><code>attr()</code></a></li>
+<li><a href="http://api.jquery.com/attr/"><code>attr()</code></a> - Does not support functions as parameters</li>
 <li><a href="http://api.jquery.com/bind/"><code>bind()</code></a> - Does not support namespaces, selectors or eventData</li>
 <li><a href="http://api.jquery.com/children/"><code>children()</code></a> - Does not support selectors</li>
 <li><a href="http://api.jquery.com/clone/"><code>clone()</code></a></li>
 <li><a href="http://api.jquery.com/contents/"><code>contents()</code></a></li>
-<li><a href="http://api.jquery.com/css/"><code>css()</code></a></li>
+<li><a href="http://api.jquery.com/css/"><code>css()</code></a> - Only retrieves inline-styles, does not call <code>getComputedStyle()</code></li>
 <li><a href="http://api.jquery.com/data/"><code>data()</code></a></li>
+<li><a href="http://api.jquery.com/detach/"><code>detach()</code></a></li>
 <li><a href="http://api.jquery.com/empty/"><code>empty()</code></a></li>
 <li><a href="http://api.jquery.com/eq/"><code>eq()</code></a></li>
 <li><a href="http://api.jquery.com/find/"><code>find()</code></a> - Limited to lookups by tag name</li>
@@ -86,10 +87,12 @@ camelCase directive name, then the controller for this directive will be retriev
 <code>&#39;ngModel&#39;</code>).</li>
 <li><code>injector()</code> - retrieves the injector of the current element or its parent.</li>
 <li><code>scope()</code> - retrieves the <a href="api/ng/type/$rootScope.Scope">scope</a> of the current
-element or its parent.</li>
+element or its parent. Requires <a href="guide/production#disabling-debug-data">Debug Data</a> to
+be enabled.</li>
 <li><code>isolateScope()</code> - retrieves an isolate <a href="api/ng/type/$rootScope.Scope">scope</a> if one is attached directly to the
 current element. This getter should be used only on elements that contain a directive which starts a new isolate
-scope. Calling <code>scope()</code> on this element always returns the original non-isolate scope.</li>
+scope. Calling <code>scope()</code> on this element always returns the original non-isolate scope.
+Requires <a href="guide/production#disabling-debug-data">Debug Data</a> to be enabled.</li>
 <li><code>inheritedData()</code> - same as <code>data()</code>, but walks up the DOM until a value is found or the top
 parent element is reached.</li>
 </ul>

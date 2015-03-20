@@ -6,14 +6,16 @@
   
 
   <script src="../../../angular.js"></script>
+  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="">
-   <button ng-mouseover="count = count + 1" ng-init="count=0">
-   Increment (when mouse is over)
- </button>
- count: {{count}}
+<body ng-app="expressionExample">
+  <div class="example2" ng-controller="ExampleController">
+  Name: <input ng-model="name" type="text"/>
+  <button ng-click="greet()">Greet</button>
+  <button ng-click="window.alert('Should not see me')">Won't greet</button>
+</div>
 </body>
 </html>

@@ -2,7 +2,6 @@
   "name": "example-example41",
   "files": [
     "index-production.html",
-    "animations.css",
-    "protractor.js"
+    "script.js"
   ]
 }

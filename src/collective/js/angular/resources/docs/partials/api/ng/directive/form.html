@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ng/directive/form.js?message=docs(form)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/form.js?message=docs(form)%3A%20describe%20your%20change...#L305' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/ng/directive/form.js#L228' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ng/directive/form.js#L305' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -25,7 +25,7 @@
 <p>If the <code>name</code> attribute is specified, the form controller is published onto the current scope under
 this name.</p>
 <h1 id="alias-link-ng-directive-ngform-ngform-">Alias: <a href="api/ng/directive/ngForm"><code>ngForm</code></a></h1>
-<p>In Angular forms can be nested. This means that the outer form is valid when all of the child
+<p>In Angular, forms can be nested. This means that the outer form is valid when all of the child
 forms are valid as well. However, browsers do not allow nesting of <code>&lt;form&gt;</code> elements, so
 Angular provides the <a href="api/ng/directive/ngForm"><code>ngForm</code></a> directive which behaves identically to
 <code>&lt;form&gt;</code> but can be nested.  This allows you to have nested forms, which is very useful when
@@ -39,6 +39,7 @@ attribute of input elements using interpolation, you have to wrap each set of re
 <li><code>ng-invalid</code> is set if the form is invalid.</li>
 <li><code>ng-pristine</code> is set if the form is pristine.</li>
 <li><code>ng-dirty</code> is set if the form is dirty.</li>
+<li><code>ng-submitted</code> is set if the form was submitted.</li>
 </ul>
 <p>Keep in mind that ngAnimate can detect each of these classes when added and removed.</p>
 <h1 id="submitting-a-form-and-preventing-the-default-action">Submitting a form and preventing the default action</h1>
@@ -67,6 +68,9 @@ doesn&#39;t trigger submit</li>
 hitting enter in any of the input fields will trigger the click handler on the <em>first</em> button or
 input[type=submit] (<code>ngClick</code>) <em>and</em> a submit handler on the enclosing form (<code>ngSubmit</code>)</li>
 </ul>
+<p>Any pending <code>ngModelOptions</code> changes will take place immediately when an enclosing form is
+submitted. Note that <code>ngClick</code> events will occur before the model is updated. Use <code>ngSubmit</code>
+to have access to the updated model.</p>
 <h2 id="animation-hooks">Animation Hooks</h2>
 <p>Animations in ngForm are triggered when any of the associated CSS classes are added and removed.
 These classes are: <code>.ng-pristine</code>, <code>.ng-dirty</code>, <code>.ng-invalid</code> and <code>.ng-valid</code> as well as any
@@ -156,12 +160,12 @@ that has been rendered as invalid after it has been validated:</p>
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example11')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example58', $event)" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example11"
+      path="examples/example-example58"
       deps="angular-animate.js"
       animations="true"
       fixBase="true"
@@ -183,7 +187,7 @@ that has been rendered as invalid after it has been validated:</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example11/index.html" name="example-example11"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example58/index.html" name="example-example58"></iframe>
   </div>
 </div>
 

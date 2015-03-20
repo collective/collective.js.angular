@@ -1,21 +1,8 @@
-  angular.module('eventExampleApp', []).
-    controller('EventController', ['$scope', function($scope) {
-      /*
-       * expose the event object to the scope
-       */
-      $scope.clickMe = function(clickEvent) {
-        $scope.clickEvent = simpleKeys(clickEvent);
-        console.log(clickEvent);
-      };
-
-      /*
-       * return a copy of an object with only non-object keys
-       * we need this to avoid circular references
-       */
-      function simpleKeys (original) {
-        return Object.keys(original).reduce(function (obj, key) {
-          obj[key] = typeof original[key] === 'object' ? '{ ... }' : original[key];
-          return obj;
-        }, {});
-      }
-    }]);
+(function(angular) {
+  'use strict';
+angular.module('switchExample', ['ngAnimate'])
+  .controller('ExampleController', ['$scope', function($scope) {
+    $scope.items = ['settings', 'home', 'other'];
+    $scope.selection = $scope.items[0];
+  }]);
+})(window.angular);

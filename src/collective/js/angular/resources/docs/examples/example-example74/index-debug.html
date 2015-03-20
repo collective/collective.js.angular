@@ -6,17 +6,14 @@
   
 
   <script src="../../../angular.js"></script>
-  <script src="app.js"></script>
   
 
   
 </head>
-<body ng-app="spicyApp2">
-  <div ng-controller="SpicyController">
- <input ng-model="customSpice">
- <button ng-click="spicy('chili')">Chili</button>
- <button ng-click="spicy(customSpice)">Custom spice</button>
- <p>The food is {{spice}} spicy!</p>
-</div>
+<body ng-app="">
+  <button ng-mousemove="count = count + 1" ng-init="count=0">
+  Increment (when mouse moves)
+</button>
+count: {{count}}
 </body>
 </html>

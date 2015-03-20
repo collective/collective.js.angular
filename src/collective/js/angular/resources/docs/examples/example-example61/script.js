@@ -1,5 +1,9 @@
-  angular.module('logExample', [])
-    .controller('LogController', ['$scope', '$log', function($scope, $log) {
-      $scope.$log = $log;
-      $scope.message = 'Hello World!';
-    }]);
+(function(angular) {
+  'use strict';
+angular.module('bindHtmlExample', ['ngSanitize'])
+  .controller('ExampleController', ['$scope', function($scope) {
+    $scope.myHTML =
+       'I am an <code>HTML</code>string with ' +
+       '<a href="#">links!</a> and other <em>stuff</em>';
+  }]);
+})(window.angular);

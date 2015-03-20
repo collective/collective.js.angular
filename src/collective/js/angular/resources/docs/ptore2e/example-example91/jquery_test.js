@@ -2,20 +2,16 @@ describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("examples/example-example91/index-jquery.html");
+    browser.get("build/docs/examples/example-example91/index-jquery.html");
   });
   
-  it('should calculate expression in binding', function() {
-    if (browser.params.browser == 'safari') {
-      // Safari can't handle dialogs.
-      return;
-    }
-    element(by.css('[ng-click="greet()"]')).click();
+var colorSpan = element(by.css('span'));
 
-    var alertDialog = browser.switchTo().alert();
-
-    expect(alertDialog.getText()).toEqual('Hello World');
-
-    alertDialog.accept();
-  });
+it('should check ng-style', function() {
+  expect(colorSpan.getCssValue('color')).toBe('rgba(0, 0, 0, 1)');
+  element(by.css('input[value=\'set color\']')).click();
+  expect(colorSpan.getCssValue('color')).toBe('rgba(255, 0, 0, 1)');
+  element(by.css('input[value=clear]')).click();
+  expect(colorSpan.getCssValue('color')).toBe('rgba(0, 0, 0, 1)');
+});
 });

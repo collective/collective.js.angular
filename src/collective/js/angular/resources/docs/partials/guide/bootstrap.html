@@ -1,4 +1,4 @@
-<a href='https://github.com/angular/angular.js/edit/v1.2.x/docs/content/guide/bootstrap.ngdoc?message=docs(guide%2FBootstrap)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/docs/content/guide/bootstrap.ngdoc?message=docs(guide%2FBootstrap)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 <h1 id="bootstrap">Bootstrap</h1>
@@ -11,7 +11,7 @@ initialization.</p>
 &lt;html xmlns:ng=&quot;http://angularjs.org&quot; ng-app&gt;
   &lt;body&gt;
     ...
-    &lt;script src=&quot;angular.js&quot;&gt;
+    &lt;script src=&quot;angular.js&quot;&gt;&lt;/script&gt;
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
@@ -30,9 +30,6 @@ production.</li>
 <li><p>Place <code>ng-app</code> to the root of your application, typically on the <code>&lt;html&gt;</code> tag if you want
 angular to auto-bootstrap your application.</p>
    <html ng-app>
-</li>
-<li><p>If you require IE7 support add <code>id=&quot;ng-app&quot;</code></p>
-   <html ng-app id="ng-app">
 </li>
 <li><p>If you choose to use the old style directive syntax <code>ng:</code> then include xml-namespace in <code>html</code>
 to make IE happy. (This is here for historical reasons, and we no longer recommend use of
@@ -63,6 +60,19 @@ portion of the DOM as an Angular application.</li>
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
+<p>As a best practice, consider adding an <code>ng-strict-di</code> directive on the same element as
+<code>ng-app</code>:</p>
+<pre><code class="lang-html">&lt;!doctype html&gt;
+&lt;html ng-app=&quot;optionalModuleName&quot; ng-strict-di&gt;
+  &lt;body&gt;
+    I can add: {{ 1+2 }}.
+    &lt;script src=&quot;angular.js&quot;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>This will ensure that all services in your application are properly annotated.
+See the <a href="guide/di#using-strict-dependency-injection">dependency injection strict mode</a> docs
+for more.</p>
 <h2 id="manual-initialization">Manual Initialization</h2>
 <p>If you need to have more control over the initialization process, you can use a manual
 bootstrapping method instead. Examples of when you&#39;d need to do this include using script loaders
@@ -108,8 +118,8 @@ executable, bi-directionally bound application.</p>
 </li>
 </ol>
 <h2 id="deferred-bootstrap">Deferred Bootstrap</h2>
-<p>This feature enables tools like Batarang and test runners to
-hook into angular&#39;s bootstrap process and sneak in more modules
+<p>This feature enables tools like <a href="https://github.com/angular/angularjs-batarang">Batarang</a> and test runners
+to hook into angular&#39;s bootstrap process and sneak in more modules
 into the DI registry which can replace or augment DI services for
 the purpose of instrumentation or mocking out heavy dependencies.</p>
 <p>If <code>window.name</code> contains prefix <code>NG_DEFER_BOOTSTRAP!</code> when

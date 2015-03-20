@@ -10,25 +10,43 @@
 
   
 </head>
-<body ng-app="submitExample">
-   <script>
-   angular.module('submitExample', [])
-     .controller('ExampleController', ['$scope', function($scope) {
-       $scope.list = [];
-       $scope.text = 'hello';
-       $scope.submit = function() {
-         if ($scope.text) {
-           $scope.list.push(this.text);
-           $scope.text = '';
-         }
-       };
-     }]);
- </script>
- <form ng-submit="submit()" ng-controller="ExampleController">
-   Enter text and hit enter:
-   <input type="text" ng-model="text" name="text" />
-   <input type="submit" id="submit" value="Submit" />
-   <pre>list={{list}}</pre>
- </form>
+<body ng-app="formExample">
+  <div ng-controller="ExampleController">
+  <form novalidate class="css-form">
+    Name: <input type="text" ng-model="user.name" required /><br />
+    E-mail: <input type="email" ng-model="user.email" required /><br />
+    Gender: <input type="radio" ng-model="user.gender" value="male" />male
+    <input type="radio" ng-model="user.gender" value="female" />female<br />
+    <input type="button" ng-click="reset()" value="Reset" />
+    <input type="submit" ng-click="update(user)" value="Save" />
+  </form>
+</div>
+
+<style type="text/css">
+  .css-form input.ng-invalid.ng-touched {
+    background-color: #FA787E;
+  }
+
+  .css-form input.ng-valid.ng-touched {
+    background-color: #78FA89;
+  }
+</style>
+
+<script>
+  angular.module('formExample', [])
+    .controller('ExampleController', ['$scope', function($scope) {
+      $scope.master = {};
+
+      $scope.update = function(user) {
+        $scope.master = angular.copy(user);
+      };
+
+      $scope.reset = function() {
+        $scope.user = angular.copy($scope.master);
+      };
+
+      $scope.reset();
+    }]);
+</script>
 </body>
 </html>

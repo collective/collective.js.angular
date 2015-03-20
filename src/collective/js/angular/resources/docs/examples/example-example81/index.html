@@ -6,16 +6,12 @@
   
 
   <script src="../../../angular.min.js"></script>
-  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="docsIsolateScopeDirective">
-    <div ng-controller="Controller">
-    <my-customer info="naomi"></my-customer>
-    <hr>
-    <my-customer info="igor"></my-customer>
-  </div>
+<body ng-app="">
+  <input ng-paste="paste=true" ng-init="paste=false" placeholder='paste here'>
+pasted: {{paste}}
 </body>
 </html>

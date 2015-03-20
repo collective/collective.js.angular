@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ngMock/angular-mocks.js?message=docs($httpBackend)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ngMock/angular-mocks.js?message=docs($httpBackend)%3A%20describe%20your%20change...#L898' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/ngMock/angular-mocks.js#L875' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ngMock/angular-mocks.js#L898' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -102,7 +102,12 @@ the async api of the backend, while allowing the test to execute synchronously.<
 <h1 id="unit-testing-with-mock-httpbackend">Unit testing with mock $httpBackend</h1>
 <p>The following code shows how to setup and use the mock backend when unit testing a controller.
 First we create the controller under test:</p>
-<pre><code class="lang-js">// The controller code
+<pre><code class="lang-js">// The module code
+angular
+  .module(&#39;MyApp&#39;, [])
+  .controller(&#39;MyController&#39;, MyController);
+
+// The controller code
 function MyController($scope, $http) {
   var authToken;
 
@@ -126,13 +131,17 @@ function MyController($scope, $http) {
 <p>Now we setup the mock backend and create the test specs:</p>
 <pre><code class="lang-js">// testing controller
 describe(&#39;MyController&#39;, function() {
-   var $httpBackend, $rootScope, createController;
+   var $httpBackend, $rootScope, createController, authRequestHandler;
+
+   // Set up the module
+   beforeEach(module(&#39;MyApp&#39;));
 
    beforeEach(inject(function($injector) {
      // Set up the mock http service responses
      $httpBackend = $injector.get(&#39;$httpBackend&#39;);
      // backend definition common for all tests
-     $httpBackend.when(&#39;GET&#39;, &#39;/auth.py&#39;).respond({userId: &#39;userX&#39;}, {&#39;A-Token&#39;: &#39;xxx&#39;});
+     authRequestHandler = $httpBackend.when(&#39;GET&#39;, &#39;/auth.py&#39;)
+                            .respond({userId: &#39;userX&#39;}, {&#39;A-Token&#39;: &#39;xxx&#39;});
 
      // Get hold of a scope (i.e. the root scope)
      $rootScope = $injector.get(&#39;$rootScope&#39;);
@@ -155,6 +164,18 @@ describe(&#39;MyController&#39;, function() {
      $httpBackend.expectGET(&#39;/auth.py&#39;);
      var controller = createController();
      $httpBackend.flush();
+   });
+
+
+   it(&#39;should fail authentication&#39;, function() {
+
+     // Notice how you can change the response even after it was set
+     authRequestHandler.respond(401, &#39;&#39;);
+
+     $httpBackend.expectGET(&#39;/auth.py&#39;);
+     var controller = createController();
+     $httpBackend.flush();
+     expect($rootScope.status).toBe(&#39;Failed...&#39;);
    });
 
 
@@ -249,10 +270,11 @@ describe(&#39;MyController&#39;, function() {
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -305,14 +327,16 @@ describe(&#39;MyController&#39;, function() {
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
     <td><p>Returns an object with <code>respond</code> method that controls how a matched
-  request is handled.</p>
+  request is handled. You can save this object for later use and invoke <code>respond</code> again in
+  order to change how a matched request is handled.</p>
 <ul>
 <li>respond –
   <code>{function([status,] data[, headers, statusText])
   | function(function(method, url, data, headers)}</code>
 – The respond method takes a set of static data to be returned or a function that can
 return an array containing response status (number), response data (string), response
-headers (Object), and the text for the status (string).</li>
+headers (Object), and the text for the status (string). The respond method returns the
+<code>requestHandler</code> object for possible overrides.</li>
 </ul>
 </td>
   </tr>
@@ -348,10 +372,11 @@ headers (Object), and the text for the status (string).</li>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -385,8 +410,9 @@ headers (Object), and the text for the status (string).</li>
     <table class="variables-matrix return-arguments">
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
-    <td><p>Returns an object with <code>respond</code> method that control how a matched
-request is handled.</p>
+    <td><p>Returns an object with <code>respond</code> method that controls how a matched
+request is handled. You can save this object for later use and invoke <code>respond</code> again in
+order to change how a matched request is handled.</p>
 </td>
   </tr>
 </table>
@@ -421,10 +447,11 @@ request is handled.</p>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -458,8 +485,9 @@ request is handled.</p>
     <table class="variables-matrix return-arguments">
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
-    <td><p>Returns an object with <code>respond</code> method that control how a matched
-request is handled.</p>
+    <td><p>Returns an object with <code>respond</code> method that controls how a matched
+request is handled. You can save this object for later use and invoke <code>respond</code> again in
+order to change how a matched request is handled.</p>
 </td>
   </tr>
 </table>
@@ -494,10 +522,11 @@ request is handled.</p>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -531,8 +560,9 @@ request is handled.</p>
     <table class="variables-matrix return-arguments">
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
-    <td><p>Returns an object with <code>respond</code> method that control how a matched
-request is handled.</p>
+    <td><p>Returns an object with <code>respond</code> method that controls how a matched
+request is handled. You can save this object for later use and invoke <code>respond</code> again in
+order to change how a matched request is handled.</p>
 </td>
   </tr>
 </table>
@@ -567,10 +597,11 @@ request is handled.</p>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -621,8 +652,9 @@ request is handled.</p>
     <table class="variables-matrix return-arguments">
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
-    <td><p>Returns an object with <code>respond</code> method that control how a matched
-request is handled.</p>
+    <td><p>Returns an object with <code>respond</code> method that controls how a matched
+request is handled. You can save this object for later use and invoke <code>respond</code> again in
+order to change how a matched request is handled.</p>
 </td>
   </tr>
 </table>
@@ -657,10 +689,11 @@ request is handled.</p>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -711,8 +744,9 @@ request is handled.</p>
     <table class="variables-matrix return-arguments">
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
-    <td><p>Returns an object with <code>respond</code> method that control how a matched
-request is handled.</p>
+    <td><p>Returns an object with <code>respond</code> method that controls how a matched
+request is handled. You can save this object for later use and invoke <code>respond</code> again in
+order to change how a matched request is handled.</p>
 </td>
   </tr>
 </table>
@@ -747,10 +781,11 @@ request is handled.</p>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -768,8 +803,9 @@ request is handled.</p>
     <table class="variables-matrix return-arguments">
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
-    <td><p>Returns an object with <code>respond</code> method that control how a matched
-request is handled.</p>
+    <td><p>Returns an object with <code>respond</code> method that controls how a matched
+request is handled. You can save this object for later use and invoke <code>respond</code> again in
+order to change how a matched request is handled.</p>
 </td>
   </tr>
 </table>
@@ -820,10 +856,11 @@ request is handled.</p>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -876,15 +913,17 @@ request is handled.</p>
     <table class="variables-matrix return-arguments">
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
-    <td><p>Returns an object with <code>respond</code> method that control how a matched
- request is handled.</p>
+    <td><p>Returns an object with <code>respond</code> method that controls how a matched
+ request is handled. You can save this object for later use and invoke <code>respond</code> again in
+ order to change how a matched request is handled.</p>
 <ul>
 <li>respond –
 <code>{function([status,] data[, headers, statusText])
 | function(function(method, url, data, headers)}</code>
 – The respond method takes a set of static data to be returned or a function that can
 return an array containing response status (number), response data (string), response
-headers (Object), and the text for the status (string).</li>
+headers (Object), and the text for the status (string). The respond method returns the
+<code>requestHandler</code> object for possible overrides.</li>
 </ul>
 </td>
   </tr>
@@ -920,10 +959,11 @@ headers (Object), and the text for the status (string).</li>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -957,8 +997,9 @@ headers (Object), and the text for the status (string).</li>
     <table class="variables-matrix return-arguments">
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
-    <td><p>Returns an object with <code>respond</code> method that control how a matched
-request is handled. See #expect for more info.</p>
+    <td><p>Returns an object with <code>respond</code> method that controls how a matched
+request is handled. You can save this object for later use and invoke <code>respond</code> again in
+order to change how a matched request is handled. See #expect for more info.</p>
 </td>
   </tr>
 </table>
@@ -993,10 +1034,11 @@ request is handled. See #expect for more info.</p>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -1030,8 +1072,9 @@ request is handled. See #expect for more info.</p>
     <table class="variables-matrix return-arguments">
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
-    <td><p>Returns an object with <code>respond</code> method that control how a matched
-  request is handled.</p>
+    <td><p>Returns an object with <code>respond</code> method that controls how a matched
+  request is handled. You can save this object for later use and invoke <code>respond</code> again in
+  order to change how a matched request is handled.</p>
 </td>
   </tr>
 </table>
@@ -1066,10 +1109,11 @@ request is handled. See #expect for more info.</p>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -1103,8 +1147,9 @@ request is handled. See #expect for more info.</p>
     <table class="variables-matrix return-arguments">
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
-    <td><p>Returns an object with <code>respond</code> method that control how a matched
-  request is handled.</p>
+    <td><p>Returns an object with <code>respond</code> method that controls how a matched
+  request is handled. You can save this object for later use and invoke <code>respond</code> again in
+  order to change how a matched request is handled.</p>
 </td>
   </tr>
 </table>
@@ -1139,10 +1184,11 @@ request is handled. See #expect for more info.</p>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -1194,8 +1240,9 @@ request is handled. See #expect for more info.</p>
     <table class="variables-matrix return-arguments">
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
-    <td><p>Returns an object with <code>respond</code> method that control how a matched
-  request is handled.</p>
+    <td><p>Returns an object with <code>respond</code> method that controls how a matched
+  request is handled. You can save this object for later use and invoke <code>respond</code> again in
+  order to change how a matched request is handled.</p>
 </td>
   </tr>
 </table>
@@ -1230,10 +1277,11 @@ request is handled. See #expect for more info.</p>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -1285,8 +1333,9 @@ request is handled. See #expect for more info.</p>
     <table class="variables-matrix return-arguments">
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
-    <td><p>Returns an object with <code>respond</code> method that control how a matched
-  request is handled.</p>
+    <td><p>Returns an object with <code>respond</code> method that controls how a matched
+  request is handled. You can save this object for later use and invoke <code>respond</code> again in
+  order to change how a matched request is handled.</p>
 </td>
   </tr>
 </table>
@@ -1321,10 +1370,11 @@ request is handled. See #expect for more info.</p>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -1376,8 +1426,9 @@ request is handled. See #expect for more info.</p>
     <table class="variables-matrix return-arguments">
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
-    <td><p>Returns an object with <code>respond</code> method that control how a matched
-  request is handled.</p>
+    <td><p>Returns an object with <code>respond</code> method that controls how a matched
+  request is handled. You can save this object for later use and invoke <code>respond</code> again in
+  order to change how a matched request is handled.</p>
 </td>
   </tr>
 </table>
@@ -1412,10 +1463,11 @@ request is handled. See #expect for more info.</p>
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a>
+        <a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-regexp">RegExp</a><a href="" class="label type-hint type-hint-function">function(string)</a>
       </td>
       <td>
-        <p>HTTP url.</p>
+        <p>HTTP url or function that receives the url
+  and returns true if the url match the current definition.</p>
 
         
       </td>
@@ -1433,8 +1485,9 @@ request is handled. See #expect for more info.</p>
     <table class="variables-matrix return-arguments">
   <tr>
     <td><a href="" class="label type-hint type-hint-requesthandler">requestHandler</a></td>
-    <td><p>Returns an object with <code>respond</code> method that control how a matched
-  request is handled.</p>
+    <td><p>Returns an object with <code>respond</code> method that controls how a matched
+  request is handled. You can save this object for later use and invoke <code>respond</code> again in
+  order to change how a matched request is handled.</p>
 </td>
   </tr>
 </table>

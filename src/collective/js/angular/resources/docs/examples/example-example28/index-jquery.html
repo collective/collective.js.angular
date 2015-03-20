@@ -7,14 +7,21 @@
 
   <script src="../../components/jquery-2.1.1/jquery.js"></script>
   <script src="../../../angular.js"></script>
+  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="">
-   <button ng-mousemove="count = count + 1" ng-init="count=0">
-   Increment (when mouse moves)
- </button>
- count: {{count}}
+<body ng-app="FilterInControllerModule">
+  <div ng-controller="FilterController as ctrl">
+  <div>
+    All entries:
+    <span ng-repeat="entry in ctrl.array">{{entry.name}} </span>
+  </div>
+  <div>
+    Entries that contain an "a":
+    <span ng-repeat="entry in ctrl.filteredArray">{{entry.name}} </span>
+  </div>
+</div>
 </body>
 </html>

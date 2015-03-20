@@ -1,5 +1,14 @@
- it('should display the greeting in the input box', function() {
-  element(by.model('greeting')).sendKeys('Hello, E2E Tests');
-  // If we click the button it will block the test runner
-  // element(':button').click();
- });
+it('should check ng-class', function() {
+  expect(element(by.css('.base-class')).getAttribute('class')).not.
+    toMatch(/my-class/);
+
+  element(by.id('setbtn')).click();
+
+  expect(element(by.css('.base-class')).getAttribute('class')).
+    toMatch(/my-class/);
+
+  element(by.id('clearbtn')).click();
+
+  expect(element(by.css('.base-class')).getAttribute('class')).not.
+    toMatch(/my-class/);
+});

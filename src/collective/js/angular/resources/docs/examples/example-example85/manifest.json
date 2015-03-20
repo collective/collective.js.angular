@@ -1,8 +1,6 @@
 {
   "name": "example-example85",
   "files": [
-    "index-production.html",
-    "script.js",
-    "my-dialog.html"
+    "index-production.html"
   ]
 }

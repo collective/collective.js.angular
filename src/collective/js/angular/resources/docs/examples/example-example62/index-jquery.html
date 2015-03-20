@@ -3,30 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <title>Example - example-example62-jquery</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
   
 
   <script src="../../components/jquery-2.1.1/jquery.js"></script>
   <script src="../../../angular.js"></script>
-  <script src="../../../angular-sanitize.js"></script>
-  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="mySceApp">
-  <div ng-controller="myAppController as myCtrl">
-  <i ng-bind-html="myCtrl.explicitlyTrustedHtml" id="explicitlyTrustedHtml"></i><br><br>
-  <b>User comments</b><br>
-  By default, HTML that isn't explicitly trusted (e.g. Alice's comment) is sanitized when
-  $sanitize is available.  If $sanitize isn't available, this results in an error instead of an
-  exploit.
-  <div class="well">
-    <div ng-repeat="userComment in myCtrl.userComments">
-      <b>{{userComment.name}}</b>:
-      <span ng-bind-html="userComment.htmlComment" class="htmlComment"></span>
-      <br>
-    </div>
-  </div>
-</div>
+<body ng-app="">
+  <p ng-class="{strike: deleted, bold: important, red: error}">Map Syntax Example</p>
+<input type="checkbox" ng-model="deleted"> deleted (apply "strike" class)<br>
+<input type="checkbox" ng-model="important"> important (apply "bold" class)<br>
+<input type="checkbox" ng-model="error"> error (apply "red" class)
+<hr>
+<p ng-class="style">Using String Syntax</p>
+<input type="text" ng-model="style" placeholder="Type: bold strike red">
+<hr>
+<p ng-class="[style1, style2, style3]">Using Array Syntax</p>
+<input ng-model="style1" placeholder="Type: bold, strike or red"><br>
+<input ng-model="style2" placeholder="Type: bold, strike or red"><br>
+<input ng-model="style3" placeholder="Type: bold, strike or red"><br>
 </body>
 </html>

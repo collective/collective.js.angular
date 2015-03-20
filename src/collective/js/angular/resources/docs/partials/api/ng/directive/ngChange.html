@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ng/directive/input.js?message=docs(ngChange)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/ngChange.js?message=docs(ngChange)%3A%20describe%20your%20change...#L3' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/ng/directive/input.js#L1384' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ng/directive/ngChange.js#L3' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -23,8 +23,15 @@
   <p>Evaluate the given expression when the user changes the input.
 The expression is evaluated immediately, unlike the JavaScript onchange event
 which only triggers at the end of a change (usually, when the user leaves the
-form element or presses the return key).
-The expression is not evaluated when the value change is coming from the model.</p>
+form element or presses the return key).</p>
+<p>The <code>ngChange</code> expression is only evaluated when a change in the input value causes
+a new value to be committed to the model.</p>
+<p>It will not be evaluated:</p>
+<ul>
+<li>if the value returned from the <code>$parsers</code> transformation pipeline has not changed</li>
+<li>if the input has continued to be invalid since the model will stay <code>null</code></li>
+<li>if the model is changed programmatically and not by a change to the input value</li>
+</ul>
 <p>Note, this directive requires <code>ngModel</code> to be present.</p>
 
 </div>
@@ -94,7 +101,7 @@ in input value.</p>
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-ngChange-directive')" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-ngChange-directive', $event)" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
