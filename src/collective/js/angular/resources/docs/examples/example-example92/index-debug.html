@@ -3,28 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>Example - example-example92-debug</title>
-  <link href="animations.css" rel="stylesheet" type="text/css">
   
 
   <script src="../../../angular.js"></script>
-  <script src="../../../angular-animate.js"></script>
   <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="switchExample">
-  <div ng-controller="ExampleController">
-  <select ng-model="selection" ng-options="item for item in items">
-  </select>
-  <tt>selection={{selection}}</tt>
-  <hr/>
-  <div class="animate-switch-container"
-    ng-switch on="selection">
-      <div class="animate-switch" ng-switch-when="settings">Settings Div</div>
-      <div class="animate-switch" ng-switch-when="home">Home Span</div>
-      <div class="animate-switch" ng-switch-default>default</div>
+<body ng-app="eventExampleApp">
+    <div ng-controller="EventController">
+    <button ng-click="clickMe($event)">Event</button>
+    <p><code>$event</code>: <pre> {{$event | json}}</pre></p>
+    <p><code>clickEvent</code>: <pre>{{clickEvent | json}}</pre></p>
   </div>
-</div>
 </body>
 </html>

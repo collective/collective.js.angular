@@ -2,12 +2,10 @@ describe("", function() {
   var rootEl;
   beforeEach(function() {
     rootEl = browser.rootEl;
-    browser.get("build/docs/examples/example-example54/index-jquery.html");
+    browser.get("examples/example-example54/index-jquery.html");
   });
   
-it('should check both checkBoxes', function() {
-  expect(element(by.id('checkSlave')).getAttribute('checked')).toBeFalsy();
-  element(by.model('master')).click();
-  expect(element(by.id('checkSlave')).getAttribute('checked')).toBeTruthy();
-});
+  it('should jsonify filtered objects', function() {
+    expect(element(by.binding("{'name':'value'}")).getText()).toMatch(/\{\n  "name": ?"value"\n}/);
+  });
 });

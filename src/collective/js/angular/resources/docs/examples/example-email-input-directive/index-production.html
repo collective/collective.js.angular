@@ -5,7 +5,7 @@
   <title>Example - example-email-input-directive-production</title>
   
 
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
   
 
   
@@ -14,18 +14,16 @@
   <script>
   angular.module('emailExample', [])
     .controller('ExampleController', ['$scope', function($scope) {
-      $scope.email = {
-        text: 'me@example.com'
-      };
+      $scope.text = 'me@example.com';
     }]);
 </script>
   <form name="myForm" ng-controller="ExampleController">
-    Email: <input type="email" name="input" ng-model="email.text" required>
+    Email: <input type="email" name="input" ng-model="text" required>
     <span class="error" ng-show="myForm.input.$error.required">
       Required!</span>
     <span class="error" ng-show="myForm.input.$error.email">
       Not valid email!</span>
-    <tt>text = {{email.text}}</tt><br/>
+    <tt>text = {{text}}</tt><br/>
     <tt>myForm.input.$valid = {{myForm.input.$valid}}</tt><br/>
     <tt>myForm.input.$error = {{myForm.input.$error}}</tt><br/>
     <tt>myForm.$valid = {{myForm.$valid}}</tt><br/>

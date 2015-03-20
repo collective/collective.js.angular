@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/location.js?message=docs($location)%3A%20describe%20your%20change...#L653' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ng/location.js?message=docs($location)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ng/location.js#L653' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/ng/location.js#L528' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -72,10 +72,6 @@ $location service and changes to $location are reflected into the browser addres
     <div><p>This method is getter only.</p>
 <p>Return full url representation with all segments encoded according to rules specified in
 <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>.</p>
-<pre><code class="lang-js">// given url http://example.com/#/some/path?foo=bar&amp;baz=xoxo
-var absUrl = $location.absUrl();
-// =&gt; &quot;http://example.com/#/some/path?foo=bar&amp;baz=xoxo&quot;
-</code></pre>
 </div>
 
     
@@ -102,10 +98,6 @@ var absUrl = $location.absUrl();
     <div><p>This method is getter / setter.</p>
 <p>Return url (e.g. <code>/path?a=b#hash</code>) when called without any parameter.</p>
 <p>Change path, search and hash, when called with parameter and return <code>$location</code>.</p>
-<pre><code class="lang-js">// given url http://example.com/#/some/path?foo=bar&amp;baz=xoxo
-var url = $location.url();
-// =&gt; &quot;/some/path?foo=bar&amp;baz=xoxo&quot;
-</code></pre>
 </div>
 
     
@@ -163,10 +155,6 @@ var url = $location.url();
 </h3>
     <div><p>This method is getter only.</p>
 <p>Return protocol of current url.</p>
-<pre><code class="lang-js">// given url http://example.com/#/some/path?foo=bar&amp;baz=xoxo
-var protocol = $location.protocol();
-// =&gt; &quot;http&quot;
-</code></pre>
 </div>
 
     
@@ -192,10 +180,6 @@ var protocol = $location.protocol();
 </h3>
     <div><p>This method is getter only.</p>
 <p>Return host of current url.</p>
-<pre><code class="lang-js">// given url http://example.com/#/some/path?foo=bar&amp;baz=xoxo
-var host = $location.host();
-// =&gt; &quot;example.com&quot;
-</code></pre>
 </div>
 
     
@@ -221,10 +205,6 @@ var host = $location.host();
 </h3>
     <div><p>This method is getter only.</p>
 <p>Return port of current url.</p>
-<pre><code class="lang-js">// given url http://example.com/#/some/path?foo=bar&amp;baz=xoxo
-var port = $location.port();
-// =&gt; 80
-</code></pre>
 </div>
 
     
@@ -253,10 +233,6 @@ var port = $location.port();
 <p>Change path when called with parameter and return <code>$location</code>.</p>
 <p>Note: Path should always begin with forward slash (/), this method will add the forward slash
 if it is missing.</p>
-<pre><code class="lang-js">// given url http://example.com/#/some/path?foo=bar&amp;baz=xoxo
-var path = $location.path();
-// =&gt; &quot;/some/path&quot;
-</code></pre>
 </div>
 
     
@@ -319,9 +295,10 @@ var path = $location.path();
 var searchObject = $location.search();
 // =&gt; {foo: &#39;bar&#39;, baz: &#39;xoxo&#39;}
 
+
 // set foo to &#39;yipee&#39;
 $location.search(&#39;foo&#39;, &#39;yipee&#39;);
-// $location.search() =&gt; {foo: &#39;yipee&#39;, baz: &#39;xoxo&#39;}
+// =&gt; $location
 </code></pre>
 </div>
 
@@ -409,10 +386,6 @@ one or more arguments returns <code>$location</code> object itself.</p>
     <div><p>This method is getter / setter.</p>
 <p>Return hash fragment when called without any parameter.</p>
 <p>Change hash fragment when called with parameter and return <code>$location</code>.</p>
-<pre><code class="lang-js">// given url http://example.com/#/some/path?foo=bar&amp;baz=xoxo#hashValue
-var hash = $location.hash();
-// =&gt; &quot;hashValue&quot;
-</code></pre>
 </div>
 
     
@@ -479,81 +452,16 @@ record, instead of adding new one.</p>
     
 
   </li>
-  
-  <li id="state">
-    <h3><p><code>state([state]);</code></p>
-
-</h3>
-    <div><p>This method is getter / setter.</p>
-<p>Return the history state object when called without any parameter.</p>
-<p>Change the history state object when called with one parameter and return <code>$location</code>.
-The state object is later passed to <code>pushState</code> or <code>replaceState</code>.</p>
-<p>NOTE: This method is supported only in HTML5 mode and only in browsers supporting
-the HTML5 History API (i.e. methods <code>pushState</code> and <code>replaceState</code>). If you need to support
-older browsers (like IE9 or Android &lt; 4.0), don&#39;t use this method.</p>
-</div>
-
-    
-    <h4>Parameters</h4>
-    
-<table class="variables-matrix input-arguments">
-  <thead>
-    <tr>
-      <th>Param</th>
-      <th>Type</th>
-      <th>Details</th>
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr>
-      <td>
-        state
-        
-        <div><em>(optional)</em></div>
-      </td>
-      <td>
-        <a href="" class="label type-hint type-hint-object">object</a>
-      </td>
-      <td>
-        <p>State object for pushState or replaceState</p>
-
-        
-      </td>
-    </tr>
-    
-  </tbody>
-</table>
-
-    
-
-    
-    
-    
-    <h4>Returns</h4>
-    <table class="variables-matrix return-arguments">
-  <tr>
-    <td><a href="" class="label type-hint type-hint-object">object</a></td>
-    <td><p>state</p>
-</td>
-  </tr>
-</table>
-    
-
-  </li>
   </ul>
   
 <h2>Events</h2>
 <ul class="events">
   <li id="$locationChangeStart">
     <h3>$locationChangeStart</h3>
-    <div><p>Broadcasted before a URL will change.</p>
-<p>This change can be prevented by calling
+    <div><p>Broadcasted before a URL will change. This change can be prevented by calling
 <code>preventDefault</code> method of the event. See <a href="api/ng/type/$rootScope.Scope#$on"><code>$rootScope.Scope</code></a> for more
 details about event object. Upon successful change
-<a href="api/ng/service/$location#$locationChangeSuccess">$locationChangeSuccess</a> is fired.</p>
-<p>The <code>newState</code> and <code>oldState</code> parameters may be defined only in HTML5 mode and when
-the browser supports the HTML5 History API.</p>
+<a href="api/ng/service/$location#events_$locationChangeSuccess">$locationChangeSuccess</a> is fired.</p>
 </div>
     <div class="inline">
       <h4>Type:</h4>
@@ -568,8 +476,6 @@ the browser supports the HTML5 History API.</p>
   <li id="$locationChangeSuccess">
     <h3>$locationChangeSuccess</h3>
     <div><p>Broadcasted after a URL was changed.</p>
-<p>The <code>newState</code> and <code>oldState</code> parameters may be defined only in HTML5 mode and when
-the browser supports the HTML5 History API.</p>
 </div>
     <div class="inline">
       <h4>Type:</h4>

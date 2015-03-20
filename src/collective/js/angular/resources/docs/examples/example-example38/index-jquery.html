@@ -7,20 +7,23 @@
 
   <script src="../../components/jquery-2.1.1/jquery.js"></script>
   <script src="../../../angular.js"></script>
-  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="form-example2">
-  <div contentEditable="true" ng-model="content" title="Click to edit">Some</div>
-<pre>model = {{content}}</pre>
-
-<style type="text/css">
-  div[contentEditable] {
-    cursor: pointer;
-    background-color: #D0D0D0;
-  }
-</style>
+<body ng-app="initExample">
+  <script>
+  angular.module('initExample', [])
+    .controller('ExampleController', ['$scope', function($scope) {
+      $scope.list = [['a', 'b'], ['c', 'd']];
+    }]);
+</script>
+<div ng-controller="ExampleController">
+  <div ng-repeat="innerList in list" ng-init="outerIndex = $index">
+    <div ng-repeat="value in innerList" ng-init="innerIndex = $index">
+       <span class="example-init">list[ {{outerIndex}} ][ {{innerIndex}} ] = {{value}};</span>
+    </div>
+  </div>
+</div>
 </body>
 </html>

@@ -1,4 +1,4 @@
-<a href='https://github.com/angular/angular.js/edit/v1.3.x/docs/content/guide/scope.ngdoc?message=docs(guide%2FScopes)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/docs/content/guide/scope.ngdoc?message=docs(guide%2FScopes)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 <h1 id="what-are-scopes-">What are Scopes?</h1>
@@ -18,7 +18,7 @@ realm&quot; (controllers, services, Angular event handlers).</p>
 <li><p>Scopes can be nested to limit access to the properties of application components while providing
 access to shared model properties. Nested scopes are either &quot;child scopes&quot; or &quot;isolate scopes&quot;.
 A &quot;child scope&quot; (prototypically) inherits properties from its parent scope. An &quot;isolate scope&quot;
-does not. See <a href="guide/directive#isolating-the-scope-of-a-directive">isolated
+does not. See <a href="guide/directive#creating-custom-directives_demo_isolating-the-scope-of-a-directive">isolated
 scopes</a> for more information.</p>
 </li>
 <li><p>Scopes provide context against which <a href="guide/expression">expressions</a> are evaluated. For
@@ -32,18 +32,18 @@ scope which defines the <code>username</code> property.</p>
 <code>$watch</code> allows the directives to be notified of property changes, which allows the directive to
 render the updated value to the DOM.</p>
 <p>Both controllers and directives have reference to the scope, but not to each other. This
-arrangement isolates the controller from the directive as well as from the DOM. This is an important
+arrangement isolates the controller from the directive as well as from DOM. This is an important
 point since it makes the controllers view agnostic, which greatly improves the testing story of
 the applications.</p>
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example41', $event)" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example102')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example41"
+      path="examples/example-example102"
       module="scopeExample">
 
   
@@ -51,7 +51,7 @@ the applications.</p>
       name="script.js"
       language="js"
       type="js">
-      <pre><code>angular.module(&#39;scopeExample&#39;, [])&#10;.controller(&#39;MyController&#39;, [&#39;$scope&#39;, function($scope) {&#10;  $scope.username = &#39;World&#39;;&#10;&#10;  $scope.sayHello = function() {&#10;    $scope.greeting = &#39;Hello &#39; + $scope.username + &#39;!&#39;;&#10;  };&#10;}]);</code></pre>
+      <pre><code>angular.module(&#39;scopeExample&#39;, [])&#10;  .controller(&#39;MyController&#39;, [&#39;$scope&#39;, function($scope) {&#10;    $scope.username = &#39;World&#39;;&#10;&#10;    $scope.sayHello = function() {&#10;      $scope.greeting = &#39;Hello &#39; + $scope.username + &#39;!&#39;;&#10;    };&#10;  }]);</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -62,7 +62,7 @@ the applications.</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example41/index.html" name="example-example41"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example102/index.html" name="example-example102"></iframe>
   </div>
 </div>
 
@@ -118,12 +118,12 @@ a diagram depicting the scope boundaries.</p>
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example42', $event)" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example103')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example42"
+      path="examples/example-example103"
       module="scopeExample">
 
   
@@ -131,14 +131,14 @@ a diagram depicting the scope boundaries.</p>
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;div class=&quot;show-scope-demo&quot;&gt;&#10;  &lt;div ng-controller=&quot;GreetController&quot;&gt;&#10;    Hello {{name}}!&#10;  &lt;/div&gt;&#10;  &lt;div ng-controller=&quot;ListController&quot;&gt;&#10;    &lt;ol&gt;&#10;      &lt;li ng-repeat=&quot;name in names&quot;&gt;{{name}} from {{department}}&lt;/li&gt;&#10;    &lt;/ol&gt;&#10;  &lt;/div&gt;&#10;&lt;/div&gt;</code></pre>
+      <pre><code>&lt;div class=&quot;show-scope-demo&quot;&gt;&#10;&lt;div ng-controller=&quot;GreetController&quot;&gt;&#10;  Hello {{name}}!&#10;&lt;/div&gt;&#10;&lt;div ng-controller=&quot;ListController&quot;&gt;&#10;  &lt;ol&gt;&#10;    &lt;li ng-repeat=&quot;name in names&quot;&gt;{{name}} from {{department}}&lt;/li&gt;&#10;  &lt;/ol&gt;&#10;&lt;/div&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="script.js"
       language="js"
       type="js">
-      <pre><code>angular.module(&#39;scopeExample&#39;, [])&#10;.controller(&#39;GreetController&#39;, [&#39;$scope&#39;, &#39;$rootScope&#39;, function($scope, $rootScope) {&#10;  $scope.name = &#39;World&#39;;&#10;  $rootScope.department = &#39;Angular&#39;;&#10;}])&#10;.controller(&#39;ListController&#39;, [&#39;$scope&#39;, function($scope) {&#10;  $scope.names = [&#39;Igor&#39;, &#39;Misko&#39;, &#39;Vojta&#39;];&#10;}]);</code></pre>
+      <pre><code>angular.module(&#39;scopeExample&#39;, [])&#10;  .controller(&#39;GreetController&#39;, [&#39;$scope&#39;, &#39;$rootScope&#39;, function($scope, $rootScope) {&#10;    $scope.name = &#39;World&#39;;&#10;    $rootScope.department = &#39;Angular&#39;;&#10;  }])&#10;  .controller(&#39;ListController&#39;, [&#39;$scope&#39;, function($scope) {&#10;    $scope.names = [&#39;Igor&#39;, &#39;Misko&#39;, &#39;Vojta&#39;];&#10;  }]);</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -149,7 +149,7 @@ a diagram depicting the scope boundaries.</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example42/index.html" name="example-example42"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example103/index.html" name="example-example103"></iframe>
   </div>
 </div>
 
@@ -171,7 +171,7 @@ of <a href="api/ng/directive/ngApp"><code>ng-app</code></a> directive. Typically
 for example, only a portion of the view needs to be controlled by Angular.</p>
 <p>To examine the scope in the debugger:</p>
 <ol>
-<li><p>Right click on the element of interest in your browser and select &#39;inspect element&#39;. You
+<li><p>right click on the element of interest in your browser and select &#39;inspect element&#39;. You
 should see the browser debugger with the element you clicked on highlighted.</p>
 </li>
 <li><p>The debugger allows you to access the currently selected element in the console as <code>$0</code>
@@ -185,12 +185,12 @@ variable.</p>
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example43', $event)" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example104')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example43"
+      path="examples/example-example104"
       module="eventExample">
 
   
@@ -198,7 +198,7 @@ variable.</p>
       name="script.js"
       language="js"
       type="js">
-      <pre><code>angular.module(&#39;eventExample&#39;, [])&#10;.controller(&#39;EventController&#39;, [&#39;$scope&#39;, function($scope) {&#10;  $scope.count = 0;&#10;  $scope.$on(&#39;MyEvent&#39;, function() {&#10;    $scope.count++;&#10;  });&#10;}]);</code></pre>
+      <pre><code>angular.module(&#39;eventExample&#39;, [])&#10;  .controller(&#39;EventController&#39;, [&#39;$scope&#39;, function($scope) {&#10;    $scope.count = 0;&#10;    $scope.$on(&#39;MyEvent&#39;, function() {&#10;      $scope.count++;&#10;    });&#10;  }]);</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -209,7 +209,7 @@ variable.</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example43/index.html" name="example-example43"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example104/index.html" name="example-example104"></iframe>
   </div>
 </div>
 
@@ -280,7 +280,7 @@ correctly.</p>
 but do not create new instances of scope. However, some directives, such as <a href="api/ng/directive/ngController">ng-controller</a> and <a href="api/ng/directive/ngRepeat">ng-repeat</a>, create new child scopes
 and attach the child scope to the corresponding DOM element. You can retrieve a scope for any DOM
 element by using an <code>angular.element(aDomElement).scope()</code> method call.
-See the <a href="guide/directive#isolating-the-scope-of-a-directive">directives guide</a> for more information about isolate scopes.</p>
+See the <a href="guide/directive#creating-custom-directives_demo_isolating-the-scope-of-a-directive">directives guide</a> for more information about isolate scopes.</p>
 <h3 id="controllers-and-scopes">Controllers and Scopes</h3>
 <p>Scopes and controllers interact with each other in the following situations:</p>
 <ul>
@@ -299,14 +299,6 @@ information.</p>
 the dirty checking function must be efficient. Care should be taken that the dirty checking
 function does not do any DOM access, as DOM access is orders of magnitude slower than property
 access on JavaScript object.</p>
-<h3 id="scope-watch-depths">Scope <code>$watch</code> Depths</h3>
-<p><img class="pull-right" style="padding-left: 3em; padding-bottom: 1em;" src="img/guide/concepts-scope-watch-strategies.png"></p>
-<p>Dirty checking can be done with three strategies: By reference, by collection contents, and by value. The strategies differ in the kinds of changes they detect, and in their performance characteristics.</p>
-<ul>
-<li>Watching <em>by reference</em> (<a href="api/ng/type/$rootScope.Scope#$watch">scope.$watch</a> <code>(watchExpression, listener)</code>) detects a change when the whole value returned by the watch expression switches to a new value. If the value is an array or an object, changes inside it are not detected. This is the most efficient strategy.</li>
-<li>Watching <em>collection contents</em> (<a href="api/ng/type/$rootScope.Scope#$watchCollection">scope.$watchCollection</a> <code>(watchExpression, listener)</code>) detects changes that occur inside an array or an object: When items are added, removed, or reordered. The detection is shallow - it does not reach into nested collections. Watching collection contents is more expensive than watching by reference, because copies of the collection contents need to be maintained. However, the strategy attempts to minimize the amount of copying required.</li>
-<li>Watching <em>by value</em> (<a href="api/ng/type/$rootScope.Scope#$watch">scope.$watch</a> <code>(watchExpression, listener, true)</code>) detects any change in an arbitrarily nested data structure. It is the most powerful change detection strategy, but also the most expensive. A full traversal of the nested data structure is needed on each digest, and a full copy of it needs to be held in memory.</li>
-</ul>
 <h2 id="integration-with-the-browser-event-loop">Integration with the browser event loop</h2>
 <p><img class="pull-right" style="padding-left: 3em; padding-bottom: 1em;" src="img/guide/concepts-runtime.png"></p>
 <p>The diagram and the example below describe how Angular interacts with the browser&#39;s event loop.</p>

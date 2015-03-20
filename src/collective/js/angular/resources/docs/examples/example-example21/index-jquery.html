@@ -7,12 +7,16 @@
 
   <script src="../../components/jquery-2.1.1/jquery.js"></script>
   <script src="../../../angular.js"></script>
-  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="dragModule">
-  <span my-draggable>Drag ME</span>
+<body ng-app="">
+   <button ng-click="count = count + 1" ng-init="count=0">
+   Increment
+ </button>
+ <span>
+   count: {{count}}
+ <span>
 </body>
 </html>

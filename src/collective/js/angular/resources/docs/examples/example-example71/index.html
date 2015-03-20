@@ -3,17 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <title>Example - example-example71</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
   
 
   <script src="../../../angular.min.js"></script>
+  <script src="../../../angular-animate.js"></script>
   
 
   
 </head>
-<body ng-app="">
-  <button ng-mouseover="count = count + 1" ng-init="count=0">
-  Increment (when mouse is over)
-</button>
-count: {{count}}
+<body ng-app="ngAnimate">
+   <p>
+   <input type="button" value="set" ng-click="myCssVar='css-class'">
+   <input type="button" value="clear" ng-click="myCssVar=''">
+   <br>
+   <span ng-class="myCssVar">CSS-Animated Text</span>
+ </p>
 </body>
 </html>

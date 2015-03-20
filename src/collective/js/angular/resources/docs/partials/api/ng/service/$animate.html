@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/animate.js?message=docs($animate)%3A%20describe%20your%20change...#L155' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ng/animate.js?message=docs($animate)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ng/animate.js#L155' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/ng/animate.js#L90' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -50,12 +50,11 @@ page</a>.</p>
 <h2>Methods</h2>
 <ul class="methods">
   <li id="enter">
-    <h3><p><code>enter(element, parent, after, [options]);</code></p>
+    <h3><p><code>enter(element, parent, after, [done]);</code></p>
 
 </h3>
-    <div><p>Inserts the element into the DOM either after the <code>after</code> element or
-as the first child within the <code>parent</code> element. When the function is called a promise
-is returned that will be resolved at a later time.</p>
+    <div><p>Inserts the element into the DOM either after the <code>after</code> element or within
+  the <code>parent</code> element. Once complete, the done() callback will be fired (if provided).</p>
 </div>
 
     
@@ -123,15 +122,16 @@ is returned that will be resolved at a later time.</p>
     
     <tr>
       <td>
-        options
+        done
         
         <div><em>(optional)</em></div>
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-object">object</a>
+        <a href="" class="label type-hint type-hint-function">Function=</a>
       </td>
       <td>
-        <p>an optional collection of styles that will be applied to the element.</p>
+        <p>callback function that will be called after the element has been
+  inserted into the DOM</p>
 
         
       </td>
@@ -145,24 +145,15 @@ is returned that will be resolved at a later time.</p>
     
     
     
-    <h4>Returns</h4>
-    <table class="variables-matrix return-arguments">
-  <tr>
-    <td><a href="" class="label type-hint type-hint-promise">Promise</a></td>
-    <td><p>the animation callback promise</p>
-</td>
-  </tr>
-</table>
-    
 
   </li>
   
   <li id="leave">
-    <h3><p><code>leave(element, [options]);</code></p>
+    <h3><p><code>leave(element, [done]);</code></p>
 
 </h3>
-    <div><p>Removes the element from the DOM. When the function is called a promise
-is returned that will be resolved at a later time.</p>
+    <div><p>Removes the element from the DOM. Once complete, the done() callback will be
+  fired (if provided).</p>
 </div>
 
     
@@ -196,15 +187,16 @@ is returned that will be resolved at a later time.</p>
     
     <tr>
       <td>
-        options
+        done
         
         <div><em>(optional)</em></div>
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-object">object</a>
+        <a href="" class="label type-hint type-hint-function">Function=</a>
       </td>
       <td>
-        <p>an optional collection of options that will be applied to the element.</p>
+        <p>callback function that will be called after the element has been
+  removed from the DOM</p>
 
         
       </td>
@@ -218,25 +210,16 @@ is returned that will be resolved at a later time.</p>
     
     
     
-    <h4>Returns</h4>
-    <table class="variables-matrix return-arguments">
-  <tr>
-    <td><a href="" class="label type-hint type-hint-promise">Promise</a></td>
-    <td><p>the animation callback promise</p>
-</td>
-  </tr>
-</table>
-    
 
   </li>
   
   <li id="move">
-    <h3><p><code>move(element, parent, after, [options]);</code></p>
+    <h3><p><code>move(element, parent, after, [done]);</code></p>
 
 </h3>
     <div><p>Moves the position of the provided element within the DOM to be placed
-either after the <code>after</code> element or inside of the <code>parent</code> element. When the function
-is called a promise is returned that will be resolved at a later time.</p>
+either after the <code>after</code> element or inside of the <code>parent</code> element. Once complete, the
+done() callback will be fired (if provided).</p>
 </div>
 
     
@@ -305,15 +288,16 @@ is called a promise is returned that will be resolved at a later time.</p>
     
     <tr>
       <td>
-        options
+        done
         
         <div><em>(optional)</em></div>
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-object">object</a>
+        <a href="" class="label type-hint type-hint-function">Function=</a>
       </td>
       <td>
-        <p>an optional collection of options that will be applied to the element.</p>
+        <p>the callback function (if provided) that will be fired after the
+  element has been moved to its new position</p>
 
         
       </td>
@@ -327,24 +311,15 @@ is called a promise is returned that will be resolved at a later time.</p>
     
     
     
-    <h4>Returns</h4>
-    <table class="variables-matrix return-arguments">
-  <tr>
-    <td><a href="" class="label type-hint type-hint-promise">Promise</a></td>
-    <td><p>the animation callback promise</p>
-</td>
-  </tr>
-</table>
-    
 
   </li>
   
   <li id="addClass">
-    <h3><p><code>addClass(element, className, [options]);</code></p>
+    <h3><p><code>addClass(element, className, [done]);</code></p>
 
 </h3>
-    <div><p>Adds the provided className CSS class value to the provided element.
-When the function is called a promise is returned that will be resolved at a later time.</p>
+    <div><p>Adds the provided className CSS class value to the provided element. Once
+complete, the done() callback will be fired (if provided).</p>
 </div>
 
     
@@ -395,15 +370,16 @@ When the function is called a promise is returned that will be resolved at a lat
     
     <tr>
       <td>
-        options
+        done
         
         <div><em>(optional)</em></div>
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-object">object</a>
+        <a href="" class="label type-hint type-hint-function">Function=</a>
       </td>
       <td>
-        <p>an optional collection of options that will be applied to the element.</p>
+        <p>the callback function (if provided) that will be fired after the
+  className value has been added to the element</p>
 
         
       </td>
@@ -417,24 +393,15 @@ When the function is called a promise is returned that will be resolved at a lat
     
     
     
-    <h4>Returns</h4>
-    <table class="variables-matrix return-arguments">
-  <tr>
-    <td><a href="" class="label type-hint type-hint-promise">Promise</a></td>
-    <td><p>the animation callback promise</p>
-</td>
-  </tr>
-</table>
-    
 
   </li>
   
   <li id="removeClass">
-    <h3><p><code>removeClass(element, className, [options]);</code></p>
+    <h3><p><code>removeClass(element, className, [done]);</code></p>
 
 </h3>
     <div><p>Removes the provided className CSS class value from the provided element.
-When the function is called a promise is returned that will be resolved at a later time.</p>
+Once complete, the done() callback will be fired (if provided).</p>
 </div>
 
     
@@ -485,15 +452,16 @@ When the function is called a promise is returned that will be resolved at a lat
     
     <tr>
       <td>
-        options
+        done
         
         <div><em>(optional)</em></div>
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-object">object</a>
+        <a href="" class="label type-hint type-hint-function">Function=</a>
       </td>
       <td>
-        <p>an optional collection of options that will be applied to the element.</p>
+        <p>the callback function (if provided) that will be fired after the
+  className value has been removed from the element</p>
 
         
       </td>
@@ -507,24 +475,15 @@ When the function is called a promise is returned that will be resolved at a lat
     
     
     
-    <h4>Returns</h4>
-    <table class="variables-matrix return-arguments">
-  <tr>
-    <td><a href="" class="label type-hint type-hint-promise">Promise</a></td>
-    <td><p>the animation callback promise</p>
-</td>
-  </tr>
-</table>
-    
 
   </li>
   
   <li id="setClass">
-    <h3><p><code>setClass(element, add, remove, [options]);</code></p>
+    <h3><p><code>setClass(element, add, remove, [done]);</code></p>
 
 </h3>
     <div><p>Adds and/or removes the given CSS classes to and from the element.
-When the function is called a promise is returned that will be resolved at a later time.</p>
+Once complete, the done() callback will be fired (if provided).</p>
 </div>
 
     
@@ -591,15 +550,16 @@ When the function is called a promise is returned that will be resolved at a lat
     
     <tr>
       <td>
-        options
+        done
         
         <div><em>(optional)</em></div>
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-object">object</a>
+        <a href="" class="label type-hint type-hint-function">Function=</a>
       </td>
       <td>
-        <p>an optional collection of options that will be applied to the element.</p>
+        <p>the callback function (if provided) that will be fired after the
+  CSS classes have been set on the element</p>
 
         
       </td>
@@ -612,15 +572,6 @@ When the function is called a promise is returned that will be resolved at a lat
 
     
     
-    
-    <h4>Returns</h4>
-    <table class="variables-matrix return-arguments">
-  <tr>
-    <td><a href="" class="label type-hint type-hint-promise">Promise</a></td>
-    <td><p>the animation callback promise</p>
-</td>
-  </tr>
-</table>
     
 
   </li>

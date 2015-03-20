@@ -2,6 +2,7 @@
   "name": "example-example82",
   "files": [
     "index-production.html",
-    "animations.css"
+    "script.js",
+    "my-customer-plus-vojta.html"
   ]
 }

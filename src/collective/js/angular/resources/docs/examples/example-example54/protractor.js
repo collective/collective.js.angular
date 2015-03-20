@@ -1,5 +1,3 @@
-it('should check both checkBoxes', function() {
-  expect(element(by.id('checkSlave')).getAttribute('checked')).toBeFalsy();
-  element(by.model('master')).click();
-  expect(element(by.id('checkSlave')).getAttribute('checked')).toBeTruthy();
-});
+  it('should jsonify filtered objects', function() {
+    expect(element(by.binding("{'name':'value'}")).getText()).toMatch(/\{\n  "name": ?"value"\n}/);
+  });

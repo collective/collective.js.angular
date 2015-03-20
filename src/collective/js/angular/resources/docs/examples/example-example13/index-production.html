@@ -5,15 +5,21 @@
   <title>Example - example-example13-production</title>
   
 
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-  <script src="script.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
   
 
   
 </head>
-<body ng-app="docsRestrictDirective">
-  <div ng-controller="Controller">
-  <my-customer></my-customer>
-</div>
+<body ng-app="bindExample">
+    <script>
+    angular.module('bindExample', [])
+      .controller('ExampleController', ['$scope', function($scope) {
+        $scope.name = 'Whirled';
+      }]);
+  </script>
+  <div ng-controller="ExampleController">
+    Enter name: <input type="text" ng-model="name"><br>
+    Hello <span ng-bind="name"></span>!
+  </div>
 </body>
 </html>

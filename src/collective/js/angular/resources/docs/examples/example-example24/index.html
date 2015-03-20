@@ -6,22 +6,14 @@
   
 
   <script src="../../../angular.min.js"></script>
-  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="expressionExample">
-  <div ng-controller="ExampleController" class="expressions">
-  Expression:
-  <input type='text' ng-model="expr" size="80"/>
-  <button ng-click="addExp(expr)">Evaluate</button>
-  <ul>
-   <li ng-repeat="expr in exprs track by $index">
-     [ <a href="" ng-click="removeExp($index)">X</a> ]
-     <tt>{{expr}}</tt> => <span ng-bind="$parent.$eval(expr)"></span>
-    </li>
-  </ul>
-</div>
+<body ng-app="">
+   <button ng-mouseup="count = count + 1" ng-init="count=0">
+   Increment (on mouse up)
+ </button>
+ count: {{count}}
 </body>
 </html>

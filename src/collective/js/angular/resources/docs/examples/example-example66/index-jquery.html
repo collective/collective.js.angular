@@ -7,12 +7,16 @@
 
   <script src="../../components/jquery-2.1.1/jquery.js"></script>
   <script src="../../../angular.js"></script>
+  <script src="../../../angular-touch.js"></script>
+  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="">
-  <div id="template1" ng-cloak>{{ 'hello' }}</div>
-<div id="template2" ng-cloak class="ng-cloak">{{ 'hello IE7' }}</div>
+<body ng-app="ngClickExample">
+    <button ng-click="count = count + 1" ng-init="count=0">
+    Increment
+  </button>
+  count: {{ count }}
 </body>
 </html>

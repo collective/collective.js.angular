@@ -3,23 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <title>Example - example-example3</title>
-  <link href="animations.css" rel="stylesheet" type="text/css">
+  <link href="style.css" rel="stylesheet" type="text/css">
   
 
   <script src="../../../angular.min.js"></script>
-  <script src="../../../angular-animate.js"></script>
+  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="ngAnimate">
-  <div ng-init="checked=true">
-  <label>
-    <input type="checkbox" ng-model="checked" style="float:left; margin-right:10px;"> Is Visible...
-  </label>
-  <div class="check-element sample-show-hide" ng-show="checked" style="clear:both;">
-    Visible...
+<body ng-app="cacheExampleApp">
+    <div ng-controller="CacheController">
+    <input ng-model="newCacheKey" placeholder="Key">
+    <input ng-model="newCacheValue" placeholder="Value">
+    <button ng-click="put(newCacheKey, newCacheValue)">Cache</button>
+
+    <p ng-if="keys.length">Cached Values</p>
+    <div ng-repeat="key in keys">
+      <span ng-bind="key"></span>
+      <span>: </span>
+      <b ng-bind="cache.get(key)"></b>
+    </div>
+
+    <p>Cache Info</p>
+    <div ng-repeat="(key, value) in cache.info()">
+      <span ng-bind="key"></span>
+      <span>: </span>
+      <b ng-bind="value"></b>
+    </div>
   </div>
-</div>
 </body>
 </html>

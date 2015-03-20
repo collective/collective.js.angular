@@ -2,6 +2,7 @@
   "name": "example-example86",
   "files": [
     "index-production.html",
-    "protractor.js"
+    "script.js",
+    "my-dialog-close.html"
   ]
 }

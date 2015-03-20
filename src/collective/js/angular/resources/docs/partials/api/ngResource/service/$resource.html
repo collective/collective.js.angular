@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ngResource/resource.js?message=docs($resource)%3A%20describe%20your%20change...#L62' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ngResource/resource.js?message=docs($resource)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ngResource/resource.js#L62' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/ngResource/resource.js#L62' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -27,15 +27,6 @@
 <p>The returned resource object has action methods which provide high-level behaviors without
 the need to interact with the low level <a href="api/ng/service/$http">$http</a> service.</p>
 <p>Requires the <a href="api/ngResource"><code>ngResource</code></a> module to be installed.</p>
-<p>By default, trailing slashes will be stripped from the calculated URLs,
-which can pose problems with server backends that do not expect that
-behavior.  This can be disabled by configuring the <code>$resourceProvider</code> like
-this:</p>
-<pre><code class="lang-js">app.config([&#39;$resourceProvider&#39;, function($resourceProvider) {
-  // Don&#39;t strip trailing slashes from calculated URLs
-  $resourceProvider.defaults.stripTrailingSlashes = false;
-}]);
-</code></pre>
 
 </div>
 
@@ -54,7 +45,7 @@ this:</p>
 
   <h2 id="usage">Usage</h2>
     
-      <p><code>$resource(url, [paramDefaults], [actions], options);</code></p>
+      <p><code>$resource(url, [paramDefaults], [actions]);</code></p>
 
 
     
@@ -133,8 +124,8 @@ this:</p>
         <a href="" class="label type-hint type-hint-object">Object.&lt;Object&gt;=</a>
       </td>
       <td>
-        <p>Hash with declaration of custom actions that should extend
-  the default set of resource actions. The declaration should be created in the format of <a href="api/ng/service/$http#usage">$http.config</a>:</p>
+        <p>Hash with declaration of custom action that should extend
+  the default set of resource actions. The declaration should be created in the format of <a href="api/ng/service/$http#usage_parameters">$http.config</a>:</p>
 <pre><code>{action1: {method:?, params:?, isArray:?, headers:?, ...},
  action2: {method:?, params:?, isArray:?, headers:?, ...},
  ...}
@@ -187,28 +178,6 @@ with <code>http response</code> object. See <a href="api/ng/service/$http">$http
       </td>
     </tr>
     
-    <tr>
-      <td>
-        options
-        
-        
-      </td>
-      <td>
-        <a href="" class="label type-hint type-hint-object">Object</a>
-      </td>
-      <td>
-        <p>Hash with custom settings that should extend the
-  default <code>$resourceProvider</code> behavior.  The only supported option is</p>
-<p>  Where:</p>
-<ul>
-<li><strong><code>stripTrailingSlashes</code></strong> – {boolean} – If true then the trailing
-slashes from any calculated URL will be stripped. (Defaults to true.)</li>
-</ul>
-
-        
-      </td>
-    </tr>
-    
   </tbody>
 </table>
 
@@ -249,14 +218,13 @@ var user = User.get({userId:123}, function() {
 <ul>
 <li>HTTP GET &quot;class&quot; actions: <code>Resource.action([parameters], [success], [error])</code></li>
 <li>non-GET &quot;class&quot; actions: <code>Resource.action([parameters], postData, [success], [error])</code></li>
-<li>non-GET instance actions:  <code>instance.$action([parameters], [success], [error])</code></li>
-</ul>
-<p>  Success callback is called with (value, responseHeaders) arguments. Error callback is called
-  with (httpResponse) argument.</p>
-<p>  Class actions return empty instance (with additional properties below).
-  Instance actions return promise of the action.</p>
-<p>  The Resource instances and collection have these additional properties:</p>
-<ul>
+<li><p>non-GET instance actions:  <code>instance.$action([parameters], [success], [error])</code></p>
+<p>Success callback is called with (value, responseHeaders) arguments. Error callback is called
+with (httpResponse) argument.</p>
+<p>Class actions return empty instance (with additional properties below).
+Instance actions return promise of the action.</p>
+<p>The Resource instances and collection have these additional properties:</p>
+</li>
 <li><p><code>$promise</code>: the <a href="api/ng/service/$q">promise</a> of the original server interaction that created this
 instance or collection.</p>
 <p>On success, the promise is resolved with the same resource instance or collection object,

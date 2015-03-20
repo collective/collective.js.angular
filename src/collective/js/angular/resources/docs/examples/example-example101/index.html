@@ -6,12 +6,14 @@
   
 
   <script src="../../../angular.min.js"></script>
+  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="">
-  <pre id="default-spacing">{{ {'name':'value'} | json }}</pre>
-<pre id="custom-spacing">{{ {'name':'value'} | json:4 }}</pre>
+<body ng-app="xmpl">
+    <div ng-controller="XmplController">
+    {{ greeting }}
+  </div>
 </body>
 </html>

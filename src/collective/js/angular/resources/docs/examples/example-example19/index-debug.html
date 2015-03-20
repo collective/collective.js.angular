@@ -3,17 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <title>Example - example-example19-debug</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
   
 
   <script src="../../../angular.js"></script>
-  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="docsTransclusionExample">
-  <div ng-controller="Controller">
-  <my-dialog>Check out the contents, {{name}}!</my-dialog>
-</div>
+<body ng-app="">
+     <ol ng-init="names=['John', 'Mary', 'Cate', 'Suz']">
+     <li ng-repeat="name in names">
+      <span ng-class-odd="'odd'" ng-class-even="'even'">
+        {{name}} &nbsp; &nbsp; &nbsp;
+      </span>
+     </li>
+   </ol>
 </body>
 </html>

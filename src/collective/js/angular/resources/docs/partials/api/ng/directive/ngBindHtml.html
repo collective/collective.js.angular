@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/ngBind.js?message=docs(ngBindHtml)%3A%20describe%20your%20change...#L139' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ng/directive/ngBind.js?message=docs(ngBindHtml)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ng/directive/ngBind.js#L139' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/ng/directive/ngBind.js#L133' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -20,13 +20,12 @@
 
 
 <div class="api-profile-description">
-  <p>Evaluates the expression and inserts the resulting HTML into the element in a secure way. By default,
-the resulting HTML content will be sanitized using the <a href="api/ngSanitize/service/$sanitize">$sanitize</a> service.
-To utilize this functionality, ensure that <code>$sanitize</code> is available, for example, by including <a href="api/ngSanitize"><code>ngSanitize</code></a> in your module&#39;s dependencies (not in core Angular). In order to use <a href="api/ngSanitize"><code>ngSanitize</code></a>
-in your module&#39;s dependencies, you need to include &quot;angular-sanitize.js&quot; in your application.</p>
-<p>You may also bypass sanitization for values you know are safe. To do so, bind to
+  <p>Creates a binding that will innerHTML the result of evaluating the <code>expression</code> into the current
+element in a secure way.  By default, the innerHTML-ed content will be sanitized using the <a href="api/ngSanitize/service/$sanitize">$sanitize</a> service.  To utilize this functionality, ensure that <code>$sanitize</code>
+is available, for example, by including <a href="api/ngSanitize"><code>ngSanitize</code></a> in your module&#39;s dependencies (not in
+core Angular.)  You may also bypass sanitization for values you know are safe. To do so, bind to
 an explicitly trusted value via <a href="api/ng/service/$sce#trustAsHtml">$sce.trustAsHtml</a>.  See the example
-under <a href="api/ng/service/$sce#show-me-an-example-using-sce-">Strict Contextual Escaping (SCE)</a>.</p>
+under <a href="api/ng/service/$sce#Example">Strict Contextual Escaping (SCE)</a>.</p>
 <p>Note: If a <code>$sanitize</code> service is unavailable and the bound value isn&#39;t explicitly trusted, you
 will have an exception (instead of an exploit.)</p>
 
@@ -96,12 +95,12 @@ will have an exception (instead of an exploit.)</p>
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example61', $event)" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example15')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example61"
+      path="examples/example-example15"
       module="bindHtmlExample"
       deps="angular-sanitize.js">
 
@@ -117,7 +116,7 @@ will have an exception (instead of an exploit.)</p>
       name="script.js"
       language="js"
       type="js">
-      <pre><code>angular.module(&#39;bindHtmlExample&#39;, [&#39;ngSanitize&#39;])&#10;.controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;  $scope.myHTML =&#10;     &#39;I am an &lt;code&gt;HTML&lt;/code&gt;string with &#39; +&#10;     &#39;&lt;a href=&quot;#&quot;&gt;links!&lt;/a&gt; and other &lt;em&gt;stuff&lt;/em&gt;&#39;;&#10;}]);</code></pre>
+      <pre><code>angular.module(&#39;bindHtmlExample&#39;, [&#39;ngSanitize&#39;])&#10;  .controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;    $scope.myHTML =&#10;       &#39;I am an &lt;code&gt;HTML&lt;/code&gt;string with &#39; +&#10;       &#39;&lt;a href=&quot;#&quot;&gt;links!&lt;/a&gt; and other &lt;em&gt;stuff&lt;/em&gt;&#39;;&#10;  }]);</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -128,7 +127,7 @@ will have an exception (instead of an exploit.)</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example61/index.html" name="example-example61"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example15/index.html" name="example-example15"></iframe>
   </div>
 </div>
 

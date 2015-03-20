@@ -6,16 +6,14 @@
   
 
   <script src="../../../angular.min.js"></script>
-  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="oneTimeBidingExampleApp">
-  <div ng-controller="EventController">
-  <button ng-click="clickMe($event)">Click Me</button>
-  <p id="one-time-binding-example">One time binding: {{::name}}</p>
-  <p id="normal-binding-example">Normal binding: {{name}}</p>
-</div>
+<body ng-app="">
+   <button ng-mouseleave="count = count + 1" ng-init="count=0">
+   Increment (when mouse leaves)
+ </button>
+ count: {{count}}
 </body>
 </html>

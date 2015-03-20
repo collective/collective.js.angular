@@ -1,4 +1,4 @@
-<a href='https://github.com/angular/angular.js/edit/v1.3.x/docs/content/tutorial/step_11.ngdoc?message=docs(tutorial%2F11 - REST and Custom Services)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/docs/content/tutorial/step_11.ngdoc?message=docs(tutorial%2F11 - REST and Custom Services)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 <ul doc-tutorial-nav="11"></ul>
@@ -6,7 +6,7 @@
 
 <p>In this step, you will change the way our app fetches data.</p>
 <ul>
-<li>We define a custom service that represents a <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">RESTful</a> client. Using this client we
+<li>We defined a custom service that represents a <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">RESTful</a> client. Using this client we
 can make requests to the server for data in an easier way, without having to deal with the
 lower-level <a href="api/ng/service/$http">$http</a> API, HTTP methods and URLs.</li>
 </ul>
@@ -18,23 +18,23 @@ separately from the core Angular framework.</p>
 <p>We are using <a href="http://bower.io/">Bower</a> to install client side dependencies.  This step updates the
 <code>bower.json</code> configuration file to include the new dependency:</p>
 <pre><code>{
-  &quot;name&quot;: &quot;angular-seed&quot;,
-  &quot;description&quot;: &quot;A starter project for AngularJS&quot;,
-  &quot;version&quot;: &quot;0.0.0&quot;,
-  &quot;homepage&quot;: &quot;https://github.com/angular/angular-seed&quot;,
-  &quot;license&quot;: &quot;MIT&quot;,
-  &quot;private&quot;: true,
-  &quot;dependencies&quot;: {
-    &quot;angular&quot;: &quot;~1.3.0&quot;,
-    &quot;angular-mocks&quot;: &quot;~1.3.0&quot;,
-    &quot;bootstrap&quot;: &quot;~3.1.1&quot;,
-    &quot;angular-route&quot;: &quot;~1.3.0&quot;,
-    &quot;angular-resource&quot;: &quot;~1.3.0&quot;
-  }
+&quot;name&quot;: &quot;angular-seed&quot;,
+&quot;description&quot;: &quot;A starter project for AngularJS&quot;,
+&quot;version&quot;: &quot;0.0.0&quot;,
+&quot;homepage&quot;: &quot;https://github.com/angular/angular-seed&quot;,
+&quot;license&quot;: &quot;MIT&quot;,
+&quot;private&quot;: true,
+&quot;dependencies&quot;: {
+  &quot;angular&quot;: &quot;1.2.x&quot;,
+  &quot;angular-mocks&quot;: &quot;~1.2.x&quot;,
+  &quot;bootstrap&quot;: &quot;~3.1.1&quot;,
+  &quot;angular-route&quot;: &quot;~1.2.x&quot;,
+  &quot;angular-resource&quot;: &quot;~1.2.x&quot;
+}
 }
 </code></pre>
-<p>The new dependency <code>&quot;angular-resource&quot;: &quot;~1.3.0&quot;</code> tells bower to install a version of the
-angular-resource component that is compatible with version 1.3.x.  We must ask bower to download
+<p>The new dependency <code>&quot;angular-resource&quot;: &quot;~1.2.x&quot;</code> tells bower to install a version of the
+angular-resource component that is compatible with version 1.2.x.  We must ask bower to download
 and install this dependency. We can do this by running:</p>
 <pre><code>npm install
 </code></pre>
@@ -57,8 +57,8 @@ in our layout template. Additionally, we also need to load the <code>angular-res
 contains the <a href="api/ngResource">ngResource</a> module:</p>
 <p><strong><code>app/index.html</code>.</strong></p>
 <pre><code class="lang-html">...
-  &lt;script src=&quot;bower_components/angular-resource/angular-resource.js&quot;&gt;&lt;/script&gt;
-  &lt;script src=&quot;js/services.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;bower_components/angular-resource/angular-resource.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;js/services.js&quot;&gt;&lt;/script&gt;
 ...
 </code></pre>
 <h2 id="service">Service</h2>
@@ -114,7 +114,7 @@ phonecatControllers.controller(&#39;PhoneDetailCtrl&#39;, [&#39;$scope&#39;, &#3
 </code></pre>
 <p>Notice how in <code>PhoneListCtrl</code> we replaced:</p>
 <pre><code>$http.get(&#39;phones/phones.json&#39;).success(function(data) {
-  $scope.phones = data;
+$scope.phones = data;
 });
 </code></pre>
 <p>with:</p>
@@ -131,7 +131,7 @@ view will automatically update.</p>
 we require, so in these cases, we can add a callback to process the server response. The
 <code>PhoneDetailCtrl</code> controller illustrates this by setting the <code>mainImageUrl</code> in a callback.</p>
 <h2 id="test">Test</h2>
-<p>Because we&#39;re now using the <a href="api/ngResource">ngResource</a> module, it&#39;s necessary to
+<p>Because we&#39;re now using the <a href="api/ngResource">ngResource</a> module, it&#39;s necessary to also need to
 update the Karma config file with angular-resource so the new tests will pass.</p>
 <p><strong><code>test/karma.conf.js</code>:</strong></p>
 <pre><code class="lang-js">files : [
@@ -149,87 +149,87 @@ service correctly.</p>
 <p>The <a href="api/ngResource/service/$resource">$resource</a> service augments the response object
 with methods for updating and deleting the resource. If we were to use the standard <code>toEqual</code>
 matcher, our tests would fail because the test values would not match the responses exactly. To
-solve the problem, we use a newly-defined <code>toEqualData</code> <a href="http://jasmine.github.io/1.3/introduction.html#section-Matchers">Jasmine matcher</a>. When
+solve the problem, we use a newly-defined <code>toEqualData</code> <a href="https://github.com/pivotal/jasmine/wiki/Matchers">Jasmine matcher</a>. When
 the <code>toEqualData</code> matcher compares two objects, it takes only object properties into account and
 ignores methods.</p>
 <p><strong><code>test/unit/controllersSpec.js</code>:</strong></p>
 <pre><code class="lang-js">describe(&#39;PhoneCat controllers&#39;, function() {
 
-  beforeEach(function(){
-    this.addMatchers({
-      toEqualData: function(expected) {
-        return angular.equals(this.actual, expected);
-      }
-    });
+beforeEach(function(){
+  this.addMatchers({
+    toEqualData: function(expected) {
+      return angular.equals(this.actual, expected);
+    }
   });
+});
 
-  beforeEach(module(&#39;phonecatApp&#39;));
-  beforeEach(module(&#39;phonecatServices&#39;));
-
-
-  describe(&#39;PhoneListCtrl&#39;, function(){
-    var scope, ctrl, $httpBackend;
-
-    beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
-      $httpBackend = _$httpBackend_;
-      $httpBackend.expectGET(&#39;phones/phones.json&#39;).
-          respond([{name: &#39;Nexus S&#39;}, {name: &#39;Motorola DROID&#39;}]);
-
-      scope = $rootScope.$new();
-      ctrl = $controller(&#39;PhoneListCtrl&#39;, {$scope: scope});
-    }));
+beforeEach(module(&#39;phonecatApp&#39;));
+beforeEach(module(&#39;phonecatServices&#39;));
 
 
-    it(&#39;should create &quot;phones&quot; model with 2 phones fetched from xhr&#39;, function() {
-      expect(scope.phones).toEqualData([]);
-      $httpBackend.flush();
+describe(&#39;PhoneListCtrl&#39;, function(){
+  var scope, ctrl, $httpBackend;
 
-      expect(scope.phones).toEqualData(
-          [{name: &#39;Nexus S&#39;}, {name: &#39;Motorola DROID&#39;}]);
-    });
+  beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
+    $httpBackend = _$httpBackend_;
+    $httpBackend.expectGET(&#39;phones/phones.json&#39;).
+        respond([{name: &#39;Nexus S&#39;}, {name: &#39;Motorola DROID&#39;}]);
+
+    scope = $rootScope.$new();
+    ctrl = $controller(&#39;PhoneListCtrl&#39;, {$scope: scope});
+  }));
 
 
-    it(&#39;should set the default value of orderProp model&#39;, function() {
-      expect(scope.orderProp).toBe(&#39;age&#39;);
-    });
+  it(&#39;should create &quot;phones&quot; model with 2 phones fetched from xhr&#39;, function() {
+    expect(scope.phones).toEqualData([]);
+    $httpBackend.flush();
+
+    expect(scope.phones).toEqualData(
+        [{name: &#39;Nexus S&#39;}, {name: &#39;Motorola DROID&#39;}]);
   });
 
 
-  describe(&#39;PhoneDetailCtrl&#39;, function(){
-    var scope, $httpBackend, ctrl,
-        xyzPhoneData = function() {
-          return {
-            name: &#39;phone xyz&#39;,
-            images: [&#39;image/url1.png&#39;, &#39;image/url2.png&#39;]
-          }
-        };
-
-
-    beforeEach(inject(function(_$httpBackend_, $rootScope, $routeParams, $controller) {
-      $httpBackend = _$httpBackend_;
-      $httpBackend.expectGET(&#39;phones/xyz.json&#39;).respond(xyzPhoneData());
-
-      $routeParams.phoneId = &#39;xyz&#39;;
-      scope = $rootScope.$new();
-      ctrl = $controller(&#39;PhoneDetailCtrl&#39;, {$scope: scope});
-    }));
-
-
-    it(&#39;should fetch phone detail&#39;, function() {
-      expect(scope.phone).toEqualData({});
-      $httpBackend.flush();
-
-      expect(scope.phone).toEqualData(xyzPhoneData());
-    });
+  it(&#39;should set the default value of orderProp model&#39;, function() {
+    expect(scope.orderProp).toBe(&#39;age&#39;);
   });
+});
+
+
+describe(&#39;PhoneDetailCtrl&#39;, function(){
+  var scope, $httpBackend, ctrl,
+      xyzPhoneData = function() {
+        return {
+          name: &#39;phone xyz&#39;,
+          images: [&#39;image/url1.png&#39;, &#39;image/url2.png&#39;]
+        }
+      };
+
+
+  beforeEach(inject(function(_$httpBackend_, $rootScope, $routeParams, $controller) {
+    $httpBackend = _$httpBackend_;
+    $httpBackend.expectGET(&#39;phones/xyz.json&#39;).respond(xyzPhoneData());
+
+    $routeParams.phoneId = &#39;xyz&#39;;
+    scope = $rootScope.$new();
+    ctrl = $controller(&#39;PhoneDetailCtrl&#39;, {$scope: scope});
+  }));
+
+
+  it(&#39;should fetch phone detail&#39;, function() {
+    expect(scope.phone).toEqualData({});
+    $httpBackend.flush();
+
+    expect(scope.phone).toEqualData(xyzPhoneData());
+  });
+});
 });
 </code></pre>
 <p>You should now see the following output in the Karma tab:</p>
-<pre>Chrome 22.0: Executed 5 of 5 SUCCESS (0.038 secs / 0.01 secs)</pre>
+<pre>Chrome 22.0: Executed 4 of 4 SUCCESS (0.038 secs / 0.01 secs)</pre>
 
 
 <h1 id="summary">Summary</h1>
-<p>Now that we&#39;ve seen how to build a custom service as a RESTful client, we&#39;re ready for <a href="tutorial/step_12">step 12</a> (the last step!) to
+<p>With the phone image swapper in place, we&#39;re ready for <a href="tutorial/step_12">step 12</a> (the last step!) to
 learn how to improve this application with animations.</p>
 <ul doc-tutorial-nav="11"></ul>
 

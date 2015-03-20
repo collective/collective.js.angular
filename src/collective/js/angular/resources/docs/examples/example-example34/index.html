@@ -6,21 +6,12 @@
   
 
   <script src="../../../angular.min.js"></script>
-  <script src="script.js"></script>
   
 
   
 </head>
-<body ng-app="customTriggerExample">
-  <div ng-controller="ExampleController">
-  <form>
-    Name:
-    <input type="text" ng-model="user.name" ng-model-options="{ updateOn: 'blur' }" /><br />
-    Other data:
-    <input type="text" ng-model="user.data" /><br />
-  </form>
-  <pre>username = "{{user.name}}"</pre>
-  <pre>userdata = "{{user.data}}"</pre>
-</div>
+<body ng-app="">
+   <input ng-cut="cut=true" ng-init="cut=false; value='cut me'" ng-model="value">
+ cut: {{cut}}
 </body>
 </html>

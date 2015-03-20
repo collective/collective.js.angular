@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/directive/attrs.js?message=docs(ngDisabled)%3A%20describe%20your%20change...#L154' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ng/directive/booleanAttrs.js?message=docs(ngDisabled)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ng/directive/attrs.js#L154' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/ng/directive/booleanAttrs.js#L155' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -20,20 +20,18 @@
 
 
 <div class="api-profile-description">
-  <p>This directive sets the <code>disabled</code> attribute on the element if the
-<a href="guide/expression">expression</a> inside <code>ngDisabled</code> evaluates to truthy.</p>
-<p>A special directive is necessary because we cannot use interpolation inside the <code>disabled</code>
-attribute.  The following example would make the button enabled on Chrome/Firefox
-but not on older IEs:</p>
-<pre><code class="lang-html">&lt;!-- See below for an example of ng-disabled being used correctly --&gt;
-&lt;div ng-init=&quot;isDisabled = false&quot;&gt;
- &lt;button disabled=&quot;{{isDisabled}}&quot;&gt;Disabled&lt;/button&gt;
+  <p>We shouldn&#39;t do this, because it will make the button enabled on Chrome/Firefox but not on IE8 and older IEs:</p>
+<pre><code class="lang-html">&lt;div ng-init=&quot;scope = { isDisabled: false }&quot;&gt;
+&lt;button disabled=&quot;{{scope.isDisabled}}&quot;&gt;Disabled&lt;/button&gt;
 &lt;/div&gt;
 </code></pre>
-<p>This is because the HTML specification does not require browsers to preserve the values of
-boolean attributes such as <code>disabled</code> (Their presence means true and their absence means false.)
+<p>The HTML specification does not require browsers to preserve the values of boolean attributes
+such as disabled. (Their presence means true and their absence means false.)
 If we put an Angular interpolation expression into such an attribute then the
-binding information would be lost when the browser removes the attribute.</p>
+binding information would be lost when the browser removes the attribute.
+The <code>ngDisabled</code> directive solves this problem for the <code>disabled</code> attribute.
+This complementary directive is not removed by the browser and so provides
+a permanent reliable place to store the binding information.</p>
 
 </div>
 
@@ -85,7 +83,7 @@ binding information would be lost when the browser removes the attribute.</p>
       </td>
       <td>
         <p>If the <a href="guide/expression">expression</a> is truthy,
-    then the <code>disabled</code> attribute will be set on the element</p>
+    then special attribute &quot;disabled&quot; will be set on the element</p>
 
         
       </td>
@@ -102,12 +100,12 @@ binding information would be lost when the browser removes the attribute.</p>
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example53', $event)" class="btn pull-right">
+  <a ng-click="openPlunkr('examples/example-example6')" class="btn pull-right">
     <i class="glyphicon glyphicon-edit">&nbsp;</i>
     Edit in Plunker</a>
 
   <div class="runnable-example"
-      path="examples/example-example53">
+      path="examples/example-example6">
 
   
     <div class="runnable-example-file" 
@@ -125,7 +123,7 @@ binding information would be lost when the browser removes the attribute.</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example53/index.html" name="example-example53"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example6/index.html" name="example-example6"></iframe>
   </div>
 </div>
 

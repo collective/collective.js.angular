@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/q.js?message=docs($q)%3A%20describe%20your%20change...#L3' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ng/q.js?message=docs($q)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ng/q.js#L3' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.2.26/src/ng/q.js#L3' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -22,50 +22,13 @@
 
 
 <div class="api-profile-description">
-  <p>A service that helps you run functions asynchronously, and use their return values (or exceptions)
-when they are done processing.</p>
-<p>This is an implementation of promises/deferred objects inspired by
-<a href="https://github.com/kriskowal/q">Kris Kowal&#39;s Q</a>.</p>
-<p>$q can be used in two fashions --- one which is more similar to Kris Kowal&#39;s Q or jQuery&#39;s Deferred
-implementations, and the other which resembles ES6 promises to some degree.</p>
-<h1 id="-q-constructor">$q constructor</h1>
-<p>The streamlined ES6 style promise is essentially just using $q as a constructor which takes a <code>resolver</code>
-function as the first argument. This is similar to the native Promise implementation from ES6 Harmony,
-see <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">MDN</a>.</p>
-<p>While the constructor-style use is supported, not all of the supporting methods from ES6 Harmony promises are
-available yet.</p>
-<p>It can be used like so:</p>
-<pre><code class="lang-js">// for the purpose of this example let&#39;s assume that variables `$q` and `okToGreet`
-// are available in the current lexical scope (they could have been injected or passed in).
-
-function asyncGreet(name) {
-  // perform some asynchronous operation, resolve or reject the promise when appropriate.
-  return $q(function(resolve, reject) {
-    setTimeout(function() {
-      if (okToGreet(name)) {
-        resolve(&#39;Hello, &#39; + name + &#39;!&#39;);
-      } else {
-        reject(&#39;Greeting &#39; + name + &#39; is not allowed.&#39;);
-      }
-    }, 1000);
-  });
-}
-
-var promise = asyncGreet(&#39;Robin Hood&#39;);
-promise.then(function(greeting) {
-  alert(&#39;Success: &#39; + greeting);
-}, function(reason) {
-  alert(&#39;Failed: &#39; + reason);
-});
-</code></pre>
-<p>Note: progress/notify callbacks are not currently supported via the ES6-style interface.</p>
-<p>However, the more traditional CommonJS-style usage is still available, and documented below.</p>
+  <p>A promise/deferred implementation inspired by <a href="https://github.com/kriskowal/q">Kris Kowal&#39;s Q</a>.</p>
 <p><a href="http://wiki.commonjs.org/wiki/Promises">The CommonJS Promise proposal</a> describes a promise as an
 interface for interacting with an object that represents the result of an action that is
 performed asynchronously, and may or may not be finished at any given point in time.</p>
 <p>From the perspective of dealing with error handling, deferred and promise APIs are to
 asynchronous programming what <code>try</code>, <code>catch</code> and <code>throw</code> keywords are to synchronous programming.</p>
-<pre><code class="lang-js">// for the purpose of this example let&#39;s assume that variables `$q` and `okToGreet`
+<pre><code class="lang-js">// for the purpose of this example let&#39;s assume that variables `$q`, `scope` and `okToGreet`
 // are available in the current lexical scope (they could have been injected or passed in).
 
 function asyncGreet(name) {
@@ -132,16 +95,19 @@ or rejection reason. Additionally, the notify callback may be called zero or mor
 provide a progress indication, before the promise is resolved or rejected.</p>
 <p>This method <em>returns a new promise</em> which is resolved or rejected via the return value of the
 <code>successCallback</code>, <code>errorCallback</code>. It also notifies via the return value of the
-<code>notifyCallback</code> method. The promise cannot be resolved or rejected from the notifyCallback
+<code>notifyCallback</code> method. The promise can not be resolved or rejected from the notifyCallback
 method.</p>
 </li>
 <li><p><code>catch(errorCallback)</code> – shorthand for <code>promise.then(null, errorCallback)</code></p>
 </li>
-<li><p><code>finally(callback, notifyCallback)</code> – allows you to observe either the fulfillment or rejection of a promise,
+<li><p><code>finally(callback)</code> – allows you to observe either the fulfillment or rejection of a promise,
 but to do so without modifying the final value. This is useful to release resources or do some
 clean-up that needs to be done whether the promise was rejected or resolved. See the <a href="https://github.com/kriskowal/q/wiki/API-Reference#promisefinallycallback">full
 specification</a> for
 more information.</p>
+<p>Because <code>finally</code> is a reserved word in JavaScript and reserved keywords are not supported as
+property names by ES3, you&#39;ll need to invoke the method like <code>promise[&#39;finally&#39;](callback)</code> to
+make your code IE8 and Android 2.x compatible.</p>
 </li>
 </ul>
 <h1 id="chaining-promises">Chaining promises</h1>
@@ -205,58 +171,7 @@ all the important functionality needed for common async tasks.</p>
 
     
 
-  <h2 id="usage">Usage</h2>
-    
-      <p><code>$q(resolver);</code></p>
-
-
-    
-
-    
-<section class="api-section">
-  <h3>Arguments</h3>
-
-<table class="variables-matrix input-arguments">
-  <thead>
-    <tr>
-      <th>Param</th>
-      <th>Type</th>
-      <th>Details</th>
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr>
-      <td>
-        resolver
-        
-        
-      </td>
-      <td>
-        <a href="" class="label type-hint type-hint-function">function(function, function)</a>
-      </td>
-      <td>
-        <p>Function which is responsible for resolving or
-  rejecting the newly created promise. The first parameter is a function which resolves the
-  promise, the second parameter is a function which rejects the promise.</p>
-
-        
-      </td>
-    </tr>
-    
-  </tbody>
-</table>
-
-</section>
-    
-    <h3>Returns</h3>
-<table class="variables-matrix return-arguments">
-  <tr>
-    <td><a href="" class="label type-hint type-hint-promise">Promise</a></td>
-    <td><p>The newly created promise.</p>
-</td>
-  </tr>
-</table>
+  
 
   
 <h2>Methods</h2>
