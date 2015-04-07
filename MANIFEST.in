@@ -1,3 +1,4 @@
 include *.rst
 recursive-include src *
-recursive-exclude src *.pyc 
+recursive-exclude src *.pyc
+exclude bootstrap.py MANIFEST.in buildout.cfg
