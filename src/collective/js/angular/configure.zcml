@@ -32,10 +32,26 @@
   />
   <genericsetup:registerProfile
       description="Provides Angular Javascript Library for use in Plone"
-      directory="profiles/p5/default"
+      directory="profiles/p5/minified"
       name="default"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       title="AngularJS Javascript Library"
+      zcml:condition="have plone-5"
+  />
+  <genericsetup:registerProfile
+      description="Provides Angular Javascript Library for use in Plone"
+      directory="profiles/p5/uncompressed"
+      name="uncompressed"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      title="AngularJS Javascript Library (uncompressed)"
+      zcml:condition="have plone-5"
+  />
+  <genericsetup:registerProfile
+      description="Provides Angular Javascript Library for use in Plone"
+      directory="profiles/p5/cdn"
+      name="cdn"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      title="AngularJS Javascript Library (CDN)"
       zcml:condition="have plone-5"
   />
   <browser:resourceDirectory

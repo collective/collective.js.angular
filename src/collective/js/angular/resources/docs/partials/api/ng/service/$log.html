@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ng/log.js?message=docs($log)%3A%20describe%20your%20change...#L3' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.5.x/src/ng/log.js?message=docs($log)%3A%20describe%20your%20change...#L3' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ng/log.js#L3' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.5.5/src/ng/log.js#L3' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -31,6 +31,8 @@ into the browser&#39;s console (if present).</p>
 <a href="api/ng/provider/$logProvider">ng.$logProvider#debugEnabled</a> to change this.</p>
 
 </div>
+
+
 
 
 
@@ -134,9 +136,7 @@ into the browser&#39;s console (if present).</p>
   <h2 id="example">Example</h2><p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example110', $event)" class="btn pull-right">
-    <i class="glyphicon glyphicon-edit">&nbsp;</i>
-    Edit in Plunker</a>
+  <plnkr-opener example-path="examples/example-example110"></plnkr-opener>
 
   <div class="runnable-example"
       path="examples/example-example110"
@@ -154,7 +154,7 @@ into the browser&#39;s console (if present).</p>
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;div ng-controller=&quot;LogController&quot;&gt;&#10;  &lt;p&gt;Reload this page with open console, enter text and hit the log button...&lt;/p&gt;&#10;  Message:&#10;  &lt;input type=&quot;text&quot; ng-model=&quot;message&quot;/&gt;&#10;  &lt;button ng-click=&quot;$log.log(message)&quot;&gt;log&lt;/button&gt;&#10;  &lt;button ng-click=&quot;$log.warn(message)&quot;&gt;warn&lt;/button&gt;&#10;  &lt;button ng-click=&quot;$log.info(message)&quot;&gt;info&lt;/button&gt;&#10;  &lt;button ng-click=&quot;$log.error(message)&quot;&gt;error&lt;/button&gt;&#10;  &lt;button ng-click=&quot;$log.debug(message)&quot;&gt;debug&lt;/button&gt;&#10;&lt;/div&gt;</code></pre>
+      <pre><code>&lt;div ng-controller=&quot;LogController&quot;&gt;&#10;  &lt;p&gt;Reload this page with open console, enter text and hit the log button...&lt;/p&gt;&#10;  &lt;label&gt;Message:&#10;  &lt;input type=&quot;text&quot; ng-model=&quot;message&quot; /&gt;&lt;/label&gt;&#10;  &lt;button ng-click=&quot;$log.log(message)&quot;&gt;log&lt;/button&gt;&#10;  &lt;button ng-click=&quot;$log.warn(message)&quot;&gt;warn&lt;/button&gt;&#10;  &lt;button ng-click=&quot;$log.info(message)&quot;&gt;info&lt;/button&gt;&#10;  &lt;button ng-click=&quot;$log.error(message)&quot;&gt;error&lt;/button&gt;&#10;  &lt;button ng-click=&quot;$log.debug(message)&quot;&gt;debug&lt;/button&gt;&#10;&lt;/div&gt;</code></pre>
     </div>
   
 

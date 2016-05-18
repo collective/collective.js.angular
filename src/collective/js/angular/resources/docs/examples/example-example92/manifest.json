@@ -2,7 +2,7 @@
   "name": "example-example92",
   "files": [
     "index-production.html",
-    "script.js",
+    "glyphicons.css",
     "animations.css",
     "protractor.js"
   ]

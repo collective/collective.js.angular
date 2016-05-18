@@ -2,10 +2,10 @@ from setuptools import find_packages
 from setuptools import setup
 import os
 
-version = '1.3.15.1.dev0'
+version = '1.5.5.0.dev0'
 shortdesc = 'AngularJS JavaScript Library Packaged for Plone'
 longdesc = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
-longdesc += open(os.path.join(os.path.dirname(__file__), 'HISTORY.rst')).read()
+longdesc += open(os.path.join(os.path.dirname(__file__), 'CHANGES.rst')).read()
 
 setup(
     name='collective.js.angular',

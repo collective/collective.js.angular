@@ -1,12 +1,9 @@
-var thumbsUp = element(by.css('span.glyphicon-thumbs-up'));
-var thumbsDown = element(by.css('span.glyphicon-thumbs-down'));
-
-it('should check ng-show / ng-hide', function() {
-  expect(thumbsUp.isDisplayed()).toBeFalsy();
-  expect(thumbsDown.isDisplayed()).toBeTruthy();
-
-  element(by.model('checked')).click();
-
-  expect(thumbsUp.isDisplayed()).toBeTruthy();
-  expect(thumbsDown.isDisplayed()).toBeFalsy();
+it('should check ng-options', function() {
+  expect(element(by.binding('{selected_color:myColor}')).getText()).toMatch('red');
+  element.all(by.model('myColor')).first().click();
+  element.all(by.css('select[ng-model="myColor"] option')).first().click();
+  expect(element(by.binding('{selected_color:myColor}')).getText()).toMatch('black');
+  element(by.css('.nullable select[ng-model="myColor"]')).click();
+  element.all(by.css('.nullable select[ng-model="myColor"] option')).first().click();
+  expect(element(by.binding('{selected_color:myColor}')).getText()).toMatch('null');
 });

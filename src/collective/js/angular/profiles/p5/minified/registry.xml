@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<registry>
+  <!--
+    non-AMD registration
+  -->
+  <records
+      interface="Products.CMFPlone.interfaces.IBundleRegistry"
+      prefix="plone.bundles/angularjs">
+    <value key="enabled">True</value>
+    <value key="jscompilation">++resource++collective.js.angular/angular.min.js</value>
+    <value key="last_compilation">2016-05-18 18:40:00</value>
+    <value key="compile">False</value>
+    <value key="depends">plone</value>
+    <!-- <value key="merge_with">plone</value> -->
+  </records>
+</registry>

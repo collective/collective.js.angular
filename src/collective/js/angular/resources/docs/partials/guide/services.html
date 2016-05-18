@@ -1,4 +1,4 @@
-<a href='https://github.com/angular/angular.js/edit/v1.3.x/docs/content/guide/services.ngdoc?message=docs(guide%2FServices)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.5.x/docs/content/guide/services.ngdoc?message=docs(guide%2FServices)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 <h1 id="services">Services</h1>
@@ -26,12 +26,10 @@ subsystem takes care of the rest.</p>
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example44', $event)" class="btn pull-right">
-    <i class="glyphicon glyphicon-edit">&nbsp;</i>
-    Edit in Plunker</a>
+  <plnkr-opener example-path="examples/example-example46"></plnkr-opener>
 
   <div class="runnable-example"
-      path="examples/example-example44"
+      path="examples/example-example46"
       module="myServiceModule">
 
   
@@ -46,7 +44,7 @@ subsystem takes care of the rest.</p>
       name="script.js"
       language="js"
       type="js">
-      <pre><code>angular.&#10;module(&#39;myServiceModule&#39;, []).&#10; controller(&#39;MyController&#39;, [&#39;$scope&#39;,&#39;notify&#39;, function ($scope, notify) {&#10;   $scope.callNotify = function(msg) {&#10;     notify(msg);&#10;   };&#10; }]).&#10;factory(&#39;notify&#39;, [&#39;$window&#39;, function(win) {&#10;   var msgs = [];&#10;   return function(msg) {&#10;     msgs.push(msg);&#10;     if (msgs.length == 3) {&#10;       win.alert(msgs.join(&quot;\n&quot;));&#10;       msgs = [];&#10;     }&#10;   };&#10; }]);</code></pre>
+      <pre><code>angular.&#10;module(&#39;myServiceModule&#39;, []).&#10; controller(&#39;MyController&#39;, [&#39;$scope&#39;, &#39;notify&#39;, function ($scope, notify) {&#10;   $scope.callNotify = function(msg) {&#10;     notify(msg);&#10;   };&#10; }]).&#10;factory(&#39;notify&#39;, [&#39;$window&#39;, function(win) {&#10;   var msgs = [];&#10;   return function(msg) {&#10;     msgs.push(msg);&#10;     if (msgs.length == 3) {&#10;       win.alert(msgs.join(&quot;\n&quot;));&#10;       msgs = [];&#10;     }&#10;   };&#10; }]);</code></pre>
     </div>
   
     <div class="runnable-example-file" 
@@ -57,7 +55,7 @@ subsystem takes care of the rest.</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example44/index.html" name="example-example44"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example46/index.html" name="example-example46"></iframe>
   </div>
 </div>
 
@@ -72,7 +70,7 @@ injected into any component (controller, service, filter or directive) that spec
 on the service.</p>
 <h3 id="registering-services">Registering Services</h3>
 <p>Services are registered to modules via the <a href="api/ng/type/angular.Module">Module API</a>.
-Typically you use the <a href="api/ng/function/angular.module">Module#factory</a> API to register a service:</p>
+Typically you use the <a href="api/ng/type/angular.Module#factory">Module factory</a> API to register a service:</p>
 <pre><code class="lang-js">var myModule = angular.module(&#39;myModule&#39;, []);
 myModule.factory(&#39;serviceId&#39;, function() {
   var shinyNewServiceInstance;
@@ -119,9 +117,13 @@ batchModule.factory(&#39;batchLog&#39;, [&#39;$interval&#39;, &#39;$log&#39;, fu
  */
 batchModule.factory(&#39;routeTemplateMonitor&#39;, [&#39;$route&#39;, &#39;batchLog&#39;, &#39;$rootScope&#39;,
   function($route, batchLog, $rootScope) {
-    $rootScope.$on(&#39;$routeChangeSuccess&#39;, function() {
-      batchLog($route.current ? $route.current.template : null);
-    });
+    return {
+      startMonitoring: function() {
+        $rootScope.$on(&#39;$routeChangeSuccess&#39;, function() {
+          batchLog($route.current ? $route.current.template : null);
+        });
+      }
+    };
   }]);
 </code></pre>
 <p>In the example, note that:</p>
@@ -150,7 +152,7 @@ module&#39;s <code>config</code> function:</p>
 <p>The following is a unit test for the <code>notify</code> service from the <a href="guide/services#creating-services">Creating Angular Services</a> example above. The unit test example uses a Jasmine spy (mock) instead
 of a real browser alert.</p>
 <pre><code class="lang-js">var mock, notify;
-
+beforeEach(module(&#39;myServiceModule&#39;));
 beforeEach(function() {
   mock = {alert: jasmine.createSpy()};
 

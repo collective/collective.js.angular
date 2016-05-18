@@ -1,4 +1,4 @@
-<a href='https://github.com/angular/angular.js/edit/v1.3.x/docs/content/guide/module.ngdoc?message=docs(guide%2FModules)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.5.x/docs/content/guide/module.ngdoc?message=docs(guide%2FModules)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 <h1 id="what-is-a-module-">What is a Module?</h1>
@@ -21,12 +21,10 @@ should be bootstrapped. There are several advantages to this approach:</p>
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example39', $event)" class="btn pull-right">
-    <i class="glyphicon glyphicon-edit">&nbsp;</i>
-    Edit in Plunker</a>
+  <plnkr-opener example-path="examples/example-example41"></plnkr-opener>
 
   <div class="runnable-example"
-      path="examples/example-example39"
+      path="examples/example-example41"
       ng-app-included="true">
 
   
@@ -52,7 +50,7 @@ should be bootstrapped. There are several advantages to this approach:</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example39/index.html" name="example-example39"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example41/index.html" name="example-example41"></iframe>
   </div>
 </div>
 
@@ -75,19 +73,15 @@ that you break your application to multiple modules like this:</p>
 <li>And an application level module which depends on the above modules and contains any
 initialization code.</li>
 </ul>
-<p>We&#39;ve also
-<a href="http://blog.angularjs.org/2014/02/an-angularjs-style-guide-and-best.html">written a document</a>
-on how we organize large apps at Google.</p>
+<p>You can find a community<br><a href="https://github.com/johnpapa/angular-styleguide">style guide</a> to help yourself when application grows.</p>
 <p>The above is a suggestion. Tailor it to your needs.</p>
 <p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example40', $event)" class="btn pull-right">
-    <i class="glyphicon glyphicon-edit">&nbsp;</i>
-    Edit in Plunker</a>
+  <plnkr-opener example-path="examples/example-example42"></plnkr-opener>
 
   <div class="runnable-example"
-      path="examples/example-example40"
+      path="examples/example-example42"
       module="xmpl">
 
   
@@ -113,7 +107,7 @@ on how we organize large apps at Google.</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example40/index.html" name="example-example40"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example42/index.html" name="example-example42"></iframe>
   </div>
 </div>
 
@@ -121,7 +115,7 @@ on how we organize large apps at Google.</p>
 </p>
 <h1 id="module-loading-dependencies">Module Loading &amp; Dependencies</h1>
 <p>A module is a collection of configuration and run blocks which get applied to the application
-during the bootstrap process. In its simplest form the module consist of a collection of two kinds
+during the bootstrap process. In its simplest form the module consists of a collection of two kinds
 of blocks:</p>
 <ol>
 <li><strong>Configuration blocks</strong> - get executed during the provider registrations and configuration
@@ -171,12 +165,12 @@ Then Angular applies configuration blocks in the same order they were registered
 
 <h2 id="run-blocks">Run Blocks</h2>
 <p>Run blocks are the closest thing in Angular to the main method. A run block is the code which
-needs to run to kickstart the application. It is executed after all of the service have been
+needs to run to kickstart the application. It is executed after all of the services have been
 configured and the injector has been created. Run blocks typically contain code which is hard
 to unit-test, and for this reason should be declared in isolated modules, so that they can be
 ignored in the unit-tests.</p>
 <h2 id="dependencies">Dependencies</h2>
-<p>Modules can list other modules as their dependencies. Depending on a module implies that required
+<p>Modules can list other modules as their dependencies. Depending on a module implies that the required
 module needs to be loaded before the requiring module is loaded. In other words the configuration
 blocks of the required modules execute before the configuration blocks of the requiring module.
 The same is true for the run blocks. Each module can only be loaded once, even if multiple other

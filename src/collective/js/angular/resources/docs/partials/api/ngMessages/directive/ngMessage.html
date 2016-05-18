@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ngMessages/messages.js?message=docs(ngMessage)%3A%20describe%20your%20change...#L317' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.5.x/src/ngMessages/messages.js?message=docs(ngMessage)%3A%20describe%20your%20change...#L571' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.3.15/src/ngMessages/messages.js#L317' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.5.5/src/ngMessages/messages.js#L571' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -32,6 +32,8 @@ of the provided key/value map that <code>ngMessages</code> listens on.</p>
 
 
 
+
+
 <div>
   
 
@@ -40,6 +42,7 @@ of the provided key/value map that <code>ngMessages</code> listens on.</p>
   <ul>
     <li>This directive creates new scope.</li>
     <li>This directive executes at priority level 0.</li>
+    
   </ul>
 
   
@@ -47,17 +50,15 @@ of the provided key/value map that <code>ngMessages</code> listens on.</p>
   <div class="usage">
   
     <pre><code class="lang-html">&lt;!-- using attribute directives --&gt;
-&lt;ANY ng-messages=&quot;expression&quot;&gt;
-  &lt;ANY ng-message=&quot;keyValue1&quot;&gt;...&lt;/ANY&gt;
-  &lt;ANY ng-message=&quot;keyValue2&quot;&gt;...&lt;/ANY&gt;
-  &lt;ANY ng-message=&quot;keyValue3&quot;&gt;...&lt;/ANY&gt;
+&lt;ANY ng-messages=&quot;expression&quot; role=&quot;alert&quot;&gt;
+  &lt;ANY ng-message=&quot;stringValue&quot;&gt;...&lt;/ANY&gt;
+  &lt;ANY ng-message=&quot;stringValue1, stringValue2, ...&quot;&gt;...&lt;/ANY&gt;
 &lt;/ANY&gt;
 
 &lt;!-- or by using element directives --&gt;
-&lt;ng-messages for=&quot;expression&quot;&gt;
-  &lt;ng-message when=&quot;keyValue1&quot;&gt;...&lt;/ng-message&gt;
-  &lt;ng-message when=&quot;keyValue2&quot;&gt;...&lt;/ng-message&gt;
-  &lt;ng-message when=&quot;keyValue3&quot;&gt;...&lt;/ng-message&gt;
+&lt;ng-messages for=&quot;expression&quot; role=&quot;alert&quot;&gt;
+  &lt;ng-message when=&quot;stringValue&quot;&gt;...&lt;/ng-message&gt;
+  &lt;ng-message when=&quot;stringValue1, stringValue2, ...&quot;&gt;...&lt;/ng-message&gt;
 &lt;/ng-messages&gt;
 </code></pre>
 
@@ -80,11 +81,11 @@ of the provided key/value map that <code>ngMessages</code> listens on.</p>
     <tr>
       <td>
         ngMessage
-        
+        | when
         
       </td>
       <td>
-        <a href="" class="label type-hint type-hint-string">string</a>
+        <a href="" class="label type-hint type-hint-expression">expression</a>
       </td>
       <td>
         <p>a string value corresponding to the message key.</p>

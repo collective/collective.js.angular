@@ -1,15 +1,9 @@
-<a href='https://github.com/angular/angular.js/edit/v1.3.x/src/ngMock/angular-mocks.js?message=docs(ngMock)%3A%20describe%20your%20change...#L1876' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.5.x/src/ngMock/angular-mocks.js?message=docs(ngMock)%3A%20describe%20your%20change...#L2236' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 <h1>
   <code>ngMock</code>
 </h1>
-
-<h1 id="ngmock">ngMock</h1>
-<p>The <code>ngMock</code> module provides support to inject and mock Angular services into unit tests.
-In addition, ngMock also extends various core ng services such that they can be
-inspected and controlled in a synchronous manner within test code.</p>
-<div doc-module-components="ngMock"></div>
 
 
   <h2>Installation</h2>
@@ -38,6 +32,15 @@ inspected and controlled in a synchronous manner within test code.</p>
   <pre><code>angular.module(&#39;app&#39;, [&#39;ngMock&#39;]);</code></pre>
 
   <p>With that you&apos;re ready to get started!</p>
+
+
+<h1 id="ngmock">ngMock</h1>
+<p>The <code>ngMock</code> module provides support to inject and mock Angular services into unit tests.
+In addition, ngMock also extends various core ng services such that they can be
+inspected and controlled in a synchronous manner within test code.</p>
+<div doc-module-components="ngMock"></div>
+
+
 
 
 <div class="component-breakdown">
@@ -109,6 +112,13 @@ level-specific log function, e.g. for level <code>error</code> the array is expo
       </tr>
       
       <tr>
+        <td><a href="api/ngMock/service/$animate">$animate</a></td>
+        <td><p>Mock implementation of the <a href="api/ng/service/$animate"><code>$animate</code></a> service. Exposes two additional methods
+for testing animations.</p>
+</td>
+      </tr>
+      
+      <tr>
         <td><a href="api/ngMock/service/$httpBackend">$httpBackend</a></td>
         <td><p>Fake HTTP backend implementation suitable for unit testing applications that use the
 <a href="api/ng/service/$http">$http service</a>.</p>
@@ -127,6 +137,16 @@ that adds a &quot;flush&quot; and &quot;verifyNoPendingTasks&quot; methods.</p>
         <td><p>A decorator for <a href="api/ng/service/$controller"><code>$controller</code></a> with additional <code>bindings</code> parameter, useful when testing
 controllers of directives that use <a href="api/ng/service/$compile#-bindtocontroller-"><code>bindToController</code></a>.</p>
 </td>
+      </tr>
+      
+      <tr>
+        <td><a href="api/ngMock/service/$componentController">$componentController</a></td>
+        <td><p>A service that can be used to create instances of component controllers.</p>
+<div class="alert alert-info">
+Be aware that the controller will be instantiated and attached to the scope as specified in
+the component definition object. If you do not provide a <code>$scope</code> object in the <code>locals</code> param
+then the helper will create a new isolated scope as a child of <code>$rootScope</code>.
+</div></td>
       </tr>
       
     </table>
@@ -175,6 +195,12 @@ methods are automatically available on any <a href="api/ng/type/$rootScope.Scope
         <td><a href="api/ngMock/function/angular.mock.module">angular.mock.module</a></td>
         <td><p><em>NOTE</em>: This function is also published on window for easy access.<br>
 <em>NOTE</em>: This function is declared ONLY WHEN running tests with jasmine or mocha</p>
+</td>
+      </tr>
+      
+      <tr>
+        <td><a href="api/ngMock/function/angular.mock.module.sharedInjector">angular.mock.module.sharedInjector</a></td>
+        <td><p><em>NOTE</em>: This function is declared ONLY WHEN running tests with jasmine or mocha</p>
 </td>
       </tr>
       
