@@ -52,7 +52,7 @@ The code is located in the
 `github collective <https://github.com/collective/collective.js.angular>`_.
 
 You can clone it or `get access to the github-collective
-<http://collective.github.com/>`_ and work directly on the project.
+<https://collective.github.io/>`_ and work directly on the project.
 
 Maintainer is Jens Klein and the BlueDynamics Alliance developer team. We
 appreciate any contribution and if a release is needed to be done on pypi,
